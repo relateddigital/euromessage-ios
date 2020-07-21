@@ -86,14 +86,14 @@ Note: If you are going to use carousel push sending, you need to add this.
 1. In Xcode File > New > Target...
 
 2. Select Notification Content Extension then press Next.
-![Select Notification Content Extension](https://img.visilabs.net/banner/uploaded_images/163_1100_20200721130503480.png)
+![Select Notification Content Extension](https://app.visilabs.net/download/one2one/docs/1.png)
 
 3. Enter the product name as NotificationContent and press Finish.
-![NotificationContent](https://img.visilabs.net/banner/uploaded_images/163_1100_20200721130611620.png)
+![NotificationContent](https://app.visilabs.net/download/one2one/docs/2.png)
 
 4. Do not select Activate on the dialog that is shown after selecting Finish.
 
-![Do not select Activate](https://img.visilabs.net/banner/uploaded_images/163_1100_20200721130633957.png)
+![Do not select Activate](https://app.visilabs.net/download/one2one/docs/3.png)
 
 By canceling, you are keeping Xcode debugging your app, instead of the extension you just created.
 
@@ -102,12 +102,12 @@ If you activated by accident, you can switch back to debug your app within Xcode
 5. In the project navigator, select the top-level project directory and select the Euro-IOSNotificationServiceExtension target in the project and targets list.
 Unless you have a specific reason not to, you should set the Deployment Target to be iOS 11.
 
-![Select deployment target iOS 11.0](https://img.visilabs.net/banner/uploaded_images/163_1100_20200721130658139.png)
+![Select deployment target iOS 11.0](https://app.visilabs.net/download/one2one/docs/4.png)
 
 6. Delete MainInterface.storyboard and NotificationContent.swift files. Then create a swift file named EMNotificationViewController under the NotificationContent folder.
 
-![DeleteFiles](https://img.visilabs.net/banner/uploaded_images/163_1100_20200721130726766.png) 
-![AddFile](https://img.visilabs.net/banner/uploaded_images/163_1100_20200721131005983.png)
+![DeleteFiles](https://app.visilabs.net/download/one2one/docs/5.png) 
+![AddFile](https://app.visilabs.net/download/one2one/docs/6.png)
 
 7. Open EMNotificationViewController.swift and replace the whole file's contents with the following code.
 
@@ -147,7 +147,7 @@ class EMNotificationViewController: UIViewController, UNNotificationContentExten
 
 ```
 
-![Podfile](https://img.visilabs.net/banner/uploaded_images/163_1100_20200721131323569.png)
+![Podfile](https://app.visilabs.net/download/one2one/docs/7.png)
 
 ### AppDelegate.swift
 Firstly import Euromsg and UserNotifications
