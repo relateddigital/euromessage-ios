@@ -31,7 +31,7 @@ Euro-IOSNotificationServiceExtension allows your iOS application to receive rich
 2. Select Notification Service Extension then press Next.
 ![Select Notification Service Extension](https://camo.githubusercontent.com/5773ecb50fbb7cf17a491b560b96c660b10b849d/68747470733a2f2f696d672e766973696c6162732e6e65742f62616e6e65722f75706c6f616465645f696d616765732f3136335f313130305f32303230303532323138313731323936382e706e67)
 
-3. Enter the product name as NotificationService and press Finish. Click Cancel button
+3. Enter the product name as NotificationService and press Finish.
 ![NotificationService](https://img.visilabs.net/banner/uploaded_images/163_1100_20200710131507895.png)
 
 4. Do not select Activate on the dialog that is shown after selecting Finish.
@@ -78,7 +78,72 @@ Ignore any build errors at this point, step 2 will import Euromessage which will
 
 If you have already added the Euromessage library to your project, simply add the Euro-IOSNotificationServiceExtension section.
 
-![Podfile](https://img.visilabs.net/banner/uploaded_images/163_1100_20200710132551051.png)
+### Add a Notification Content Extension
+
+Note: If you are going to use carousel push sending, you need to add this.
+
+1. In Xcode File > New > Target...
+
+2. Select Notification Content Extension then press Next.
+![Select Notification Content Extension](https://img.visilabs.net/banner/uploaded_images/163_1100_20200721130503480.png)
+
+3. Enter the product name as NotificationContent and press Finish.
+![NotificationContent](https://img.visilabs.net/banner/uploaded_images/163_1100_20200721130611620.png)
+
+4. Do not select Activate on the dialog that is shown after selecting Finish.
+![Do not select Activate](https://img.visilabs.net/banner/uploaded_images/163_1100_20200721130633957.png)
+
+By canceling, you are keeping Xcode debugging your app, instead of the extension you just created.
+
+If you activated by accident, you can switch back to debug your app within Xcode (next to the play button).
+
+5. In the project navigator, select the top-level project directory and select the Euro-IOSNotificationServiceExtension target in the project and targets list.
+Unless you have a specific reason not to, you should set the Deployment Target to be iOS 11.
+
+![Select deployment target iOS 11.0](https://img.visilabs.net/banner/uploaded_images/163_1100_20200721130658139.png)
+
+6. Delete MainInterface.storyboard and NotificationContent.swift files. Then create a swift file named EMNotificationViewController under the NotificationContent folder.
+![DeleteFiles](https://img.visilabs.net/banner/uploaded_images/163_1100_20200721130726766.png) ![AddFile](https://img.visilabs.net/banner/uploaded_images/163_1100_20200721131005983.png)
+
+7. Open EMNotificationViewController.swift and replace the whole file's contents with the following code.
+
+```swift
+import UIKit
+import UserNotifications
+import UserNotificationsUI
+import Euromsg
+
+@available(iOS 10.0, *)
+@objc(EMNotificationViewController)
+class EMNotificationViewController: UIViewController, UNNotificationContentExtension {
+
+    let appUrl = URL(string: "euromsgExample://") //Change 'euromsgExample://' with your deeplink url
+    let carouselView = EMNotificationCarousel.initView()
+    var completion: ((_ url: URL?) -> Void)?
+    func didReceive(_ notification: UNNotification) {
+        carouselView.didReceive(notification)
+    }
+    func didReceive(_ response: UNNotificationResponse,
+                    completionHandler completion: @escaping (UNNotificationContentExtensionResponseOption) -> Void) {
+        carouselView.didReceive(response, completionHandler: completion)
+    }
+    override func loadView() {
+        completion = { [weak self] url in
+            if let url = url {
+                self?.extensionContext?.open(url)
+            }
+            else if let url = self?.appUrl {
+                self?.extensionContext?.open(url)
+            }
+        }
+        carouselView.completion = completion
+        self.view = carouselView
+    }
+}
+
+```
+
+![Podfile](https://img.visilabs.net/banner/uploaded_images/163_1100_20200721131323569.png)
 
 ### AppDelegate.swift
 Firstly import Euromsg and UserNotifications
