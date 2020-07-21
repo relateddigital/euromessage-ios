@@ -35,6 +35,7 @@ Euro-IOSNotificationServiceExtension allows your iOS application to receive rich
 ![NotificationService](https://img.visilabs.net/banner/uploaded_images/163_1100_20200710131507895.png)
 
 4. Do not select Activate on the dialog that is shown after selecting Finish.
+
 ![Do not select Activate](https://img.visilabs.net/banner/uploaded_images/163_1100_20200710131642357.png)
 
 By canceling, you are keeping Xcode debugging your app, instead of the extension you just created.
@@ -91,6 +92,7 @@ Note: If you are going to use carousel push sending, you need to add this.
 ![NotificationContent](https://img.visilabs.net/banner/uploaded_images/163_1100_20200721130611620.png)
 
 4. Do not select Activate on the dialog that is shown after selecting Finish.
+
 ![Do not select Activate](https://img.visilabs.net/banner/uploaded_images/163_1100_20200721130633957.png)
 
 By canceling, you are keeping Xcode debugging your app, instead of the extension you just created.
@@ -103,7 +105,9 @@ Unless you have a specific reason not to, you should set the Deployment Target t
 ![Select deployment target iOS 11.0](https://img.visilabs.net/banner/uploaded_images/163_1100_20200721130658139.png)
 
 6. Delete MainInterface.storyboard and NotificationContent.swift files. Then create a swift file named EMNotificationViewController under the NotificationContent folder.
-![DeleteFiles](https://img.visilabs.net/banner/uploaded_images/163_1100_20200721130726766.png) ![AddFile](https://img.visilabs.net/banner/uploaded_images/163_1100_20200721131005983.png)
+
+![DeleteFiles](https://img.visilabs.net/banner/uploaded_images/163_1100_20200721130726766.png) 
+![AddFile](https://img.visilabs.net/banner/uploaded_images/163_1100_20200721131005983.png)
 
 7. Open EMNotificationViewController.swift and replace the whole file's contents with the following code.
 
