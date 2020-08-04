@@ -1,0 +1,22 @@
+{
+  "name": "Euromsg",
+  "version": "0.1.0",
+  "summary": "A short description of Euromsg.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/cicimen/Euromsg",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "cicimen": "egemengulkilik@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/cicimen/Euromsg.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "Euromsg/Classes/**/*"
+}
