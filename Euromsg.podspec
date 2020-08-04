@@ -8,35 +8,14 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Euromsg'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of Euromsg.'
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
-
-  s.homepage         = 'https://github.com/cicimen/Euromsg'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'cicimen' => 'egemengulkilik@gmail.com' }
-  s.source           = { :git => 'https://github.com/cicimen/Euromsg.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
-
+  s.version          = '2.0'
+  s.summary          = 'Euromsg SDK'
+  s.description      = 'Euromsg SDK'
+  s.homepage         = 'https://github.com/relateddigital/euromessage-ios'
+  s.license          = 'Related Digital'
+  s.author           = { 'Muhammed ARAFA' => 'Muhammed ARAFA' }
+  s.source           = { :git => 'https://github.com/relateddigital/euromessage-ios.git', :tag => s.version.to_s }
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'Euromsg/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'Euromsg' => ['Euromsg/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
