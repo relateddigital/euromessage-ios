@@ -16,6 +16,6 @@ s.source            = {
 :git => 'https://github.com/relateddigital/euromessage-ios.git',
 :tag => "#{s.version}" }
 s.framework = "UIKit"
-s.source_files      = 'Euromsg*' , 'Classes/*', 'Resource/*'
+s.source_files      =  'Classes/*'
 s.requires_arc      = true
 end
