@@ -5,10 +5,7 @@ s.summary           = 'Euromsg'
 s.homepage          = 'https://github.com/relateddigital/euromessage-ios.git'
 s.ios.deployment_target = '8.0'
 s.platform = :ios, '8.0'
-s.license           = {
-:type => 'MIT',
-:file => 'LICENSE'
-}
+s.license           = 'Related Digital'
 s.author            = {
 'YOURNAME' => 'Muhammed ARAFA'
 }
