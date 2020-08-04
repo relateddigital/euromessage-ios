@@ -30,6 +30,10 @@
 		10A22031242E359700D0965C /* Euromsg.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 10A2202F242E359700D0965C /* Euromsg.podspec */; };
 		10A22032242E359700D0965C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 10A22030242E359700D0965C /* LICENSE */; };
 		10A22034242E38A100D0965C /* EMToolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A22033242E38A100D0965C /* EMToolsTests.swift */; };
+		10F11CBF24BB120200371304 /* CarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F11CBD24BB120200371304 /* CarouselCell.swift */; };
+		10F11CCB24BB36FC00371304 /* EMNotificationCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F11CCA24BB36FC00371304 /* EMNotificationCarousel.swift */; };
+		10F11CCD24BB370500371304 /* EMNotificationCarousel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10F11CCC24BB370500371304 /* EMNotificationCarousel.xib */; };
+		10F11CCE24BB465B00371304 /* CarouselCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10F11CBE24BB120200371304 /* CarouselCell.xib */; };
 		10F193D9244DB262001D58AB /* EMNotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F193D8244DB262001D58AB /* EMNotificationHandler.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +74,10 @@
 		10A2202F242E359700D0965C /* Euromsg.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Euromsg.podspec; sourceTree = "<group>"; };
 		10A22030242E359700D0965C /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		10A22033242E38A100D0965C /* EMToolsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMToolsTests.swift; sourceTree = "<group>"; };
+		10F11CBD24BB120200371304 /* CarouselCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCell.swift; sourceTree = "<group>"; };
+		10F11CBE24BB120200371304 /* CarouselCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarouselCell.xib; sourceTree = "<group>"; };
+		10F11CCA24BB36FC00371304 /* EMNotificationCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMNotificationCarousel.swift; sourceTree = "<group>"; };
+		10F11CCC24BB370500371304 /* EMNotificationCarousel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EMNotificationCarousel.xib; sourceTree = "<group>"; };
 		10F193D8244DB262001D58AB /* EMNotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMNotificationHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,14 +155,34 @@
 				10A22027242E324D00D0965C /* EMRequestProtocol.swift */,
 				10A2202B242E32AB00D0965C /* EMRegisterRequest.swift */,
 				10A2202D242E32EA00D0965C /* EMRetentionRequest.swift */,
-				10569637242F4F6B0055EF19 /* EMLog.swift */,
-				10A22029242E327A00D0965C /* EMTools.swift */,
 				1026C00A2433958E00D4ACFB /* EMConfiguration.swift */,
-				1021CEB0243A8AC4005E4842 /* EMCodable.swift */,
 				10F193D8244DB262001D58AB /* EMNotificationHandler.swift */,
-				105978CD246D9FE5001EC6E4 /* EMKey.swift */,
+				10F11CC224BB13E600371304 /* EMNotificationCarousel */,
+				10F11CC324BB141700371304 /* EMUtils */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		10F11CC224BB13E600371304 /* EMNotificationCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				10F11CCA24BB36FC00371304 /* EMNotificationCarousel.swift */,
+				10F11CCC24BB370500371304 /* EMNotificationCarousel.xib */,
+				10F11CBD24BB120200371304 /* CarouselCell.swift */,
+				10F11CBE24BB120200371304 /* CarouselCell.xib */,
+			);
+			path = EMNotificationCarousel;
+			sourceTree = "<group>";
+		};
+		10F11CC324BB141700371304 /* EMUtils */ = {
+			isa = PBXGroup;
+			children = (
+				10569637242F4F6B0055EF19 /* EMLog.swift */,
+				10A22029242E327A00D0965C /* EMTools.swift */,
+				1021CEB0243A8AC4005E4842 /* EMCodable.swift */,
+				105978CD246D9FE5001EC6E4 /* EMKey.swift */,
+			);
+			path = EMUtils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,6 +281,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				10930C9124662EC500A566A3 /* .travis.yml in Resources */,
+				10F11CCD24BB370500371304 /* EMNotificationCarousel.xib in Resources */,
+				10F11CCE24BB465B00371304 /* CarouselCell.xib in Resources */,
 				10A22032242E359700D0965C /* LICENSE in Resources */,
 				10A22031242E359700D0965C /* Euromsg.podspec in Resources */,
 			);
@@ -301,9 +331,11 @@
 				1021CEB1243A8AC4005E4842 /* EMCodable.swift in Sources */,
 				10930C892463F67900A566A3 /* EMNetworkHandler.swift in Sources */,
 				10A2202C242E32AB00D0965C /* EMRegisterRequest.swift in Sources */,
+				10F11CBF24BB120200371304 /* CarouselCell.swift in Sources */,
 				10569638242F4F6B0055EF19 /* EMLog.swift in Sources */,
 				105978CE246D9FE5001EC6E4 /* EMKey.swift in Sources */,
 				10A2202E242E32EA00D0965C /* EMRetentionRequest.swift in Sources */,
+				10F11CCB24BB36FC00371304 /* EMNotificationCarousel.swift in Sources */,
 				10A2202A242E327A00D0965C /* EMTools.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -458,7 +490,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 5M383PCDJZ;
+				DEVELOPMENT_TEAM = ZCG9UDWD93;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -485,7 +517,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 5M383PCDJZ;
+				DEVELOPMENT_TEAM = ZCG9UDWD93;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";

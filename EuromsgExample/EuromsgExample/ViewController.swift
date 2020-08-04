@@ -31,7 +31,6 @@ class ViewController: UIViewController {
         Euromsg.setUserProperty(key: "TestKey", value: "Test Value")
         guard let value = conf.userProperties?["TestKey"] else { return }
         print(value)
-        Euromsg.setEmail(email: "umut@visilabs.com", permission: true)
     }
 
     @IBAction func pushNotificationPermissionButtonAction(_ sender: UIButton) {
@@ -48,7 +47,6 @@ class ViewController: UIViewController {
             #endif
         }
         pushNotificationStatusLabel.text = "Push Permission: \(conf.properties?.pushPermit ?? "null")"
-        
     }
 
     @IBAction func emailPermissionSwitchAction(_ sender: UISwitch) {

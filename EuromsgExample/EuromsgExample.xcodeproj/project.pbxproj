@@ -21,12 +21,9 @@
 		10930C87245857E300A566A3 /* Euromsg.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 10165AA82443C2210092875F /* Euromsg.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		10930C982466B3DC00A566A3 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10930C972466B3DC00A566A3 /* UserNotifications.framework */; };
 		10930C9A2466B3DC00A566A3 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10930C992466B3DC00A566A3 /* UserNotificationsUI.framework */; };
-		10930C9D2466B3DC00A566A3 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10930C9C2466B3DC00A566A3 /* NotificationViewController.swift */; };
-		10930CA02466B3DC00A566A3 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10930C9E2466B3DC00A566A3 /* MainInterface.storyboard */; };
 		10930CA42466B3DC00A566A3 /* NotificationContent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 10930C962466B3DC00A566A3 /* NotificationContent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		10930CAA2469B42700A566A3 /* CarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10930CA82469B42700A566A3 /* CarouselCell.swift */; };
-		10930CAB2469B42700A566A3 /* CarouselCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10930CA92469B42700A566A3 /* CarouselCell.xib */; };
 		10930CAC246C189B00A566A3 /* Euromsg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10165AA82443C2210092875F /* Euromsg.framework */; };
+		10F11CC124BB138400371304 /* EMNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F11CC024BB138400371304 /* EMNotificationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,11 +98,8 @@
 		10930C962466B3DC00A566A3 /* NotificationContent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationContent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		10930C972466B3DC00A566A3 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		10930C992466B3DC00A566A3 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
-		10930C9C2466B3DC00A566A3 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
-		10930C9F2466B3DC00A566A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		10930CA12466B3DC00A566A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		10930CA82469B42700A566A3 /* CarouselCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCell.swift; sourceTree = "<group>"; };
-		10930CA92469B42700A566A3 /* CarouselCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarouselCell.xib; sourceTree = "<group>"; };
+		10F11CC024BB138400371304 /* EMNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMNotificationViewController.swift; sourceTree = "<group>"; };
 		10F193D5244A6B45001D58AB /* EuromsgExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EuromsgExample.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -200,11 +194,8 @@
 			isa = PBXGroup;
 			children = (
 				105978CC246D6338001EC6E4 /* NotificationContent.entitlements */,
-				10930C9C2466B3DC00A566A3 /* NotificationViewController.swift */,
-				10930C9E2466B3DC00A566A3 /* MainInterface.storyboard */,
+				10F11CC024BB138400371304 /* EMNotificationViewController.swift */,
 				10930CA12466B3DC00A566A3 /* Info.plist */,
-				10930CA82469B42700A566A3 /* CarouselCell.swift */,
-				10930CA92469B42700A566A3 /* CarouselCell.xib */,
 			);
 			path = NotificationContent;
 			sourceTree = "<group>";
@@ -286,6 +277,7 @@
 					};
 					10930C952466B3DC00A566A3 = {
 						CreatedOnToolsVersion = 11.4.1;
+						LastSwiftMigration = 1150;
 					};
 				};
 			};
@@ -332,8 +324,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10930CA02466B3DC00A566A3 /* MainInterface.storyboard in Resources */,
-				10930CAB2469B42700A566A3 /* CarouselCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,8 +352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10930C9D2466B3DC00A566A3 /* NotificationViewController.swift in Sources */,
-				10930CAA2469B42700A566A3 /* CarouselCell.swift in Sources */,
+				10F11CC124BB138400371304 /* EMNotificationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,14 +388,6 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		10930C9E2466B3DC00A566A3 /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				10930C9F2466B3DC00A566A3 /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -418,6 +399,7 @@
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 5M383PCDJZ;
 				INFOPLIST_FILE = NotificationService/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -439,6 +421,7 @@
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 5M383PCDJZ;
 				INFOPLIST_FILE = NotificationService/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -502,7 +485,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -556,7 +539,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -576,7 +559,7 @@
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 5M383PCDJZ;
 				INFOPLIST_FILE = EuromsgExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -598,7 +581,7 @@
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 5M383PCDJZ;
 				INFOPLIST_FILE = EuromsgExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -613,11 +596,12 @@
 		10930CA52466B3DC00A566A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = NotificationContent/NotificationContent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5M383PCDJZ;
 				INFOPLIST_FILE = NotificationContent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -626,6 +610,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.relateddigital.EuromsgExample.NotificationContent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -634,11 +619,12 @@
 		10930CA62466B3DC00A566A3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = NotificationContent/NotificationContent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5M383PCDJZ;
 				INFOPLIST_FILE = NotificationContent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

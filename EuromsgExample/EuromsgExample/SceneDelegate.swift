@@ -20,8 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
 
-        if #available(iOS 13, *),
-            let userInfo = connectionOptions.notificationResponse?.notification.request.content.userInfo {
+        if let userInfo = connectionOptions.notificationResponse?.notification.request.content.userInfo {
             Euromsg.handlePush(pushDictionary: userInfo)
         }    
     }
