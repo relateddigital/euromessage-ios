@@ -10,6 +10,7 @@
 #endif
 #endif
 
+#import "Euromsg.h"
 
 FOUNDATION_EXPORT double EuromsgVersionNumber;
 FOUNDATION_EXPORT const unsigned char EuromsgVersionString[];
