@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EMNotificationCarousel" customModule="Euromsg" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="IBg-Kd-AAP" id="abx-vZ-4qx"/>
+                <outlet property="contentView" destination="C2b-yH-nED" id="ObH-x5-ZOl"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="C2b-yH-nED">
+            <rect key="frame" x="0.0" y="0.0" width="421" height="305"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="IBg-Kd-AAP">
+                    <rect key="frame" x="0.0" y="0.0" width="421" height="305"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Wt9-W6-Id4">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <cells/>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="IBg-Kd-AAP" firstAttribute="leading" secondItem="C2b-yH-nED" secondAttribute="leading" id="0Gg-fI-5s5"/>
+                <constraint firstItem="IBg-Kd-AAP" firstAttribute="top" secondItem="C2b-yH-nED" secondAttribute="top" id="OGU-3d-gaK"/>
+                <constraint firstAttribute="trailing" secondItem="IBg-Kd-AAP" secondAttribute="trailing" id="dCE-49-foB"/>
+                <constraint firstAttribute="bottom" secondItem="IBg-Kd-AAP" secondAttribute="bottom" id="sgx-0U-WIL"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="ukW-SJ-M7z" appends="YES" id="bvL-Pt-iuC"/>
+                <outletCollection property="gestureRecognizers" destination="S8m-jk-NQn" appends="YES" id="Xlt-wx-8Ut"/>
+            </connections>
+            <point key="canvasLocation" x="-62" y="-36"/>
+        </view>
+        <swipeGestureRecognizer direction="left" id="ukW-SJ-M7z">
+            <connections>
+                <action selector="swipeLeft:" destination="-1" id="m72-bp-SFx"/>
+            </connections>
+        </swipeGestureRecognizer>
+        <swipeGestureRecognizer direction="right" id="S8m-jk-NQn">
+            <connections>
+                <action selector="swipeRight:" destination="-1" id="dJ0-4s-rKn"/>
+            </connections>
+        </swipeGestureRecognizer>
+    </objects>
+</document>
