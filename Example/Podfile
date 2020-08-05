@@ -9,3 +9,12 @@ target 'Euromsg_Example' do
     
   end
 end
+
+
+target 'NotificationService' do
+  pod 'Euromsg', :path => '../'
+end
+
+target 'NotificationContent' do
+  pod 'Euromsg', :path => '../'
+end

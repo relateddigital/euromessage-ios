@@ -8,14 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		1CB7ECC0957AD2F4DE93854D /* Pods_Euromsg_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F9DF86A766D836AE2CA3E83 /* Pods_Euromsg_Tests.framework */; };
+		40D4275EA61954FB02ACB549 /* Pods_NotificationContent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7CB3809C2F4BE74CDC5E743 /* Pods_NotificationContent.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
-		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
-		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
+		607FACE01AFB9204008FA782 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.storyboard */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		88185DDB24DADB9C0061839C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88185DDA24DADB9C0061839C /* SceneDelegate.swift */; };
+		88185DDD24DADC3F0061839C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88185DDC24DADC3F0061839C /* Assets.xcassets */; };
+		88185DE524DADD640061839C /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88185DE424DADD640061839C /* NotificationService.swift */; };
+		88185DE924DADD640061839C /* NotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 88185DE224DADD640061839C /* NotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		88185DF424DADDB50061839C /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88185DF324DADDB50061839C /* UserNotifications.framework */; };
+		88185DF624DADDB50061839C /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88185DF524DADDB50061839C /* UserNotificationsUI.framework */; };
+		88185DF924DADDB50061839C /* EMNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88185DF824DADDB50061839C /* EMNotificationViewController.swift */; };
+		88185DFC24DADDB50061839C /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88185DFA24DADDB50061839C /* MainInterface.storyboard */; };
+		88185E0024DADDB50061839C /* NotificationContent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 88185DF224DADDB50061839C /* NotificationContent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D64C2EEE03C10B72D5F4788D /* Pods_Euromsg_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE11F0C4E945AED1EC26DA2C /* Pods_Euromsg_Example.framework */; };
+		E5463072C676D936D096F2E4 /* Pods_NotificationService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3C7371E545F39352C2AC3BC /* Pods_NotificationService.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,9 +35,39 @@
 			remoteGlobalIDString = 607FACCF1AFB9204008FA782;
 			remoteInfo = Euromsg;
 		};
+		88185DE724DADD640061839C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88185DE124DADD640061839C;
+			remoteInfo = NotificationService;
+		};
+		88185DFE24DADDB50061839C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88185DF124DADDB50061839C;
+			remoteInfo = NotificationContent;
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		88185DED24DADD640061839C /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				88185DE924DADD640061839C /* NotificationService.appex in Embed App Extensions */,
+				88185E0024DADDB50061839C /* NotificationContent.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		000430F2234FFA7059C0E85B /* Pods-NotificationContent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationContent.debug.xcconfig"; path = "Target Support Files/Pods-NotificationContent/Pods-NotificationContent.debug.xcconfig"; sourceTree = "<group>"; };
 		02B5712FEA5311EC213832B8 /* Pods-Euromsg_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Euromsg_Tests.debug.xcconfig"; path = "Target Support Files/Pods-Euromsg_Tests/Pods-Euromsg_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		03C03A4FDA6BDABCD2CFFEBF /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		5F9DF86A766D836AE2CA3E83 /* Pods_Euromsg_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Euromsg_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,18 +76,32 @@
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* Euromsg_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Euromsg_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		6FAE8C55453A79B28585555A /* Pods-NotificationContent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationContent.release.xcconfig"; path = "Target Support Files/Pods-NotificationContent/Pods-NotificationContent.release.xcconfig"; sourceTree = "<group>"; };
 		70351462C857D6A9EB40FFD1 /* Pods-Euromsg_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Euromsg_Example.debug.xcconfig"; path = "Target Support Files/Pods-Euromsg_Example/Pods-Euromsg_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		88185DDA24DADB9C0061839C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		88185DDC24DADC3F0061839C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		88185DE224DADD640061839C /* NotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		88185DE424DADD640061839C /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		88185DE624DADD640061839C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88185DF224DADDB50061839C /* NotificationContent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationContent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		88185DF324DADDB50061839C /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		88185DF524DADDB50061839C /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
+		88185DF824DADDB50061839C /* EMNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMNotificationViewController.swift; sourceTree = "<group>"; };
+		88185DFB24DADDB50061839C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		88185DFD24DADDB50061839C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A0D6C44258B2A6CFCCE5710 /* Pods-NotificationService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationService.release.xcconfig"; path = "Target Support Files/Pods-NotificationService/Pods-NotificationService.release.xcconfig"; sourceTree = "<group>"; };
+		A3C7371E545F39352C2AC3BC /* Pods_NotificationService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NotificationService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7CB3809C2F4BE74CDC5E743 /* Pods_NotificationContent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NotificationContent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE11F0C4E945AED1EC26DA2C /* Pods_Euromsg_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Euromsg_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF051D2B902D1DF2ED7672B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		D3A6E162DE350AE7E6479158 /* Pods-Euromsg_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Euromsg_Example.release.xcconfig"; path = "Target Support Files/Pods-Euromsg_Example/Pods-Euromsg_Example.release.xcconfig"; sourceTree = "<group>"; };
 		DF28FB3522EFDE7EA76F808C /* Pods-Euromsg_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Euromsg_Tests.release.xcconfig"; path = "Target Support Files/Pods-Euromsg_Tests/Pods-Euromsg_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		E732DCFE9DE1A64A751FB28A /* Euromsg.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Euromsg.podspec; path = ../Euromsg.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F93688504C36BE672C2E5D61 /* Pods-NotificationService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationService.debug.xcconfig"; path = "Target Support Files/Pods-NotificationService/Pods-NotificationService.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +121,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		88185DDF24DADD640061839C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5463072C676D936D096F2E4 /* Pods_NotificationService.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88185DEF24DADDB50061839C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88185DF624DADDB50061839C /* UserNotificationsUI.framework in Frameworks */,
+				88185DF424DADDB50061839C /* UserNotifications.framework in Frameworks */,
+				40D4275EA61954FB02ACB549 /* Pods_NotificationContent.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -78,6 +149,10 @@
 				D3A6E162DE350AE7E6479158 /* Pods-Euromsg_Example.release.xcconfig */,
 				02B5712FEA5311EC213832B8 /* Pods-Euromsg_Tests.debug.xcconfig */,
 				DF28FB3522EFDE7EA76F808C /* Pods-Euromsg_Tests.release.xcconfig */,
+				000430F2234FFA7059C0E85B /* Pods-NotificationContent.debug.xcconfig */,
+				6FAE8C55453A79B28585555A /* Pods-NotificationContent.release.xcconfig */,
+				F93688504C36BE672C2E5D61 /* Pods-NotificationService.debug.xcconfig */,
+				9A0D6C44258B2A6CFCCE5710 /* Pods-NotificationService.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -88,6 +163,8 @@
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for Euromsg */,
 				607FACE81AFB9204008FA782 /* Tests */,
+				88185DE324DADD640061839C /* NotificationService */,
+				88185DF724DADDB50061839C /* NotificationContent */,
 				607FACD11AFB9204008FA782 /* Products */,
 				3093F6070D57AB62CD423B51 /* Pods */,
 				BC18D488BB61D8B11B2D47BC /* Frameworks */,
@@ -99,6 +176,8 @@
 			children = (
 				607FACD01AFB9204008FA782 /* EuromsgExample.app */,
 				607FACE51AFB9204008FA782 /* Euromsg_Tests.xctest */,
+				88185DE224DADD640061839C /* NotificationService.appex */,
+				88185DF224DADDB50061839C /* NotificationContent.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -110,9 +189,9 @@
 				88185DDA24DADB9C0061839C /* SceneDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
-				607FACDC1AFB9204008FA782 /* Images.xcassets */,
-				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
+				607FACDE1AFB9204008FA782 /* LaunchScreen.storyboard */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				88185DDC24DADC3F0061839C /* Assets.xcassets */,
 			);
 			name = "Example for Euromsg";
 			path = Euromsg;
@@ -153,11 +232,34 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		88185DE324DADD640061839C /* NotificationService */ = {
+			isa = PBXGroup;
+			children = (
+				88185DE424DADD640061839C /* NotificationService.swift */,
+				88185DE624DADD640061839C /* Info.plist */,
+			);
+			path = NotificationService;
+			sourceTree = "<group>";
+		};
+		88185DF724DADDB50061839C /* NotificationContent */ = {
+			isa = PBXGroup;
+			children = (
+				88185DF824DADDB50061839C /* EMNotificationViewController.swift */,
+				88185DFA24DADDB50061839C /* MainInterface.storyboard */,
+				88185DFD24DADDB50061839C /* Info.plist */,
+			);
+			path = NotificationContent;
+			sourceTree = "<group>";
+		};
 		BC18D488BB61D8B11B2D47BC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				CE11F0C4E945AED1EC26DA2C /* Pods_Euromsg_Example.framework */,
 				5F9DF86A766D836AE2CA3E83 /* Pods_Euromsg_Tests.framework */,
+				88185DF324DADDB50061839C /* UserNotifications.framework */,
+				88185DF524DADDB50061839C /* UserNotificationsUI.framework */,
+				B7CB3809C2F4BE74CDC5E743 /* Pods_NotificationContent.framework */,
+				A3C7371E545F39352C2AC3BC /* Pods_NotificationService.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -174,10 +276,13 @@
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
 				0B7DE9454D3A3E7F71DD573B /* [CP] Embed Pods Frameworks */,
+				88185DED24DADD640061839C /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				88185DE824DADD640061839C /* PBXTargetDependency */,
+				88185DFF24DADDB50061839C /* PBXTargetDependency */,
 			);
 			name = Euromsg_Example;
 			productName = Euromsg;
@@ -203,13 +308,49 @@
 			productReference = 607FACE51AFB9204008FA782 /* Euromsg_Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		88185DE124DADD640061839C /* NotificationService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88185DEA24DADD640061839C /* Build configuration list for PBXNativeTarget "NotificationService" */;
+			buildPhases = (
+				5D08961018B4BDE114A7AF91 /* [CP] Check Pods Manifest.lock */,
+				88185DDE24DADD640061839C /* Sources */,
+				88185DDF24DADD640061839C /* Frameworks */,
+				88185DE024DADD640061839C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotificationService;
+			productName = NotificationService;
+			productReference = 88185DE224DADD640061839C /* NotificationService.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		88185DF124DADDB50061839C /* NotificationContent */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88185E0124DADDB50061839C /* Build configuration list for PBXNativeTarget "NotificationContent" */;
+			buildPhases = (
+				7D55C5795E839582AC9CC43B /* [CP] Check Pods Manifest.lock */,
+				88185DEE24DADDB50061839C /* Sources */,
+				88185DEF24DADDB50061839C /* Frameworks */,
+				88185DF024DADDB50061839C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotificationContent;
+			productName = NotificationContent;
+			productReference = 88185DF224DADDB50061839C /* NotificationContent.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		607FACC81AFB9204008FA782 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 1150;
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
@@ -223,6 +364,16 @@
 						DevelopmentTeam = 5M383PCDJZ;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
+					};
+					88185DE124DADD640061839C = {
+						CreatedOnToolsVersion = 11.5;
+						DevelopmentTeam = 5M383PCDJZ;
+						ProvisioningStyle = Automatic;
+					};
+					88185DF124DADDB50061839C = {
+						CreatedOnToolsVersion = 11.5;
+						DevelopmentTeam = 5M383PCDJZ;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -242,6 +393,8 @@
 			targets = (
 				607FACCF1AFB9204008FA782 /* Euromsg_Example */,
 				607FACE41AFB9204008FA782 /* Euromsg_Tests */,
+				88185DE124DADD640061839C /* NotificationService */,
+				88185DF124DADDB50061839C /* NotificationContent */,
 			);
 		};
 /* End PBXProject section */
@@ -252,8 +405,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
-				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
-				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				607FACE01AFB9204008FA782 /* LaunchScreen.storyboard in Resources */,
+				88185DDD24DADC3F0061839C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +414,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88185DE024DADD640061839C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88185DF024DADDB50061839C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88185DFC24DADDB50061839C /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +469,50 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Euromsg_Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5D08961018B4BDE114A7AF91 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NotificationService-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7D55C5795E839582AC9CC43B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NotificationContent-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -350,6 +562,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		88185DDE24DADD640061839C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88185DE524DADD640061839C /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88185DEE24DADDB50061839C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88185DF924DADDB50061839C /* EMNotificationViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -357,6 +585,16 @@
 			isa = PBXTargetDependency;
 			target = 607FACCF1AFB9204008FA782 /* Euromsg_Example */;
 			targetProxy = 607FACE61AFB9204008FA782 /* PBXContainerItemProxy */;
+		};
+		88185DE824DADD640061839C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 88185DE124DADD640061839C /* NotificationService */;
+			targetProxy = 88185DE724DADD640061839C /* PBXContainerItemProxy */;
+		};
+		88185DFF24DADDB50061839C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 88185DF124DADDB50061839C /* NotificationContent */;
+			targetProxy = 88185DFE24DADDB50061839C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -369,12 +607,20 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		607FACDE1AFB9204008FA782 /* LaunchScreen.xib */ = {
+		607FACDE1AFB9204008FA782 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				607FACDF1AFB9204008FA782 /* Base */,
 			);
-			name = LaunchScreen.xib;
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		88185DFA24DADDB50061839C /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88185DFB24DADDB50061839C /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -483,6 +729,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 70351462C857D6A9EB40FFD1 /* Pods-Euromsg_Example.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5M383PCDJZ;
 				INFOPLIST_FILE = Euromsg/Info.plist;
@@ -492,6 +739,7 @@
 				PRODUCT_NAME = EuromsgExample;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -499,6 +747,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D3A6E162DE350AE7E6479158 /* Pods-Euromsg_Example.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Euromsg/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -507,6 +756,7 @@
 				PRODUCT_NAME = EuromsgExample;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -553,6 +803,118 @@
 			};
 			name = Release;
 		};
+		88185DEB24DADD640061839C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F93688504C36BE672C2E5D61 /* Pods-NotificationService.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 5M383PCDJZ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.relateddigital.EuromsgExample.NotificationService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		88185DEC24DADD640061839C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A0D6C44258B2A6CFCCE5710 /* Pods-NotificationService.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.relateddigital.EuromsgExample.NotificationService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		88185E0224DADDB50061839C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 000430F2234FFA7059C0E85B /* Pods-NotificationContent.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 5M383PCDJZ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = NotificationContent/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.relateddigital.EuromsgExample.NotificationContent;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		88185E0324DADDB50061839C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6FAE8C55453A79B28585555A /* Pods-NotificationContent.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = NotificationContent/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.relateddigital.EuromsgExample.NotificationContent;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -579,6 +941,24 @@
 			buildConfigurations = (
 				607FACF31AFB9204008FA782 /* Debug */,
 				607FACF41AFB9204008FA782 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		88185DEA24DADD640061839C /* Build configuration list for PBXNativeTarget "NotificationService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88185DEB24DADD640061839C /* Debug */,
+				88185DEC24DADD640061839C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		88185E0124DADDB50061839C /* Build configuration list for PBXNativeTarget "NotificationContent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88185E0224DADDB50061839C /* Debug */,
+				88185E0324DADDB50061839C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
