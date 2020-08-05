@@ -1,0 +1,16 @@
+PODS:
+  - Euromsg (2.0)
+
+DEPENDENCIES:
+  - Euromsg (from `../`)
+
+EXTERNAL SOURCES:
+  Euromsg:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Euromsg: df58dad9cbc284b00788df5e0b94ae6f603f6be8
+
+PODFILE CHECKSUM: e204fd9a69910b09dacbad23ca99491525146e1e
+
+COCOAPODS: 1.9.1
