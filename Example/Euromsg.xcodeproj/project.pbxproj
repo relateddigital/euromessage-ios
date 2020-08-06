@@ -13,7 +13,7 @@
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.storyboard */; };
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		607FACEC1AFB9204008FA782 /* EuromsgSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* EuromsgSpec.swift */; };
 		88185DDB24DADB9C0061839C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88185DDA24DADB9C0061839C /* SceneDelegate.swift */; };
 		88185DDD24DADC3F0061839C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88185DDC24DADC3F0061839C /* Assets.xcassets */; };
 		88185DE524DADD640061839C /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88185DE424DADD640061839C /* NotificationService.swift */; };
@@ -23,6 +23,10 @@
 		88185DF924DADDB50061839C /* EMNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88185DF824DADDB50061839C /* EMNotificationViewController.swift */; };
 		88185DFC24DADDB50061839C /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88185DFA24DADDB50061839C /* MainInterface.storyboard */; };
 		88185E0024DADDB50061839C /* NotificationContent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 88185DF224DADDB50061839C /* NotificationContent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8895A27224DC2950009AFDE7 /* EuromsgTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8895A27124DC2950009AFDE7 /* EuromsgTests.swift */; };
+		8895A27424DC29E6009AFDE7 /* EuromsgUnInitializedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8895A27324DC29E6009AFDE7 /* EuromsgUnInitializedTests.swift */; };
+		8895A27624DC2BAC009AFDE7 /* EMToolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8895A27524DC2BAC009AFDE7 /* EMToolsTests.swift */; };
+		8895A27824DC2BD3009AFDE7 /* EuromsgAPIMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8895A27724DC2BD3009AFDE7 /* EuromsgAPIMock.swift */; };
 		D64C2EEE03C10B72D5F4788D /* Pods_Euromsg_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE11F0C4E945AED1EC26DA2C /* Pods_Euromsg_Example.framework */; };
 		E5463072C676D936D096F2E4 /* Pods_NotificationService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3C7371E545F39352C2AC3BC /* Pods_NotificationService.framework */; };
 /* End PBXBuildFile section */
@@ -79,7 +83,7 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* Euromsg_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Euromsg_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		607FACEB1AFB9204008FA782 /* EuromsgSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EuromsgSpec.swift; sourceTree = "<group>"; };
 		6FAE8C55453A79B28585555A /* Pods-NotificationContent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationContent.release.xcconfig"; path = "Target Support Files/Pods-NotificationContent/Pods-NotificationContent.release.xcconfig"; sourceTree = "<group>"; };
 		70351462C857D6A9EB40FFD1 /* Pods-Euromsg_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Euromsg_Example.debug.xcconfig"; path = "Target Support Files/Pods-Euromsg_Example/Pods-Euromsg_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		88185DDA24DADB9C0061839C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +98,10 @@
 		88185DFB24DADDB50061839C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		88185DFD24DADDB50061839C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88621ECA24DAE54000109E8E /* EuromsgExampleDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EuromsgExampleDebug.entitlements; sourceTree = "<group>"; };
+		8895A27124DC2950009AFDE7 /* EuromsgTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EuromsgTests.swift; sourceTree = "<group>"; };
+		8895A27324DC29E6009AFDE7 /* EuromsgUnInitializedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EuromsgUnInitializedTests.swift; sourceTree = "<group>"; };
+		8895A27524DC2BAC009AFDE7 /* EMToolsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMToolsTests.swift; sourceTree = "<group>"; };
+		8895A27724DC2BD3009AFDE7 /* EuromsgAPIMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EuromsgAPIMock.swift; sourceTree = "<group>"; };
 		9A0D6C44258B2A6CFCCE5710 /* Pods-NotificationService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationService.release.xcconfig"; path = "Target Support Files/Pods-NotificationService/Pods-NotificationService.release.xcconfig"; sourceTree = "<group>"; };
 		A3C7371E545F39352C2AC3BC /* Pods_NotificationService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NotificationService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7CB3809C2F4BE74CDC5E743 /* Pods_NotificationContent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NotificationContent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -210,8 +218,12 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				607FACEB1AFB9204008FA782 /* EuromsgSpec.swift */,
+				8895A27124DC2950009AFDE7 /* EuromsgTests.swift */,
+				8895A27524DC2BAC009AFDE7 /* EMToolsTests.swift */,
+				8895A27324DC29E6009AFDE7 /* EuromsgUnInitializedTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
+				8895A27724DC2BD3009AFDE7 /* EuromsgAPIMock.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -560,7 +572,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				8895A27824DC2BD3009AFDE7 /* EuromsgAPIMock.swift in Sources */,
+				8895A27224DC2950009AFDE7 /* EuromsgTests.swift in Sources */,
+				607FACEC1AFB9204008FA782 /* EuromsgSpec.swift in Sources */,
+				8895A27424DC29E6009AFDE7 /* EuromsgUnInitializedTests.swift in Sources */,
+				8895A27624DC2BAC009AFDE7 /* EMToolsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
