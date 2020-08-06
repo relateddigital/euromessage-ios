@@ -26,7 +26,6 @@
 		8895A27224DC2950009AFDE7 /* EuromsgTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8895A27124DC2950009AFDE7 /* EuromsgTests.swift */; };
 		8895A27424DC29E6009AFDE7 /* EuromsgUnInitializedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8895A27324DC29E6009AFDE7 /* EuromsgUnInitializedTests.swift */; };
 		8895A27624DC2BAC009AFDE7 /* EMToolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8895A27524DC2BAC009AFDE7 /* EMToolsTests.swift */; };
-		8895A27824DC2BD3009AFDE7 /* EuromsgAPIMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8895A27724DC2BD3009AFDE7 /* EuromsgAPIMock.swift */; };
 		D64C2EEE03C10B72D5F4788D /* Pods_Euromsg_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE11F0C4E945AED1EC26DA2C /* Pods_Euromsg_Example.framework */; };
 		E5463072C676D936D096F2E4 /* Pods_NotificationService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3C7371E545F39352C2AC3BC /* Pods_NotificationService.framework */; };
 /* End PBXBuildFile section */
@@ -101,7 +100,6 @@
 		8895A27124DC2950009AFDE7 /* EuromsgTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EuromsgTests.swift; sourceTree = "<group>"; };
 		8895A27324DC29E6009AFDE7 /* EuromsgUnInitializedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EuromsgUnInitializedTests.swift; sourceTree = "<group>"; };
 		8895A27524DC2BAC009AFDE7 /* EMToolsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMToolsTests.swift; sourceTree = "<group>"; };
-		8895A27724DC2BD3009AFDE7 /* EuromsgAPIMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EuromsgAPIMock.swift; sourceTree = "<group>"; };
 		9A0D6C44258B2A6CFCCE5710 /* Pods-NotificationService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationService.release.xcconfig"; path = "Target Support Files/Pods-NotificationService/Pods-NotificationService.release.xcconfig"; sourceTree = "<group>"; };
 		A3C7371E545F39352C2AC3BC /* Pods_NotificationService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NotificationService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7CB3809C2F4BE74CDC5E743 /* Pods_NotificationContent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NotificationContent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,7 +216,6 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				8895A27724DC2BD3009AFDE7 /* EuromsgAPIMock.swift */,
 				607FACEB1AFB9204008FA782 /* EuromsgSpec.swift */,
 				8895A27124DC2950009AFDE7 /* EuromsgTests.swift */,
 				8895A27524DC2BAC009AFDE7 /* EMToolsTests.swift */,
@@ -572,7 +569,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8895A27824DC2BD3009AFDE7 /* EuromsgAPIMock.swift in Sources */,
 				8895A27224DC2950009AFDE7 /* EuromsgTests.swift in Sources */,
 				607FACEC1AFB9204008FA782 /* EuromsgSpec.swift in Sources */,
 				8895A27424DC29E6009AFDE7 /* EuromsgUnInitializedTests.swift in Sources */,
