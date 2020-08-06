@@ -701,6 +701,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Euromsg/Euromsg.modulemap";
+				PRODUCT_BUNDLE_IDENTIFIER = com.relateddigital.Euromsg;
 				PRODUCT_MODULE_NAME = Euromsg;
 				PRODUCT_NAME = Euromsg;
 				SDKROOT = iphoneos;
@@ -1006,6 +1007,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Euromsg/Euromsg.modulemap";
+				PRODUCT_BUNDLE_IDENTIFIER = com.relateddigital.Euromsg;
 				PRODUCT_MODULE_NAME = Euromsg;
 				PRODUCT_NAME = Euromsg;
 				SDKROOT = iphoneos;
