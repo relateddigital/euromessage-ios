@@ -780,6 +780,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 02B5712FEA5311EC213832B8 /* Pods-Euromsg_Tests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 5M383PCDJZ;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -804,7 +805,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF28FB3522EFDE7EA76F808C /* Pods-Euromsg_Tests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
