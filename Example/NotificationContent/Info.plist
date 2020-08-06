@@ -21,18 +21,22 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>NSExtension</key>
-	<dict>
-		<key>NSExtensionAttributes</key>
-		<dict>
-			<key>UNNotificationExtensionCategory</key>
-			<string>myNotificationCategory</string>
-			<key>UNNotificationExtensionInitialContentSizeRatio</key>
-			<real>1</real>
-		</dict>
-		<key>NSExtensionMainStoryboard</key>
-		<string>MainInterface</string>
-		<key>NSExtensionPointIdentifier</key>
-		<string>com.apple.usernotifications.content-extension</string>
-	</dict>
+    <dict>
+        <key>NSExtensionAttributes</key>
+        <dict>
+            <key>UNNotificationExtensionUserInteractionEnabled</key>
+            <true/>
+            <key>UNNotificationExtensionDefaultContentHidden</key>
+            <false/>
+            <key>UNNotificationExtensionCategory</key>
+            <string>carousel</string>
+            <key>UNNotificationExtensionInitialContentSizeRatio</key>
+            <real>1</real>
+        </dict>
+        <key>NSExtensionPrincipalClass</key>
+        <string>NotificationContent.EMNotificationViewController</string>
+        <key>NSExtensionPointIdentifier</key>
+        <string>com.apple.usernotifications.content-extension</string>
+    </dict>
 </dict>
 </plist>
