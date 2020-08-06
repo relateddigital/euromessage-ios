@@ -30,7 +30,7 @@ First, create your application from the RMC Panel. App Alias section should be u
 ## Usage
 
 ### Add a Notification Service Extension
-Euro-IOSNotificationServiceExtension allows your iOS application to receive rich notifications with images, buttons, and badges. It's also required for Euromessage's analytics features.
+NotificationServiceExtension allows your iOS application to receive rich notifications with images, buttons, and badges. It's also required for Euromessage's analytics features.
 
 1. In Xcode File > New > Target...
 
@@ -48,7 +48,7 @@ By canceling, you are keeping Xcode debugging your app, instead of the extension
 
 If you activated by accident, you can switch back to debug your app within Xcode (next to the play button).
 
-5. In the project navigator, select the top-level project directory and select the Euro-IOSNotificationServiceExtension target in the project and targets list.
+5. In the project navigator, select the top-level project directory and select the NotificationService target in the project and targets list.
 Unless you have a specific reason not to, you should set the Deployment Target to be iOS 11.
 
 ![Select deployment target iOS 11.0](https://img.visilabs.net/banner/uploaded_images/163_1100_20200710132014279.png)
@@ -83,7 +83,7 @@ class NotificationService: UNNotificationServiceExtension {
 
 Ignore any build errors at this point, step 2 will import Euromessage which will resolve any errors.
 
-If you have already added the Euromessage library to your project, simply add the Euro-IOSNotificationServiceExtension section.
+If you have already added the Euromessage library to your project, simply add the NotificationServiceExtension section.
 
 ### Add a Notification Content Extension
 
@@ -105,7 +105,7 @@ By canceling, you are keeping Xcode debugging your app, instead of the extension
 
 If you activated by accident, you can switch back to debug your app within Xcode (next to the play button).
 
-5. In the project navigator, select the top-level project directory and select the Euro-IOSNotificationServiceExtension target in the project and targets list.
+5. In the project navigator, select the top-level project directory and select the NotificationContent target in the project and targets list.
 Unless you have a specific reason not to, you should set the Deployment Target to be iOS 11.
 
 ![Select deployment target iOS 11.0](https://app.visilabs.net/download/one2one/docs/4.png)
@@ -114,6 +114,9 @@ Unless you have a specific reason not to, you should set the Deployment Target t
 
 ![DeleteFiles](https://app.visilabs.net/download/one2one/docs/5.png) 
 ![AddFile](https://app.visilabs.net/download/one2one/docs/6.png)
+
+Don't Create Objective-C Bridging Header
+![Don't Create](https://img.visilabs.net/banner/uploaded_images/307_1305_20200806142743676.png)
 
 7. Open EMNotificationViewController.swift and replace the whole file's contents with the following code.
 
@@ -153,13 +156,22 @@ class EMNotificationViewController: UIViewController, UNNotificationContentExten
 
 ```
 
+Update the podfile for NotificationContent and NotificationService as below and type pod install in the terminal again and press enter.
+
 ![Podfile](https://app.visilabs.net/download/one2one/docs/7.png)
 
 ### AppDelegate.swift
 Firstly import Euromsg and UserNotifications
 
+```
 import Euromsg
 import UserNotifications
+```
+
+Add UNUserNotificationCenterDelegate to the class AppDelegate section.
+```
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate
+```
 
 Add this code under didFinishLaunchingWithOptions.
 ```swift
