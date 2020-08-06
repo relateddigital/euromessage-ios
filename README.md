@@ -1,6 +1,6 @@
 # Euromsg
 
-[![CI Status](https://img.shields.io/travis/relateddigital/Euromsg.svg?style=flat)](https://travis-ci.org/relateddigital/euromessage-ios)
+[![CI Status](https://travis-ci.org/github/relateddigital/euromessage-ios.svg)](https://travis-ci.org/relateddigital/euromessage-ios)
 [![Version](https://img.shields.io/cocoapods/v/Euromsg.svg?style=flat)](https://cocoapods.org/pods/Euromsg)
 [![License](https://img.shields.io/cocoapods/l/Euromsg.svg?style=flat)](https://cocoapods.org/pods/Euromsg)
 [![Platform](https://img.shields.io/cocoapods/p/Euromsg.svg?style=flat)](https://cocoapods.org/pods/Euromsg)
