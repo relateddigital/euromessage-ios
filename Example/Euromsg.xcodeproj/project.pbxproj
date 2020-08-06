@@ -218,12 +218,12 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				8895A27724DC2BD3009AFDE7 /* EuromsgAPIMock.swift */,
 				607FACEB1AFB9204008FA782 /* EuromsgSpec.swift */,
 				8895A27124DC2950009AFDE7 /* EuromsgTests.swift */,
 				8895A27524DC2BAC009AFDE7 /* EMToolsTests.swift */,
 				8895A27324DC29E6009AFDE7 /* EuromsgUnInitializedTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
-				8895A27724DC2BD3009AFDE7 /* EuromsgAPIMock.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
