@@ -318,7 +318,7 @@ extension Euromsg {
             }
             if EMTools.getInfoString(key: "CFBundleIdentifier") != "com.euromsg.EuroFramework" {
                 if let lastRequestDate = EMTools.retrieveUserDefaults(userKey: EMKey.lastRequestDateKey) as? Date {
-                    let comparisonResult = Date().compare(lastRequestDate)
+                    let comparisonResult = Date().compare(lastRequestDate.addingTimeInterval(20*60))//TODO:bu zamanı config'e al
                     if (comparisonResult == ComparisonResult.orderedAscending &&
                         lastRegister == shared.currentRegister) ||
                         shared.registerRequest.token == nil {
@@ -337,9 +337,8 @@ extension Euromsg {
     private func registerRequestHandler(result: Result<EMResponse?, EuromsgAPIError>) {
         switch result {
         case .success:
-            let fiveMinsLater = Date.init(timeInterval: (15 * 60), since: Date())
-            EMTools.saveUserDefaults(key: EMKey.lastRequestDateKey,
-                                     value: fiveMinsLater as AnyObject)
+            //let fiveMinsLater = Date.init(timeInterval: (20 * 60), since: Date())
+            EMTools.saveUserDefaults(key: EMKey.lastRequestDateKey, value: Date() as AnyObject)
             if let currentRegisterData = try? JSONEncoder.init().encode(currentRegister) {
                 EMTools.saveUserDefaults(key: EMKey.registerKey,
                                          value: currentRegisterData as AnyObject)

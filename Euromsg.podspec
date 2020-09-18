@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Euromsg'
-  s.version          = '2.0'
+  s.version          = '2.0.1'
   s.summary          = 'Euromsg SDK'
   s.description      = 'Euromsg SDK'
   s.homepage         = 'https://github.com/relateddigital/euromessage-ios'
@@ -17,6 +17,6 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/relateddigital/euromessage-ios.git', :tag => s.version.to_s }
   s.ios.deployment_target = '10.0'
   s.swift_version = '5.0'
-
   s.source_files = 'Euromsg/Classes/**/*'
+  s.pod_target_xcconfig = { 'PRODUCT_BUNDLE_IDENTIFIER': 'com.euromsg.EuroFramework' }
 end

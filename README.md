@@ -19,7 +19,7 @@ You only need App Alias, which you can get from RMC Panel.
 Euromsg is available through [CocoaPods](https://cocoapods.org/). To install it, simply add the following line to your Podfile:
 
 ```bash
-pod 'Euromsg', '>= 2.0.0'
+pod 'Euromsg', '>= 2.0.1'
 ```
 
 ## Add Application to RMC Panel
