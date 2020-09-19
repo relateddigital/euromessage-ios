@@ -130,9 +130,9 @@ import Euromsg
 @objc(EMNotificationViewController)
 class EMNotificationViewController: UIViewController, UNNotificationContentExtension {
 
-    let appUrl = URL(string: "euromsgExample://") //Change 'euromsgExample://' with your deeplink url
+    let appUrl = URL(string: "euromsgExample://")
     let carouselView = EMNotificationCarousel.initView()
-    var completion: ((_ url: URL?) -> Void)?
+    var completion: ((_ url: URL?, _ userInfo: [AnyHashable: Any]?) -> Void)?    
     func didReceive(_ notification: UNNotification) {
         carouselView.didReceive(notification)
     }
@@ -141,9 +141,12 @@ class EMNotificationViewController: UIViewController, UNNotificationContentExten
         carouselView.didReceive(response, completionHandler: completion)
     }
     override func loadView() {
-        completion = { [weak self] url in
+        completion = { [weak self] url, userInfo in
             if let url = url {
                 self?.extensionContext?.open(url)
+                if url.scheme != self?.appUrl?.scheme, let userInfo = userInfo {
+                    Euromsg.handlePush(pushDictionary: userInfo)
+                }
             }
             else if let url = self?.appUrl {
                 self?.extensionContext?.open(url)
@@ -158,7 +161,7 @@ class EMNotificationViewController: UIViewController, UNNotificationContentExten
 
 Update the podfile for NotificationContent and NotificationService as below and type pod install in the terminal again and press enter.
 
-![Podfile](https://app.visilabs.net/download/one2one/docs/7.png)
+![Podfile](https://img.visilabs.net/banner/uploaded_images/307_1305_20200825152419352.png)
 
 ### AppDelegate.swift
 Firstly import Euromsg and UserNotifications
