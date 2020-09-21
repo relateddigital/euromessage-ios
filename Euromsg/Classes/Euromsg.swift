@@ -316,17 +316,17 @@ extension Euromsg {
             if shared.registerRequest.token != nil {
                 EMTools.saveUserDefaults(key: EMKey.tokenKey, value: shared.registerRequest.token as AnyObject)
             }
-            if EMTools.getInfoString(key: "CFBundleIdentifier") != "com.euromsg.EuroFramework" {
-                if let lastRequestDate = EMTools.retrieveUserDefaults(userKey: EMKey.lastRequestDateKey) as? Date {
-                    let comparisonResult = Date().compare(lastRequestDate.addingTimeInterval(20*60))//TODO:bu zamanı config'e al
-                    if (comparisonResult == ComparisonResult.orderedAscending &&
-                        lastRegister == shared.currentRegister) ||
-                        shared.registerRequest.token == nil {
-                        EMLog.warning("Register request not ready : \(shared.registerRequest)")
-                        return
-                    }
+            
+            if let lastRequestDate = EMTools.retrieveUserDefaults(userKey: EMKey.lastRequestDateKey) as? Date {
+                let comparisonResult = Date().compare(lastRequestDate.addingTimeInterval(20*60))//TODO:bu zamanı config'e al
+                if (comparisonResult == ComparisonResult.orderedAscending &&
+                    lastRegister == shared.currentRegister) ||
+                    shared.registerRequest.token == nil {
+                    EMLog.warning("Register request not ready : \(shared.registerRequest)")
+                    return
                 }
             }
+            
         }
         shared.euromsgAPI?.request(requestModel: shared.registerRequest,
                             completion: shared.registerRequestHandler)
