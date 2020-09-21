@@ -249,7 +249,7 @@ extension Euromsg {
     /**:
      Registers device token to Euromsg services.
      To get deviceToken data use  `didRegisterForRemoteNotificationsWithDeviceToken` delegate function.
-     For more information visit [Euromsg Documentation](https://github.com/visilabs/Euro-IOS)
+     For more information visit [Euromsg Documentation](https://github.com/relateddigital/euromessage-ios)
      - Parameter tokenData: delegate deviceToken data
      
      func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken
