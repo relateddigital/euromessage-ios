@@ -319,9 +319,8 @@ extension Euromsg {
             
             if let lastRequestDate = EMTools.retrieveUserDefaults(userKey: EMKey.lastRequestDateKey) as? Date {
                 let comparisonResult = Date().compare(lastRequestDate.addingTimeInterval(20*60))//TODO:bu zamanı config'e al
-                if (comparisonResult == ComparisonResult.orderedAscending &&
-                    lastRegister == shared.currentRegister) ||
-                    shared.registerRequest.token == nil {
+                let arePayloadsEqual = lastRegister == shared.currentRegister
+                if (comparisonResult == ComparisonResult.orderedAscending && arePayloadsEqual) || shared.registerRequest.token == nil {
                     EMLog.warning("Register request not ready : \(shared.registerRequest)")
                     return
                 }
