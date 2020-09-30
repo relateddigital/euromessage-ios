@@ -12,9 +12,11 @@ end
 
 
 target 'NotificationService' do
+  use_frameworks!
   pod 'Euromsg', :path => '../'
 end
 
 target 'NotificationContent' do
+  use_frameworks!
   pod 'Euromsg', :path => '../'
 end
