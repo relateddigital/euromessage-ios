@@ -1,5 +1,5 @@
 PODS:
-  - Euromsg (2.0)
+  - Euromsg (2.0.1)
 
 DEPENDENCIES:
   - Euromsg (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Euromsg: df58dad9cbc284b00788df5e0b94ae6f603f6be8
+  Euromsg: b22cdc3deb73ae353e639745d5b9b3b293302289
 
 PODFILE CHECKSUM: e204fd9a69910b09dacbad23ca99491525146e1e
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3
