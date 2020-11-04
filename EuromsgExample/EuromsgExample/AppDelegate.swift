@@ -77,7 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
-        Euromsg.handlePush(pushDictionary: response.notification.request.content.userInfo)
+        Euromsg.handlePush(pushDictionary: response.notification.request.content.userInfo, response: response)
         completionHandler()
     }
 }

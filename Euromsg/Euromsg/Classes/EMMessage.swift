@@ -21,6 +21,7 @@ public struct EMMessage: EMCodable {
     public let deeplink: String?
     public let pushId: String?
     public let elements: [Element]?
+    public let buttons: [ActionButtons]?
 
     // MARK: - Aps
     public struct Aps: Codable {
@@ -48,6 +49,12 @@ public struct EMMessage: EMCodable {
         public let content: String?
         public let url: String?
         public let picture: String?
+    }
+    
+    public struct ActionButtons: Codable {
+        public let title: String?
+        public let identifier: String?
+        public let url: String?
     }
 
 }

@@ -37,6 +37,8 @@ class EMNotificationHandler {
         // Setup carousel buttons
         if pushDetail.aps?.category == "carousel" {
             addCarouselActionButtons()
+        } else if pushDetail.aps?.category == "action.button" {
+            addActionButtons(pushDetail)
         }
 
         // Setup notification for image/video
@@ -46,6 +48,8 @@ class EMNotificationHandler {
             loadAttachments(mediaUrl: mediaUrl,
                             modifiedBestAttemptContent: modifiedBestAttemptContent,
                             withContentHandler: contentHandler)
+        } else {
+            contentHandler(modifiedBestAttemptContent)
         }
     }
 
@@ -61,6 +65,24 @@ class EMNotificationHandler {
                                                       intentIdentifiers: [], options: [])
         UNUserNotificationCenter.current().setNotificationCategories([carouselCategory])
     }
+    
+    @available(iOS 10.0, *)
+    static func addActionButtons(_ detail: EMMessage) {
+        let categoryIdentifier = "action.button"
+        if let buttons = detail.buttons {
+            var actionButtons: [UNNotificationAction] = []
+            for button in buttons {
+                actionButtons.append(UNNotificationAction(identifier: button.identifier ?? "", title: button.title ?? "", options: [.foreground]))
+            }
+            let actionCategory = UNNotificationCategory(identifier: categoryIdentifier,
+                                                          actions: actionButtons,
+                                                          intentIdentifiers: [], options: [])
+            
+            UNUserNotificationCenter.current().setNotificationCategories([actionCategory])
+             
+        }
+    }
+    
 
     @available(iOS 10.0, *)
     static func loadAttachments(mediaUrl: URL,

@@ -271,13 +271,16 @@ extension Euromsg {
 
     /// Report Euromsg services that a push notification successfully delivered
     /// - Parameter pushDictionary: push notification data that comes from APNS
-    public static func handlePush(pushDictionary: [AnyHashable: Any]) {
+    @available(iOS 10.0, *)
+    public static func handlePush(pushDictionary: [AnyHashable: Any], response: UNNotificationResponse? = nil) {
         guard let shared = getShared() else { return }
         guard pushDictionary["pushId"] != nil else {
             return
         }
+        
         EMLog.info("handlePush: \(pushDictionary)")
         let jsonData = try? JSONSerialization.data(withJSONObject: pushDictionary, options: .prettyPrinted)
+        handleActionButton(jsonData, response)
         let state = UIApplication.shared.applicationState
         if state != UIApplication.State.active {
             EMTools.saveUserDefaults(key: EMKey.euroLastMessageKey, value: jsonData as AnyObject)
@@ -285,6 +288,33 @@ extension Euromsg {
             let message = try? JSONDecoder.init().decode(EMMessage.self, from: jsonData) {
             shared.emNetworkHandler?.reportRetention(message: message, status: EMKey.euroReadStatus)
         }
+    }
+    
+    @available(iOS 10.0, *)
+    static func handleActionButton(_ data: Data?, _ response: UNNotificationResponse?) {
+    
+        guard let json = data, let response = response else {
+            print(">>> no json exist")
+            return
+        }
+        guard let message = try? JSONDecoder.init().decode(EMMessage.self, from: json) else {
+            print(">>>json parse error")
+            return
+        }
+        guard let buttons = message.buttons else {
+            print(">>> no buttons exist")
+            return
+        }
+        
+        for button in buttons where button.identifier == response.actionIdentifier {
+            print(">>> response.actionIdentifier ==> \(response.actionIdentifier)")
+            print(">>> button.identifier ==> \(button.identifier ?? "")")
+            print(">>> button.link ==> \(button.url ?? "")")
+            guard let link = URL(string: button.url ?? "") else { return }
+            UIApplication.shared.openURL(link)
+            
+        }
+        
     }
 
 }
