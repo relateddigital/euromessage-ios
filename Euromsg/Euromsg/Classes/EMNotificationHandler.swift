@@ -65,24 +65,25 @@ class EMNotificationHandler {
                                                       intentIdentifiers: [], options: [])
         UNUserNotificationCenter.current().setNotificationCategories([carouselCategory])
     }
-    
+
     @available(iOS 10.0, *)
     static func addActionButtons(_ detail: EMMessage) {
         let categoryIdentifier = "action.button"
         if let buttons = detail.buttons {
             var actionButtons: [UNNotificationAction] = []
             for button in buttons {
-                actionButtons.append(UNNotificationAction(identifier: button.identifier ?? "", title: button.title ?? "", options: [.foreground]))
+                actionButtons.append(UNNotificationAction(identifier: button.identifier ?? "",
+                                                          title: button.title ?? "",
+                                                          options: [.foreground]))
             }
             let actionCategory = UNNotificationCategory(identifier: categoryIdentifier,
                                                           actions: actionButtons,
                                                           intentIdentifiers: [], options: [])
-            
+
             UNUserNotificationCenter.current().setNotificationCategories([actionCategory])
-             
+
         }
     }
-    
 
     @available(iOS 10.0, *)
     static func loadAttachments(mediaUrl: URL,

@@ -50,7 +50,7 @@ public struct EMMessage: EMCodable {
         public let url: String?
         public let picture: String?
     }
-    
+
     public struct ActionButtons: Codable {
         public let title: String?
         public let identifier: String?

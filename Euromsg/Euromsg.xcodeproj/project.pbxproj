@@ -35,6 +35,7 @@
 		10F11CCD24BB370500371304 /* EMNotificationCarousel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10F11CCC24BB370500371304 /* EMNotificationCarousel.xib */; };
 		10F11CCE24BB465B00371304 /* CarouselCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10F11CBE24BB120200371304 /* CarouselCell.xib */; };
 		10F193D9244DB262001D58AB /* EMNotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F193D8244DB262001D58AB /* EMNotificationHandler.swift */; };
+		2F1CFCC5255ACCFC00AD5423 /* EMActionButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1CFCC4255ACCFC00AD5423 /* EMActionButtonExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		10F11CCA24BB36FC00371304 /* EMNotificationCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMNotificationCarousel.swift; sourceTree = "<group>"; };
 		10F11CCC24BB370500371304 /* EMNotificationCarousel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EMNotificationCarousel.xib; sourceTree = "<group>"; };
 		10F193D8244DB262001D58AB /* EMNotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMNotificationHandler.swift; sourceTree = "<group>"; };
+		2F1CFCC4255ACCFC00AD5423 /* EMActionButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMActionButtonExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 				10A2202B242E32AB00D0965C /* EMRegisterRequest.swift */,
 				10A2202D242E32EA00D0965C /* EMRetentionRequest.swift */,
 				1026C00A2433958E00D4ACFB /* EMConfiguration.swift */,
+				2F1CFCC4255ACCFC00AD5423 /* EMActionButtonExtension.swift */,
 				10F193D8244DB262001D58AB /* EMNotificationHandler.swift */,
 				10F11CC224BB13E600371304 /* EMNotificationCarousel */,
 				10F11CC324BB141700371304 /* EMUtils */,
@@ -323,6 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				10A22024242E31E300D0965C /* EuromsgAPI.swift in Sources */,
+				2F1CFCC5255ACCFC00AD5423 /* EMActionButtonExtension.swift in Sources */,
 				10F193D9244DB262001D58AB /* EMNotificationHandler.swift in Sources */,
 				10A22028242E324D00D0965C /* EMRequestProtocol.swift in Sources */,
 				10A22020242E2F6C00D0965C /* Euromsg.swift in Sources */,

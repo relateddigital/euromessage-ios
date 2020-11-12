@@ -224,7 +224,7 @@ extension Euromsg {
         }
         sync()
     }
-    
+
     /// Euromsg SDK manage badge count by itself. If you want to use your custom badge count use this function.
     /// To get back this configuration set count to "-1".
     /// - Parameter count: badge count ( "-1" to give control to SDK )
@@ -277,7 +277,7 @@ extension Euromsg {
         guard pushDictionary["pushId"] != nil else {
             return
         }
-        
+
         EMLog.info("handlePush: \(pushDictionary)")
         let jsonData = try? JSONSerialization.data(withJSONObject: pushDictionary, options: .prettyPrinted)
         handleActionButton(jsonData, response)
@@ -288,33 +288,6 @@ extension Euromsg {
             let message = try? JSONDecoder.init().decode(EMMessage.self, from: jsonData) {
             shared.emNetworkHandler?.reportRetention(message: message, status: EMKey.euroReadStatus)
         }
-    }
-    
-    @available(iOS 10.0, *)
-    static func handleActionButton(_ data: Data?, _ response: UNNotificationResponse?) {
-    
-        guard let json = data, let response = response else {
-            print(">>> no json exist")
-            return
-        }
-        guard let message = try? JSONDecoder.init().decode(EMMessage.self, from: json) else {
-            print(">>>json parse error")
-            return
-        }
-        guard let buttons = message.buttons else {
-            print(">>> no buttons exist")
-            return
-        }
-        
-        for button in buttons where button.identifier == response.actionIdentifier {
-            print(">>> response.actionIdentifier ==> \(response.actionIdentifier)")
-            print(">>> button.identifier ==> \(button.identifier ?? "")")
-            print(">>> button.link ==> \(button.url ?? "")")
-            guard let link = URL(string: button.url ?? "") else { return }
-            UIApplication.shared.openURL(link)
-            
-        }
-        
     }
 
 }
@@ -413,7 +386,6 @@ extension Euromsg {
 }
 
 extension Euromsg {
-
     // MARK: - Notification Extension
     @available(iOS 10.0, *)
     public static func didReceive(_ bestAttemptContent: UNMutableNotificationContent?,
@@ -425,5 +397,4 @@ extension Euromsg {
         EMTools.removeUserDefaults(userKey: EMKey.tokenKey)
         EMTools.removeUserDefaults(userKey: EMKey.registerKey)
     }
-
 }
