@@ -171,8 +171,12 @@ extension Euromsg {
         sync()
     }
 
-    public static func setEmail(email: String? = nil, permission: Bool) {
+    public static func setEmail(email: String? = nil, permission: Bool, _ isCommercial: Bool = false) {
         guard let shared = getShared() else { return }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        shared.registerRequest.consentTime = dateFormatter.string(from: Date())
+        shared.registerRequest.consentSource = isCommercial ? "TACIR" : "BIREYSEL"
         shared.registerRequest.extra?[EMProperties.CodingKeys.emailPermit.rawValue] =
             permission ? EMProperties.PermissionKeys.yes.rawValue :
             EMProperties.PermissionKeys.not.rawValue

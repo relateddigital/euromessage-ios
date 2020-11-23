@@ -31,6 +31,9 @@ struct EMRegisterRequest: EMRequestProtocol, Equatable {
     var advertisingIdentifier: String?
     var sdkVersion: String?
     var carrier: String?
+    var consentTime: String?
+    var consentSource: String = "HS_MOBIL"
+    var consentType: String?
 
     // local variable
     var isBadgeCustom: Bool?
