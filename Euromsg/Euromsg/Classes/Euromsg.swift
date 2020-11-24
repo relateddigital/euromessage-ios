@@ -171,7 +171,18 @@ extension Euromsg {
         sync()
     }
 
-    public static func setEmail(email: String? = nil, permission: Bool, _ isCommercial: Bool = false) {
+    public static func setEmail(email: String? = nil, permission: Bool) {
+        guard let shared = getShared() else { return }
+        shared.registerRequest.extra?[EMProperties.CodingKeys.emailPermit.rawValue] =
+            permission ? EMProperties.PermissionKeys.yes.rawValue :
+            EMProperties.PermissionKeys.not.rawValue
+        if EMTools.validateEmail(email: email), permission {
+            shared.registerRequest.extra?[EMProperties.CodingKeys.email.rawValue] = email
+        }
+        sync()
+    }
+    
+    public static func registerEmail(email: String, permission: Bool, isCommercial: Bool) {
         guard let shared = getShared() else { return }
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -181,13 +192,10 @@ extension Euromsg {
             EMProperties.PermissionKeys.not.rawValue
         shared.registerRequest.extra?[EMProperties.CodingKeys.consentTime.rawValue] =
             dateFormatter.string(from: Date())
-        shared.registerRequest.extra?[EMProperties.CodingKeys.consentType.rawValue] =
-            isCommercial ? "TACIR" : "BIREYSEL"
         shared.registerRequest.extra?[EMProperties.CodingKeys.consentSource.rawValue] =
             "HS_MOBIL"
-        if EMTools.validateEmail(email: email), permission {
-            shared.registerRequest.extra?[EMProperties.CodingKeys.email.rawValue] = email
-        }
+        shared.registerRequest.extra?[EMProperties.CodingKeys.consentType.rawValue] =
+            isCommercial ? "TACIR" : "BIREYSEL"
         sync()
     }
 
