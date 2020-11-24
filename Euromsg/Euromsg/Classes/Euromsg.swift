@@ -175,11 +175,15 @@ extension Euromsg {
         guard let shared = getShared() else { return }
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        shared.registerRequest.consentTime = dateFormatter.string(from: Date())
-        shared.registerRequest.consentSource = isCommercial ? "TACIR" : "BIREYSEL"
         shared.registerRequest.extra?[EMProperties.CodingKeys.emailPermit.rawValue] =
             permission ? EMProperties.PermissionKeys.yes.rawValue :
             EMProperties.PermissionKeys.not.rawValue
+        shared.registerRequest.extra?[EMProperties.CodingKeys.consentTime.rawValue] =
+            dateFormatter.string(from: Date())
+        shared.registerRequest.extra?[EMProperties.CodingKeys.consentType.rawValue] =
+            isCommercial ? "TACIR" : "BIREYSEL"
+        shared.registerRequest.extra?[EMProperties.CodingKeys.consentSource.rawValue] =
+            "HS_MOBIL"
         if EMTools.validateEmail(email: email), permission {
             shared.registerRequest.extra?[EMProperties.CodingKeys.email.rawValue] = email
         }
@@ -228,7 +232,6 @@ extension Euromsg {
         }
         sync()
     }
-    
     /// Euromsg SDK manage badge count by itself. If you want to use your custom badge count use this function.
     /// To get back this configuration set count to "-1".
     /// - Parameter count: badge count ( "-1" to give control to SDK )
@@ -387,17 +390,14 @@ extension Euromsg {
 }
 
 extension Euromsg {
-
     // MARK: - Notification Extension
     @available(iOS 10.0, *)
     public static func didReceive(_ bestAttemptContent: UNMutableNotificationContent?,
                                   withContentHandler contentHandler:  @escaping (UNNotificationContent) -> Void) {
         EMNotificationHandler.didReceive(bestAttemptContent, withContentHandler: contentHandler)
     }
-
     public static func logout() {
         EMTools.removeUserDefaults(userKey: EMKey.tokenKey)
         EMTools.removeUserDefaults(userKey: EMKey.registerKey)
     }
-
 }

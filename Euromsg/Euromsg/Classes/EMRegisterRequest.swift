@@ -31,9 +31,6 @@ struct EMRegisterRequest: EMRequestProtocol, Equatable {
     var advertisingIdentifier: String?
     var sdkVersion: String?
     var carrier: String?
-    var consentTime: String?
-    var consentSource: String = "HS_MOBIL"
-    var consentType: String?
 
     // local variable
     var isBadgeCustom: Bool?
@@ -127,6 +124,9 @@ public struct EMProperties: Codable, Equatable {
         case location
         case facebook
         case twitter
+        case consentTime
+        case consentType
+        case consentSource
     }
 
     var keyID: String?
@@ -138,6 +138,9 @@ public struct EMProperties: Codable, Equatable {
     var location: String?
     var facebook: String?
     var twitter: String?
+    var consentTime: String?
+    var consentType: String?
+    var consentSource: String = "HS_MOBIL"
 
     public static func == (lhs: EMProperties, rhs: EMProperties) -> Bool {
         lhs.keyID == rhs.keyID &&
@@ -148,7 +151,10 @@ public struct EMProperties: Codable, Equatable {
         lhs.msisdn == rhs.msisdn &&
         lhs.location == rhs.location &&
         lhs.facebook == rhs.facebook &&
-        lhs.twitter == rhs.twitter
+        lhs.twitter == rhs.twitter &&
+        lhs.consentTime == rhs.consentTime &&
+        lhs.consentType == rhs.consentType &&
+        lhs.consentSource == rhs.consentSource
     }
 
 }
