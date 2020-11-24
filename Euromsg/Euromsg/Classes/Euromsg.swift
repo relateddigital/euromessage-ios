@@ -187,17 +187,30 @@ extension Euromsg {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 60 * 60 * 3)
-        shared.registerRequest.extra?[EMProperties.CodingKeys.emailPermit.rawValue] =
+        var registerRequest = shared.registerRequest
+        registerRequest.extra?[EMProperties.CodingKeys.emailPermit.rawValue] =
             permission ? EMProperties.PermissionKeys.yes.rawValue :
             EMProperties.PermissionKeys.not.rawValue
-        shared.registerRequest.extra?[EMProperties.CodingKeys.consentTime.rawValue] =
+        registerRequest.extra?[EMProperties.CodingKeys.consentTime.rawValue] =
             dateFormatter.string(from: Date())
-        shared.registerRequest.extra?[EMProperties.CodingKeys.consentSource.rawValue] =
+        registerRequest.extra?[EMProperties.CodingKeys.consentSource.rawValue] =
             "HS_MOBIL"
-        shared.registerRequest.extra?[EMProperties.CodingKeys.consentType.rawValue] =
+        registerRequest.extra?[EMProperties.CodingKeys.consentType.rawValue] =
             isCommercial ? "TACIR" : "BIREYSEL"
-        sync()
+        shared.euromsgAPI?.request(requestModel: registerRequest,
+                            completion: shared.registerEmailHandler)
     }
+    
+    private func registerEmailHandler(result: Result<EMResponse?, EuromsgAPIError>) {
+        switch result {
+        case .success:
+          EMLog.success("""
+            Register request successfully send, token: \(String(describing: self.registerRequest.token))
+            """)
+        case .failure(let error):
+          EMLog.error("Request failed : \(error)")
+        }
+      }
 
     public static func setPhoneNumber(msisdn: String? = nil, permission: Bool) {
         guard let shared = getShared() else { return }
