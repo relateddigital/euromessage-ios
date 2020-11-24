@@ -175,6 +175,7 @@ extension Euromsg {
         guard let shared = getShared() else { return }
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 60 * 60 * 3)
         shared.registerRequest.extra?[EMProperties.CodingKeys.emailPermit.rawValue] =
             permission ? EMProperties.PermissionKeys.yes.rawValue :
             EMProperties.PermissionKeys.not.rawValue
