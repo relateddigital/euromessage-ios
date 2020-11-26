@@ -191,7 +191,6 @@ extension Euromsg {
         shared.registerRequest.extra?[EMProperties.CodingKeys.emailPermit.rawValue] =
             permission ? EMProperties.PermissionKeys.yes.rawValue :
             EMProperties.PermissionKeys.not.rawValue
-    
         var registerRequest = shared.registerRequest
         registerRequest.extra?[EMProperties.CodingKeys.consentTime.rawValue] =
             dateFormatter.string(from: Date())
@@ -201,6 +200,7 @@ extension Euromsg {
             isCommercial ? "TACIR" : "BIREYSEL"
         shared.euromsgAPI?.request(requestModel: registerRequest,
                             completion: shared.registerEmailHandler)
+
     }
 
     private func registerEmailHandler(result: Result<EMResponse?, EuromsgAPIError>) {
@@ -209,8 +209,17 @@ extension Euromsg {
           EMLog.success("""
             Register request successfully send, token: \(String(describing: self.registerRequest.token))
             """)
+            if let shared = Euromsg.getShared() {
+                if let currentRegisterData = try? JSONEncoder.init().encode(shared.registerRequest) {
+                    EMTools.saveUserDefaults(key: EMKey.registerKey,
+                                             value: currentRegisterData as AnyObject)
+                }
+                self.delegate?.didRegisterSuccessfully()
+            }
         case .failure(let error):
           EMLog.error("Request failed : \(error)")
+
+            self.delegate?.didFailRegister(error: error)
         }
       }
 
