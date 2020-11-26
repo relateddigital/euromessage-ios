@@ -187,8 +187,8 @@ extension Euromsg {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 60 * 60 * 3)
+        shared.registerRequest.extra?[EMProperties.CodingKeys.email.rawValue] = email
         var registerRequest = shared.registerRequest
-        registerRequest.extra?[EMProperties.CodingKeys.email.rawValue] = email
         registerRequest.extra?[EMProperties.CodingKeys.emailPermit.rawValue] =
             permission ? EMProperties.PermissionKeys.yes.rawValue :
             EMProperties.PermissionKeys.not.rawValue
