@@ -181,27 +181,28 @@ extension Euromsg {
         }
         sync()
     }
-    
-    public static func registerEmail(email: String, permission: Bool, isCommercial: Bool) {
+
+    public static func registerEmail(email: String, permission: Bool, isCommercial: Bool = false) {
         guard let shared = getShared() else { return }
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 60 * 60 * 3)
         shared.registerRequest.extra?[EMProperties.CodingKeys.email.rawValue] = email
-        var registerRequest = shared.registerRequest
-        registerRequest.extra?[EMProperties.CodingKeys.emailPermit.rawValue] =
+        shared.registerRequest.extra?[EMProperties.CodingKeys.emailPermit.rawValue] =
             permission ? EMProperties.PermissionKeys.yes.rawValue :
             EMProperties.PermissionKeys.not.rawValue
+    
+        var registerRequest = shared.registerRequest
         registerRequest.extra?[EMProperties.CodingKeys.consentTime.rawValue] =
             dateFormatter.string(from: Date())
         registerRequest.extra?[EMProperties.CodingKeys.consentSource.rawValue] =
             "HS_MOBIL"
-        registerRequest.extra?[EMProperties.CodingKeys.consentType.rawValue] =
+        registerRequest.extra?[EMProperties.CodingKeys.recipientType.rawValue] =
             isCommercial ? "TACIR" : "BIREYSEL"
         shared.euromsgAPI?.request(requestModel: registerRequest,
                             completion: shared.registerEmailHandler)
     }
-    
+
     private func registerEmailHandler(result: Result<EMResponse?, EuromsgAPIError>) {
         switch result {
         case .success:

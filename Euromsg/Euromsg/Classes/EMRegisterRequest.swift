@@ -125,7 +125,7 @@ public struct EMProperties: Codable, Equatable {
         case facebook
         case twitter
         case consentTime
-        case consentType
+        case recipientType
         case consentSource
     }
 
@@ -139,7 +139,7 @@ public struct EMProperties: Codable, Equatable {
     var facebook: String?
     var twitter: String?
     var consentTime: String?
-    var consentType: String?
+    var recipientType: String?
     var consentSource: String = "HS_MOBIL"
 
     public static func == (lhs: EMProperties, rhs: EMProperties) -> Bool {
@@ -153,7 +153,7 @@ public struct EMProperties: Codable, Equatable {
         lhs.facebook == rhs.facebook &&
         lhs.twitter == rhs.twitter &&
         lhs.consentTime == rhs.consentTime &&
-        lhs.consentType == rhs.consentType &&
+        lhs.recipientType == rhs.recipientType &&
         lhs.consentSource == rhs.consentSource
     }
 
