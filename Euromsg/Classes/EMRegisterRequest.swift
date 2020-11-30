@@ -137,7 +137,7 @@ public struct EMProperties: Codable, Equatable {
     var twitter: String?
     var consentTime: String?
     var recipientType: String?
-    var consentSource: String = "HS_MOBIL"
+    var consentSource: String? = "HS_MOBIL"
 
     public static func == (lhs: EMProperties, rhs: EMProperties) -> Bool {
         lhs.keyID == rhs.keyID &&
