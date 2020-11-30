@@ -5,7 +5,6 @@
 //  Created by Muhammed ARAFA on 27.03.2020.
 //  Copyright © 2020 Muhammed ARAFA. All rights reserved.
 //
-
 import Foundation
 import UIKit
 import CoreTelephony
@@ -109,11 +108,9 @@ struct EMRegisterRequest: EMRequestProtocol, Equatable {
 
 // MARK: - Extra
 public struct EMProperties: Codable, Equatable {
-
     enum PermissionKeys: String {
         case yes = "Y", not = "N"
     }
-
     enum CodingKeys: String, CodingKey {
         case keyID
         case email
@@ -124,6 +121,9 @@ public struct EMProperties: Codable, Equatable {
         case location
         case facebook
         case twitter
+        case consentTime
+        case recipientType
+        case consentSource
     }
 
     var keyID: String?
@@ -135,6 +135,9 @@ public struct EMProperties: Codable, Equatable {
     var location: String?
     var facebook: String?
     var twitter: String?
+    var consentTime: String?
+    var recipientType: String?
+    var consentSource: String = "HS_MOBIL"
 
     public static func == (lhs: EMProperties, rhs: EMProperties) -> Bool {
         lhs.keyID == rhs.keyID &&
@@ -145,7 +148,10 @@ public struct EMProperties: Codable, Equatable {
         lhs.msisdn == rhs.msisdn &&
         lhs.location == rhs.location &&
         lhs.facebook == rhs.facebook &&
-        lhs.twitter == rhs.twitter
+        lhs.twitter == rhs.twitter &&
+        lhs.consentTime == rhs.consentTime &&
+        lhs.recipientType == rhs.recipientType &&
+        lhs.consentSource == rhs.consentSource
     }
 
 }

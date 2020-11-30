@@ -395,3 +395,48 @@ extension Euromsg {
     }
 
 }
+// MARK: - IYS Register Email Extension
+extension Euromsg {
+
+    public static func registerEmail(email: String, permission: Bool, isCommercial: Bool = false) {
+           guard let shared = getShared() else { return }
+           let dateFormatter = DateFormatter()
+           dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+           dateFormatter.timeZone = TimeZone(secondsFromGMT: 60 * 60 * 3)
+           shared.registerRequest.extra?[EMProperties.CodingKeys.email.rawValue] = email
+           shared.registerRequest.extra?[EMProperties.CodingKeys.emailPermit.rawValue] =
+               permission ? EMProperties.PermissionKeys.yes.rawValue :
+               EMProperties.PermissionKeys.not.rawValue
+           var registerRequest = shared.registerRequest
+           registerRequest.extra?[EMProperties.CodingKeys.consentTime.rawValue] =
+               dateFormatter.string(from: Date())
+           registerRequest.extra?[EMProperties.CodingKeys.consentSource.rawValue] =
+               "HS_MOBIL"
+           registerRequest.extra?[EMProperties.CodingKeys.recipientType.rawValue] =
+               isCommercial ? "TACIR" : "BIREYSEL"
+           shared.euromsgAPI?.request(requestModel: registerRequest,
+                               completion: shared.registerEmailHandler)
+
+       }
+
+       private func registerEmailHandler(result: Result<EMResponse?, EuromsgAPIError>) {
+           switch result {
+           case .success:
+             EMLog.success("""
+               Register request successfully send, token: \(String(describing: self.registerRequest.token))
+               """)
+               if let shared = Euromsg.getShared() {
+                   if let currentRegisterData = try? JSONEncoder.init().encode(shared.registerRequest) {
+                       EMTools.saveUserDefaults(key: EMKey.registerKey,
+                                                value: currentRegisterData as AnyObject)
+                   }
+                   self.delegate?.didRegisterSuccessfully()
+               }
+           case .failure(let error):
+             EMLog.error("Request failed : \(error)")
+
+               self.delegate?.didFailRegister(error: error)
+           }
+       }
+
+}
