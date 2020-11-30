@@ -19,7 +19,7 @@ You only need App Alias, which you can get from RMC Panel.
 Euromsg is available through [CocoaPods](https://cocoapods.org/). To install it, simply add the following line to your Podfile:
 
 ```bash
-pod 'Euromsg', '>= 2.0.1'
+pod 'Euromsg', '>= 2.0.2'
 ```
 
 ## Add Application to RMC Panel
@@ -276,6 +276,18 @@ Euromsg.setPushNotification(permission: true)
 Euromsg.setEmail(permission: true)
 Euromsg.setPhoneNumber(permission: true)
 ```
+
+### IYS Email Register
+
+To register email IYS;
+
+```swift
+Euromsg.registerEmail(email: "example@email.com", permission: true)
+//You can also call TICARI account as following
+Euromsg.registerEmail(email: "example@commercial.com, permission: True, isCommercial: true)
+```
+To update user's consent call this method. 
+If request will fail for any reason you can handle at ***didFailRegister***
  
 ## Author
 [muhammed@arafas.com](mailto:muhammed@arafas.com), [ferdi@arafas.com](mailto:ferdi@arafas.com), [egemen.gulkilik@relateddigital.com](mailto:egemen.gulkilik@relateddigital.com), [umutcan.alparslan@euromsg.com](mailto:umutcan.alparslan@euromsg.com)
