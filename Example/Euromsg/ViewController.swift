@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func pushNotificationPermissionButtonAction(_ sender: UIButton) {
-        Euromsg.askForNotificationPermission()
+        Euromsg.askForNotificationPermissionProvisional()
     }
 
     @IBAction func pushNotificationPermissionSwitchAction(_ sender: UISwitch) {
