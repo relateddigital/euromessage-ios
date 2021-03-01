@@ -19,7 +19,7 @@ You only need App Alias, which you can get from RMC Panel.
 Euromsg is available through [CocoaPods](https://cocoapods.org/). To install it, simply add the following line to your Podfile:
 
 ```bash
-pod 'Euromsg', '>= 2.0.3'
+pod 'Euromsg'
 ```
 
 ## Add Application to RMC Panel
@@ -176,7 +176,33 @@ Add UNUserNotificationCenterDelegate to the class AppDelegate section.
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate
 ```
 
-Add this code under didFinishLaunchingWithOptions.
+Add desired code under didFinishLaunchingWithOptions.
+
+### Provisional Push
+
+To get permissions with provisional add this code under didFinishLaunchingWithOptions. Only iOS 12 or newer versions are compatible with provisional push. People whom using lower versions, askForNotificationPermissionProvisional function work as askForNotificationPermission.
+
+
+```swift
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        UNUserNotificationCenter.current().delegate = self
+        
+        Euromsg.configure(appAlias: "YOUR_APP_ALIAS", enableLog: true)
+        Euromsg.registerForPushNotifications()
+        Euromsg.askForNotificationPermissionProvisional()
+        if #available(iOS 13, *) {
+            // handle push for iOS 13 and later in sceneDelegate
+        }
+        else if let userInfo = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? [String: Any] {
+            Euromsg.handlePush(pushDictionary: userInfo)
+        }
+        return true
+    }
+```
+
+If you ***do not*** want to provisional push, add below code under didFinishLaunchingWithOptions.
+
 ```swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
