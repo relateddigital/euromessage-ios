@@ -132,6 +132,24 @@ public class Euromsg {
             }
         }
     }
+    
+    public static func askForNotificationPermissionProvisional(register: Bool = false) {
+        if #available(iOS 12.0, *) {
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.alert, .sound, .badge, .provisional]) { granted, error in
+                if granted {
+                    EMLog.success("Notification permission granted")
+                    if register {
+                        Euromsg.registerForPushNotifications()
+                    }
+                } else {
+                    EMLog.error("An error occurred while notification permission: \(error.debugDescription)")
+                }
+            }
+        } else {
+            Euromsg.askForNotificationPermission(register: register)
+        }
+    }
 
     public static func registerForPushNotifications() {
         DispatchQueue.main.async {
