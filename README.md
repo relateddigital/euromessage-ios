@@ -161,8 +161,22 @@ class EMNotificationViewController: UIViewController, UNNotificationContentExten
 
 Update the podfile for NotificationContent and NotificationService as below and type pod install in the terminal again and press enter.
 
-![Podfile](https://img.visilabs.net/banner/uploaded_images/307_1305_20200825152419352.png)
+```
+target 'project_name' do
+  #only add below line
+  pod 'Euromsg'
+end
 
+target 'NotificationService' do
+  #only add below line
+  pod 'Euromsg'
+end
+
+target 'NotificationContent' do
+  #only add below line
+  pod 'Euromsg'
+end
+```
 ### AppDelegate.swift
 Firstly import Euromsg and UserNotifications
 
