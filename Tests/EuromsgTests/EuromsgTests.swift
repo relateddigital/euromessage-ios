@@ -110,6 +110,7 @@ class EuromsgTests: XCTestCase {
         XCTAssertNotEqual(first, second)
     }
 
+    @available(iOS 10.0, *)
     func testNotificationService() {
         let bestAttemptContent = UNMutableNotificationContent()
         bestAttemptContent.userInfo = ["test": "test"]

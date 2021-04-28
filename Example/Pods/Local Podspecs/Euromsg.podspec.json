@@ -16,7 +16,7 @@
     "ios": "10.0"
   },
   "swift_versions": "5.0",
-  "source_files": "Euromsg/Classes/**/*",
+  "source_files": "Sources/Euromsg/Classes/**/*",
   "pod_target_xcconfig": {
     "PRODUCT_BUNDLE_IDENTIFIER": "com.euromsg.EuroFramework"
   },

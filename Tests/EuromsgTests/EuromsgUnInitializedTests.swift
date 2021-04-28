@@ -9,6 +9,7 @@
 import XCTest
 @testable import Euromsg
 
+@available(iOS 10.0, *)
 class EuromsgUnInitializedTests: XCTestCase {
 
     override func setUp() {
@@ -89,6 +90,7 @@ class EuromsgUnInitializedTests: XCTestCase {
         XCTAssertNotEqual(first, second)
     }
 
+    @available(iOS 10.0, *)
     func testNotificationService() {
         let bestAttemptContent = UNMutableNotificationContent()
         bestAttemptContent.userInfo = ["test": "test"]
