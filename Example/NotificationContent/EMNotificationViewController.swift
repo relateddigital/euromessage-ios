@@ -38,6 +38,19 @@ class EMNotificationViewController: UIViewController, UNNotificationContentExten
             }
         }
         carouselView.completion = completion
+        //Add if you want to track which element has been selected
+        carouselView.delegate = self
         self.view = carouselView
     }
+}
+/**
+ Add if you want to track which carousel element has been selected
+ */
+extension EMNotificationViewController: CarouselDelegate {
+    
+    func selectedItem(_ element: EMMessage.Element) {
+        //Add your work...
+        print("Selected element is => \(element)")
+    }
+    
 }
