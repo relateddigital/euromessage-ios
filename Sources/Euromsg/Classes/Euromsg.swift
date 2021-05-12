@@ -329,7 +329,6 @@ extension Euromsg {
             EMTools.removeUserDefaults(userKey: EMKey.badgeCount)
             UIApplication.shared.applicationIconBadgeNumber = 0
         }
-
         // check whether the user have an unreported message
         shared.emNetworkHandler?.checkUserUnreportedMessages()
         shared.currentRegister = shared.registerRequest
