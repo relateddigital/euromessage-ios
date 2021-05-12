@@ -316,10 +316,12 @@ extension Euromsg {
         guard let shared = getShared() else { return }
         let center = UNUserNotificationCenter.current()
         center.getNotificationSettings { (settings) in
-            if(settings.authorizationStatus == .authorized) {
-                shared.registerRequest.extra?[EMProperties.CodingKeys.pushPermit.rawValue] = "Y"
-            } else {
+            if(settings.authorizationStatus == .denied) {
                 shared.registerRequest.extra?[EMProperties.CodingKeys.pushPermit.rawValue] = "N"
+                shared.euromsgAPI?.request(requestModel: shared.registerRequest,
+                                    completion: shared.registerRequestHandler)
+            } else {
+                shared.registerRequest.extra?[EMProperties.CodingKeys.pushPermit.rawValue] = "Y"
             }
         }
         // Clear badge
