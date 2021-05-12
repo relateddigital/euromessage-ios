@@ -314,13 +314,21 @@ extension Euromsg {
     /// - Parameter notification: no need for direct call
     public static func sync(notification: Notification? = nil) {
         guard let shared = getShared() else { return }
-
+        let center = UNUserNotificationCenter.current()
+        center.getNotificationSettings { (settings) in
+            if(settings.authorizationStatus == .denied) {
+                shared.registerRequest.extra?[EMProperties.CodingKeys.pushPermit.rawValue] = "N"
+                shared.euromsgAPI?.request(requestModel: shared.registerRequest,
+                                    completion: shared.registerRequestHandler)
+            } else {
+                shared.registerRequest.extra?[EMProperties.CodingKeys.pushPermit.rawValue] = "Y"
+            }
+        }
         // Clear badge
         if !(shared.registerRequest.isBadgeCustom ?? false) {
             EMTools.removeUserDefaults(userKey: EMKey.badgeCount)
             UIApplication.shared.applicationIconBadgeNumber = 0
         }
-
         // check whether the user have an unreported message
         shared.emNetworkHandler?.checkUserUnreportedMessages()
         shared.currentRegister = shared.registerRequest
@@ -343,7 +351,6 @@ extension Euromsg {
                     return
                 }
             }
-            
         }
         shared.euromsgAPI?.request(requestModel: shared.registerRequest,
                             completion: shared.registerRequestHandler)
