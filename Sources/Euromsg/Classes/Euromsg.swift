@@ -314,7 +314,14 @@ extension Euromsg {
     /// - Parameter notification: no need for direct call
     public static func sync(notification: Notification? = nil) {
         guard let shared = getShared() else { return }
-
+        let center = UNUserNotificationCenter.current()
+        center.getNotificationSettings { (settings) in
+            if(settings.authorizationStatus == .authorized) {
+                shared.registerRequest.extra?[EMProperties.CodingKeys.pushPermit.rawValue] = "Y"
+            } else {
+                shared.registerRequest.extra?[EMProperties.CodingKeys.pushPermit.rawValue] = "N"
+            }
+        }
         // Clear badge
         if !(shared.registerRequest.isBadgeCustom ?? false) {
             EMTools.removeUserDefaults(userKey: EMKey.badgeCount)
@@ -343,7 +350,6 @@ extension Euromsg {
                     return
                 }
             }
-            
         }
         shared.euromsgAPI?.request(requestModel: shared.registerRequest,
                             completion: shared.registerRequestHandler)
