@@ -20,6 +20,7 @@ public class Euromsg {
     internal var euromsgAPI: EuromsgAPIProtocol?
     private var observers: [NSObjectProtocol]?
     internal var emNetworkHandler: EMNetworkHandler?
+    var pushPermitDidCall: Bool = false
 
     weak var delegate: EuromsgDelegate?
     private static var sharedInstance: Euromsg?
@@ -186,6 +187,7 @@ extension Euromsg {
             shared.registerRequest.extra?[EMProperties.CodingKeys.pushPermit.rawValue] =
                 EMProperties.PermissionKeys.not.rawValue
         }
+        shared.pushPermitDidCall = true
         sync()
     }
 
@@ -314,13 +316,24 @@ extension Euromsg {
     /// - Parameter notification: no need for direct call
     public static func sync(notification: Notification? = nil) {
         guard let shared = getShared() else { return }
-
+        if !shared.pushPermitDidCall {
+            let center = UNUserNotificationCenter.current()
+            center.getNotificationSettings { (settings) in
+                if(settings.authorizationStatus == .denied) {
+                    shared.registerRequest.extra?[EMProperties.CodingKeys.pushPermit.rawValue] = "N"
+                    shared.euromsgAPI?.request(requestModel: shared.registerRequest,
+                                        completion: shared.registerRequestHandler)
+                } else {
+                    shared.registerRequest.extra?[EMProperties.CodingKeys.pushPermit.rawValue] = "Y"
+                }
+            }
+        }
+        
         // Clear badge
         if !(shared.registerRequest.isBadgeCustom ?? false) {
             EMTools.removeUserDefaults(userKey: EMKey.badgeCount)
             UIApplication.shared.applicationIconBadgeNumber = 0
         }
-
         // check whether the user have an unreported message
         shared.emNetworkHandler?.checkUserUnreportedMessages()
         shared.currentRegister = shared.registerRequest
@@ -343,7 +356,6 @@ extension Euromsg {
                     return
                 }
             }
-            
         }
         shared.euromsgAPI?.request(requestModel: shared.registerRequest,
                             completion: shared.registerRequestHandler)

@@ -22,7 +22,6 @@
 		71103D87F2DC4CF7A07E547B729E4DDC /* Pods-Euromsg_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D282A36E072360CF8F70203F0AA7ED2F /* Pods-Euromsg_Tests-dummy.m */; };
 		7F693B0FE63F1A4F9DB3D215DC2F9292 /* Euromsg-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB982E494DCA70E0FEF166876D7818F /* Euromsg-dummy.m */; };
 		7F8378AFD8165560F5774DE7043B27B9 /* EMRetentionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9507A316ECB85DF5D722B9352232834A /* EMRetentionRequest.swift */; };
-		7FD853E5DDC71CDA69453FB68BE31DD9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		A0BC4A3E4A44E60754D661FFE1C84173 /* EMCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B79CE474DB4D89BC8EA3F758E10B93 /* EMCodable.swift */; };
 		A1D61B183FB33EF333D0D979F5807A5A /* EMLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F56FDEF2A2976D1536479F589D2F737 /* EMLog.swift */; };
 		A3403F249C7E873DDBA153C7DCE5DCE5 /* Pods-NotificationContent-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 99F0236D4F676D81AA57BE7ECDC17A56 /* Pods-NotificationContent-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -149,7 +148,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7FD853E5DDC71CDA69453FB68BE31DD9 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
