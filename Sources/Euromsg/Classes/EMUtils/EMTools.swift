@@ -55,13 +55,18 @@ internal class EMTools {
     }
 
     static func getIdentifierForVendorString() -> String {
-        if let identifierForVendor = retrieveUserDefaults(userKey: EMKey.identifierForVendorKey) as? String {
-
+        let emptyUUID = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
+        if let identifierForVendorString = retrieveUserDefaults(userKey: EMKey.identifierForVendorKey) as? String, let uuid = UUID(uuidString: identifierForVendorString), !uuid.uuidString.elementsEqual(emptyUUID.uuidString) {
+            EMKeychain.set(identifierForVendorString, forKey: EMKey.identifierForVendorKey)
+            return identifierForVendorString
+        } else if let identifierForVendorString = EMKeychain.get(EMKey.identifierForVendorKey), let uuid = UUID(uuidString: identifierForVendorString), !uuid.uuidString.elementsEqual(emptyUUID.uuidString) {
+            saveUserDefaults(key: EMKey.identifierForVendorKey, value: identifierForVendorString as AnyObject)
+            return identifierForVendorString
+        } else if let identifierForVendorString = UIDevice.current.identifierForVendor?.uuidString, let uuid = UUID(uuidString: identifierForVendorString), !uuid.uuidString.elementsEqual(emptyUUID.uuidString) {
+            saveUserDefaults(key: EMKey.identifierForVendorKey, value: identifierForVendorString as AnyObject)
+            EMKeychain.set(identifierForVendorString, forKey: EMKey.identifierForVendorKey)
+            return identifierForVendorString
         }
-
-        // UIDevice.current.identifierForVendor?.uuidString
-
         return ""
     }
-
 }

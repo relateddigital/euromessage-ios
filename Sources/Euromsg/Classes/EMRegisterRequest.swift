@@ -83,7 +83,7 @@ struct EMRegisterRequest: EMRequestProtocol, Equatable {
         self.deviceName = device.name
         self.local = NSLocale.preferredLanguages.first
         self.firstTime = 1
-        self.identifierForVendor = device.identifierForVendor?.uuidString
+        self.identifierForVendor = EMTools.getIdentifierForVendorString() // device.identifierForVendor?.uuidString
         self.token = nil
         self.extra = [:]
     }
