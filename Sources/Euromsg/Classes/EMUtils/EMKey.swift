@@ -15,6 +15,7 @@ class EMKey {
     internal static let registerKey = "EURO_REGISTER_KEY"
     internal static let lastRequestDateKey = "EURO_LAST_REQUEST_DATE_KEY"
     internal static let euroLastMessageKey = "EURO_LAST_MESSAGE_KEY"
+    internal static let identifierForVendorKey = "EURO_IDENTIFIER_FOR_VENDOR_KEY"
     internal static let euroReceivedStatus = "D"
     internal static let euroReadStatus = "O"
     internal static let isBadgeCustom = "EMisBadgeCustom"

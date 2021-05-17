@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 internal class EMTools {
 
@@ -52,4 +53,15 @@ internal class EMTools {
         let bundle = Bundle.init(for: self)
         return bundle.infoDictionary?[key] as? String
     }
+
+    static func getIdentifierForVendorString() -> String {
+        if let identifierForVendor = retrieveUserDefaults(userKey: EMKey.identifierForVendorKey) as? String {
+
+        }
+
+        // UIDevice.current.identifierForVendor?.uuidString
+
+        return ""
+    }
+
 }
