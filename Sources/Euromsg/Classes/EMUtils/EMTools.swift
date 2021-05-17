@@ -11,7 +11,7 @@ import UIKit
 
 internal class EMTools {
 
-    static var userDefaults = UserDefaults(suiteName: EMKey.userDefaultSuiteKey)
+    static let userDefaults = UserDefaults(suiteName: EMKey.userDefaultSuiteKey)
     static func validatePhone(phone: String?) -> Bool {
         guard phone != nil else {
             return false
@@ -38,6 +38,7 @@ internal class EMTools {
     static func removeUserDefaults(userKey: String) {
         if userDefaults?.object(forKey: userKey) != nil {
             userDefaults?.removeObject(forKey: userKey)
+            userDefaults?.synchronize()
         }
     }
 
@@ -53,7 +54,10 @@ internal class EMTools {
         let bundle = Bundle.init(for: self)
         return bundle.infoDictionary?[key] as? String
     }
-
+    
+    //TODO: dökümana appgroup kısmı eklenmeli, NotificationService, NotificationContent
+    //TODO: dökümana developer.apple.com appgroup identifier tanımı eklenmeli
+    //TODO: UserDefaults'taki suiteName kısmı dinamik olmalı
     static func getIdentifierForVendorString() -> String {
         let emptyUUID = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
         if let identifierForVendorString = retrieveUserDefaults(userKey: EMKey.identifierForVendorKey) as? String, let uuid = UUID(uuidString: identifierForVendorString), !uuid.uuidString.elementsEqual(emptyUUID.uuidString) {
