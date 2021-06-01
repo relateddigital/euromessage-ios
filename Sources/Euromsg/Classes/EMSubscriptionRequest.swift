@@ -1,5 +1,5 @@
 //
-//  EMRegisterRequest.swift
+//  EMSubscriptionRequest.swift
 //  Euromsg
 //
 //  Created by Muhammed ARAFA on 27.03.2020.
@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 import CoreTelephony
 
-// MARK: - EMRegisterRequest
-struct EMRegisterRequest: EMRequestProtocol, Equatable {
+// MARK: - Subscription
+struct EMSubscriptionRequest: EMRequestProtocol, Equatable {
 
     internal var path = "subscription"
     internal var port = "4243"
@@ -52,8 +52,12 @@ struct EMRegisterRequest: EMRequestProtocol, Equatable {
     }
 
     init() {
-        let device = UIDevice.current
+        self.token = nil
+        self.extra = [:]
+    }
 
+    mutating func setDeviceParameters() {
+        let device = UIDevice.current
         var systemInfo = utsname()
         uname(&systemInfo)
         let machineMirror = Mirror(reflecting: systemInfo.machine)
@@ -71,24 +75,28 @@ struct EMRegisterRequest: EMRequestProtocol, Equatable {
             provider = CTTelephonyNetworkInfo.init().subscriberCellularProvider
         }
 
+        self.firstTime = 0
+        self.osName = device.systemName
+        self.osVersion = device.systemVersion
+        self.sdkVersion = EMKey.sdkVersion
+        self.deviceName = device.name
+        self.deviceType = deviceType
+
         if let code = provider?.mobileCountryCode {
             if let networkCode = provider?.mobileNetworkCode {
                 self.carrier = "\(code)\(networkCode)"
             }
         }
 
-        self.osVersion = device.systemVersion
-        self.deviceType = deviceType
-        self.osName = device.systemName
-        self.deviceName = device.name
+        if let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
+            self.appVersion = appVersion
+        }
+
+        self.identifierForVendor = EMTools.getIdentifierForVendorString()
         self.local = NSLocale.preferredLanguages.first
-        self.firstTime = 1
-        self.identifierForVendor = EMTools.getIdentifierForVendorString() // device.identifierForVendor?.uuidString
-        self.token = nil
-        self.extra = [:]
     }
 
-    static func == (lhs: EMRegisterRequest, rhs: EMRegisterRequest) -> Bool {
+    static func == (lhs: EMSubscriptionRequest, rhs: EMSubscriptionRequest) -> Bool {
         lhs.extra == rhs.extra &&
         lhs.firstTime == rhs.firstTime &&
         lhs.osVersion == rhs.osVersion &&
@@ -103,6 +111,10 @@ struct EMRegisterRequest: EMRequestProtocol, Equatable {
         lhs.advertisingIdentifier == rhs.advertisingIdentifier &&
         lhs.sdkVersion == rhs.sdkVersion &&
         lhs.carrier == rhs.carrier
+    }
+    
+    func isValid() -> Bool {
+        return !EMTools.isNilOrWhiteSpace(self.token) && !EMTools.isNilOrWhiteSpace(self.appKey) 
     }
 }
 

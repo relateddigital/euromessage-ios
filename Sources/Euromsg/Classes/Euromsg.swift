@@ -14,90 +14,56 @@ protocol EuromsgDelegate: AnyObject {
 }
 
 public class Euromsg {
-
-    internal var registerRequest = EMRegisterRequest()
-    private var currentRegister: EMRegisterRequest?
+    
+    private static var sharedInstance: Euromsg?
     internal var euromsgAPI: EuromsgAPIProtocol?
     private var observers: [NSObjectProtocol]?
     internal var emNetworkHandler: EMNetworkHandler?
-    var pushPermitDidCall: Bool = false
-
+    private var pushPermitDidCall: Bool = false
     weak var delegate: EuromsgDelegate?
-    private static var sharedInstance: Euromsg?
-    public static var shared: Euromsg? {
-        get {
-            guard sharedInstance?.registerRequest.appKey != nil,
-                sharedInstance?.registerRequest.appKey != "" else {
-                    if let registerData = EMTools.retrieveUserDefaults(userKey: EMKey.registerKey) as? Data {
-                        guard let registerRequest = try? JSONDecoder.init().decode(EMRegisterRequest.self,
-                                                                                   from: registerData),
-                            let appKey = registerRequest.appKey else {
-                                EMLog.warning("""
-                                appAlias not provided. Please use Euromsg.configure(::) function first.
-                                \(EMKey.instractionPage)
-                                """)
-                                return nil
-                        }
-                        Euromsg.configure(appAlias: appKey)
-                        sharedInstance?.registerRequest = registerRequest
-                        return sharedInstance
-                    }
-                    EMLog.warning("""
-                    appAlias not provided. Please use Euromsg.configure(::) function first.
-                    \(EMKey.instractionPage)
-                    """)
-                    return nil
-            }
-            return sharedInstance
-        }
-        set {
-            sharedInstance = newValue
-        }
-    }
-
-    // MARK: Lifecycle
-    public class func configure(appAlias: String,
-                                enableLog: Bool = false) {
-        Euromsg.shared = Euromsg.init(appKey: appAlias)
-        EMLog.shared.isEnabled = enableLog
-        Euromsg.shared?.euromsgAPI = EuromsgAPI()
-        Euromsg.shared?.emNetworkHandler = EMNetworkHandler(euromsg: Euromsg.shared!)
-
-        if #available(iOS 10.0, *) {
-            UNUserNotificationCenter.current().removeAllDeliveredNotifications()
-        } else {
-            // If ios version is lower than 10, server should send 0 badge push notification to clear all.
-        }
-    }
-
+    internal var subscription: EMSubscriptionRequest
+    private var previousSubscription: EMSubscriptionRequest?
+    private var previousRegisterEmailSubscription: EMSubscriptionRequest?
+    
+    // private var previousRegisterRequest: Subscription?
+    // internal var registerRequest = Subscription()
+    // private var currentRegister: Subscription?
+    
     private init(appKey: String) {
-        registerRequest.appKey = appKey
-        registerRequest.sdkVersion = EMKey.sdkVersion
-        registerRequest.token = EMTools.retrieveUserDefaults(userKey: EMKey.tokenKey) as? String
-        if let lastRegister = EMTools.retrieveUserDefaults(userKey: EMKey.registerKey) as? Data {
-            let lastRequest = try? JSONDecoder.init().decode(EMRegisterRequest.self,
-                                                             from: lastRegister)
-            registerRequest.extra = lastRequest?.extra
+        print("INITCALL \(appKey)")
+        if let lastSubscriptionData = EMTools.retrieveUserDefaults(userKey: EMKey.registerKey) as? Data,
+           let lastSubscription = try? JSONDecoder().decode(EMSubscriptionRequest.self, from: lastSubscriptionData) {
+            subscription = lastSubscription
+            // TODO:buna gerek var mı kontrol et
+            // subscription.extra = lastSubscription.extra
+            
+        } else {
+            subscription = EMSubscriptionRequest()
         }
+        subscription.setDeviceParameters()
+        subscription.appKey = appKey
+        subscription.token = EMTools.retrieveUserDefaults(userKey: EMKey.tokenKey) as? String
+        
         let ncd = NotificationCenter.default
         observers = []
         observers?.append(ncd.addObserver(
-            forName: UIApplication.didEnterBackgroundNotification,
-            object: nil,
-            queue: nil,
-            using: Euromsg.sync))
+                            forName: UIApplication.didEnterBackgroundNotification,
+                            object: nil,
+                            queue: nil,
+                            using: Euromsg.sync))
         observers?.append(ncd.addObserver(
-            forName: UIApplication.willTerminateNotification,
-            object: nil,
-            queue: nil,
-            using: Euromsg.sync))
+                            forName: UIApplication.willTerminateNotification,
+                            object: nil,
+                            queue: nil,
+                            using: Euromsg.sync))
         observers?.append(ncd.addObserver(
-            forName: UIApplication.didBecomeActiveNotification,
-            object: nil,
-            queue: nil,
-            using: Euromsg.sync))
+                            forName: UIApplication.didBecomeActiveNotification,
+                            object: nil,
+                            queue: nil,
+                            using: Euromsg.sync))
+        
     }
-
+    
     deinit {
         NotificationCenter.default.removeObserver(self,
                                                   name: UIApplication.didEnterBackgroundNotification,
@@ -109,7 +75,52 @@ public class Euromsg {
                                                   name: UIApplication.didBecomeActiveNotification,
                                                   object: nil)
     }
-
+    
+    private static func getShared() -> Euromsg? {
+        guard let shared = Euromsg.shared else {
+            EMLog.warning(EMKey.appAliasNotProvidedMessage)
+            return nil
+        }
+        return shared
+    }
+    
+    public static var shared: Euromsg? {
+        get {
+            guard sharedInstance?.subscription.appKey != nil,
+                  sharedInstance?.subscription.appKey != "" else {
+                if let subscriptionData = EMTools.retrieveUserDefaults(userKey: EMKey.registerKey) as? Data {
+                    guard let subscriptionRequest = try? JSONDecoder().decode(EMSubscriptionRequest.self, from: subscriptionData),
+                          let appKey = subscriptionRequest.appKey else {
+                        EMLog.warning(EMKey.appAliasNotProvidedMessage)
+                        return nil
+                    }
+                    Euromsg.configure(appAlias: appKey)
+                    return sharedInstance
+                }
+                EMLog.warning(EMKey.appAliasNotProvidedMessage)
+                return nil
+            }
+            return sharedInstance
+        }
+        set {
+            sharedInstance = newValue
+        }
+    }
+    
+    // MARK: Lifecycle
+    public class func configure(appAlias: String, enableLog: Bool = false) {
+        Euromsg.shared = Euromsg(appKey: appAlias)
+        EMLog.shared.isEnabled = enableLog
+        Euromsg.shared?.euromsgAPI = EuromsgAPI()
+        Euromsg.shared?.emNetworkHandler = EMNetworkHandler(euromsg: Euromsg.shared!)
+        
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        } else {
+            // If ios version is lower than 10, server should send 0 badge push notification to clear all.
+        }
+    }
+    
     /// Request to user for authorization for push notification
     /// - Parameter register: also register for deviceToken. _default : false_
     public static func askForNotificationPermission(register: Bool = false) {
@@ -151,98 +162,101 @@ public class Euromsg {
             Euromsg.askForNotificationPermission(register: register)
         }
     }
-
+    
     public static func registerForPushNotifications() {
         DispatchQueue.main.async {
             UIApplication.shared.registerForRemoteNotifications()
         }
     }
-
 }
 
 extension Euromsg {
-
+    
     // MARK: Request Builders
-    public static func setAdvertisingIdentifier(adIdentifier: String?) {
-        guard let shared = getShared() else { return }
-        if let adIdentifier = adIdentifier {
-            shared.registerRequest.advertisingIdentifier = adIdentifier
+    
+    public static func setPushNotification(permission: Bool) {
+        if permission {
+            setUserProperty(key: EMProperties.CodingKeys.pushPermit.rawValue, value: EMProperties.PermissionKeys.yes.rawValue)
+            registerForPushNotifications()
+        } else {
+            setUserProperty(key: EMProperties.CodingKeys.pushPermit.rawValue, value: EMProperties.PermissionKeys.not.rawValue)
+        }
+        shared?.pushPermitDidCall = true
+        sync()
+    }
+    
+    public static func setPhoneNumber(msisdn: String? = nil, permission: Bool) {
+        let p = permission ? EMProperties.PermissionKeys.yes.rawValue : EMProperties.PermissionKeys.not.rawValue
+        setUserProperty(key: EMProperties.CodingKeys.gsmPermit.rawValue, value: p)
+        if EMTools.validatePhone(phone: msisdn), permission {
+            setUserProperty(key: EMProperties.CodingKeys.msisdn.rawValue, value: msisdn)
         }
     }
-
+    
+    public static func setEmail(email: String? = nil, permission: Bool) {
+        let p = permission ? EMProperties.PermissionKeys.yes.rawValue : EMProperties.PermissionKeys.not.rawValue
+        setUserProperty(key: EMProperties.CodingKeys.emailPermit.rawValue, value: p)
+        if EMTools.validateEmail(email: email), permission {
+            setUserProperty(key: EMProperties.CodingKeys.email.rawValue, value: email)
+        }
+    }
+    
+    public static func setEuroUserId(userKey: String?) {
+        if let userKey = userKey {
+            setUserProperty(key: EMProperties.CodingKeys.keyID.rawValue, value: userKey)
+        }
+    }
+    
     public static func setAppVersion(appVersion: String?) {
         guard let shared = getShared() else { return }
         if let appVersion = appVersion {
-            shared.registerRequest.appVersion = appVersion
+            shared.subscription.appVersion = appVersion
         }
+        saveSubscription()
     }
-
-    public static func setPushNotification(permission: Bool) {
-        guard let shared = getShared() else { return }
-        if permission {
-            shared.registerRequest.extra?[EMProperties.CodingKeys.pushPermit.rawValue] =
-                EMProperties.PermissionKeys.yes.rawValue
-            registerForPushNotifications()
-        } else {
-            shared.registerRequest.extra?[EMProperties.CodingKeys.pushPermit.rawValue] =
-                EMProperties.PermissionKeys.not.rawValue
-        }
-        shared.pushPermitDidCall = true
-        sync()
-    }
-
-    public static func setEmail(email: String? = nil, permission: Bool) {
-        guard let shared = getShared() else { return }
-        shared.registerRequest.extra?[EMProperties.CodingKeys.emailPermit.rawValue] =
-            permission ? EMProperties.PermissionKeys.yes.rawValue :
-            EMProperties.PermissionKeys.not.rawValue
-        if EMTools.validateEmail(email: email), permission {
-            shared.registerRequest.extra?[EMProperties.CodingKeys.email.rawValue] = email
-        }
-        sync()
-    }
-
-    public static func setPhoneNumber(msisdn: String? = nil, permission: Bool) {
-        guard let shared = getShared() else { return }
-        shared.registerRequest.extra?[EMProperties.CodingKeys.gsmPermit.rawValue] =
-            permission ? EMProperties.PermissionKeys.yes.rawValue :
-            EMProperties.PermissionKeys.not.rawValue
-        if EMTools.validatePhone(phone: msisdn), permission {
-            shared.registerRequest.extra?[EMProperties.CodingKeys.msisdn.rawValue] = msisdn
-        }
-        sync()
-    }
-
-    public static func setEuroUserId(userKey: String?) {
-        guard let shared = getShared() else { return }
-        if let userKey = userKey {
-            shared.registerRequest.extra?[EMProperties.CodingKeys.keyID.rawValue] = userKey
-        }
-        sync()
-    }
-
+    
     public static func setTwitterId(twitterId: String?) {
-        guard let shared = getShared() else { return }
         if let twitterId = twitterId {
-            shared.registerRequest.extra?[EMProperties.CodingKeys.twitter.rawValue] = twitterId
+            setUserProperty(key: EMProperties.CodingKeys.twitter.rawValue, value: twitterId)
         }
-        sync()
     }
-
+    
+    public static func setAdvertisingIdentifier(adIdentifier: String?) {
+        guard let shared = getShared() else { return }
+        if let adIdentifier = adIdentifier {
+            shared.subscription.advertisingIdentifier = adIdentifier
+        }
+        saveSubscription()
+    }
+    
     public static func setFacebook(facebookId: String?) {
-        guard let shared = getShared() else { return }
         if let facebookId = facebookId {
-            shared.registerRequest.extra?[EMProperties.CodingKeys.facebook.rawValue] = facebookId
+            setUserProperty(key: EMProperties.CodingKeys.facebook.rawValue, value: facebookId)
         }
-        sync()
     }
-
+    
     public static func setUserProperty(key: String, value: String?) {
-        guard let shared = getShared() else { return }
-        if let value = value {
-            shared.registerRequest.extra?[key] = value
+        if let shared = getShared(), let value = value {
+            shared.subscription.extra?[key] = value
+            saveSubscription()
         }
-        sync()
+    }
+    
+    public static func logout() {
+        if let shared = getShared() {
+            shared.subscription.token = nil
+            shared.subscription.extra = [String: String]()
+            EMTools.removeUserDefaults(userKey: EMKey.tokenKey) // TODO: burada niye token var, android'de token silme yok
+            // EMTools.removeUserDefaults(userKey: EMKey.registerKey) // TODO: bunu kaldırdım. zaten token yoksa request atılmıyor.
+            saveSubscription()
+        }
+        
+    }
+    
+    private static func saveSubscription() {
+        if let shared = Euromsg.getShared(), let subscriptionData = try? JSONEncoder().encode(shared.subscription) {
+            EMTools.saveUserDefaults(key: EMKey.registerKey, value: subscriptionData as AnyObject)
+        }
     }
     
     /// Euromsg SDK manage badge count by itself. If you want to use your custom badge count use this function.
@@ -251,20 +265,9 @@ extension Euromsg {
     public static func setBadge(count: Int) {
         EMTools.userDefaults?.set(count == -1 ? false : true, forKey: EMKey.isBadgeCustom)
         UIApplication.shared.applicationIconBadgeNumber = count == -1 ? 0 : count
-        sync()
+        // sync() //TODO: kaldırdım ne gerek var?
     }
-
-    private static func getShared() -> Euromsg? {
-        guard let shared = Euromsg.shared else {
-            EMLog.warning("""
-              appAlias not provided. Please use Euromsg.configure(::) function first.
-                \(EMKey.instractionPage)
-            """)
-            return nil
-        }
-        return shared
-    }
-
+    
     // MARK: API Methods
     /**:
      Registers device token to Euromsg services.
@@ -273,8 +276,8 @@ extension Euromsg {
      - Parameter tokenData: delegate deviceToken data
      
      func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken
-                        deviceToken: Data) {
-        Euromsg.shared?.registerToken(tokenData: deviceToken)
+     deviceToken: Data) {
+     Euromsg.shared?.registerToken(tokenData: deviceToken)
      }
      */
     public static func registerToken(tokenData: Data?) {
@@ -285,10 +288,10 @@ extension Euromsg {
         }
         let tokenString = tokenData.reduce("", {$0 + String(format: "%02X", $1)})
         EMLog.info("Your token is \(tokenString)")
-        shared.registerRequest.token = tokenString
+        shared.subscription.token = tokenString
         Euromsg.sync()
     }
-
+    
     /// Report Euromsg services that a push notification successfully delivered
     /// - Parameter pushDictionary: push notification data that comes from APNS
     public static func handlePush(pushDictionary: [AnyHashable: Any]) {
@@ -302,15 +305,14 @@ extension Euromsg {
         if state != UIApplication.State.active {
             EMTools.saveUserDefaults(key: EMKey.euroLastMessageKey, value: jsonData as AnyObject)
         } else if let jsonData = jsonData,
-            let message = try? JSONDecoder.init().decode(EMMessage.self, from: jsonData) {
+                  let message = try? JSONDecoder().decode(EMMessage.self, from: jsonData) {
             shared.emNetworkHandler?.reportRetention(message: message, status: EMKey.euroReadStatus)
         }
     }
-
 }
 
 extension Euromsg {
-
+    
     // MARK: Sync
     /// Synchronize user data with Euromsg servers
     /// - Parameter notification: no need for direct call
@@ -319,61 +321,43 @@ extension Euromsg {
         if !shared.pushPermitDidCall {
             let center = UNUserNotificationCenter.current()
             center.getNotificationSettings { (settings) in
-                if(settings.authorizationStatus == .denied) {
-                    shared.registerRequest.extra?[EMProperties.CodingKeys.pushPermit.rawValue] = "N"
-                    shared.euromsgAPI?.request(requestModel: shared.registerRequest,
-                                        completion: shared.registerRequestHandler)
+                if settings.authorizationStatus == .denied {
+                    setUserProperty(key: EMProperties.CodingKeys.pushPermit.rawValue, value: EMProperties.PermissionKeys.not.rawValue)
+                    shared.euromsgAPI?.request(requestModel: shared.subscription, completion: shared.registerRequestHandler)
                 } else {
-                    shared.registerRequest.extra?[EMProperties.CodingKeys.pushPermit.rawValue] = "Y"
+                    setUserProperty(key: EMProperties.CodingKeys.pushPermit.rawValue, value: EMProperties.PermissionKeys.yes.rawValue)
                 }
             }
         }
         
         // Clear badge
-        if !(shared.registerRequest.isBadgeCustom ?? false) {
+        if !(shared.subscription.isBadgeCustom ?? false) {
             EMTools.removeUserDefaults(userKey: EMKey.badgeCount)
             UIApplication.shared.applicationIconBadgeNumber = 0
         }
         // check whether the user have an unreported message
         shared.emNetworkHandler?.checkUserUnreportedMessages()
-        shared.currentRegister = shared.registerRequest
-        if let lastRegisterData = EMTools.retrieveUserDefaults(userKey: EMKey.registerKey) as? Data {
-            let lastRegister = try? JSONDecoder.init().decode(EMRegisterRequest.self, from: lastRegisterData)
-            // set whether it is the first request or not
-            if EMTools.retrieveUserDefaults(userKey: EMKey.tokenKey) != nil {
-                shared.registerRequest.firstTime = 1
-            }
-            EMLog.info("Current registration settings \(shared.currentRegister?.encoded ?? "")")
-            if shared.registerRequest.token != nil {
-                EMTools.saveUserDefaults(key: EMKey.tokenKey, value: shared.registerRequest.token as AnyObject)
-            }
-            
-            if let lastRequestDate = EMTools.retrieveUserDefaults(userKey: EMKey.lastRequestDateKey) as? Date {
-                let comparisonResult = Date().compare(lastRequestDate.addingTimeInterval(20*60))//TODO:bu zamanı config'e al
-                let arePayloadsEqual = lastRegister == shared.currentRegister
-                if (comparisonResult == ComparisonResult.orderedAscending && arePayloadsEqual) || shared.registerRequest.token == nil {
-                    EMLog.warning("Register request not ready : \(shared.registerRequest)")
-                    return
-                }
-            }
+        
+        if shared.subscription.isValid() && (shared.previousSubscription == nil ||  shared.subscription != shared.previousSubscription) {
+            shared.previousSubscription = shared.subscription
+            saveSubscription()
+            EMTools.saveUserDefaults(key: EMKey.tokenKey, value: shared.subscription.token as AnyObject)
+            EMLog.info("Current subscription \(shared.subscription.encoded)")
+        } else {
+            EMLog.warning("Subscription request not ready : \(shared.subscription)")
+            return
         }
-        shared.euromsgAPI?.request(requestModel: shared.registerRequest,
-                            completion: shared.registerRequestHandler)
+        
+        shared.euromsgAPI?.request(requestModel: shared.subscription, completion: shared.registerRequestHandler)
     }
-
+    
     /// RegisterRequest completion handler
     /// - Parameter result: result type
     private func registerRequestHandler(result: Result<EMResponse?, EuromsgAPIError>) {
         switch result {
         case .success:
-            //let fiveMinsLater = Date.init(timeInterval: (20 * 60), since: Date())
-            EMTools.saveUserDefaults(key: EMKey.lastRequestDateKey, value: Date() as AnyObject)
-            if let currentRegisterData = try? JSONEncoder.init().encode(currentRegister) {
-                EMTools.saveUserDefaults(key: EMKey.registerKey,
-                                         value: currentRegisterData as AnyObject)
-            }
             EMLog.success("""
-                Register request successfully send, token: \(String(describing: self.registerRequest.token))
+                Subscription request successfully send, token: \(String(describing: self.subscription.token))
                 """)
             self.delegate?.didRegisterSuccessfully()
         case .failure(let error):
@@ -381,11 +365,11 @@ extension Euromsg {
             self.delegate?.didFailRegister(error: error)
         }
     }
-
+    
     /// Returns all the information that set before 
     public static func checkConfiguration() -> EMConfiguration {
         guard let shared = getShared() else { return EMConfiguration() }
-        let registerRequest = shared.registerRequest
+        let registerRequest = shared.subscription
         var properties: EMProperties?
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: registerRequest.extra ?? [:], options: [])
@@ -407,66 +391,55 @@ extension Euromsg {
                                sdkVersion: registerRequest.sdkVersion,
                                carrier: registerRequest.carrier)
     }
-
+    
 }
 
 extension Euromsg {
-
+    
     // MARK: - Notification Extension
     @available(iOS 10.0, *)
     public static func didReceive(_ bestAttemptContent: UNMutableNotificationContent?,
                                   withContentHandler contentHandler:  @escaping (UNNotificationContent) -> Void) {
         EMNotificationHandler.didReceive(bestAttemptContent, withContentHandler: contentHandler)
     }
-
-    public static func logout() {
-        EMTools.removeUserDefaults(userKey: EMKey.tokenKey)
-        EMTools.removeUserDefaults(userKey: EMKey.registerKey)
-    }
-
 }
+
 // MARK: - IYS Register Email Extension
 extension Euromsg {
-
+    
     public static func registerEmail(email: String, permission: Bool, isCommercial: Bool = false) {
-           guard let shared = getShared() else { return }
-           let dateFormatter = DateFormatter()
-           dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-           dateFormatter.timeZone = TimeZone(secondsFromGMT: 60 * 60 * 3)
-           shared.registerRequest.extra?[EMProperties.CodingKeys.email.rawValue] = email
-           shared.registerRequest.extra?[EMProperties.CodingKeys.emailPermit.rawValue] =
-               permission ? EMProperties.PermissionKeys.yes.rawValue :
-               EMProperties.PermissionKeys.not.rawValue
-           var registerRequest = shared.registerRequest
-           registerRequest.extra?[EMProperties.CodingKeys.consentTime.rawValue] =
-               dateFormatter.string(from: Date())
-           registerRequest.extra?[EMProperties.CodingKeys.consentSource.rawValue] =
-               "HS_MOBIL"
-           registerRequest.extra?[EMProperties.CodingKeys.recipientType.rawValue] =
-               isCommercial ? "TACIR" : "BIREYSEL"
-           shared.euromsgAPI?.request(requestModel: registerRequest,
-                               completion: shared.registerEmailHandler)
-
-       }
-
-       private func registerEmailHandler(result: Result<EMResponse?, EuromsgAPIError>) {
-           switch result {
-           case .success:
-             EMLog.success("""
-               Register request successfully send, token: \(String(describing: self.registerRequest.token))
+        guard let shared = getShared() else { return }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 60 * 60 * 3)
+        setEmail(email: email, permission: permission)
+        var registerEmailSubscriptionRequest = shared.subscription
+        registerEmailSubscriptionRequest.extra?[EMProperties.CodingKeys.consentTime.rawValue] = dateFormatter.string(from: Date())
+        registerEmailSubscriptionRequest.extra?[EMProperties.CodingKeys.consentSource.rawValue] = "HS_MOBIL"
+        registerEmailSubscriptionRequest.extra?[EMProperties.CodingKeys.recipientType.rawValue] = isCommercial ? "TACIR" : "BIREYSEL"
+        
+        if registerEmailSubscriptionRequest.isValid() && (shared.previousRegisterEmailSubscription == nil || registerEmailSubscriptionRequest != shared.previousRegisterEmailSubscription) {
+            shared.previousRegisterEmailSubscription = registerEmailSubscriptionRequest
+            EMLog.info("Current subscription \(shared.subscription.encoded)")
+        } else {
+            EMLog.warning("Subscription request not ready : \(shared.subscription)")
+            return
+        }
+        
+        shared.euromsgAPI?.request(requestModel: registerEmailSubscriptionRequest, completion: shared.registerEmailHandler)
+    }
+    
+    private func registerEmailHandler(result: Result<EMResponse?, EuromsgAPIError>) {
+        switch result {
+        case .success:
+            EMLog.success("""
+               Register email request successfully send, token: \(String(describing: self.previousRegisterEmailSubscription?.token))
                """)
-               if let shared = Euromsg.getShared() {
-                   if let currentRegisterData = try? JSONEncoder.init().encode(shared.registerRequest) {
-                       EMTools.saveUserDefaults(key: EMKey.registerKey,
-                                                value: currentRegisterData as AnyObject)
-                   }
-                   self.delegate?.didRegisterSuccessfully()
-               }
-           case .failure(let error):
-             EMLog.error("Request failed : \(error)")
-
-               self.delegate?.didFailRegister(error: error)
-           }
-       }
-
+            self.delegate?.didRegisterSuccessfully()
+        case .failure(let error):
+            EMLog.error("Register email request failed : \(error)")
+            self.delegate?.didFailRegister(error: error)
+        }
+    }
+    
 }

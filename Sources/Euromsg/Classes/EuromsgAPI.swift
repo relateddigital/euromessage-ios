@@ -37,6 +37,7 @@ class EuromsgAPI: EuromsgAPIProtocol {
         return URLSession.init(configuration: configuration)
     }
 
+    
     func request(urlString: String) {
         guard let url = URL.init(string: urlString) else {
             EMLog.error("URL couldn't be initialized")
@@ -53,6 +54,7 @@ class EuromsgAPI: EuromsgAPIProtocol {
         }
         dataTask.resume()
     }
+ 
 
     func request<R: EMRequestProtocol,
                  T: EMResponseProtocol>(requestModel: R,
@@ -60,6 +62,37 @@ class EuromsgAPI: EuromsgAPIProtocol {
 
         guard let request = setupUrlRequest(requestModel) else {return}
 
+        
+        URLSession.shared.dataTask(with: request) {data, response, connectionError in
+            if connectionError == nil {
+                let remoteResponse = response as? HTTPURLResponse
+                DispatchQueue.main.async {
+                    if connectionError == nil &&
+                        (remoteResponse?.statusCode == 200 || remoteResponse?.statusCode == 201) {
+                        if let remoteResponse = remoteResponse {
+                            EMLog.info("Server response code : \(remoteResponse.statusCode)")
+                        }
+                        guard let data = data else {
+                            completion(.failure(EuromsgAPIError.connectionFailed))
+                            return
+                        }
+                        EMLog.success("Server response with success : \(String(decoding: data, as: UTF8.self))")
+                        let responseData = try? JSONDecoder().decode(T.self, from: data)
+                        completion(.success(responseData))
+                    } else {
+                        completion(.failure(EuromsgAPIError.connectionFailed))
+                        if let remoteResponse = remoteResponse {
+                            EMLog.error("Server response with failure : \(remoteResponse)")
+                        }
+                    }
+                }
+            } else {
+                guard let connectionError = connectionError else {return}
+                EMLog.error("Connection error \(connectionError)")
+            }
+        }.resume()
+        
+        /*
         let dataTask = urlSession.dataTask(with: request) {data, response, connectionError in
             if connectionError == nil {
                 let remoteResponse = response as? HTTPURLResponse
@@ -89,6 +122,7 @@ class EuromsgAPI: EuromsgAPIProtocol {
             }
         }
         dataTask.resume()
+ */
     }
 
     func setupUrlRequest<R: EMRequestProtocol>(_ requestModel: R) -> URLRequest? {
