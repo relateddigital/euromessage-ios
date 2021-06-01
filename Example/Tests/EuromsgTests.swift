@@ -102,8 +102,8 @@ class EuromsgTests: XCTestCase {
         XCTAssert(true)
     }
 
-    func testEMRegisterRequest() {
-        var first = EMRegisterRequest()
+    func testEMSubscriptionRequest() {
+        var first = EMSubscriptionRequest()
         let second = first
         XCTAssertEqual(first, second)
         first.firstTime = 0

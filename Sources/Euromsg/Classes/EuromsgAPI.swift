@@ -1,5 +1,5 @@
 //
-//  EMNetworkManager.swift
+//  EuromsgAPI.swift
 //  Euromsg
 //
 //  Created by Muhammed ARAFA on 27.03.2020.

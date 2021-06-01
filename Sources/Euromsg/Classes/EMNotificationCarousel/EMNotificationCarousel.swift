@@ -12,8 +12,6 @@ import UserNotificationsUI
 @available(iOS 10.0, *)
 public class EMNotificationCarousel: UIView {
 
-//    var viewC: UIViewController?
-
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     let identifier = "CarouselCell"
@@ -23,7 +21,7 @@ public class EMNotificationCarousel: UIView {
     var currentIndex: Int = 0
     var userInfo: [AnyHashable: Any]?
     public var completion: ((_ url: URL?, _ userInfo: [AnyHashable: Any]?) -> Void)?
-    public var delegate: CarouselDelegate? = nil
+    public weak var delegate: CarouselDelegate?
 
     public static func initView() -> EMNotificationCarousel {
         let view = EMNotificationCarousel()
@@ -194,18 +192,6 @@ extension UIView {
     }
 }
 
-public protocol CarouselDelegate {
+public protocol CarouselDelegate: AnyObject {
     func selectedItem(_ element: EMMessage.Element)
 }
-
-//@available(iOS 10.0, *)
-//public extension EMNotificationCarousel {
-//
-//    private static func genericInstance<T: UIView>() -> T {
-//        return T.init(nibName: String(describing: self), bundle: Bundle(for: self))
-//    }
-//
-//    static func instance() -> Self {
-//        return genericInstance()
-//    }
-//}
