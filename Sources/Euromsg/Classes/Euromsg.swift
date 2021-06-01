@@ -47,7 +47,7 @@ public class Euromsg {
         let ncd = NotificationCenter.default
         observers = []
         observers?.append(ncd.addObserver(
-                            forName: UIApplication.didEnterBackgroundNotification,
+                            forName: UIApplication.willResignActiveNotification,
                             object: nil,
                             queue: nil,
                             using: Euromsg.sync))
@@ -57,7 +57,7 @@ public class Euromsg {
                             queue: nil,
                             using: Euromsg.sync))
         observers?.append(ncd.addObserver(
-                            forName: UIApplication.didBecomeActiveNotification,
+                            forName: UIApplication.willEnterForegroundNotification,
                             object: nil,
                             queue: nil,
                             using: Euromsg.sync))
@@ -66,13 +66,13 @@ public class Euromsg {
     
     deinit {
         NotificationCenter.default.removeObserver(self,
-                                                  name: UIApplication.didEnterBackgroundNotification,
+                                                  name: UIApplication.willResignActiveNotification,
                                                   object: nil)
         NotificationCenter.default.removeObserver(self,
                                                   name: UIApplication.willTerminateNotification,
                                                   object: nil)
         NotificationCenter.default.removeObserver(self,
-                                                  name: UIApplication.didBecomeActiveNotification,
+                                                  name: UIApplication.willEnterForegroundNotification,
                                                   object: nil)
     }
     
