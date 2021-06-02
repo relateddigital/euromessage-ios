@@ -16,6 +16,7 @@ protocol EuromsgDelegate: AnyObject {
 public class Euromsg {
 
     private static var sharedInstance: Euromsg?
+    private let readWriteLock: EMReadWriteLock
     internal var euromsgAPI: EuromsgAPIProtocol?
     private var observers: [NSObjectProtocol]?
     internal var emNetworkHandler: EMNetworkHandler?
@@ -36,7 +37,7 @@ public class Euromsg {
         subscription.setDeviceParameters()
         subscription.appKey = appKey
         subscription.token = EMTools.retrieveUserDefaults(userKey: EMKey.tokenKey) as? String
-
+        self.readWriteLock = EMReadWriteLock(label: "EuromsgLock")
         let ncd = NotificationCenter.default
         observers = []
         observers?.append(ncd.addObserver(
@@ -203,7 +204,9 @@ extension Euromsg {
     public static func setAppVersion(appVersion: String?) {
         guard let shared = getShared() else { return }
         if let appVersion = appVersion {
-            shared.subscription.appVersion = appVersion
+            shared.readWriteLock.write {
+                shared.subscription.appVersion = appVersion
+            }
         }
         saveSubscription()
     }
@@ -217,7 +220,9 @@ extension Euromsg {
     public static func setAdvertisingIdentifier(adIdentifier: String?) {
         guard let shared = getShared() else { return }
         if let adIdentifier = adIdentifier {
-            shared.subscription.advertisingIdentifier = adIdentifier
+            shared.readWriteLock.write {
+                shared.subscription.advertisingIdentifier = adIdentifier
+            }
         }
         saveSubscription()
     }
@@ -230,15 +235,19 @@ extension Euromsg {
 
     public static func setUserProperty(key: String, value: String?) {
         if let shared = getShared(), let value = value {
-            shared.subscription.extra?[key] = value
+            shared.readWriteLock.write {
+                shared.subscription.extra?[key] = value
+            }
             saveSubscription()
         }
     }
 
     public static func logout() {
         if let shared = getShared() {
-            shared.subscription.token = nil
-            shared.subscription.extra = [String: String]()
+            shared.readWriteLock.write {
+                shared.subscription.token = nil
+                shared.subscription.extra = [String: String]()
+            }
             EMTools.removeUserDefaults(userKey: EMKey.tokenKey) // TODO: burada niye token var, android'de token silme yok
             // EMTools.removeUserDefaults(userKey: EMKey.registerKey) // TODO: bunu kaldırdım. zaten token yoksa request atılmıyor.
             saveSubscription()
@@ -247,8 +256,14 @@ extension Euromsg {
     }
 
     private static func saveSubscription() {
-        if let shared = Euromsg.getShared(), let subscriptionData = try? JSONEncoder().encode(shared.subscription) {
-            EMTools.saveUserDefaults(key: EMKey.registerKey, value: subscriptionData as AnyObject)
+        if let shared = Euromsg.getShared() {
+            var subs: EMSubscriptionRequest?
+            shared.readWriteLock.read {
+                subs = shared.subscription
+            }
+            if let subs = subs, let subscriptionData = try? JSONEncoder().encode(subs) {
+                EMTools.saveUserDefaults(key: EMKey.registerKey, value: subscriptionData as AnyObject)
+            }
         }
     }
 
@@ -281,7 +296,9 @@ extension Euromsg {
         }
         let tokenString = tokenData.reduce("", {$0 + String(format: "%02X", $1)})
         EMLog.info("Your token is \(tokenString)")
-        shared.subscription.token = tokenString
+        shared.readWriteLock.write {
+            shared.subscription.token = tokenString
+        }
         Euromsg.sync()
     }
 
@@ -316,32 +333,58 @@ extension Euromsg {
             center.getNotificationSettings { (settings) in
                 if settings.authorizationStatus == .denied {
                     setUserProperty(key: EMProperties.CodingKeys.pushPermit.rawValue, value: EMProperties.PermissionKeys.not.rawValue)
-                    shared.euromsgAPI?.request(requestModel: shared.subscription, completion: shared.registerRequestHandler)
+                    var subs: EMSubscriptionRequest!
+                    shared.readWriteLock.read {
+                        subs = shared.subscription
+                    }
+                    shared.euromsgAPI?.request(requestModel: subs, completion: shared.registerRequestHandler)
                 } else {
                     setUserProperty(key: EMProperties.CodingKeys.pushPermit.rawValue, value: EMProperties.PermissionKeys.yes.rawValue)
                 }
             }
         }
 
+        var subs: EMSubscriptionRequest!
+        var previousSubs: EMSubscriptionRequest?
+
+        shared.readWriteLock.read {
+            subs = shared.subscription
+        }
+
         // Clear badge
-        if !(shared.subscription.isBadgeCustom ?? false) {
+        if !(subs.isBadgeCustom ?? false) {
             EMTools.removeUserDefaults(userKey: EMKey.badgeCount)
             UIApplication.shared.applicationIconBadgeNumber = 0
         }
         // check whether the user have an unreported message
         shared.emNetworkHandler?.checkUserUnreportedMessages()
 
-        if shared.subscription.isValid() && (shared.previousSubscription == nil ||  shared.subscription != shared.previousSubscription) {
-            shared.previousSubscription = shared.subscription
+        shared.readWriteLock.read {
+            subs = shared.subscription
+            previousSubs = shared.previousSubscription
+        }
+
+        if subs.isValid() && (previousSubs == nil ||  subs != previousSubs) {
+
+            shared.readWriteLock.write {
+                shared.previousSubscription = subs
+            }
             saveSubscription()
-            EMTools.saveUserDefaults(key: EMKey.tokenKey, value: shared.subscription.token as AnyObject)
-            EMLog.info("Current subscription \(shared.subscription.encoded)")
+            shared.readWriteLock.read {
+                subs = shared.subscription
+            }
+            EMTools.saveUserDefaults(key: EMKey.tokenKey, value: subs.token as AnyObject)
+            EMLog.info("Current subscription \(subs.encoded)")
         } else {
-            EMLog.warning("Subscription request not ready : \(shared.subscription)")
+            EMLog.warning("Subscription request not ready : \(String(describing: subs))")
             return
         }
 
-        shared.euromsgAPI?.request(requestModel: shared.subscription, completion: shared.registerRequestHandler)
+        shared.readWriteLock.read {
+            subs = shared.subscription
+        }
+
+        shared.euromsgAPI?.request(requestModel: subs, completion: shared.registerRequestHandler)
     }
 
     /// RegisterRequest completion handler
@@ -362,7 +405,10 @@ extension Euromsg {
     /// Returns all the information that set before 
     public static func checkConfiguration() -> EMConfiguration {
         guard let shared = getShared() else { return EMConfiguration() }
-        let registerRequest = shared.subscription
+        var registerRequest: EMSubscriptionRequest!
+        shared.readWriteLock.read {
+            registerRequest = shared.subscription
+        }
         var properties: EMProperties?
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: registerRequest.extra ?? [:], options: [])
@@ -406,16 +452,29 @@ extension Euromsg {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 60 * 60 * 3)
         setEmail(email: email, permission: permission)
-        var registerEmailSubscriptionRequest = shared.subscription
+
+        var registerEmailSubscriptionRequest: EMSubscriptionRequest!
+
+        shared.readWriteLock.read {
+            registerEmailSubscriptionRequest = shared.subscription
+        }
+
         registerEmailSubscriptionRequest.extra?[EMProperties.CodingKeys.consentTime.rawValue] = dateFormatter.string(from: Date())
         registerEmailSubscriptionRequest.extra?[EMProperties.CodingKeys.consentSource.rawValue] = "HS_MOBIL"
         registerEmailSubscriptionRequest.extra?[EMProperties.CodingKeys.recipientType.rawValue] = isCommercial ? "TACIR" : "BIREYSEL"
 
-        if registerEmailSubscriptionRequest.isValid() && (shared.previousRegisterEmailSubscription == nil || registerEmailSubscriptionRequest != shared.previousRegisterEmailSubscription) {
-            shared.previousRegisterEmailSubscription = registerEmailSubscriptionRequest
-            EMLog.info("Current subscription \(shared.subscription.encoded)")
+        var previousRegisterEmailSubscription: EMSubscriptionRequest?
+        shared.readWriteLock.read {
+            previousRegisterEmailSubscription = shared.previousRegisterEmailSubscription
+        }
+
+        if registerEmailSubscriptionRequest.isValid() && (previousRegisterEmailSubscription == nil || registerEmailSubscriptionRequest != previousRegisterEmailSubscription) {
+            shared.readWriteLock.write {
+                shared.previousRegisterEmailSubscription = registerEmailSubscriptionRequest
+            }
+            EMLog.info("Current subscription \(registerEmailSubscriptionRequest.encoded)")
         } else {
-            EMLog.warning("Subscription request not ready : \(shared.subscription)")
+            EMLog.warning("Subscription request not ready : \(String(describing: registerEmailSubscriptionRequest))")
             return
         }
 
