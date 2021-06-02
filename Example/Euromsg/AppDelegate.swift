@@ -25,21 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         } else if let userInfo = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? [String: Any] {
             Euromsg.handlePush(pushDictionary: userInfo)
         }
-        
-        
-        Euromsg.setEmail(permission: true)
-        Euromsg.setEuroUserId(userKey: "egemen@visilabs.com")
-        Euromsg.sync()
-        
-        /*
-        for index in 1...35 {
-            Euromsg.setEmail(permission: true)
-            Euromsg.setEuroUserId(userKey: "egemen@visilabs.com")
-            Euromsg.sync()
-        }
- */
-        
-        
 
         // Customize badge
 //        Euromsg.setBadge(count: 5)

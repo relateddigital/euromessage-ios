@@ -25,18 +25,11 @@ public class Euromsg {
     private var previousSubscription: EMSubscriptionRequest?
     private var previousRegisterEmailSubscription: EMSubscriptionRequest?
     
-    // private var previousRegisterRequest: Subscription?
-    // internal var registerRequest = Subscription()
-    // private var currentRegister: Subscription?
-    
     private init(appKey: String) {
-        print("INITCALL \(appKey)")
+        EMLog.info("INITCALL \(appKey)")
         if let lastSubscriptionData = EMTools.retrieveUserDefaults(userKey: EMKey.registerKey) as? Data,
            let lastSubscription = try? JSONDecoder().decode(EMSubscriptionRequest.self, from: lastSubscriptionData) {
             subscription = lastSubscription
-            // TODO:buna gerek var mı kontrol et
-            // subscription.extra = lastSubscription.extra
-            
         } else {
             subscription = EMSubscriptionRequest()
         }
