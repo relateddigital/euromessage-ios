@@ -112,9 +112,9 @@ struct EMSubscriptionRequest: EMRequestProtocol, Equatable {
         lhs.sdkVersion == rhs.sdkVersion &&
         lhs.carrier == rhs.carrier
     }
-    
+
     func isValid() -> Bool {
-        return !EMTools.isNilOrWhiteSpace(self.token) && !EMTools.isNilOrWhiteSpace(self.appKey) 
+        return !EMTools.isNilOrWhiteSpace(self.token) && !EMTools.isNilOrWhiteSpace(self.appKey)
     }
 }
 

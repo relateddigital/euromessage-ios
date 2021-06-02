@@ -13,10 +13,9 @@ class EMKey {
                     appAlias not provided. Please use Euromsg.configure(::) function first.
                     For more information visit https://github.com/relateddigital/euromessage-ios
                     """
-    internal static let sdkVersion = "2.1.0"
+    internal static let sdkVersion = "2.2.0"
     internal static let tokenKey = "EURO_TOKEN_KEY"
     internal static let registerKey = "EURO_REGISTER_KEY"
-    // TODO: kaldır internal static let lastRequestDateKey = "EURO_LAST_REQUEST_DATE_KEY"
     internal static let euroLastMessageKey = "EURO_LAST_MESSAGE_KEY"
     internal static let identifierForVendorKey = "EURO_IDENTIFIER_FOR_VENDOR_KEY"
     internal static let euroReceivedStatus = "D"

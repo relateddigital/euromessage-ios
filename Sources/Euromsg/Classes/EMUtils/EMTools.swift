@@ -84,8 +84,8 @@ internal class EMTools {
         }
         return ""
     }
-    
-    static func isNilOrWhiteSpace(_ value: String?) ->Bool {
+
+    static func isNilOrWhiteSpace(_ value: String?) -> Bool {
         return value?.trimmingCharacters(in: .whitespaces).isEmpty ?? true
     }
 }
