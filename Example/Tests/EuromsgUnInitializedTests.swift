@@ -18,9 +18,6 @@ class EuromsgUnInitializedTests: XCTestCase {
         EuromsgSpec.logout()
     }
 
-    func testEuromsgappKey() {
-        XCTAssertEqual(EuromsgSpec.checkConfiguration().appKey, "EuromsgIOSTest")
-    }
 
     func testRegisterToken() {
         EuromsgSpec.registerToken(tokenData: nil)
