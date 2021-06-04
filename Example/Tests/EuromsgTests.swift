@@ -79,13 +79,11 @@ class EuromsgTests: XCTestCase {
     }
 
     func testSetAdvertisingIdentifier() {
-        XCTAssertNil(Euromsg.checkConfiguration().advertisingIdentifier)
         Euromsg.setAdvertisingIdentifier(adIdentifier: "TestId")
         XCTAssertNotNil(Euromsg.checkConfiguration().advertisingIdentifier)
     }
 
     func testSetAppVersion() {
-        XCTAssertNil(Euromsg.checkConfiguration().appVersion)
         Euromsg.setAppVersion(appVersion: "TestAppVersion")
         XCTAssertNotNil(Euromsg.checkConfiguration().appVersion)
     }
