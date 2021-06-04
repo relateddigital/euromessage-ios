@@ -34,17 +34,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func pushNotificationPermissionButtonAction(_ sender: UIButton) {
-
-        for i in 0...1000 {
-              print("Sync => \(i)")
-              Euromsg.setEmail(email: "egemen@visilabs.com", permission: true)
-              Euromsg.sync()
-            }
-
-        Euromsg.askForNotificationPermissionProvisional()
-        Euromsg.setEmail(email: "egemen@visilabs.com", permission: true)
-        Euromsg.sync()
-        // Euromsg.askForNotificationPermissionProvisional()
+         Euromsg.askForNotificationPermissionProvisional()
     }
 
     @IBAction func pushNotificationPermissionSwitchAction(_ sender: UISwitch) {
