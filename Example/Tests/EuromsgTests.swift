@@ -79,13 +79,11 @@ class EuromsgTests: XCTestCase {
     }
 
     func testSetAdvertisingIdentifier() {
-        XCTAssertNil(Euromsg.checkConfiguration().advertisingIdentifier)
         Euromsg.setAdvertisingIdentifier(adIdentifier: "TestId")
         XCTAssertNotNil(Euromsg.checkConfiguration().advertisingIdentifier)
     }
 
     func testSetAppVersion() {
-        XCTAssertNil(Euromsg.checkConfiguration().appVersion)
         Euromsg.setAppVersion(appVersion: "TestAppVersion")
         XCTAssertNotNil(Euromsg.checkConfiguration().appVersion)
     }
@@ -102,8 +100,8 @@ class EuromsgTests: XCTestCase {
         XCTAssert(true)
     }
 
-    func testEMRegisterRequest() {
-        var first = EMRegisterRequest()
+    func testEMSubscriptionRequest() {
+        var first = EMSubscriptionRequest()
         let second = first
         XCTAssertEqual(first, second)
         first.firstTime = 0

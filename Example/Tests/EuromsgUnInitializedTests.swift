@@ -18,62 +18,59 @@ class EuromsgUnInitializedTests: XCTestCase {
         EuromsgSpec.logout()
     }
 
-    func testEuromsgappKey() {
-        XCTAssertNil(EuromsgSpec.checkConfiguration().appKey)
-    }
 
     func testRegisterToken() {
         EuromsgSpec.registerToken(tokenData: nil)
         XCTAssertNil(Euromsg.checkConfiguration().token)
         EuromsgSpec.registerToken(tokenData: Data())
-        XCTAssertNil(Euromsg.checkConfiguration().token)
+        XCTAssertTrue(Euromsg.checkConfiguration().token?.isEmpty ?? false)
     }
 
     func testSetPushNotificationPermission() {
         EuromsgSpec.setPushNotification(permission: true)
-        XCTAssertNil(EuromsgSpec.checkConfiguration().properties?.pushPermit)
+        XCTAssertEqual(EuromsgSpec.checkConfiguration().properties?.pushPermit, "Y")
     }
 
     func testSetEmailPermission() {
         EuromsgSpec.setEmail(email: "test@test.com", permission: true)
-        XCTAssertNil(EuromsgSpec.checkConfiguration().properties?.email)
-        XCTAssertNil(EuromsgSpec.checkConfiguration().properties?.emailPermit)
+        XCTAssertNotNil(EuromsgSpec.checkConfiguration().properties?.email)
+        XCTAssertNotNil(EuromsgSpec.checkConfiguration().properties?.emailPermit)
     }
 
     func testSetPhonePermission() {
         EuromsgSpec.setPhoneNumber(msisdn: "5551112233", permission: true)
-        XCTAssertNil(EuromsgSpec.checkConfiguration().properties?.msisdn)
-        XCTAssertNil(EuromsgSpec.checkConfiguration().properties?.gsmPermit)
+        XCTAssertEqual(EuromsgSpec.checkConfiguration().properties?.msisdn, "5551112233")
+        XCTAssertEqual(EuromsgSpec.checkConfiguration().properties?.gsmPermit, "Y")
     }
 
     func testSetUserKey() {
         EuromsgSpec.setEuroUserId(userKey: "Test User Key")
-        XCTAssertNil(EuromsgSpec.checkConfiguration().properties?.keyID)
+        XCTAssertEqual(EuromsgSpec.checkConfiguration().properties?.keyID, "Test User Key")
     }
 
     func testSetTwitterID() {
         EuromsgSpec.setTwitterId(twitterId: "TestTwitterId")
-        XCTAssertNil(EuromsgSpec.checkConfiguration().properties?.twitter)
+        XCTAssertEqual(EuromsgSpec.checkConfiguration().properties?.twitter, "TestTwitterId")
     }
 
     func testSetFacebookID() {
         EuromsgSpec.setFacebook(facebookId: "TestFacebookId")
-        XCTAssertNil(EuromsgSpec.checkConfiguration().properties?.facebook)
+        XCTAssertEqual(EuromsgSpec.checkConfiguration().properties?.facebook, "TestFacebookId")
     }
 
     func testSetAdvertisingIdentifier() {
         EuromsgSpec.setAdvertisingIdentifier(adIdentifier: "TestId")
-        XCTAssertNil(Euromsg.checkConfiguration().advertisingIdentifier)
+        XCTAssertEqual(Euromsg.checkConfiguration().advertisingIdentifier, "TestId")
     }
 
     func testSetAppVersion() {
         EuromsgSpec.setAppVersion(appVersion: "TestAppVersion")
-        XCTAssertNil(Euromsg.checkConfiguration().appVersion)
+        XCTAssertEqual(Euromsg.checkConfiguration().appVersion, "TestAppVersion")
     }
 
     func testSetUserProperty() {
         EuromsgSpec.setUserProperty(key: "TestUserPropertyKey", value: "TestUserPropertyValue")
-        XCTAssertNil(EuromsgSpec.checkConfiguration().userProperties?["TestUserPropertyKey"])
+        XCTAssertEqual(EuromsgSpec.checkConfiguration().userProperties?["TestUserPropertyKey"] as! String, "TestUserPropertyValue")
     }
 
     func testHandlePush() {
@@ -82,8 +79,8 @@ class EuromsgUnInitializedTests: XCTestCase {
         XCTAssert(true)
     }
 
-    func testEMRegisterRequest() {
-        var first = EMRegisterRequest()
+    func testEMSubscriptionRequest() {
+        var first = EMSubscriptionRequest()
         let second = first
         XCTAssertEqual(first, second)
         first.firstTime = 0

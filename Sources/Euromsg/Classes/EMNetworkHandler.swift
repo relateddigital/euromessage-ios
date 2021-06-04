@@ -34,8 +34,8 @@ class EMNetworkHandler {
         }
         inProgressPushId = pushID
         EMLog.info(message.encoded)
-        guard let appKey = euromsg.registerRequest.appKey,
-            let token = euromsg.registerRequest.token else {return}
+        guard let appKey = euromsg.subscription.appKey,
+            let token = euromsg.subscription.token else {return}
         let request = EMRetentionRequest.init(key: appKey,
                                               token: token,
                                               status: status,

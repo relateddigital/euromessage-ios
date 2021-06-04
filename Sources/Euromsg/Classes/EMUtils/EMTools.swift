@@ -54,34 +54,38 @@ internal class EMTools {
         let bundle = Bundle.init(for: self)
         return bundle.infoDictionary?[key] as? String
     }
-    
+
     static func isiOSAppExtension() -> Bool {
         return Bundle.main.bundlePath.hasSuffix(".appex")
     }
-    
-    
-    //TODO: dökümana appgroup kısmı eklenmeli, NotificationService, NotificationContent
-    //TODO: dökümana developer.apple.com appgroup identifier tanımı eklenmeli
-    //TODO: UserDefaults'taki suiteName kısmı dinamik olmalı
+
+    // swiftlint:disable todo line_length
+    // TODO: dökümana appgroup kısmı eklenmeli, NotificationService, NotificationContent
+    // TODO: dökümana developer.apple.com appgroup identifier tanımı eklenmeli
+    // TODO: UserDefaults'taki suiteName kısmı dinamik olmalı
     static func getIdentifierForVendorString() -> String {
         let emptyUUID = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
         if let identifierForVendorString = retrieveUserDefaults(userKey: EMKey.identifierForVendorKey) as? String, let uuid = UUID(uuidString: identifierForVendorString), !uuid.uuidString.elementsEqual(emptyUUID.uuidString) {
-            if !isiOSAppExtension(){
+            if !isiOSAppExtension() {
                 EMKeychain.set(identifierForVendorString, forKey: EMKey.identifierForVendorKey)
             }
             return identifierForVendorString
         } else if let identifierForVendorString = EMKeychain.get(EMKey.identifierForVendorKey), let uuid = UUID(uuidString: identifierForVendorString), !uuid.uuidString.elementsEqual(emptyUUID.uuidString) {
-            if !isiOSAppExtension(){
+            if !isiOSAppExtension() {
                 saveUserDefaults(key: EMKey.identifierForVendorKey, value: identifierForVendorString as AnyObject)
             }
             return identifierForVendorString
         } else if let identifierForVendorString = UIDevice.current.identifierForVendor?.uuidString, let uuid = UUID(uuidString: identifierForVendorString), !uuid.uuidString.elementsEqual(emptyUUID.uuidString) {
-            if !isiOSAppExtension(){
+            if !isiOSAppExtension() {
                 saveUserDefaults(key: EMKey.identifierForVendorKey, value: identifierForVendorString as AnyObject)
                 EMKeychain.set(identifierForVendorString, forKey: EMKey.identifierForVendorKey)
             }
             return identifierForVendorString
         }
         return ""
+    }
+
+    static func isNilOrWhiteSpace(_ value: String?) -> Bool {
+        return value?.trimmingCharacters(in: .whitespaces).isEmpty ?? true
     }
 }
