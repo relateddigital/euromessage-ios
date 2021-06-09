@@ -2,11 +2,8 @@ use_frameworks!
 
 target 'Euromsg_Example' do
   pod 'Euromsg', :path => '../'
-
   target 'Euromsg_Tests' do
     inherit! :search_paths
-
-    
   end
 end
 
