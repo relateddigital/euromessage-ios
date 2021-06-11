@@ -22,6 +22,15 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        pushPermissionSwitch.isOn = conf.properties?.pushPermit == "Y"
+        pushNotificationStatusLabel.text = "Push Permission: \(conf.properties?.pushPermit ?? "null")"
+        emailPermissionSwitch.isOn = conf.properties?.emailPermit == "Y"
+        emailPermissionLabel.text = "Email Permission: \(conf.properties?.emailPermit ?? "null")"
+        phonePermissionSwitch.isOn = conf.properties?.gsmPermit == "Y"
+        phonePermissionLabel.text = "Phone Permission: \(conf.properties?.gsmPermit ?? "null")"
+        Euromsg.setUserProperty(key: "TestKey", value: "Test Value")
+        guard let value = conf.userProperties?["TestKey"] else { return }
+        print(value)
     }
 
     @IBAction func pushNotificationPermissionButtonAction(_ sender: UIButton) {
@@ -41,9 +50,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func emailPermissionSwitchAction(_ sender: UISwitch) {
-        Euromsg.setEmail(email: "umut@visilabs.com")
-        Euromsg.sync()
-    
+        Euromsg.setEmail(permission: sender.isOn)
         emailPermissionLabel.text = "Email Permission: \(conf.properties?.emailPermit ?? "null")"
     }
 
