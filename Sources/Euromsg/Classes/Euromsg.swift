@@ -194,6 +194,12 @@ extension Euromsg {
             setUserProperty(key: EMProperties.CodingKeys.email.rawValue, value: email)
         }
     }
+    
+    public static func setEmail(email: String?) {
+        if EMTools.validateEmail(email: email) {
+            setUserProperty(key: EMProperties.CodingKeys.email.rawValue, value: email)
+        }
+    }
 
     public static func setEuroUserId(userKey: String?) {
         if let userKey = userKey {
