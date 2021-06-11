@@ -23,17 +23,6 @@ class EMNotificationHandler {
                                                           status: EMKey.euroReceivedStatus)
         EMTools.saveUserDefaults(key: EMKey.euroLastMessageKey, value: data as AnyObject)
 
-        // Setup badge
-        let userDefaults = UserDefaults(suiteName: EMKey.userDefaultSuiteKey)
-        let badgeCount = userDefaults?.integer(forKey: EMKey.badgeCount)
-        if let badgeCount = badgeCount, badgeCount > 0 {
-            userDefaults?.set(badgeCount + 1, forKey: EMKey.badgeCount)
-            bestAttemptContent?.badge = badgeCount + 1 as NSNumber
-        } else {
-            userDefaults?.set(1, forKey: EMKey.badgeCount)
-            bestAttemptContent?.badge = 1
-        }
-
         // Setup carousel buttons
         if pushDetail.aps?.category == "carousel" {
             addCarouselActionButtons()
