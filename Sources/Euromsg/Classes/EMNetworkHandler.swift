@@ -42,7 +42,7 @@ class EMNetworkHandler {
                                               pushId: pushID)
         DispatchQueue.main.asyncAfter(deadline: .now() + .nanoseconds(2)) { [weak self] in
             guard let self = self else { return }
-            self.euromsg.euromsgAPI?.request(requestModel: request,
+            self.euromsg.euromsgAPI?.request(requestModel: request, retry: 0,
                                       completion: self.retentionRequestHandler)
         }
     }

@@ -19,6 +19,7 @@ protocol EuromsgAPIProtocol {
     func request(urlString: String)
     func request<R: EMRequestProtocol,
                  T: EMResponseProtocol>(requestModel: R,
+                                        retry: Int,
                                         completion: @escaping (Result<T?, EuromsgAPIError>) -> Void)
 }
 
@@ -56,6 +57,7 @@ class EuromsgAPI: EuromsgAPIProtocol {
 
     func request<R: EMRequestProtocol,
                  T: EMResponseProtocol>(requestModel: R,
+                                        retry: Int,
                                         completion: @escaping (Result<T?, EuromsgAPIError>) -> Void) {
 
         guard let request = setupUrlRequest(requestModel) else {return}
@@ -71,13 +73,22 @@ class EuromsgAPI: EuromsgAPIProtocol {
                         }
                         guard let data = data else {
                             completion(.failure(EuromsgAPIError.connectionFailed))
+                            if retry < 3 {
+                                Euromsg.shared?.euromsgAPI?.request(requestModel: requestModel, retry: retry + 1, completion: completion)
+                                
+                            }
                             return
+                            
                         }
                         EMLog.success("Server response with success : \(String(decoding: data, as: UTF8.self))")
                         let responseData = try? JSONDecoder().decode(T.self, from: data)
                         completion(.success(responseData))
                     } else {
                         completion(.failure(EuromsgAPIError.connectionFailed))
+                        if retry < 3 {
+                            Euromsg.shared?.euromsgAPI?.request(requestModel: requestModel, retry: retry + 1, completion: completion)
+                            
+                        }
                         if let remoteResponse = remoteResponse {
                             EMLog.error("Server response with failure : \(remoteResponse)")
                         }
@@ -85,6 +96,10 @@ class EuromsgAPI: EuromsgAPIProtocol {
                 }
             } else {
                 guard let connectionError = connectionError else {return}
+                if retry < 3 {
+                    Euromsg.shared?.euromsgAPI?.request(requestModel: requestModel, retry: retry + 1, completion: completion)
+                    
+                }
                 EMLog.error("Connection error \(connectionError)")
             }
         }.resume()

@@ -343,7 +343,7 @@ extension Euromsg {
                     shared.readWriteLock.read {
                         subs = shared.subscription
                     }
-                    shared.euromsgAPI?.request(requestModel: subs, completion: shared.registerRequestHandler)
+                    shared.euromsgAPI?.request(requestModel: subs, retry: 0, completion: shared.registerRequestHandler)
                 } else {
                     setUserProperty(key: EMProperties.CodingKeys.pushPermit.rawValue, value: EMProperties.PermissionKeys.yes.rawValue)
                 }
@@ -390,7 +390,7 @@ extension Euromsg {
             subs = shared.subscription
         }
 
-        shared.euromsgAPI?.request(requestModel: subs, completion: shared.registerRequestHandler)
+        shared.euromsgAPI?.request(requestModel: subs, retry: 0, completion: shared.registerRequestHandler)
     }
 
     /// RegisterRequest completion handler
@@ -484,7 +484,7 @@ extension Euromsg {
             return
         }
 
-        shared.euromsgAPI?.request(requestModel: registerEmailSubscriptionRequest, completion: shared.registerEmailHandler)
+        shared.euromsgAPI?.request(requestModel: registerEmailSubscriptionRequest, retry: 0, completion: shared.registerEmailHandler)
     }
 
     private func registerEmailHandler(result: Result<EMResponse?, EuromsgAPIError>) {
