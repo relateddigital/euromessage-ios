@@ -23,4 +23,5 @@ class EMKey {
     internal static let isBadgeCustom = "EMisBadgeCustom"
     internal static let badgeCount = "EMbadgeCount"
     internal static let userDefaultSuiteKey =  "group.relateddigital.euromsg" // TODO: bu sabit olmamalı, müşteri set etmeli.
+    internal static let userAgent = "userAgent"
 }

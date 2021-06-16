@@ -8,9 +8,12 @@
 
 import Foundation
 import UIKit
+import WebKit
 
 internal class EMTools {
 
+    static private var webView: WKWebView?
+    
     static let userDefaults = UserDefaults(suiteName: EMKey.userDefaultSuiteKey)
     static func validatePhone(phone: String?) -> Bool {
         guard phone != nil else {
@@ -87,5 +90,19 @@ internal class EMTools {
 
     static func isNilOrWhiteSpace(_ value: String?) -> Bool {
         return value?.trimmingCharacters(in: .whitespaces).isEmpty ?? true
+    }
+    
+    static func computeWebViewUserAgent(completion: @escaping ((String) -> Void)) {
+        DispatchQueue.main.async { [completion] in
+            webView = WKWebView(frame: CGRect.zero)
+            webView?.loadHTMLString("<html></html>", baseURL: nil)
+            webView?.evaluateJavaScript("navigator.userAgent", completionHandler: { userAgent, error in
+                if error == nil, let userAgentString = userAgent as? String, userAgentString.count > 0 {
+                    completion(userAgentString)
+                } else {
+                    EMLog.error("Can not computed userAgent")
+                }
+            })
+        }
     }
 }

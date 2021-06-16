@@ -25,6 +25,11 @@ public class Euromsg {
     internal var subscription: EMSubscriptionRequest
     private var previousSubscription: EMSubscriptionRequest?
     private var previousRegisterEmailSubscription: EMSubscriptionRequest?
+    internal var userAgent: String? = nil {
+        didSet {
+            self.subscription.userAgent = userAgent
+        }
+    }
 
     private init(appKey: String) {
         EMLog.info("INITCALL \(appKey)")
@@ -55,6 +60,7 @@ public class Euromsg {
                             object: nil,
                             queue: nil,
                             using: Euromsg.sync))
+        setUserAgent()
 
     }
 
@@ -160,6 +166,17 @@ public class Euromsg {
     public static func registerForPushNotifications() {
         DispatchQueue.main.async {
             UIApplication.shared.registerForRemoteNotifications()
+        }
+    }
+    
+    func setUserAgent() {
+        if let userAgent = EMTools.retrieveUserDefaults(userKey: EMKey.userAgent) as? String {
+            self.userAgent = userAgent
+        } else {
+            EMTools.computeWebViewUserAgent { str in
+                self.userAgent = str
+                EMTools.saveUserDefaults(key: EMKey.userAgent, value: str as AnyObject)
+            }
         }
     }
 }
@@ -463,6 +480,7 @@ extension Euromsg {
 
         shared.readWriteLock.read {
             registerEmailSubscriptionRequest = shared.subscription
+            registerEmailSubscriptionRequest.extra?[EMProperties.CodingKeys.userAgent.rawValue] = shared.userAgent
         }
 
         registerEmailSubscriptionRequest.extra?[EMProperties.CodingKeys.consentTime.rawValue] = dateFormatter.string(from: Date())

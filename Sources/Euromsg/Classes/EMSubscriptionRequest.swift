@@ -30,6 +30,7 @@ struct EMSubscriptionRequest: EMRequestProtocol, Equatable {
     var advertisingIdentifier: String?
     var sdkVersion: String?
     var carrier: String?
+    var userAgent: String?
 
     // local variable
     var isBadgeCustom: Bool?
@@ -49,6 +50,7 @@ struct EMSubscriptionRequest: EMRequestProtocol, Equatable {
         case advertisingIdentifier = "advertisingIdentifier"
         case sdkVersion = "sdkVersion"
         case carrier = "carrier"
+        case userAgent = "userAgent"
     }
 
     init() {
@@ -136,6 +138,7 @@ public struct EMProperties: Codable, Equatable {
         case consentTime
         case recipientType
         case consentSource
+        case userAgent
     }
 
     var keyID: String?
@@ -150,6 +153,7 @@ public struct EMProperties: Codable, Equatable {
     var consentTime: String?
     var recipientType: String?
     var consentSource: String? = "HS_MOBIL"
+    var userAgent: String?
 
     public static func == (lhs: EMProperties, rhs: EMProperties) -> Bool {
         lhs.keyID == rhs.keyID &&
@@ -163,7 +167,8 @@ public struct EMProperties: Codable, Equatable {
         lhs.twitter == rhs.twitter &&
         lhs.consentTime == rhs.consentTime &&
         lhs.recipientType == rhs.recipientType &&
-        lhs.consentSource == rhs.consentSource
+        lhs.consentSource == rhs.consentSource &&
+        lhs.userAgent == rhs.userAgent
     }
 
 }
