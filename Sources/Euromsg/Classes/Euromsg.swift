@@ -25,11 +25,7 @@ public class Euromsg {
     internal var subscription: EMSubscriptionRequest
     private var previousSubscription: EMSubscriptionRequest?
     private var previousRegisterEmailSubscription: EMSubscriptionRequest?
-    internal var userAgent: String? = nil {
-        didSet {
-            self.subscription.userAgent = userAgent
-        }
-    }
+    internal var userAgent: String? = nil 
 
     private init(appKey: String) {
         EMLog.info("INITCALL \(appKey)")
@@ -480,7 +476,6 @@ extension Euromsg {
 
         shared.readWriteLock.read {
             registerEmailSubscriptionRequest = shared.subscription
-            registerEmailSubscriptionRequest.extra?[EMProperties.CodingKeys.userAgent.rawValue] = shared.userAgent
         }
 
         registerEmailSubscriptionRequest.extra?[EMProperties.CodingKeys.consentTime.rawValue] = dateFormatter.string(from: Date())

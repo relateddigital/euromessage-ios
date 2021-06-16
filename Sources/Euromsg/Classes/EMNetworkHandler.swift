@@ -36,13 +36,11 @@ class EMNetworkHandler {
         EMLog.info(message.encoded)
         guard let appKey = euromsg.subscription.appKey,
             let token = euromsg.subscription.token else {return}
-        guard let userAgent = euromsg.userAgent else { return }
 
         let request = EMRetentionRequest.init(key: appKey,
                                               token: token,
                                               status: status,
-                                              pushId: pushID,
-                                              userAgent: userAgent)
+                                              pushId: pushID)
         DispatchQueue.main.asyncAfter(deadline: .now() + .nanoseconds(2)) { [weak self] in
             guard let self = self else { return }
             self.euromsg.euromsgAPI?.request(requestModel: request, retry: 0,

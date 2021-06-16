@@ -148,11 +148,12 @@ class EuromsgAPI: EuromsgAPIProtocol {
             EMLog.info("URL couldn't be initialized")
             return nil
         }
-
+        let userAgent = Euromsg.shared?.userAgent
         var request = URLRequest.init(url: url)
         request.httpMethod = requestModel.method
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("no-cache", forHTTPHeaderField: "Cache-Control")
+        request.setValue(userAgent, forHTTPHeaderField: EMKey.userAgent)
         request.timeoutInterval = TimeInterval(timeoutInterval)
 
         if requestModel.method == "POST" || requestModel.method == "PUT" {
