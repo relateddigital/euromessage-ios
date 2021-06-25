@@ -513,7 +513,7 @@ extension Euromsg {
         }
     }
 
-    public func getIdentifierForVendorString() -> String {
+    public static func getIdentifierForVendorString() -> String {
         return EMTools.getIdentifierForVendorString()
     }
 
