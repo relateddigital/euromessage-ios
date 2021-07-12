@@ -56,6 +56,11 @@ public class Euromsg {
                             object: nil,
                             queue: nil,
                             using: Euromsg.sync))
+        observers?.append(ncd.addObserver(
+                            forName: UIApplication.didBecomeActiveNotification,
+                            object: nil,
+                            queue: nil,
+                            using: Euromsg.sync))
         setUserAgent()
 
     }
@@ -69,6 +74,9 @@ public class Euromsg {
                                                   object: nil)
         NotificationCenter.default.removeObserver(self,
                                                   name: UIApplication.willEnterForegroundNotification,
+                                                  object: nil)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIApplication.didBecomeActiveNotification,
                                                   object: nil)
     }
 
