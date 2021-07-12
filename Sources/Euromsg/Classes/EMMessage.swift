@@ -20,6 +20,7 @@ public struct EMMessage: EMCodable {
     public let fcmOptions: FcmOptions?
     public let deeplink: String?
     public let pushId: String?
+    public let emPushSp: String?
     public let elements: [Element]?
 
     // MARK: - Aps

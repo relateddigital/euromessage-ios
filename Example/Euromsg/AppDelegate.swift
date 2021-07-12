@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             Euromsg.handlePush(pushDictionary: userInfo)
         }
 
+        
         // Customize badge
 //        Euromsg.setBadge(count: 5)
         return true

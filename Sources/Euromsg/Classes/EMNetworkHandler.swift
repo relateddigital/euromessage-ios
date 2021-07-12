@@ -9,9 +9,9 @@
 import Foundation
 
 class EMNetworkHandler {
-
     private var euromsg: Euromsg!
     private var inProgressPushId: String?
+    private var inProgressEmPushSp: String?
 
     init() {}
 
@@ -20,6 +20,7 @@ class EMNetworkHandler {
     }
 
     // MARK: Report Methods
+
     private func reportVisilabs(url: String) {
         euromsg.euromsgAPI?.request(urlString: url)
     }
@@ -33,18 +34,23 @@ class EMNetworkHandler {
             return
         }
         inProgressPushId = pushID
+        guard let emPushSP = message.emPushSp, emPushSP != inProgressEmPushSp else {
+            return
+        }
+        inProgressEmPushSp = emPushSP
         EMLog.info(message.encoded)
         guard let appKey = euromsg.subscription.appKey,
-            let token = euromsg.subscription.token else {return}
+              let token = euromsg.subscription.token else { return }
 
-        let request = EMRetentionRequest.init(key: appKey,
-                                              token: token,
-                                              status: status,
-                                              pushId: pushID)
+        let request = EMRetentionRequest(key: appKey,
+                                         token: token,
+                                         status: status,
+                                         pushId: pushID,
+                                         emPushSP: emPushSP)
         DispatchQueue.main.asyncAfter(deadline: .now() + .nanoseconds(2)) { [weak self] in
             guard let self = self else { return }
             self.euromsg.euromsgAPI?.request(requestModel: request, retry: 0,
-                                      completion: self.retentionRequestHandler)
+                                             completion: self.retentionRequestHandler)
         }
     }
 
@@ -54,6 +60,7 @@ class EMNetworkHandler {
             EMTools.removeUserDefaults(userKey: EMKey.euroLastMessageKey)
         case .failure:
             inProgressPushId = nil
+            inProgressEmPushSp = nil
         }
     }
 
@@ -62,11 +69,10 @@ class EMNetworkHandler {
         let messageJson = EMTools.retrieveUserDefaults(userKey: EMKey.euroLastMessageKey) as? Data
         if let messageJson = messageJson {
             EMLog.info("Old message : \(messageJson)")
-            let lastMessage =  try? JSONDecoder.init().decode(EMMessage.self, from: messageJson)
+            let lastMessage = try? JSONDecoder().decode(EMMessage.self, from: messageJson)
             if let lastMessage = lastMessage {
                 reportRetention(message: lastMessage, status: EMKey.euroReadStatus)
             }
         }
     }
-
 }
