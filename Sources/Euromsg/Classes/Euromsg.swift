@@ -260,6 +260,15 @@ extension Euromsg {
             saveSubscription()
         }
     }
+    
+    public static func removeUserProperty(key: String) {
+        if let shared = getShared(){
+            shared.readWriteLock.write {
+                shared.subscription.extra?[key] = nil
+            }
+            saveSubscription()
+        }
+    }
 
     public static func logout() {
         if let shared = getShared() {
