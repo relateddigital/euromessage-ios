@@ -17,22 +17,34 @@ class ViewController: UIViewController {
     @IBOutlet weak var emailPermissionSwitch: UISwitch!
     @IBOutlet weak var phonePermissionLabel: UILabel!
     @IBOutlet weak var phonePermissionSwitch: UISwitch!
-
+    
+    
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var userPropertyTextField: UITextField!
+    
+    let emailKey = "email"
+    let emailPermitKey = "emailPermit"
+    
+    
     let conf = Euromsg.checkConfiguration()
-
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         pushPermissionSwitch.isOn = conf.properties?.pushPermit == "Y"
         pushNotificationStatusLabel.text = "Push Permission: \(conf.properties?.pushPermit ?? "null")"
         emailPermissionSwitch.isOn = conf.properties?.emailPermit == "Y"
         emailPermissionLabel.text = "Email Permission: \(conf.properties?.emailPermit ?? "null")"
         phonePermissionSwitch.isOn = conf.properties?.gsmPermit == "Y"
         phonePermissionLabel.text = "Phone Permission: \(conf.properties?.gsmPermit ?? "null")"
+        emailTextField.text = conf.userProperties?[emailKey] as? String ?? ""
         Euromsg.setUserProperty(key: "TestKey", value: "Test Value")
         guard let value = conf.userProperties?["TestKey"] else { return }
         print(value)
     }
-
+    
     @IBAction func pushNotificationPermissionButtonAction(_ sender: UIButton) {
 //         Euromsg.askForNotificationPermissionProvisional()
         Euromsg.sync()
@@ -59,5 +71,31 @@ class ViewController: UIViewController {
         Euromsg.setPhoneNumber(permission: sender.isOn)
         phonePermissionLabel.text = "Phone Permission: \(conf.properties?.gsmPermit ?? "null")"
     }
+    
+    @IBAction func setEmail(_ sender: Any) {
+        if let email = emailTextField.text {
+            Euromsg.setEmail(email: email.trimmingCharacters(in: .whitespacesAndNewlines), permission: emailPermissionSwitch.isOn)
+            Euromsg.sync()
+        }
+    }
+    
+    @IBAction func removeUserProperty(_ sender: Any) {
+        if let key = userPropertyTextField.text {
+            Euromsg.removeUserProperty(key: key.trimmingCharacters(in: .whitespacesAndNewlines))
+            Euromsg.sync()
+        }
+        
+    }
+}
 
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
