@@ -12,6 +12,7 @@ import UserNotifications
 
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     var window: UIWindow?
+    var userInfoPayload = ""
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
@@ -58,6 +59,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         Euromsg.handlePush(pushDictionary: response.notification.request.content.userInfo)
+        userInfoPayload = response.notification.request.content.userInfo.toString() ?? "çevrilemedi"
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let presentViewController = storyBoard.instantiateViewController(withIdentifier: "payload") as! PayloadViewController
+
+                        
+                self.window?.rootViewController?.present(presentViewController, animated: true, completion: nil)
         completionHandler()
     }
+}
+
+extension Dictionary {
+
+    func toString() -> String? {
+        return (self.compactMap({ (key, value) -> String in
+            return "\(key)=\(value)"
+        }) as Array).joined(separator: "\n\n")
+    }
+
+}
+
+extension String {
+    var decodingUnicodeCharacters: String { applyingTransform(.init("Hex-Any"), reverse: false) ?? "" }
 }

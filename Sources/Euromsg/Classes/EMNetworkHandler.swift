@@ -34,10 +34,10 @@ class EMNetworkHandler {
             return
         }
         inProgressPushId = pushID
-        guard let emPushSP = message.emPushSp, emPushSP != inProgressEmPushSp else {
+        guard let emPushSp = message.emPushSp, emPushSp != inProgressEmPushSp else {
             return
         }
-        inProgressEmPushSp = emPushSP
+        inProgressEmPushSp = emPushSp
         EMLog.info(message.encoded)
         guard let appKey = euromsg.subscription.appKey,
               let token = euromsg.subscription.token else { return }
@@ -46,7 +46,7 @@ class EMNetworkHandler {
                                          token: token,
                                          status: status,
                                          pushId: pushID,
-                                         emPushSP: emPushSP)
+                                         emPushSp: emPushSp)
         DispatchQueue.main.asyncAfter(deadline: .now() + .nanoseconds(2)) { [weak self] in
             guard let self = self else { return }
             self.euromsg.euromsgAPI?.request(requestModel: request, retry: 0,

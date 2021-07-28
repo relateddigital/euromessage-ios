@@ -18,5 +18,5 @@ struct EMRetentionRequest: EMCodable, EMRequestProtocol {
     var token: String
     var status: String
     var pushId: String
-    var emPushSP: String
+    var emPushSp: String
 }
