@@ -24,7 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if #available(iOS 13, *) {
             // handle push for iOS 13 and later in sceneDelegate
         } else if let userInfo = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? [String: Any] {
-            Euromsg.handlePush(pushDictionary: userInfo)
+            
+            for _ in 0...10 {
+                Euromsg.handlePush(pushDictionary: userInfo)
+            }
         }
 
         
@@ -58,13 +61,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
-        Euromsg.handlePush(pushDictionary: response.notification.request.content.userInfo)
-        userInfoPayload = response.notification.request.content.userInfo.toString() ?? "çevrilemedi"
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let presentViewController = storyBoard.instantiateViewController(withIdentifier: "payload") as! PayloadViewController
+        
+        
+        for _ in 0...10 {
+            Euromsg.handlePush(pushDictionary: response.notification.request.content.userInfo)
+        }
+        
+        //userInfoPayload = response.notification.request.content.userInfo.toString() ?? "çevrilemedi"
+        //let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        //        let presentViewController = storyBoard.instantiateViewController(withIdentifier: "payload") as! PayloadViewController
 
                         
-                self.window?.rootViewController?.present(presentViewController, animated: true, completion: nil)
+        //        self.window?.rootViewController?.present(presentViewController, animated: true, completion: nil)
         completionHandler()
     }
 }

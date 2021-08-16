@@ -349,7 +349,8 @@ extension Euromsg {
         if let jsonData = try? JSONSerialization.data(withJSONObject: pushDictionary, options: .prettyPrinted),
            let message = try? JSONDecoder().decode(EMMessage.self, from: jsonData) {
             shared.emNetworkHandler?.reportRetention(message: message, status: EMKey.euroReadStatus)
-
+        } else {
+            EMLog.error("pushDictionary parse failed")
         }
     }
 }

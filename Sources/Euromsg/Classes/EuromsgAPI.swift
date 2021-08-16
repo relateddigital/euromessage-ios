@@ -72,7 +72,8 @@ class EuromsgAPI: EuromsgAPIProtocol {
                 guard let connectionError = connectionError else {return}
                 if retry < 3 {
                     Euromsg.shared?.euromsgAPI?.request(requestModel: requestModel, retry: retry + 1, completion: completion)
-                    
+                } else {
+                    completion( .failure(EuromsgAPIError.connectionFailed))
                 }
                 EMLog.error("Connection error \(connectionError)")
             }
