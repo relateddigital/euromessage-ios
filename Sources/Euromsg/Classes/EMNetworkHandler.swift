@@ -21,10 +21,6 @@ class EMNetworkHandler {
 
     // MARK: Report Methods
 
-    private func reportVisilabs(url: String) {
-        euromsg.euromsgAPI?.request(urlString: url)
-    }
-
     /// Reports recieved push to Euromsg services
     /// - Parameters:
     ///   - message: Push data
