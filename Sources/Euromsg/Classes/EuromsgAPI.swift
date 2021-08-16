@@ -16,7 +16,6 @@ enum EuromsgAPIError: Error {
 }
 
 protocol EuromsgAPIProtocol {
-    func request(urlString: String)
     func request<R: EMRequestProtocol,
                  T: EMResponseProtocol>(requestModel: R,
                                         retry: Int,
@@ -34,23 +33,6 @@ class EuromsgAPI: EuromsgAPIProtocol {
         configuration.timeoutIntervalForResource = 30
         configuration.httpMaximumConnectionsPerHost = 3
         return URLSession.init(configuration: configuration)
-    }
-
-    func request(urlString: String) {
-        guard let url = URL.init(string: urlString) else {
-            EMLog.error("URL couldn't be initialized")
-            return
-        }
-        let request = URLRequest.init(url: url)
-        EMLog.info("Request to : \(url)")
-        let dataTask = urlSession.dataTask(with: request) { _, _, error in
-            guard let error = error else {
-                EMLog.success("Request succesfully send to \(url)")
-                return
-            }
-            EMLog.error("Server responded Error : \(error)")
-        }
-        dataTask.resume()
     }
 
     func request<R: EMRequestProtocol,
