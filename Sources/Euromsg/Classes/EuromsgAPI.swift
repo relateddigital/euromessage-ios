@@ -26,7 +26,6 @@ protocol EuromsgAPIProtocol {
 class EuromsgAPI: EuromsgAPIProtocol {
 
     private let timeoutInterval = 30
-    private let testBaseUrl = "http://77.79.84.82"
     private let prodBaseUrl = ".euromsg.com"
 
     private var urlSession: URLSession {
