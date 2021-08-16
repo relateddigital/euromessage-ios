@@ -24,9 +24,6 @@ protocol EuromsgAPIProtocol {
 
 class EuromsgAPI: EuromsgAPIProtocol {
 
-    private let timeoutInterval = 30
-    private let prodBaseUrl = ".euromsg.com"
-
     private var urlSession: URLSession {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.timeoutIntervalForRequest = 30
@@ -52,13 +49,11 @@ class EuromsgAPI: EuromsgAPIProtocol {
                             EMLog.info("Server response code : \(remoteResponse.statusCode)")
                         }
                         guard let data = data else {
-                            completion(.failure(EuromsgAPIError.connectionFailed))
+                            completion( .failure(EuromsgAPIError.connectionFailed))
                             if retry < 3 {
                                 Euromsg.shared?.euromsgAPI?.request(requestModel: requestModel, retry: retry + 1, completion: completion)
-                                
                             }
                             return
-                            
                         }
                         EMLog.success("Server response with success : \(String(decoding: data, as: UTF8.self))")
                         let responseData = try? JSONDecoder().decode(T.self, from: data)
@@ -67,7 +62,6 @@ class EuromsgAPI: EuromsgAPIProtocol {
                         completion(.failure(EuromsgAPIError.connectionFailed))
                         if retry < 3 {
                             Euromsg.shared?.euromsgAPI?.request(requestModel: requestModel, retry: retry + 1, completion: completion)
-                            
                         }
                         if let remoteResponse = remoteResponse {
                             EMLog.error("Server response with failure : \(remoteResponse)")
@@ -86,7 +80,7 @@ class EuromsgAPI: EuromsgAPIProtocol {
     }
 
     func setupUrlRequest<R: EMRequestProtocol>(_ requestModel: R) -> URLRequest? {
-        let urlString = "https://\(requestModel.subdomain)\(prodBaseUrl)/\(requestModel.path)"
+        let urlString = "https://\(requestModel.subdomain)\(EMKey.prodBaseUrl)/\(requestModel.path)"
         guard let url = URL.init(string: urlString) else {
             EMLog.info("URL couldn't be initialized")
             return nil
@@ -97,7 +91,7 @@ class EuromsgAPI: EuromsgAPIProtocol {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("no-cache", forHTTPHeaderField: "Cache-Control")
         request.setValue(userAgent, forHTTPHeaderField: EMKey.userAgent)
-        request.timeoutInterval = TimeInterval(timeoutInterval)
+        request.timeoutInterval = TimeInterval(EMKey.timeoutInterval)
 
         if requestModel.method == "POST" || requestModel.method == "PUT" {
             request.httpBody = try? JSONEncoder().encode(requestModel)

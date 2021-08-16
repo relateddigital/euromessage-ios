@@ -24,4 +24,8 @@ class EMKey {
     internal static let badgeCount = "EMbadgeCount"
     internal static let userDefaultSuiteKey =  "group.relateddigital.euromsg" // TODO: bu sabit olmamalı, müşteri set etmeli.
     internal static let userAgent = "user-agent"
+    
+    
+    internal static let timeoutInterval = 30
+    internal static let prodBaseUrl = ".euromsg.com"
 }
