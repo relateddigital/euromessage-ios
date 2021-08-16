@@ -10,7 +10,6 @@ import Foundation
 
 protocol EMRequestProtocol: EMCodable {
     var path: String { get }
-    var port: String { get }
     var method: String { get }
     var subdomain: String { get }
 }

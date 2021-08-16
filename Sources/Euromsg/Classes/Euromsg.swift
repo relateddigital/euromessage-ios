@@ -346,13 +346,10 @@ extension Euromsg {
             return
         }
         EMLog.info("handlePush: \(pushDictionary)")
-        let jsonData = try? JSONSerialization.data(withJSONObject: pushDictionary, options: .prettyPrinted)
-        let state = UIApplication.shared.applicationState
-        if state != UIApplication.State.active {
-            EMTools.saveUserDefaults(key: EMKey.euroLastMessageKey, value: jsonData as AnyObject)
-        } else if let jsonData = jsonData,
-                  let message = try? JSONDecoder().decode(EMMessage.self, from: jsonData) {
+        if let jsonData = try? JSONSerialization.data(withJSONObject: pushDictionary, options: .prettyPrinted),
+           let message = try? JSONDecoder().decode(EMMessage.self, from: jsonData) {
             shared.emNetworkHandler?.reportRetention(message: message, status: EMKey.euroReadStatus)
+
         }
     }
 }

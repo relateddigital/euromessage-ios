@@ -25,7 +25,6 @@ protocol EuromsgAPIProtocol {
 
 class EuromsgAPI: EuromsgAPIProtocol {
 
-    private var prod = true
     private let timeoutInterval = 30
     private let testBaseUrl = "http://77.79.84.82"
     private let prodBaseUrl = ".euromsg.com"
@@ -106,12 +105,7 @@ class EuromsgAPI: EuromsgAPIProtocol {
     }
 
     func setupUrlRequest<R: EMRequestProtocol>(_ requestModel: R) -> URLRequest? {
-        var urlString: String
-        if prod {
-            urlString = "https://\(requestModel.subdomain)\(prodBaseUrl)/\(requestModel.path)"
-        } else {
-            urlString = "\(testBaseUrl):\(requestModel.port)/\(requestModel.path)"
-        }
+        let urlString = "https://\(requestModel.subdomain)\(prodBaseUrl)/\(requestModel.path)"
         guard let url = URL.init(string: urlString) else {
             EMLog.info("URL couldn't be initialized")
             return nil

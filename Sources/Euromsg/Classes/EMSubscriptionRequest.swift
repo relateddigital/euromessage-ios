@@ -13,7 +13,6 @@ import CoreTelephony
 struct EMSubscriptionRequest: EMRequestProtocol, Equatable {
 
     internal var path = "subscription"
-    internal var port = "4243"
     internal var method = "POST"
     internal var subdomain = "pushs"
     var extra: [String: String]?

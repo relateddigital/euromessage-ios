@@ -10,7 +10,6 @@ import Foundation
 
 struct EMRetentionRequest: EMCodable, EMRequestProtocol {
     var path = "retention"
-    var port = "4242"
     var method = "POST"
     var subdomain = "pushr"
 
