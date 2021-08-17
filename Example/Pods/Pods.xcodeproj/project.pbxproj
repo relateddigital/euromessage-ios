@@ -7,161 +7,208 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00B09D2F033AA8EF5E267C70CF463741 /* CarouselCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 776C32D094C4F8345C11DF32C8B34901 /* CarouselCell.xib */; };
-		03300830C1192F3F6CB08B23792E0BED /* Pods-NotificationService-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F247A5AD20F27476B23A0D5587770F /* Pods-NotificationService-dummy.m */; };
-		03FF81041D5E191BACCCB6AB78BB57AA /* EMReadWriteLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2302370D9EA22380FB08087FB43E34CA /* EMReadWriteLock.swift */; };
-		06D89ECF60017643BEDDA78C9A52475A /* EuromsgAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659DBD05D8D2CA4A1982607ED001F503 /* EuromsgAPI.swift */; };
-		12263891CF8EDE93FB7CD99289F80371 /* Pods-Euromsg_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CB5A3AB3D4C037D8E85CD889EDE21DD /* Pods-Euromsg_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2189E7D5F9F832F0B64659F716E5898C /* Pods-NotificationService-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 143604E23E5CD6A086C0D5787B02A7B0 /* Pods-NotificationService-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		255A2502D339C1B7DBDE28F0AA6508AE /* Euromsg-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F86B5E904E98044777905FE8BFEAA27D /* Euromsg-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		04855254D7E78C7471806638DC84BB08 /* EMConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665047E8AA1123E08C42B37EEFC6071A /* EMConfiguration.swift */; };
+		1578397ECAAB2D7ACA926EB1BCD333EC /* EMReadWriteLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364A0DD92D5A2625D1E16208014CA9FF /* EMReadWriteLock.swift */; };
+		1A8948699CC9F681035D000B490A91BC /* EMNotificationCarousel.xib in Sources */ = {isa = PBXBuildFile; fileRef = DF6718A64874D065C9DFCA78B9C1D183 /* EMNotificationCarousel.xib */; };
+		1D7396238BA19441E6D0B9E55C3EF150 /* EMReadWriteLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364A0DD92D5A2625D1E16208014CA9FF /* EMReadWriteLock.swift */; };
+		1EA23E66A55FC959BDDC4B868EE8C8E0 /* CarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F29A5FBE98AF309B006C32516C18F9 /* CarouselCell.swift */; };
 		285114732F756C901EBCA8B9A71008C9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		2ACED9DDFBD692D49B802C838D948700 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		48315EB66493B4B37E0D4CE982402F60 /* EMKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0E95EFF9EE5AD0EAD8045EBF6873C3 /* EMKey.swift */; };
+		2DA0B2A79FC3BB8921AD0FF96A9A6A1B /* EMNetworkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254D4D7C939855EC5A44438A0EC314C4 /* EMNetworkHandler.swift */; };
+		32E0E6CF4BE316B4DA4690570F76FD25 /* EMConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665047E8AA1123E08C42B37EEFC6071A /* EMConfiguration.swift */; };
+		344BB1FAC5F16140C04DED4A54D3A4D5 /* EMSubscriptionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B483FC89360608B43D9C09EEF5DB3CD7 /* EMSubscriptionRequest.swift */; };
+		375D52382A983FB46EB385D296E5D3D6 /* Euromsg-iOS11.0-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E8287FDD323382BD512706145D8218C /* Euromsg-iOS11.0-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3D189022A9CB10BA3CA683BDCB94A530 /* Pods-NotificationContent-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FD67BBC2C1B2C25EF9D74680E236D3 /* Pods-NotificationContent-dummy.m */; };
+		3F5B608485AA93ABE3A8AC1BBDAF6989 /* Euromsg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7AF1B19F7FCC89E659A5F07EA51F5C /* Euromsg.swift */; };
+		3FCCC6013AF8FCC2A642929E1E8057C2 /* EMKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C127F00318A99A60DD74FDC69A0BE8 /* EMKey.swift */; };
+		414F077E144E214124638DF59246C14A /* EMSubscriptionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B483FC89360608B43D9C09EEF5DB3CD7 /* EMSubscriptionRequest.swift */; };
+		41B180F20B6451A5D50AB196DDA2E5C9 /* EMRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748DD8B9ECA1A3A917DAFB5209A80813 /* EMRequestProtocol.swift */; };
+		447ECA9F4284169B4A7213B92D0D38DE /* CarouselCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 69FBED62804B81B97FFF4A1F9A2F3D07 /* CarouselCell.xib */; };
+		466DD49F403C9B49267EA24927B05559 /* EMKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = C576EA4E7220626AC9E325832D524249 /* EMKeychain.swift */; };
+		47459A76EC261FD5655318FEC9586ECF /* Euromsg.h in Headers */ = {isa = PBXBuildFile; fileRef = E1D7AFE668D1E0FE0B35C70365C2E899 /* Euromsg.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4813E2248C8B012A1D0341FAE225EC2D /* EMNotificationCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9EE8221C9339CA8B406E952A1A3014 /* EMNotificationCarousel.swift */; };
+		48FFCE6F3DFCAFA26688FC3760B625A8 /* EuromsgAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF20E5CCA8A14A2A9DE38922C8D0155 /* EuromsgAPI.swift */; };
+		4BF3CEB20576A335FE09C1E208929FAB /* EMRetentionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F01AC18C13B66F49FC4579EAD7ED33 /* EMRetentionRequest.swift */; };
 		4E48056115C74E2D85F84C7A12A5BA2D /* Pods-Euromsg_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 01D435C56CD707D42342259A9796C180 /* Pods-Euromsg_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4EB62CDB58CF0900CFAA1898F4025F04 /* EMConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBED43713C702FBC047FD37A02CD97BB /* EMConfiguration.swift */; };
-		53DB3E0EBFC429BDB88A0067093A15BA /* EMSubscriptionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8239BB4CCD2F0E0E2E072D356F3868C7 /* EMSubscriptionRequest.swift */; };
-		6FCD707499EF612950306B817D66C45D /* EMNotificationCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410D0C7A90B61DFFE56008101E931093 /* EMNotificationCarousel.swift */; };
+		58B0E794E8A5E688E581F42AF58C7261 /* EMNotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A65FE28C5ECB6F044FCBB0B91D65C57 /* EMNotificationHandler.swift */; };
+		5B42D6F795CCEA44C942E2AF4232B339 /* EMTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD7B285150999D137C7F43326FB448E /* EMTools.swift */; };
+		5C7E2F981987CB01F42343969143961C /* EMCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB31E400462F174E2B0387B3266CF1F8 /* EMCodable.swift */; };
+		60ECBD99BB8BD5E52925903195D028D9 /* EMCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB31E400462F174E2B0387B3266CF1F8 /* EMCodable.swift */; };
+		663219EDE1BFAC8737B5063C49D9D931 /* EMNetworkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254D4D7C939855EC5A44438A0EC314C4 /* EMNetworkHandler.swift */; };
+		6A4A2104E96F97E7FBFF324210744D54 /* Euromsg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7AF1B19F7FCC89E659A5F07EA51F5C /* Euromsg.swift */; };
+		6ABD6C1CFD247701D9AB1BFDEF13BA3A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		71103D87F2DC4CF7A07E547B729E4DDC /* Pods-Euromsg_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D282A36E072360CF8F70203F0AA7ED2F /* Pods-Euromsg_Tests-dummy.m */; };
-		7115DBA3ED49D03E4EC03C6124F6BA50 /* EMTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C923BF75F0204EFB4F26F0E9CE29CB5E /* EMTools.swift */; };
-		7283906DC08A0F0DE2111EB85DCB3D79 /* EMNotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFDC17527110E49D7CF98CE2E2BC325 /* EMNotificationHandler.swift */; };
-		790057133E69B7F376E2D1B4AF157A2D /* EMCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965DB3492B1DE22EC2D84B9171789E78 /* EMCodable.swift */; };
-		96C0F2D78D1DBD20C5BCE7CCC3FFAE80 /* EMNetworkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB55DAF1345C8DBF49FAE91A2097D89 /* EMNetworkHandler.swift */; };
-		9F022DAD27D27BB1F222A7B1DD9EBF3E /* Euromsg.h in Headers */ = {isa = PBXBuildFile; fileRef = D19827B49506BE1C5CA23E94C11A5176 /* Euromsg.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A126D5C6EF738A0C2CB12E9A3FFF7D4F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		A21A07981BC9A8E0FF31F766B134B228 /* EMLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB534CF97B3D4741C57533263B771E6C /* EMLog.swift */; };
-		A3403F249C7E873DDBA153C7DCE5DCE5 /* Pods-NotificationContent-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 99F0236D4F676D81AA57BE7ECDC17A56 /* Pods-NotificationContent-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AD0CCC8E3CB982530DC3C794FCF9A811 /* Euromsg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFAE47373059B8D490BBD09B4D92AAA /* Euromsg.swift */; };
-		AD7D65822C0ACCDA156312903A5DF505 /* EMRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D5ECA8B88579E47706DD882D29B719 /* EMRequestProtocol.swift */; };
-		B7FF5E45B2BA362926318DE65DA1220F /* EMMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0963E5DDDDB262C83A37B7E0A6440A4D /* EMMessage.swift */; };
-		C49370691252968F2BF561E001D0C29F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		C889BDE7C7D2E5C765516D3D37A1CD64 /* EMRetentionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C939EE4E3509BB71EAA6C97A40BA3B85 /* EMRetentionRequest.swift */; };
-		D3AE73EAC9701C2FC59CF6F5E7EA3195 /* EMNotificationCarousel.xib in Sources */ = {isa = PBXBuildFile; fileRef = 2777E9BA333E038B0ED3D21F15D9E940 /* EMNotificationCarousel.xib */; };
-		D48184A475A1DA7FF18D8D70B430027F /* CarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB71AFC5C68316DAC3C0335BBDD05A6F /* CarouselCell.swift */; };
-		D5DBFF63B494E2294D61D534AF2BEA0A /* Euromsg-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FD01C4ADDAB3D1F92F56007FE2D823A1 /* Euromsg-dummy.m */; };
-		E64B06688E61B337076782DE7E4005D2 /* Pods-Euromsg_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B24588EC92D80D2E93EB28E3D4711C /* Pods-Euromsg_Example-dummy.m */; };
-		EC514C9D26982A631A09D86EDAFDFAC6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		EE55A1E02218ABD574406FAB41106971 /* Pods-NotificationContent-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FD67BBC2C1B2C25EF9D74680E236D3 /* Pods-NotificationContent-dummy.m */; };
-		F8D725C7E543556461CC49C0CDE3957D /* EMKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96276E58344B516D695BD0C1BD21C05 /* EMKeychain.swift */; };
+		71DC28D8683976B1FF8874C82BC4C82C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		747B6D5F27D04B10029DFE7F01648E5C /* Euromsg.h in Headers */ = {isa = PBXBuildFile; fileRef = E1D7AFE668D1E0FE0B35C70365C2E899 /* Euromsg.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7AEEA7FC3C0C8A561068B3DE003B05BA /* Euromsg-iOS10.0-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C6181D56A649B62A3EEE1066FFF073 /* Euromsg-iOS10.0-dummy.m */; };
+		7B721CE0FF3C9B7B8C01830E80FE3800 /* EMRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748DD8B9ECA1A3A917DAFB5209A80813 /* EMRequestProtocol.swift */; };
+		8305ABE061E666BB734ECA8B32200FBF /* EMNotificationCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9EE8221C9339CA8B406E952A1A3014 /* EMNotificationCarousel.swift */; };
+		8898FAE4563A84AC4FDBA914A4FB163C /* EMKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C127F00318A99A60DD74FDC69A0BE8 /* EMKey.swift */; };
+		8BC7B045DAF5F53D7D27ECA1BD828572 /* EMMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D325791E3FF3B51B90477A4A3E5608D9 /* EMMessage.swift */; };
+		927AE1F24A05AD0E7F0EF316966910F3 /* Pods-NotificationService-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 143604E23E5CD6A086C0D5787B02A7B0 /* Pods-NotificationService-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		935F437B0B8460D8B8CD3332F53CDF22 /* Euromsg-iOS10.0-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 20FDDD26A99AD5F9C8478D57CA3E41EC /* Euromsg-iOS10.0-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A81454364BCA549EBC7F57B22D6E821C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		AB662B8B0CA65C7328C0D90C646BA0E1 /* EuromsgAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF20E5CCA8A14A2A9DE38922C8D0155 /* EuromsgAPI.swift */; };
+		AC32766F8716A8FF6D6479E880DF4C6B /* EMMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D325791E3FF3B51B90477A4A3E5608D9 /* EMMessage.swift */; };
+		AF3138C9B2E3126F726897CA713FB101 /* EMKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = C576EA4E7220626AC9E325832D524249 /* EMKeychain.swift */; };
+		AF6DDBB6BC92FE60EC0980AFE560DD86 /* Euromsg-iOS11.0-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6784A1A48590FFB8B1651FE18E172F /* Euromsg-iOS11.0-dummy.m */; };
+		B214BD856F54D86159DF931FEFC2EC31 /* Pods-NotificationService-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F247A5AD20F27476B23A0D5587770F /* Pods-NotificationService-dummy.m */; };
+		BDB84736041B74E9A967E29E7196F8F6 /* EMNotificationCarousel.xib in Sources */ = {isa = PBXBuildFile; fileRef = DF6718A64874D065C9DFCA78B9C1D183 /* EMNotificationCarousel.xib */; };
+		C0AE010081F966213FFA61D54733B310 /* CarouselCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 69FBED62804B81B97FFF4A1F9A2F3D07 /* CarouselCell.xib */; };
+		C1A93C05930702265FE7644FFF10C5D1 /* CarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F29A5FBE98AF309B006C32516C18F9 /* CarouselCell.swift */; };
+		C455AC8D8EF2F463B4232B15A51160B0 /* Pods-Euromsg_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CB5A3AB3D4C037D8E85CD889EDE21DD /* Pods-Euromsg_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CBB586B9142B0D4239B8DF328E2F8CA2 /* EMRetentionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F01AC18C13B66F49FC4579EAD7ED33 /* EMRetentionRequest.swift */; };
+		D0A9EC338431F8F4A1EE2333901F15DC /* EMLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4E1C2C09933C61E29F6484FD6F902D /* EMLog.swift */; };
+		DFA14BF4E761236488FEBB0D0A7D3494 /* Pods-NotificationContent-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 99F0236D4F676D81AA57BE7ECDC17A56 /* Pods-NotificationContent-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E3103D3946DD8184DCD5D053484E1999 /* Pods-Euromsg_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B24588EC92D80D2E93EB28E3D4711C /* Pods-Euromsg_Example-dummy.m */; };
+		E53446E212A4000E657F0CF05BB2063C /* EMNotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A65FE28C5ECB6F044FCBB0B91D65C57 /* EMNotificationHandler.swift */; };
+		EFE9691ABDF34A5BE88C55D949C20C9E /* EMLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4E1C2C09933C61E29F6484FD6F902D /* EMLog.swift */; };
+		F083EE08D8A3AFF3B36E6BFEF916FB50 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		F7B2FA30D13790DB739FD0010C3A803D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		FD49A3792780AA89BA05E3C8C6C7A552 /* EMTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD7B285150999D137C7F43326FB448E /* EMTools.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4EF5BA1AA1C6FE6DAB4C0DD3E1C8B5F2 /* PBXContainerItemProxy */ = {
+		429B80D1438B884D120835563F12668E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 1A140EBD0F95F9AAEC60708B0FB853F9;
 			remoteInfo = "Pods-Euromsg_Example";
 		};
-		9D7FEDCD19772D8177345D1BA409A326 /* PBXContainerItemProxy */ = {
+		4ACAFE0A4E46141CB908C96BA72F8AAA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 50C5C9DC9878F435CFCF3BB251043E6F;
-			remoteInfo = Euromsg;
+			remoteGlobalIDString = 1D48F8B64CE21EA83880A7A7E00EDAF8;
+			remoteInfo = "Euromsg-iOS11.0";
 		};
-		B2C46F5E224E85DFCF1DDC102FAA9D27 /* PBXContainerItemProxy */ = {
+		9A6498B06BA0E205125D78F5912EDF46 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 50C5C9DC9878F435CFCF3BB251043E6F;
-			remoteInfo = Euromsg;
+			remoteGlobalIDString = 1D48F8B64CE21EA83880A7A7E00EDAF8;
+			remoteInfo = "Euromsg-iOS11.0";
 		};
-		F76396ACE6F3BDEE3D31CC4725DE2F1C /* PBXContainerItemProxy */ = {
+		9CE4B4FB60517A518D9DEFC5390DD459 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 50C5C9DC9878F435CFCF3BB251043E6F;
-			remoteInfo = Euromsg;
+			remoteGlobalIDString = 30F19E1655D651C37458F4B9851ECFA2;
+			remoteInfo = "Euromsg-iOS10.0";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		009B7B99AB36E25C4203713CC51A0AF6 /* Euromsg.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Euromsg.release.xcconfig; sourceTree = "<group>"; };
 		01D435C56CD707D42342259A9796C180 /* Pods-Euromsg_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Euromsg_Tests-umbrella.h"; sourceTree = "<group>"; };
 		04CDFA5685CF060415F2B4B22542629E /* Pods-Euromsg_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Euromsg_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		0963E5DDDDB262C83A37B7E0A6440A4D /* EMMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMMessage.swift; path = Sources/Euromsg/Classes/EMMessage.swift; sourceTree = "<group>"; };
+		0A65FE28C5ECB6F044FCBB0B91D65C57 /* EMNotificationHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMNotificationHandler.swift; path = Sources/Euromsg/Classes/EMNotificationHandler.swift; sourceTree = "<group>"; };
 		0CB5A3AB3D4C037D8E85CD889EDE21DD /* Pods-Euromsg_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Euromsg_Example-umbrella.h"; sourceTree = "<group>"; };
-		0F0E95EFF9EE5AD0EAD8045EBF6873C3 /* EMKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMKey.swift; sourceTree = "<group>"; };
-		1425BF8F476BA90F97862E174A6C63E1 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		13F455EEB82C2B767606059D21E75ACA /* Euromsg-iOS10.0-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Euromsg-iOS10.0-Info.plist"; sourceTree = "<group>"; };
 		143604E23E5CD6A086C0D5787B02A7B0 /* Pods-NotificationService-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NotificationService-umbrella.h"; sourceTree = "<group>"; };
-		155306F1F1CDAE4FECAEF190DE95FEC4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		16584F4E64912D205E4C40F27A1CD1DF /* Euromsg-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Euromsg-prefix.pch"; sourceTree = "<group>"; };
 		1687CD618B058C444F139EA993B2A56E /* Pods-Euromsg_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Euromsg_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		1A1AD3F09941AE550C5CAEAE076F8000 /* Euromsg-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Euromsg-Info.plist"; sourceTree = "<group>"; };
-		2302370D9EA22380FB08087FB43E34CA /* EMReadWriteLock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMReadWriteLock.swift; path = Sources/Euromsg/Classes/EMReadWriteLock.swift; sourceTree = "<group>"; };
-		2777E9BA333E038B0ED3D21F15D9E940 /* EMNotificationCarousel.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = EMNotificationCarousel.xib; sourceTree = "<group>"; };
+		1C7AF1B19F7FCC89E659A5F07EA51F5C /* Euromsg.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Euromsg.swift; path = Sources/Euromsg/Classes/Euromsg.swift; sourceTree = "<group>"; };
+		1C9EE8221C9339CA8B406E952A1A3014 /* EMNotificationCarousel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMNotificationCarousel.swift; sourceTree = "<group>"; };
+		1E8287FDD323382BD512706145D8218C /* Euromsg-iOS11.0-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Euromsg-iOS11.0-umbrella.h"; path = "../Euromsg-iOS11.0/Euromsg-iOS11.0-umbrella.h"; sourceTree = "<group>"; };
+		20FDDD26A99AD5F9C8478D57CA3E41EC /* Euromsg-iOS10.0-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Euromsg-iOS10.0-umbrella.h"; sourceTree = "<group>"; };
+		254D4D7C939855EC5A44438A0EC314C4 /* EMNetworkHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMNetworkHandler.swift; path = Sources/Euromsg/Classes/EMNetworkHandler.swift; sourceTree = "<group>"; };
 		29F1BDE7860B1B32DC3AEF92C231D62D /* Pods-Euromsg_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Euromsg_Example-Info.plist"; sourceTree = "<group>"; };
+		2CB73957A5DC1C4AE31DC6DBA1A77D60 /* Euromsg-iOS10.0.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Euromsg-iOS10.0.modulemap"; sourceTree = "<group>"; };
 		2D7199DE444DD1A99D36CB671A60ABF7 /* Pods-Euromsg_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Euromsg_Tests.modulemap"; sourceTree = "<group>"; };
+		2EE9127BBD7ED0943458D9B079666AE7 /* Euromsg-iOS10.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Euromsg-iOS10.0.release.xcconfig"; sourceTree = "<group>"; };
+		364A0DD92D5A2625D1E16208014CA9FF /* EMReadWriteLock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMReadWriteLock.swift; path = Sources/Euromsg/Classes/EMReadWriteLock.swift; sourceTree = "<group>"; };
 		36DB929F0AE3C6CCF12567563844A78E /* Pods-Euromsg_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Euromsg_Example.release.xcconfig"; sourceTree = "<group>"; };
 		378DEAC8A85F8295B8C27E060B89142F /* Pods-NotificationService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NotificationService-Info.plist"; sourceTree = "<group>"; };
-		3BB55DAF1345C8DBF49FAE91A2097D89 /* EMNetworkHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMNetworkHandler.swift; path = Sources/Euromsg/Classes/EMNetworkHandler.swift; sourceTree = "<group>"; };
-		410D0C7A90B61DFFE56008101E931093 /* EMNotificationCarousel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMNotificationCarousel.swift; sourceTree = "<group>"; };
-		45D5ECA8B88579E47706DD882D29B719 /* EMRequestProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMRequestProtocol.swift; path = Sources/Euromsg/Classes/EMRequestProtocol.swift; sourceTree = "<group>"; };
+		3CEFDCD130370826EF08D8DFFCB0E6AF /* Euromsg-iOS10.0-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Euromsg-iOS10.0-prefix.pch"; sourceTree = "<group>"; };
+		40C4657483255192E78CC87B97AF4E6A /* Euromsg-iOS10.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Euromsg-iOS10.0.debug.xcconfig"; sourceTree = "<group>"; };
 		49B24588EC92D80D2E93EB28E3D4711C /* Pods-Euromsg_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Euromsg_Example-dummy.m"; sourceTree = "<group>"; };
+		4DD7B285150999D137C7F43326FB448E /* EMTools.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMTools.swift; sourceTree = "<group>"; };
+		4ECECA6A45B9DFC783D1222C717E6DFA /* Euromsg.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Euromsg.framework; path = "Euromsg-iOS11.0.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FCEFF3876112043D389588C6BCA8FF4 /* Euromsg-iOS11.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Euromsg-iOS11.0.debug.xcconfig"; path = "../Euromsg-iOS11.0/Euromsg-iOS11.0.debug.xcconfig"; sourceTree = "<group>"; };
 		54929C9DE1EABE6976B03AA3DE553555 /* Pods-NotificationService-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NotificationService-acknowledgements.plist"; sourceTree = "<group>"; };
 		54D53D1E6DAA2C57F77DC7D666A037DC /* Pods-Euromsg_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Euromsg_Example-frameworks.sh"; sourceTree = "<group>"; };
 		55B8ADA9F2F86DCC611556BD33D57FD0 /* Pods-Euromsg_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Euromsg_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		563E0A0FEB65B564D6A02A0A948B2E62 /* Pods_NotificationService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NotificationService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		563E0A0FEB65B564D6A02A0A948B2E62 /* Pods_NotificationService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_NotificationService.framework; path = "Pods-NotificationService.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		56ECD73F2D307E9683C03A8C216BEEF3 /* Euromsg-iOS11.0.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; name = "Euromsg-iOS11.0.modulemap"; path = "../Euromsg-iOS11.0/Euromsg-iOS11.0.modulemap"; sourceTree = "<group>"; };
+		56F01AC18C13B66F49FC4579EAD7ED33 /* EMRetentionRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMRetentionRequest.swift; path = Sources/Euromsg/Classes/EMRetentionRequest.swift; sourceTree = "<group>"; };
 		61ECECDA19FED471853EE54754C00408 /* Pods-NotificationService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NotificationService.debug.xcconfig"; sourceTree = "<group>"; };
-		659DBD05D8D2CA4A1982607ED001F503 /* EuromsgAPI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EuromsgAPI.swift; path = Sources/Euromsg/Classes/EuromsgAPI.swift; sourceTree = "<group>"; };
-		6AB905016BAE9BD4E699B4505EDD205A /* Pods_Euromsg_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Euromsg_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		665047E8AA1123E08C42B37EEFC6071A /* EMConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMConfiguration.swift; path = Sources/Euromsg/Classes/EMConfiguration.swift; sourceTree = "<group>"; };
+		69FBED62804B81B97FFF4A1F9A2F3D07 /* CarouselCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = CarouselCell.xib; sourceTree = "<group>"; };
+		6AB905016BAE9BD4E699B4505EDD205A /* Pods_Euromsg_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Euromsg_Example.framework; path = "Pods-Euromsg_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B0E12EBCD864508F7967644CCE1F648 /* Pods-Euromsg_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Euromsg_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		6CF20E5CCA8A14A2A9DE38922C8D0155 /* EuromsgAPI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EuromsgAPI.swift; path = Sources/Euromsg/Classes/EuromsgAPI.swift; sourceTree = "<group>"; };
+		6D5046DF49BD291E08A66CAEF52C65FF /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		6F42646A3EB51928EE5E38873EA5C7E0 /* Pods-Euromsg_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Euromsg_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		72C127F00318A99A60DD74FDC69A0BE8 /* EMKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMKey.swift; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		74C927D2D4B0C3B482AEA2E8738F9C4C /* Pods_NotificationContent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NotificationContent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		776C32D094C4F8345C11DF32C8B34901 /* CarouselCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = CarouselCell.xib; sourceTree = "<group>"; };
-		7AFAE47373059B8D490BBD09B4D92AAA /* Euromsg.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Euromsg.swift; path = Sources/Euromsg/Classes/Euromsg.swift; sourceTree = "<group>"; };
-		7EFDC17527110E49D7CF98CE2E2BC325 /* EMNotificationHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMNotificationHandler.swift; path = Sources/Euromsg/Classes/EMNotificationHandler.swift; sourceTree = "<group>"; };
-		8239BB4CCD2F0E0E2E072D356F3868C7 /* EMSubscriptionRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMSubscriptionRequest.swift; path = Sources/Euromsg/Classes/EMSubscriptionRequest.swift; sourceTree = "<group>"; };
-		89451842FEAAE1BB06B52921FD18A461 /* Pods_Euromsg_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Euromsg_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		748DD8B9ECA1A3A917DAFB5209A80813 /* EMRequestProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMRequestProtocol.swift; path = Sources/Euromsg/Classes/EMRequestProtocol.swift; sourceTree = "<group>"; };
+		74C927D2D4B0C3B482AEA2E8738F9C4C /* Pods_NotificationContent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_NotificationContent.framework; path = "Pods-NotificationContent.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		89451842FEAAE1BB06B52921FD18A461 /* Pods_Euromsg_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Euromsg_Tests.framework; path = "Pods-Euromsg_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89FD67BBC2C1B2C25EF9D74680E236D3 /* Pods-NotificationContent-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NotificationContent-dummy.m"; sourceTree = "<group>"; };
+		8E9631B4F31FD98C31D169E567FE1EDB /* Euromsg-iOS11.0-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Euromsg-iOS11.0-prefix.pch"; path = "../Euromsg-iOS11.0/Euromsg-iOS11.0-prefix.pch"; sourceTree = "<group>"; };
 		8EF3FD1B9334204303C83305D2BE1F59 /* Pods-NotificationService.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-NotificationService.modulemap"; sourceTree = "<group>"; };
-		965DB3492B1DE22EC2D84B9171789E78 /* EMCodable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMCodable.swift; sourceTree = "<group>"; };
 		99F0236D4F676D81AA57BE7ECDC17A56 /* Pods-NotificationContent-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NotificationContent-umbrella.h"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A96276E58344B516D695BD0C1BD21C05 /* EMKeychain.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMKeychain.swift; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A36E808016672CC648B3229037F1EFF9 /* Euromsg-iOS11.0-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "Euromsg-iOS11.0-Info.plist"; path = "../Euromsg-iOS11.0/Euromsg-iOS11.0-Info.plist"; sourceTree = "<group>"; };
 		ABFD34D76E990790C34ED259515F54C7 /* Pods-NotificationService-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-NotificationService-acknowledgements.markdown"; sourceTree = "<group>"; };
+		B38325128636F1110EFCDA39B991D5F6 /* Euromsg-iOS11.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Euromsg-iOS11.0.release.xcconfig"; path = "../Euromsg-iOS11.0/Euromsg-iOS11.0.release.xcconfig"; sourceTree = "<group>"; };
+		B483FC89360608B43D9C09EEF5DB3CD7 /* EMSubscriptionRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMSubscriptionRequest.swift; path = Sources/Euromsg/Classes/EMSubscriptionRequest.swift; sourceTree = "<group>"; };
+		B7CA7EA3C6E324CBE33D79142DC5B4D4 /* Euromsg.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = Euromsg.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		B8F247A5AD20F27476B23A0D5587770F /* Pods-NotificationService-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NotificationService-dummy.m"; sourceTree = "<group>"; };
-		BB534CF97B3D4741C57533263B771E6C /* EMLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMLog.swift; sourceTree = "<group>"; };
-		C37FE049E52F300724B4AF765ED87264 /* Euromsg.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = Euromsg.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		C4EEE2EB75D5B989BA9690F8416F8B28 /* Euromsg.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Euromsg.debug.xcconfig; sourceTree = "<group>"; };
-		C923BF75F0204EFB4F26F0E9CE29CB5E /* EMTools.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMTools.swift; sourceTree = "<group>"; };
-		C939EE4E3509BB71EAA6C97A40BA3B85 /* EMRetentionRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMRetentionRequest.swift; path = Sources/Euromsg/Classes/EMRetentionRequest.swift; sourceTree = "<group>"; };
-		D19827B49506BE1C5CA23E94C11A5176 /* Euromsg.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Euromsg.h; path = Sources/Euromsg/Classes/Euromsg.h; sourceTree = "<group>"; };
+		BB31E400462F174E2B0387B3266CF1F8 /* EMCodable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMCodable.swift; sourceTree = "<group>"; };
+		C576EA4E7220626AC9E325832D524249 /* EMKeychain.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMKeychain.swift; sourceTree = "<group>"; };
+		CE4E1C2C09933C61E29F6484FD6F902D /* EMLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMLog.swift; sourceTree = "<group>"; };
 		D282A36E072360CF8F70203F0AA7ED2F /* Pods-Euromsg_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Euromsg_Tests-dummy.m"; sourceTree = "<group>"; };
+		D325791E3FF3B51B90477A4A3E5608D9 /* EMMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMMessage.swift; path = Sources/Euromsg/Classes/EMMessage.swift; sourceTree = "<group>"; };
 		D64DDC64F79BB75B2831E81E43C8D285 /* Pods-NotificationService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NotificationService.release.xcconfig"; sourceTree = "<group>"; };
+		D6C6181D56A649B62A3EEE1066FFF073 /* Euromsg-iOS10.0-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Euromsg-iOS10.0-dummy.m"; sourceTree = "<group>"; };
 		D795464CB6C27DA04CEDE9A0B96E6693 /* Pods-NotificationContent-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NotificationContent-Info.plist"; sourceTree = "<group>"; };
 		DAF86A83DF43EEBF781571FEA605B260 /* Pods-NotificationContent-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NotificationContent-acknowledgements.plist"; sourceTree = "<group>"; };
-		DB71EA8D91677844F25084E8EE9F344D /* Euromsg.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Euromsg.modulemap; sourceTree = "<group>"; };
 		DC1E41E9D98ED42631040F23340AA176 /* Pods-NotificationContent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NotificationContent.release.xcconfig"; sourceTree = "<group>"; };
 		DD9DB35497EF00C7986381BA22C72102 /* Pods-Euromsg_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Euromsg_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		DF6718A64874D065C9DFCA78B9C1D183 /* EMNotificationCarousel.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = EMNotificationCarousel.xib; sourceTree = "<group>"; };
+		DF91CCBB188BCCFA15B5DDFFE0453D87 /* Euromsg.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Euromsg.framework; path = "Euromsg-iOS10.0.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1D7AFE668D1E0FE0B35C70365C2E899 /* Euromsg.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Euromsg.h; path = Sources/Euromsg/Classes/Euromsg.h; sourceTree = "<group>"; };
 		E546F68EF68DA067E447E36A3E5627AC /* Pods-Euromsg_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Euromsg_Tests-Info.plist"; sourceTree = "<group>"; };
 		E80C282759A4BEC85A0FFAAB02577D24 /* Pods-NotificationContent.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-NotificationContent.modulemap"; sourceTree = "<group>"; };
 		E979B3A21CD478F36B0046FDFEBEA1EF /* Pods-NotificationContent-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-NotificationContent-acknowledgements.markdown"; sourceTree = "<group>"; };
-		EB71AFC5C68316DAC3C0335BBDD05A6F /* CarouselCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CarouselCell.swift; sourceTree = "<group>"; };
-		EBED43713C702FBC047FD37A02CD97BB /* EMConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMConfiguration.swift; path = Sources/Euromsg/Classes/EMConfiguration.swift; sourceTree = "<group>"; };
+		ED63AD5D3977AA5EE2F8334D9E8E2B3A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		F0354B6E1A74140A41B94AC7F62C2B57 /* Pods-NotificationContent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NotificationContent.debug.xcconfig"; sourceTree = "<group>"; };
+		F2F29A5FBE98AF309B006C32516C18F9 /* CarouselCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CarouselCell.swift; sourceTree = "<group>"; };
 		F3D9E91BD5ED845B9B72E76C3CA296F8 /* Pods-Euromsg_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Euromsg_Example.modulemap"; sourceTree = "<group>"; };
-		F86B5E904E98044777905FE8BFEAA27D /* Euromsg-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Euromsg-umbrella.h"; sourceTree = "<group>"; };
+		FA6784A1A48590FFB8B1651FE18E172F /* Euromsg-iOS11.0-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Euromsg-iOS11.0-dummy.m"; path = "../Euromsg-iOS11.0/Euromsg-iOS11.0-dummy.m"; sourceTree = "<group>"; };
 		FACF79A638DEF08C35FBA12CE0659C14 /* Pods-Euromsg_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Euromsg_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		FD01C4ADDAB3D1F92F56007FE2D823A1 /* Euromsg-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Euromsg-dummy.m"; sourceTree = "<group>"; };
-		FE0BC6D62731206ED1C889A7CCDF5D52 /* Euromsg.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Euromsg.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		24BFD218309D97CCC7B72F26AE7E26AC /* Frameworks */ = {
+		11B7EEE96D39B90788741B8C7EAC6E0C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A126D5C6EF738A0C2CB12E9A3FFF7D4F /* Foundation.framework in Frameworks */,
+				A81454364BCA549EBC7F57B22D6E821C /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		49EFC5F38F95133CA58AF9B302947F41 /* Frameworks */ = {
+		3EA8E8EA36AD3803607AEAB8FC77D3A4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C49370691252968F2BF561E001D0C29F /* Foundation.framework in Frameworks */,
+				71DC28D8683976B1FF8874C82BC4C82C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		879B4D926C0B90A7BEBF47DA911FE9C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F083EE08D8A3AFF3B36E6BFEF916FB50 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9407CECC28644B115812E35141C3711 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6ABD6C1CFD247701D9AB1BFDEF13BA3A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,48 +220,62 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E705C6D4C774B74795A77B9A23286CF5 /* Frameworks */ = {
+		F80EEC5A6F53B447572912DF79BB78A8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2ACED9DDFBD692D49B802C838D948700 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F802418F4AF56168C434FA2052CCB848 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EC514C9D26982A631A09D86EDAFDFAC6 /* Foundation.framework in Frameworks */,
+				F7B2FA30D13790DB739FD0010C3A803D /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0097A5445D7A7EAC275976C92DBC308F /* Pod */ = {
+		12010F4CFA1C356FEAF0F7CEAE10EB1B /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				C37FE049E52F300724B4AF765ED87264 /* Euromsg.podspec */,
-				155306F1F1CDAE4FECAEF190DE95FEC4 /* LICENSE */,
-				1425BF8F476BA90F97862E174A6C63E1 /* README.md */,
-			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
-		37F156F47976008F5D2BFE99908EA2E7 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				DB71EA8D91677844F25084E8EE9F344D /* Euromsg.modulemap */,
-				FD01C4ADDAB3D1F92F56007FE2D823A1 /* Euromsg-dummy.m */,
-				1A1AD3F09941AE550C5CAEAE076F8000 /* Euromsg-Info.plist */,
-				16584F4E64912D205E4C40F27A1CD1DF /* Euromsg-prefix.pch */,
-				F86B5E904E98044777905FE8BFEAA27D /* Euromsg-umbrella.h */,
-				C4EEE2EB75D5B989BA9690F8416F8B28 /* Euromsg.debug.xcconfig */,
-				009B7B99AB36E25C4203713CC51A0AF6 /* Euromsg.release.xcconfig */,
+				2CB73957A5DC1C4AE31DC6DBA1A77D60 /* Euromsg-iOS10.0.modulemap */,
+				D6C6181D56A649B62A3EEE1066FFF073 /* Euromsg-iOS10.0-dummy.m */,
+				13F455EEB82C2B767606059D21E75ACA /* Euromsg-iOS10.0-Info.plist */,
+				3CEFDCD130370826EF08D8DFFCB0E6AF /* Euromsg-iOS10.0-prefix.pch */,
+				20FDDD26A99AD5F9C8478D57CA3E41EC /* Euromsg-iOS10.0-umbrella.h */,
+				40C4657483255192E78CC87B97AF4E6A /* Euromsg-iOS10.0.debug.xcconfig */,
+				2EE9127BBD7ED0943458D9B079666AE7 /* Euromsg-iOS10.0.release.xcconfig */,
+				56ECD73F2D307E9683C03A8C216BEEF3 /* Euromsg-iOS11.0.modulemap */,
+				FA6784A1A48590FFB8B1651FE18E172F /* Euromsg-iOS11.0-dummy.m */,
+				A36E808016672CC648B3229037F1EFF9 /* Euromsg-iOS11.0-Info.plist */,
+				8E9631B4F31FD98C31D169E567FE1EDB /* Euromsg-iOS11.0-prefix.pch */,
+				1E8287FDD323382BD512706145D8218C /* Euromsg-iOS11.0-umbrella.h */,
+				4FCEFF3876112043D389588C6BCA8FF4 /* Euromsg-iOS11.0.debug.xcconfig */,
+				B38325128636F1110EFCDA39B991D5F6 /* Euromsg-iOS11.0.release.xcconfig */,
 			);
 			name = "Support Files";
-			path = "Example/Pods/Target Support Files/Euromsg";
+			path = "Example/Pods/Target Support Files/Euromsg-iOS10.0";
+			sourceTree = "<group>";
+		};
+		200272DE0CA80D99BE670C42BB923CDB /* EMNotificationCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				F2F29A5FBE98AF309B006C32516C18F9 /* CarouselCell.swift */,
+				69FBED62804B81B97FFF4A1F9A2F3D07 /* CarouselCell.xib */,
+				1C9EE8221C9339CA8B406E952A1A3014 /* EMNotificationCarousel.swift */,
+				DF6718A64874D065C9DFCA78B9C1D183 /* EMNotificationCarousel.xib */,
+			);
+			name = EMNotificationCarousel;
+			path = Sources/Euromsg/Classes/EMNotificationCarousel;
+			sourceTree = "<group>";
+		};
+		31BD9ADD08594F564DACFCE85B884F14 /* EMUtils */ = {
+			isa = PBXGroup;
+			children = (
+				BB31E400462F174E2B0387B3266CF1F8 /* EMCodable.swift */,
+				72C127F00318A99A60DD74FDC69A0BE8 /* EMKey.swift */,
+				C576EA4E7220626AC9E325832D524249 /* EMKeychain.swift */,
+				CE4E1C2C09933C61E29F6484FD6F902D /* EMLog.swift */,
+				4DD7B285150999D137C7F43326FB448E /* EMTools.swift */,
+			);
+			name = EMUtils;
+			path = Sources/Euromsg/Classes/EMUtils;
 			sourceTree = "<group>";
 		};
 		3A0FCC9AC2704F933448201EB89A38AA /* Targets Support Files */ = {
@@ -226,6 +287,19 @@
 				C27F425E2E493543D91B0D7FBE7736F9 /* Pods-NotificationService */,
 			);
 			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		45F6D66657DDF333A86759C37B5ED7F4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DF91CCBB188BCCFA15B5DDFFE0453D87 /* Euromsg.framework */,
+				4ECECA6A45B9DFC783D1222C717E6DFA /* Euromsg.framework */,
+				6AB905016BAE9BD4E699B4505EDD205A /* Pods_Euromsg_Example.framework */,
+				89451842FEAAE1BB06B52921FD18A461 /* Pods_Euromsg_Tests.framework */,
+				74C927D2D4B0C3B482AEA2E8738F9C4C /* Pods_NotificationContent.framework */,
+				563E0A0FEB65B564D6A02A0A948B2E62 /* Pods_NotificationService.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
@@ -268,31 +342,6 @@
 			path = "Target Support Files/Pods-Euromsg_Tests";
 			sourceTree = "<group>";
 		};
-		94AA55DDD703CFBD182B62636B20D698 /* EMUtils */ = {
-			isa = PBXGroup;
-			children = (
-				965DB3492B1DE22EC2D84B9171789E78 /* EMCodable.swift */,
-				0F0E95EFF9EE5AD0EAD8045EBF6873C3 /* EMKey.swift */,
-				A96276E58344B516D695BD0C1BD21C05 /* EMKeychain.swift */,
-				BB534CF97B3D4741C57533263B771E6C /* EMLog.swift */,
-				C923BF75F0204EFB4F26F0E9CE29CB5E /* EMTools.swift */,
-			);
-			name = EMUtils;
-			path = Sources/Euromsg/Classes/EMUtils;
-			sourceTree = "<group>";
-		};
-		AE29CCAF8CA633CF0FF39B3D8B192A62 /* EMNotificationCarousel */ = {
-			isa = PBXGroup;
-			children = (
-				EB71AFC5C68316DAC3C0335BBDD05A6F /* CarouselCell.swift */,
-				776C32D094C4F8345C11DF32C8B34901 /* CarouselCell.xib */,
-				410D0C7A90B61DFFE56008101E931093 /* EMNotificationCarousel.swift */,
-				2777E9BA333E038B0ED3D21F15D9E940 /* EMNotificationCarousel.xib */,
-			);
-			name = EMNotificationCarousel;
-			path = Sources/Euromsg/Classes/EMNotificationCarousel;
-			sourceTree = "<group>";
-		};
 		C27F425E2E493543D91B0D7FBE7736F9 /* Pods-NotificationService */ = {
 			isa = PBXGroup;
 			children = (
@@ -309,25 +358,13 @@
 			path = "Target Support Files/Pods-NotificationService";
 			sourceTree = "<group>";
 		};
-		CB4D14F6AF2EC275A42086E790D2D914 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				FE0BC6D62731206ED1C889A7CCDF5D52 /* Euromsg.framework */,
-				6AB905016BAE9BD4E699B4505EDD205A /* Pods_Euromsg_Example.framework */,
-				89451842FEAAE1BB06B52921FD18A461 /* Pods_Euromsg_Tests.framework */,
-				74C927D2D4B0C3B482AEA2E8738F9C4C /* Pods_NotificationContent.framework */,
-				563E0A0FEB65B564D6A02A0A948B2E62 /* Pods_NotificationService.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				F3DC9CC8435F2A18402D7D261621D05D /* Development Pods */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
-				CB4D14F6AF2EC275A42086E790D2D914 /* Products */,
+				45F6D66657DDF333A86759C37B5ED7F4 /* Products */,
 				3A0FCC9AC2704F933448201EB89A38AA /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
@@ -338,6 +375,39 @@
 				578452D2E740E91742655AC8F1636D1F /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D2E0A55EF2BC8F7AA5D6D386DF6A243B /* Euromsg */ = {
+			isa = PBXGroup;
+			children = (
+				665047E8AA1123E08C42B37EEFC6071A /* EMConfiguration.swift */,
+				D325791E3FF3B51B90477A4A3E5608D9 /* EMMessage.swift */,
+				254D4D7C939855EC5A44438A0EC314C4 /* EMNetworkHandler.swift */,
+				0A65FE28C5ECB6F044FCBB0B91D65C57 /* EMNotificationHandler.swift */,
+				364A0DD92D5A2625D1E16208014CA9FF /* EMReadWriteLock.swift */,
+				748DD8B9ECA1A3A917DAFB5209A80813 /* EMRequestProtocol.swift */,
+				56F01AC18C13B66F49FC4579EAD7ED33 /* EMRetentionRequest.swift */,
+				B483FC89360608B43D9C09EEF5DB3CD7 /* EMSubscriptionRequest.swift */,
+				E1D7AFE668D1E0FE0B35C70365C2E899 /* Euromsg.h */,
+				1C7AF1B19F7FCC89E659A5F07EA51F5C /* Euromsg.swift */,
+				6CF20E5CCA8A14A2A9DE38922C8D0155 /* EuromsgAPI.swift */,
+				200272DE0CA80D99BE670C42BB923CDB /* EMNotificationCarousel */,
+				31BD9ADD08594F564DACFCE85B884F14 /* EMUtils */,
+				DA709C580A300943A494C4925B8573B8 /* Pod */,
+				12010F4CFA1C356FEAF0F7CEAE10EB1B /* Support Files */,
+			);
+			name = Euromsg;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		DA709C580A300943A494C4925B8573B8 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				B7CA7EA3C6E324CBE33D79142DC5B4D4 /* Euromsg.podspec */,
+				6D5046DF49BD291E08A66CAEF52C65FF /* LICENSE */,
+				ED63AD5D3977AA5EE2F8334D9E8E2B3A /* README.md */,
+			);
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		EA5F3A9203042E7FF424D25F71BB1211 /* Pods-Euromsg_Example */ = {
@@ -360,67 +430,53 @@
 		F3DC9CC8435F2A18402D7D261621D05D /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F5CF0846C74A2C016634E2C8DF4404DB /* Euromsg */,
+				D2E0A55EF2BC8F7AA5D6D386DF6A243B /* Euromsg */,
 			);
 			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		F5CF0846C74A2C016634E2C8DF4404DB /* Euromsg */ = {
-			isa = PBXGroup;
-			children = (
-				EBED43713C702FBC047FD37A02CD97BB /* EMConfiguration.swift */,
-				0963E5DDDDB262C83A37B7E0A6440A4D /* EMMessage.swift */,
-				3BB55DAF1345C8DBF49FAE91A2097D89 /* EMNetworkHandler.swift */,
-				7EFDC17527110E49D7CF98CE2E2BC325 /* EMNotificationHandler.swift */,
-				2302370D9EA22380FB08087FB43E34CA /* EMReadWriteLock.swift */,
-				45D5ECA8B88579E47706DD882D29B719 /* EMRequestProtocol.swift */,
-				C939EE4E3509BB71EAA6C97A40BA3B85 /* EMRetentionRequest.swift */,
-				8239BB4CCD2F0E0E2E072D356F3868C7 /* EMSubscriptionRequest.swift */,
-				D19827B49506BE1C5CA23E94C11A5176 /* Euromsg.h */,
-				7AFAE47373059B8D490BBD09B4D92AAA /* Euromsg.swift */,
-				659DBD05D8D2CA4A1982607ED001F503 /* EuromsgAPI.swift */,
-				AE29CCAF8CA633CF0FF39B3D8B192A62 /* EMNotificationCarousel */,
-				94AA55DDD703CFBD182B62636B20D698 /* EMUtils */,
-				0097A5445D7A7EAC275976C92DBC308F /* Pod */,
-				37F156F47976008F5D2BFE99908EA2E7 /* Support Files */,
-			);
-			name = Euromsg;
-			path = ../..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		3A95FFE52B2248AA65A9A303D8056B80 /* Headers */ = {
+		18148FB19E4E5F12CE121028B71A4B38 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3403F249C7E873DDBA153C7DCE5DCE5 /* Pods-NotificationContent-umbrella.h in Headers */,
+				375D52382A983FB46EB385D296E5D3D6 /* Euromsg-iOS11.0-umbrella.h in Headers */,
+				47459A76EC261FD5655318FEC9586ECF /* Euromsg.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7447867058E0E2703A1B9068B0FD782F /* Headers */ = {
+		35F5F9C8F7F65E43A671C1CA3489743C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				255A2502D339C1B7DBDE28F0AA6508AE /* Euromsg-umbrella.h in Headers */,
-				9F022DAD27D27BB1F222A7B1DD9EBF3E /* Euromsg.h in Headers */,
+				935F437B0B8460D8B8CD3332F53CDF22 /* Euromsg-iOS10.0-umbrella.h in Headers */,
+				747B6D5F27D04B10029DFE7F01648E5C /* Euromsg.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9CB2804132752E70C7C4AA69A6509EAC /* Headers */ = {
+		4D886A4894DA4FA6450FE31ABCB4D26D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12263891CF8EDE93FB7CD99289F80371 /* Pods-Euromsg_Example-umbrella.h in Headers */,
+				C455AC8D8EF2F463B4232B15A51160B0 /* Pods-Euromsg_Example-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A1236E25E1758A12895104408E16FE65 /* Headers */ = {
+		66A83F203A52141776DF125A0202836A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2189E7D5F9F832F0B64659F716E5898C /* Pods-NotificationService-umbrella.h in Headers */,
+				DFA14BF4E761236488FEBB0D0A7D3494 /* Pods-NotificationContent-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E4E17DD493E10DA933580742D8839582 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				927AE1F24A05AD0E7F0EF316966910F3 /* Pods-NotificationService-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,39 +493,57 @@
 /* Begin PBXNativeTarget section */
 		1A140EBD0F95F9AAEC60708B0FB853F9 /* Pods-Euromsg_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 20C75FAB6E3F0D05C6DFC75B768815CA /* Build configuration list for PBXNativeTarget "Pods-Euromsg_Example" */;
+			buildConfigurationList = 7C605C667755F3A396A09755E2E02C65 /* Build configuration list for PBXNativeTarget "Pods-Euromsg_Example" */;
 			buildPhases = (
-				9CB2804132752E70C7C4AA69A6509EAC /* Headers */,
-				DC237B663D0EF3431B6C1220365E3A18 /* Sources */,
-				E705C6D4C774B74795A77B9A23286CF5 /* Frameworks */,
-				EE9BE6FA516733C8456A98B7B4339CA0 /* Resources */,
+				4D886A4894DA4FA6450FE31ABCB4D26D /* Headers */,
+				5BE4C30C8DB13B4FC60A0E4DE7FA473B /* Sources */,
+				11B7EEE96D39B90788741B8C7EAC6E0C /* Frameworks */,
+				F983027FAEFFD14A4FD7D4BFD2D75909 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				382B81E0AF2DCC23785309C0CB9DA93A /* PBXTargetDependency */,
+				0EBDC384C983048E9F6FC678717F6BD3 /* PBXTargetDependency */,
 			);
 			name = "Pods-Euromsg_Example";
 			productName = "Pods-Euromsg_Example";
 			productReference = 6AB905016BAE9BD4E699B4505EDD205A /* Pods_Euromsg_Example.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		50C5C9DC9878F435CFCF3BB251043E6F /* Euromsg */ = {
+		1D48F8B64CE21EA83880A7A7E00EDAF8 /* Euromsg-iOS11.0 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D1F675925F10F5503A6A8A82D285F965 /* Build configuration list for PBXNativeTarget "Euromsg" */;
+			buildConfigurationList = C8A7B16CEEB717157F5C0F70B8591A47 /* Build configuration list for PBXNativeTarget "Euromsg-iOS11.0" */;
 			buildPhases = (
-				7447867058E0E2703A1B9068B0FD782F /* Headers */,
-				500028C4102A14991E83EF7FAC6250A1 /* Sources */,
-				24BFD218309D97CCC7B72F26AE7E26AC /* Frameworks */,
-				3FBAF9F19FF8D27E1D8856BE137D8132 /* Resources */,
+				18148FB19E4E5F12CE121028B71A4B38 /* Headers */,
+				8BFAE149ADB253319ED10C649788C6E3 /* Sources */,
+				879B4D926C0B90A7BEBF47DA911FE9C0 /* Frameworks */,
+				AC445316895957BD75200179E8EDE3AA /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Euromsg;
-			productName = Euromsg;
-			productReference = FE0BC6D62731206ED1C889A7CCDF5D52 /* Euromsg.framework */;
+			name = "Euromsg-iOS11.0";
+			productName = "Euromsg-iOS11.0";
+			productReference = 4ECECA6A45B9DFC783D1222C717E6DFA /* Euromsg.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		30F19E1655D651C37458F4B9851ECFA2 /* Euromsg-iOS10.0 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FB6D51052F09F36E2FCFA233BCA8C8E1 /* Build configuration list for PBXNativeTarget "Euromsg-iOS10.0" */;
+			buildPhases = (
+				35F5F9C8F7F65E43A671C1CA3489743C /* Headers */,
+				F90AB3D12EDC30F026B054513D4ABC0E /* Sources */,
+				3EA8E8EA36AD3803607AEAB8FC77D3A4 /* Frameworks */,
+				9709A058EE66B0CC351C39B10C7D9100 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Euromsg-iOS10.0";
+			productName = "Euromsg-iOS10.0";
+			productReference = DF91CCBB188BCCFA15B5DDFFE0453D87 /* Euromsg.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		56555E51DC6D9E218C17F3ED916B2CED /* Pods-Euromsg_Tests */ = {
@@ -484,7 +558,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				8FCD7BB8084F96F2EF50ADA8008C77CB /* PBXTargetDependency */,
+				FD8E7D759FE020573EA18676AF219C3B /* PBXTargetDependency */,
 			);
 			name = "Pods-Euromsg_Tests";
 			productName = "Pods-Euromsg_Tests";
@@ -493,17 +567,17 @@
 		};
 		8A262336BF9B65491D426B5180512B1B /* Pods-NotificationContent */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 52CD110ACF9153ACAD5B8AB94E5B5C26 /* Build configuration list for PBXNativeTarget "Pods-NotificationContent" */;
+			buildConfigurationList = C55810F5E84337009FD0F46E518A2F7A /* Build configuration list for PBXNativeTarget "Pods-NotificationContent" */;
 			buildPhases = (
-				3A95FFE52B2248AA65A9A303D8056B80 /* Headers */,
-				60B2E8681369A3FFEC1CE9E7A36E781F /* Sources */,
-				F802418F4AF56168C434FA2052CCB848 /* Frameworks */,
-				5E6206B028F9B32DBE1361F07F73D560 /* Resources */,
+				66A83F203A52141776DF125A0202836A /* Headers */,
+				7E603D32A947FB95E8A7CE3039685835 /* Sources */,
+				A9407CECC28644B115812E35141C3711 /* Frameworks */,
+				60BCFBF28438CD15F4827B78A6527F11 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				1BA3B0C772187EFF644797E953572100 /* PBXTargetDependency */,
+				93FC876C028CFE73890674592FF65E01 /* PBXTargetDependency */,
 			);
 			name = "Pods-NotificationContent";
 			productName = "Pods-NotificationContent";
@@ -512,17 +586,17 @@
 		};
 		E2816A8094E8D1BCDC0C50D2C832730A /* Pods-NotificationService */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E2063FAB8C9AB1AAF786B5FB4FD5575E /* Build configuration list for PBXNativeTarget "Pods-NotificationService" */;
+			buildConfigurationList = 207B27E4D3AE6B9AC772C389A5D808FB /* Build configuration list for PBXNativeTarget "Pods-NotificationService" */;
 			buildPhases = (
-				A1236E25E1758A12895104408E16FE65 /* Headers */,
-				2C797BA1DC8E8C7893E19B5876D24210 /* Sources */,
-				49EFC5F38F95133CA58AF9B302947F41 /* Frameworks */,
-				B9C5BB0551CD1C4CF9EECE49CC64D015 /* Resources */,
+				E4E17DD493E10DA933580742D8839582 /* Headers */,
+				082C88B28B12C830973C93CA9206881E /* Sources */,
+				F80EEC5A6F53B447572912DF79BB78A8 /* Frameworks */,
+				708FF95667BC9EE59251A6460E6C6DF7 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				FD4EBBD54C94BA404F60B8DE7BD2BEE3 /* PBXTargetDependency */,
+				D40DACF5CF37CEDBDD5223AE20DCD729 /* PBXTargetDependency */,
 			);
 			name = "Pods-NotificationService";
 			productName = "Pods-NotificationService";
@@ -547,11 +621,12 @@
 				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = CB4D14F6AF2EC275A42086E790D2D914 /* Products */;
+			productRefGroup = 45F6D66657DDF333A86759C37B5ED7F4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				50C5C9DC9878F435CFCF3BB251043E6F /* Euromsg */,
+				30F19E1655D651C37458F4B9851ECFA2 /* Euromsg-iOS10.0 */,
+				1D48F8B64CE21EA83880A7A7E00EDAF8 /* Euromsg-iOS11.0 */,
 				1A140EBD0F95F9AAEC60708B0FB853F9 /* Pods-Euromsg_Example */,
 				56555E51DC6D9E218C17F3ED916B2CED /* Pods-Euromsg_Tests */,
 				8A262336BF9B65491D426B5180512B1B /* Pods-NotificationContent */,
@@ -561,14 +636,14 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3FBAF9F19FF8D27E1D8856BE137D8132 /* Resources */ = {
+		60BCFBF28438CD15F4827B78A6527F11 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5E6206B028F9B32DBE1361F07F73D560 /* Resources */ = {
+		708FF95667BC9EE59251A6460E6C6DF7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -582,14 +657,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B9C5BB0551CD1C4CF9EECE49CC64D015 /* Resources */ = {
+		9709A058EE66B0CC351C39B10C7D9100 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EE9BE6FA516733C8456A98B7B4339CA0 /* Resources */ = {
+		AC445316895957BD75200179E8EDE3AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F983027FAEFFD14A4FD7D4BFD2D75909 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -599,11 +681,11 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		2C797BA1DC8E8C7893E19B5876D24210 /* Sources */ = {
+		082C88B28B12C830973C93CA9206881E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03300830C1192F3F6CB08B23792E0BED /* Pods-NotificationService-dummy.m in Sources */,
+				B214BD856F54D86159DF931FEFC2EC31 /* Pods-NotificationService-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -615,80 +697,174 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		500028C4102A14991E83EF7FAC6250A1 /* Sources */ = {
+		5BE4C30C8DB13B4FC60A0E4DE7FA473B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D48184A475A1DA7FF18D8D70B430027F /* CarouselCell.swift in Sources */,
-				00B09D2F033AA8EF5E267C70CF463741 /* CarouselCell.xib in Sources */,
-				790057133E69B7F376E2D1B4AF157A2D /* EMCodable.swift in Sources */,
-				4EB62CDB58CF0900CFAA1898F4025F04 /* EMConfiguration.swift in Sources */,
-				48315EB66493B4B37E0D4CE982402F60 /* EMKey.swift in Sources */,
-				F8D725C7E543556461CC49C0CDE3957D /* EMKeychain.swift in Sources */,
-				A21A07981BC9A8E0FF31F766B134B228 /* EMLog.swift in Sources */,
-				B7FF5E45B2BA362926318DE65DA1220F /* EMMessage.swift in Sources */,
-				96C0F2D78D1DBD20C5BCE7CCC3FFAE80 /* EMNetworkHandler.swift in Sources */,
-				6FCD707499EF612950306B817D66C45D /* EMNotificationCarousel.swift in Sources */,
-				D3AE73EAC9701C2FC59CF6F5E7EA3195 /* EMNotificationCarousel.xib in Sources */,
-				7283906DC08A0F0DE2111EB85DCB3D79 /* EMNotificationHandler.swift in Sources */,
-				03FF81041D5E191BACCCB6AB78BB57AA /* EMReadWriteLock.swift in Sources */,
-				AD7D65822C0ACCDA156312903A5DF505 /* EMRequestProtocol.swift in Sources */,
-				C889BDE7C7D2E5C765516D3D37A1CD64 /* EMRetentionRequest.swift in Sources */,
-				53DB3E0EBFC429BDB88A0067093A15BA /* EMSubscriptionRequest.swift in Sources */,
-				7115DBA3ED49D03E4EC03C6124F6BA50 /* EMTools.swift in Sources */,
-				D5DBFF63B494E2294D61D534AF2BEA0A /* Euromsg-dummy.m in Sources */,
-				AD0CCC8E3CB982530DC3C794FCF9A811 /* Euromsg.swift in Sources */,
-				06D89ECF60017643BEDDA78C9A52475A /* EuromsgAPI.swift in Sources */,
+				E3103D3946DD8184DCD5D053484E1999 /* Pods-Euromsg_Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		60B2E8681369A3FFEC1CE9E7A36E781F /* Sources */ = {
+		7E603D32A947FB95E8A7CE3039685835 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE55A1E02218ABD574406FAB41106971 /* Pods-NotificationContent-dummy.m in Sources */,
+				3D189022A9CB10BA3CA683BDCB94A530 /* Pods-NotificationContent-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DC237B663D0EF3431B6C1220365E3A18 /* Sources */ = {
+		8BFAE149ADB253319ED10C649788C6E3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E64B06688E61B337076782DE7E4005D2 /* Pods-Euromsg_Example-dummy.m in Sources */,
+				C1A93C05930702265FE7644FFF10C5D1 /* CarouselCell.swift in Sources */,
+				C0AE010081F966213FFA61D54733B310 /* CarouselCell.xib in Sources */,
+				5C7E2F981987CB01F42343969143961C /* EMCodable.swift in Sources */,
+				32E0E6CF4BE316B4DA4690570F76FD25 /* EMConfiguration.swift in Sources */,
+				8898FAE4563A84AC4FDBA914A4FB163C /* EMKey.swift in Sources */,
+				466DD49F403C9B49267EA24927B05559 /* EMKeychain.swift in Sources */,
+				EFE9691ABDF34A5BE88C55D949C20C9E /* EMLog.swift in Sources */,
+				8BC7B045DAF5F53D7D27ECA1BD828572 /* EMMessage.swift in Sources */,
+				2DA0B2A79FC3BB8921AD0FF96A9A6A1B /* EMNetworkHandler.swift in Sources */,
+				8305ABE061E666BB734ECA8B32200FBF /* EMNotificationCarousel.swift in Sources */,
+				BDB84736041B74E9A967E29E7196F8F6 /* EMNotificationCarousel.xib in Sources */,
+				58B0E794E8A5E688E581F42AF58C7261 /* EMNotificationHandler.swift in Sources */,
+				1D7396238BA19441E6D0B9E55C3EF150 /* EMReadWriteLock.swift in Sources */,
+				7B721CE0FF3C9B7B8C01830E80FE3800 /* EMRequestProtocol.swift in Sources */,
+				4BF3CEB20576A335FE09C1E208929FAB /* EMRetentionRequest.swift in Sources */,
+				414F077E144E214124638DF59246C14A /* EMSubscriptionRequest.swift in Sources */,
+				FD49A3792780AA89BA05E3C8C6C7A552 /* EMTools.swift in Sources */,
+				AF6DDBB6BC92FE60EC0980AFE560DD86 /* Euromsg-iOS11.0-dummy.m in Sources */,
+				3F5B608485AA93ABE3A8AC1BBDAF6989 /* Euromsg.swift in Sources */,
+				48FFCE6F3DFCAFA26688FC3760B625A8 /* EuromsgAPI.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F90AB3D12EDC30F026B054513D4ABC0E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EA23E66A55FC959BDDC4B868EE8C8E0 /* CarouselCell.swift in Sources */,
+				447ECA9F4284169B4A7213B92D0D38DE /* CarouselCell.xib in Sources */,
+				60ECBD99BB8BD5E52925903195D028D9 /* EMCodable.swift in Sources */,
+				04855254D7E78C7471806638DC84BB08 /* EMConfiguration.swift in Sources */,
+				3FCCC6013AF8FCC2A642929E1E8057C2 /* EMKey.swift in Sources */,
+				AF3138C9B2E3126F726897CA713FB101 /* EMKeychain.swift in Sources */,
+				D0A9EC338431F8F4A1EE2333901F15DC /* EMLog.swift in Sources */,
+				AC32766F8716A8FF6D6479E880DF4C6B /* EMMessage.swift in Sources */,
+				663219EDE1BFAC8737B5063C49D9D931 /* EMNetworkHandler.swift in Sources */,
+				4813E2248C8B012A1D0341FAE225EC2D /* EMNotificationCarousel.swift in Sources */,
+				1A8948699CC9F681035D000B490A91BC /* EMNotificationCarousel.xib in Sources */,
+				E53446E212A4000E657F0CF05BB2063C /* EMNotificationHandler.swift in Sources */,
+				1578397ECAAB2D7ACA926EB1BCD333EC /* EMReadWriteLock.swift in Sources */,
+				41B180F20B6451A5D50AB196DDA2E5C9 /* EMRequestProtocol.swift in Sources */,
+				CBB586B9142B0D4239B8DF328E2F8CA2 /* EMRetentionRequest.swift in Sources */,
+				344BB1FAC5F16140C04DED4A54D3A4D5 /* EMSubscriptionRequest.swift in Sources */,
+				5B42D6F795CCEA44C942E2AF4232B339 /* EMTools.swift in Sources */,
+				7AEEA7FC3C0C8A561068B3DE003B05BA /* Euromsg-iOS10.0-dummy.m in Sources */,
+				6A4A2104E96F97E7FBFF324210744D54 /* Euromsg.swift in Sources */,
+				AB662B8B0CA65C7328C0D90C646BA0E1 /* EuromsgAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1BA3B0C772187EFF644797E953572100 /* PBXTargetDependency */ = {
+		0EBDC384C983048E9F6FC678717F6BD3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Euromsg;
-			target = 50C5C9DC9878F435CFCF3BB251043E6F /* Euromsg */;
-			targetProxy = 9D7FEDCD19772D8177345D1BA409A326 /* PBXContainerItemProxy */;
+			name = "Euromsg-iOS10.0";
+			target = 30F19E1655D651C37458F4B9851ECFA2 /* Euromsg-iOS10.0 */;
+			targetProxy = 9CE4B4FB60517A518D9DEFC5390DD459 /* PBXContainerItemProxy */;
 		};
-		382B81E0AF2DCC23785309C0CB9DA93A /* PBXTargetDependency */ = {
+		93FC876C028CFE73890674592FF65E01 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Euromsg;
-			target = 50C5C9DC9878F435CFCF3BB251043E6F /* Euromsg */;
-			targetProxy = F76396ACE6F3BDEE3D31CC4725DE2F1C /* PBXContainerItemProxy */;
+			name = "Euromsg-iOS11.0";
+			target = 1D48F8B64CE21EA83880A7A7E00EDAF8 /* Euromsg-iOS11.0 */;
+			targetProxy = 4ACAFE0A4E46141CB908C96BA72F8AAA /* PBXContainerItemProxy */;
 		};
-		8FCD7BB8084F96F2EF50ADA8008C77CB /* PBXTargetDependency */ = {
+		D40DACF5CF37CEDBDD5223AE20DCD729 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Euromsg-iOS11.0";
+			target = 1D48F8B64CE21EA83880A7A7E00EDAF8 /* Euromsg-iOS11.0 */;
+			targetProxy = 9A6498B06BA0E205125D78F5912EDF46 /* PBXContainerItemProxy */;
+		};
+		FD8E7D759FE020573EA18676AF219C3B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-Euromsg_Example";
 			target = 1A140EBD0F95F9AAEC60708B0FB853F9 /* Pods-Euromsg_Example */;
-			targetProxy = 4EF5BA1AA1C6FE6DAB4C0DD3E1C8B5F2 /* PBXContainerItemProxy */;
-		};
-		FD4EBBD54C94BA404F60B8DE7BD2BEE3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Euromsg;
-			target = 50C5C9DC9878F435CFCF3BB251043E6F /* Euromsg */;
-			targetProxy = B2C46F5E224E85DFCF1DDC102FAA9D27 /* PBXContainerItemProxy */;
+			targetProxy = 429B80D1438B884D120835563F12668E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		2A81775020CFE0BEA39A6833DF5953BA /* Release */ = {
+		1C118AAEE8EFD81A8AD4BCF785132ACF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 36DB929F0AE3C6CCF12567563844A78E /* Pods-Euromsg_Example.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				APPLICATION_EXTENSION_API_ONLY = No;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Euromsg_Example/Pods-Euromsg_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Euromsg_Example/Pods-Euromsg_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		2ADC472545F6C419D42C1076477DFC19 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 40C4657483255192E78CC87B97AF4E6A /* Euromsg-iOS10.0.debug.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = No;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Euromsg-iOS10.0/Euromsg-iOS10.0-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Euromsg-iOS10.0/Euromsg-iOS10.0-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Euromsg-iOS10.0/Euromsg-iOS10.0.modulemap";
+				PRODUCT_MODULE_NAME = Euromsg;
+				PRODUCT_NAME = Euromsg;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		33E4E40131AC72CCEAD2392C9F659D93 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DC1E41E9D98ED42631040F23340AA176 /* Pods-NotificationContent.release.xcconfig */;
 			buildSettings = {
@@ -706,7 +882,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-NotificationContent/Pods-NotificationContent-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-NotificationContent/Pods-NotificationContent.modulemap";
@@ -724,111 +900,7 @@
 			};
 			name = Release;
 		};
-		41368CBDF9C628512F91F928FBD11CED /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C4EEE2EB75D5B989BA9690F8416F8B28 /* Euromsg.debug.xcconfig */;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = No;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Euromsg/Euromsg-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Euromsg/Euromsg-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Euromsg/Euromsg.modulemap";
-				PRODUCT_MODULE_NAME = Euromsg;
-				PRODUCT_NAME = Euromsg;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		48BBEAF031D2F4AA712E907D4E4E3B42 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 36DB929F0AE3C6CCF12567563844A78E /* Pods-Euromsg_Example.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				APPLICATION_EXTENSION_API_ONLY = No;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Euromsg_Example/Pods-Euromsg_Example-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Euromsg_Example/Pods-Euromsg_Example.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		66F919597A77C39C191FDF91683D3EA0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FACF79A638DEF08C35FBA12CE0659C14 /* Pods-Euromsg_Example.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				APPLICATION_EXTENSION_API_ONLY = No;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Euromsg_Example/Pods-Euromsg_Example-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Euromsg_Example/Pods-Euromsg_Example.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		71F52CC2C2BF55FEA0F1361170209759 /* Debug */ = {
+		365949ACB4C0F5319AEF6C069F68BF54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 61ECECDA19FED471853EE54754C00408 /* Pods-NotificationService.debug.xcconfig */;
 			buildSettings = {
@@ -846,7 +918,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-NotificationService/Pods-NotificationService-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-NotificationService/Pods-NotificationService.modulemap";
@@ -863,11 +935,10 @@
 			};
 			name = Debug;
 		};
-		8ED3BD6E15687C41689931047FF81485 /* Release */ = {
+		546C8D4AAC59DAC93BAF703EA5834E94 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D64DDC64F79BB75B2831E81E43C8D285 /* Pods-NotificationService.release.xcconfig */;
+			baseConfigurationReference = B38325128636F1110EFCDA39B991D5F6 /* Euromsg-iOS11.0.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				APPLICATION_EXTENSION_API_ONLY = No;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -879,12 +950,46 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-NotificationService/Pods-NotificationService-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/Euromsg-iOS11.0/Euromsg-iOS11.0-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Euromsg-iOS11.0/Euromsg-iOS11.0-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Euromsg-iOS11.0/Euromsg-iOS11.0.modulemap";
+				PRODUCT_MODULE_NAME = Euromsg;
+				PRODUCT_NAME = Euromsg;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		672E7BEF58ABBC38C13081E46B9370CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F42646A3EB51928EE5E38873EA5C7E0 /* Pods-Euromsg_Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				APPLICATION_EXTENSION_API_ONLY = No;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Euromsg_Tests/Pods-Euromsg_Tests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-NotificationService/Pods-NotificationService.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-Euromsg_Tests/Pods-Euromsg_Tests.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -893,13 +998,12 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
-		903A0004D3E6651EFD5D2E16214D101B /* Release */ = {
+		7EE7A78859F657F6BEFC651185B43192 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -954,13 +1058,220 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
 		};
-		B4EFE046ACF8F37157F6E322C7FCFC28 /* Debug */ = {
+		9941DE2150B8114F008F51E39B28F220 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4FCEFF3876112043D389588C6BCA8FF4 /* Euromsg-iOS11.0.debug.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = No;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Euromsg-iOS11.0/Euromsg-iOS11.0-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Euromsg-iOS11.0/Euromsg-iOS11.0-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Euromsg-iOS11.0/Euromsg-iOS11.0.modulemap";
+				PRODUCT_MODULE_NAME = Euromsg;
+				PRODUCT_NAME = Euromsg;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A41FE3779C40DF9CEE72E1F9308A1CAA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FACF79A638DEF08C35FBA12CE0659C14 /* Pods-Euromsg_Example.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				APPLICATION_EXTENSION_API_ONLY = No;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Euromsg_Example/Pods-Euromsg_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Euromsg_Example/Pods-Euromsg_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		AE507DF975355A968ED394B01CE81F87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F0354B6E1A74140A41B94AC7F62C2B57 /* Pods-NotificationContent.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				APPLICATION_EXTENSION_API_ONLY = No;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-NotificationContent/Pods-NotificationContent-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-NotificationContent/Pods-NotificationContent.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B1D5A440817C3048123B0BA73D27418F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2EE9127BBD7ED0943458D9B079666AE7 /* Euromsg-iOS10.0.release.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = No;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Euromsg-iOS10.0/Euromsg-iOS10.0-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Euromsg-iOS10.0/Euromsg-iOS10.0-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Euromsg-iOS10.0/Euromsg-iOS10.0.modulemap";
+				PRODUCT_MODULE_NAME = Euromsg;
+				PRODUCT_NAME = Euromsg;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C9C45428AB5B60B84E552A91A297E2F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04CDFA5685CF060415F2B4B22542629E /* Pods-Euromsg_Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				APPLICATION_EXTENSION_API_ONLY = No;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Euromsg_Tests/Pods-Euromsg_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Euromsg_Tests/Pods-Euromsg_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		CD1A04D21C0B4364AB303D074EE4CD85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D64DDC64F79BB75B2831E81E43C8D285 /* Pods-NotificationService.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				APPLICATION_EXTENSION_API_ONLY = No;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-NotificationService/Pods-NotificationService-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-NotificationService/Pods-NotificationService.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D299434AB35E7FD6F7921C8EF24742FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1026,154 +1337,14 @@
 			};
 			name = Debug;
 		};
-		B962ED9DFE8B2D1E007C5AA7AEF44B4B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F0354B6E1A74140A41B94AC7F62C2B57 /* Pods-NotificationContent.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				APPLICATION_EXTENSION_API_ONLY = No;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-NotificationContent/Pods-NotificationContent-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-NotificationContent/Pods-NotificationContent.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		D2D212D9A77D8B3AE0F05D167CC2E7B4 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6F42646A3EB51928EE5E38873EA5C7E0 /* Pods-Euromsg_Tests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				APPLICATION_EXTENSION_API_ONLY = No;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Euromsg_Tests/Pods-Euromsg_Tests-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Euromsg_Tests/Pods-Euromsg_Tests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		D9AF43633D15C0B7A4745CC98BCEB19B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 009B7B99AB36E25C4203713CC51A0AF6 /* Euromsg.release.xcconfig */;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = No;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Euromsg/Euromsg-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Euromsg/Euromsg-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Euromsg/Euromsg.modulemap";
-				PRODUCT_MODULE_NAME = Euromsg;
-				PRODUCT_NAME = Euromsg;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		DBDE604070B38040CA44BA8F3E16790D /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 04CDFA5685CF060415F2B4B22542629E /* Pods-Euromsg_Tests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				APPLICATION_EXTENSION_API_ONLY = No;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Euromsg_Tests/Pods-Euromsg_Tests-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Euromsg_Tests/Pods-Euromsg_Tests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		20C75FAB6E3F0D05C6DFC75B768815CA /* Build configuration list for PBXNativeTarget "Pods-Euromsg_Example" */ = {
+		207B27E4D3AE6B9AC772C389A5D808FB /* Build configuration list for PBXNativeTarget "Pods-NotificationService" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				66F919597A77C39C191FDF91683D3EA0 /* Debug */,
-				48BBEAF031D2F4AA712E907D4E4E3B42 /* Release */,
+				365949ACB4C0F5319AEF6C069F68BF54 /* Debug */,
+				CD1A04D21C0B4364AB303D074EE4CD85 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1181,8 +1352,8 @@
 		34C0856571074ED39C7EC0911FAE373F /* Build configuration list for PBXNativeTarget "Pods-Euromsg_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D2D212D9A77D8B3AE0F05D167CC2E7B4 /* Debug */,
-				DBDE604070B38040CA44BA8F3E16790D /* Release */,
+				672E7BEF58ABBC38C13081E46B9370CE /* Debug */,
+				C9C45428AB5B60B84E552A91A297E2F6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1190,35 +1361,44 @@
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B4EFE046ACF8F37157F6E322C7FCFC28 /* Debug */,
-				903A0004D3E6651EFD5D2E16214D101B /* Release */,
+				D299434AB35E7FD6F7921C8EF24742FF /* Debug */,
+				7EE7A78859F657F6BEFC651185B43192 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52CD110ACF9153ACAD5B8AB94E5B5C26 /* Build configuration list for PBXNativeTarget "Pods-NotificationContent" */ = {
+		7C605C667755F3A396A09755E2E02C65 /* Build configuration list for PBXNativeTarget "Pods-Euromsg_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B962ED9DFE8B2D1E007C5AA7AEF44B4B /* Debug */,
-				2A81775020CFE0BEA39A6833DF5953BA /* Release */,
+				A41FE3779C40DF9CEE72E1F9308A1CAA /* Debug */,
+				1C118AAEE8EFD81A8AD4BCF785132ACF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D1F675925F10F5503A6A8A82D285F965 /* Build configuration list for PBXNativeTarget "Euromsg" */ = {
+		C55810F5E84337009FD0F46E518A2F7A /* Build configuration list for PBXNativeTarget "Pods-NotificationContent" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				41368CBDF9C628512F91F928FBD11CED /* Debug */,
-				D9AF43633D15C0B7A4745CC98BCEB19B /* Release */,
+				AE507DF975355A968ED394B01CE81F87 /* Debug */,
+				33E4E40131AC72CCEAD2392C9F659D93 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E2063FAB8C9AB1AAF786B5FB4FD5575E /* Build configuration list for PBXNativeTarget "Pods-NotificationService" */ = {
+		C8A7B16CEEB717157F5C0F70B8591A47 /* Build configuration list for PBXNativeTarget "Euromsg-iOS11.0" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				71F52CC2C2BF55FEA0F1361170209759 /* Debug */,
-				8ED3BD6E15687C41689931047FF81485 /* Release */,
+				9941DE2150B8114F008F51E39B28F220 /* Debug */,
+				546C8D4AAC59DAC93BAF703EA5834E94 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FB6D51052F09F36E2FCFA233BCA8C8E1 /* Build configuration list for PBXNativeTarget "Euromsg-iOS10.0" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2ADC472545F6C419D42C1076477DFC19 /* Debug */,
+				B1D5A440817C3048123B0BA73D27418F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

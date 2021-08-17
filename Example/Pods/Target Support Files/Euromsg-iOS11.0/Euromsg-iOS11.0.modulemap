@@ -1,5 +1,5 @@
 framework module Euromsg {
-  umbrella header "Euromsg-umbrella.h"
+  umbrella header "Euromsg-iOS11.0-umbrella.h"
 
   export *
   module * { export * }
