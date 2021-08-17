@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Euromsg'
-  s.version          = '2.2.7'
+  s.version          = '2.2.8'
   s.summary          = 'Euromsg SDK'
   s.description      = 'Euromsg SDK'
   s.homepage         = 'https://github.com/relateddigital/euromessage-ios'

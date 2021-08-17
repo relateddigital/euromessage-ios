@@ -1,6 +1,6 @@
 {
   "name": "Euromsg",
-  "version": "2.2.7",
+  "version": "2.2.8",
   "summary": "Euromsg SDK",
   "description": "Euromsg SDK",
   "homepage": "https://github.com/relateddigital/euromessage-ios",
@@ -10,7 +10,7 @@
   },
   "source": {
     "git": "https://github.com/relateddigital/euromessage-ios.git",
-    "tag": "2.2.7"
+    "tag": "2.2.8"
   },
   "platforms": {
     "ios": "10.0"
