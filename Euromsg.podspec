@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Euromsg'
-  s.version          = '2.3.0'
+  s.version          = '2.3.1'
   s.summary          = 'Euromsg SDK'
   s.description      = 'Euromsg SDK'
   s.homepage         = 'https://github.com/relateddigital/euromessage-ios'
@@ -19,4 +19,5 @@ Pod::Spec.new do |s|
   s.swift_version = '5.0'
   s.source_files = 'Sources/Euromsg/Classes/**/*'
   s.pod_target_xcconfig = { 'PRODUCT_BUNDLE_IDENTIFIER': 'com.euromsg.EuroFramework' }
+  s.requires_arc     = true
 end

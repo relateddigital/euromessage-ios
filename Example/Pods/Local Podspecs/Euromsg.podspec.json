@@ -1,6 +1,6 @@
 {
   "name": "Euromsg",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "summary": "Euromsg SDK",
   "description": "Euromsg SDK",
   "homepage": "https://github.com/relateddigital/euromessage-ios",
@@ -10,7 +10,7 @@
   },
   "source": {
     "git": "https://github.com/relateddigital/euromessage-ios.git",
-    "tag": "2.3.0"
+    "tag": "2.3.1"
   },
   "platforms": {
     "ios": "10.0"
@@ -20,5 +20,6 @@
   "pod_target_xcconfig": {
     "PRODUCT_BUNDLE_IDENTIFIER": "com.euromsg.EuroFramework"
   },
+  "requires_arc": true,
   "swift_version": "5.0"
 }
