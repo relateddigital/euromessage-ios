@@ -23,7 +23,7 @@ public class Euromsg {
     private var pushPermitDidCall: Bool = false
     weak var delegate: EuromsgDelegate?
     internal var subscription: EMSubscriptionRequest
-    private var previousSubscription: EMSubscriptionRequest?
+    private static var previousSubscription: EMSubscriptionRequest?
     private var previousRegisterEmailSubscription: EMSubscriptionRequest?
     internal var userAgent: String? = nil 
 
@@ -395,7 +395,7 @@ extension Euromsg {
 
         shared.readWriteLock.read {
             subs = shared.subscription
-            previousSubs = shared.previousSubscription
+            previousSubs = Euromsg.previousSubscription
         }
         
         var shouldSendSubscription = false
@@ -403,7 +403,7 @@ extension Euromsg {
         if subs.isValid() {
             shared.readWriteLock.write {
                 if previousSubs == nil ||  subs != previousSubs {
-                    shared.previousSubscription = subs
+                    Euromsg.previousSubscription = subs
                     shouldSendSubscription = true
                 }
             }
