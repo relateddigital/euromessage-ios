@@ -397,12 +397,22 @@ extension Euromsg {
             subs = shared.subscription
             previousSubs = shared.previousSubscription
         }
+        
+        var shouldSendSubscription = false
 
-        if subs.isValid() && (previousSubs == nil ||  subs != previousSubs) {
-
+        if subs.isValid() {
             shared.readWriteLock.write {
-                shared.previousSubscription = subs
+                if previousSubs == nil ||  subs != previousSubs {
+                    shared.previousSubscription = subs
+                    shouldSendSubscription = true
+                }
             }
+            
+            if !shouldSendSubscription {
+                EMLog.warning("Subscription request not ready : \(String(describing: subs))")
+                return
+            }
+            
             saveSubscription()
             shared.readWriteLock.read {
                 subs = shared.subscription
@@ -410,14 +420,14 @@ extension Euromsg {
             EMTools.saveUserDefaults(key: EMKey.tokenKey, value: subs.token as AnyObject)
             EMLog.info("Current subscription \(subs.encoded)")
         } else {
-            EMLog.warning("Subscription request not ready : \(String(describing: subs))")
+            EMLog.warning("Subscription request is not valid : \(String(describing: subs))")
             return
         }
 
         shared.readWriteLock.read {
             subs = shared.subscription
         }
-
+        
         shared.euromsgAPI?.request(requestModel: subs, retry: 0, completion: shared.registerRequestHandler)
     }
 
