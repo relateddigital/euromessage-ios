@@ -7,6 +7,11 @@
 
 import Foundation
 
-class EMPushTracker {
+class EMPushTracker : NSObject {
+    
+    
+    func setupAutomaticPushOpenTracking() {
+        
+    }
     
 }
