@@ -79,6 +79,14 @@ public class Euromsg {
                                                   name: UIApplication.didBecomeActiveNotification,
                                                   object: nil)
     }
+    
+    static func sharedUIApplication() -> UIApplication? {
+        let shared = UIApplication.perform(NSSelectorFromString("sharedApplication"))?.takeUnretainedValue()
+        guard let sharedApplication = shared as? UIApplication else {
+            return nil
+        }
+        return sharedApplication
+    }
 
     private static func getShared() -> Euromsg? {
         guard let shared = Euromsg.shared else {
