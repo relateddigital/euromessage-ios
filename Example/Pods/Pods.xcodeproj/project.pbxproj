@@ -26,6 +26,7 @@
 		7283906DC08A0F0DE2111EB85DCB3D79 /* EMNotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFDC17527110E49D7CF98CE2E2BC325 /* EMNotificationHandler.swift */; };
 		790057133E69B7F376E2D1B4AF157A2D /* EMCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965DB3492B1DE22EC2D84B9171789E78 /* EMCodable.swift */; };
 		8816699E26D3F005001F653D /* EMPushTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816699D26D3F005001F653D /* EMPushTracker.swift */; };
+		881669A126D66171001F653D /* EMSwizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881669A026D66171001F653D /* EMSwizzle.swift */; };
 		96C0F2D78D1DBD20C5BCE7CCC3FFAE80 /* EMNetworkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB55DAF1345C8DBF49FAE91A2097D89 /* EMNetworkHandler.swift */; };
 		9F022DAD27D27BB1F222A7B1DD9EBF3E /* Euromsg.h in Headers */ = {isa = PBXBuildFile; fileRef = D19827B49506BE1C5CA23E94C11A5176 /* Euromsg.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A126D5C6EF738A0C2CB12E9A3FFF7D4F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
@@ -115,6 +116,7 @@
 		7EFDC17527110E49D7CF98CE2E2BC325 /* EMNotificationHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMNotificationHandler.swift; path = Sources/Euromsg/Classes/EMNotificationHandler.swift; sourceTree = "<group>"; };
 		8239BB4CCD2F0E0E2E072D356F3868C7 /* EMSubscriptionRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMSubscriptionRequest.swift; path = Sources/Euromsg/Classes/EMSubscriptionRequest.swift; sourceTree = "<group>"; };
 		8816699D26D3F005001F653D /* EMPushTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EMPushTracker.swift; path = Sources/Euromsg/Classes/EMPushTracker.swift; sourceTree = "<group>"; };
+		881669A026D66171001F653D /* EMSwizzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMSwizzle.swift; sourceTree = "<group>"; };
 		89451842FEAAE1BB06B52921FD18A461 /* Pods_Euromsg_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Euromsg_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89FD67BBC2C1B2C25EF9D74680E236D3 /* Pods-NotificationContent-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NotificationContent-dummy.m"; sourceTree = "<group>"; };
 		8EF3FD1B9334204303C83305D2BE1F59 /* Pods-NotificationService.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-NotificationService.modulemap"; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				A96276E58344B516D695BD0C1BD21C05 /* EMKeychain.swift */,
 				BB534CF97B3D4741C57533263B771E6C /* EMLog.swift */,
 				C923BF75F0204EFB4F26F0E9CE29CB5E /* EMTools.swift */,
+				881669A026D66171001F653D /* EMSwizzle.swift */,
 			);
 			name = EMUtils;
 			path = Sources/Euromsg/Classes/EMUtils;
@@ -642,6 +645,7 @@
 				7115DBA3ED49D03E4EC03C6124F6BA50 /* EMTools.swift in Sources */,
 				D5DBFF63B494E2294D61D534AF2BEA0A /* Euromsg-dummy.m in Sources */,
 				AD0CCC8E3CB982530DC3C794FCF9A811 /* Euromsg.swift in Sources */,
+				881669A126D66171001F653D /* EMSwizzle.swift in Sources */,
 				06D89ECF60017643BEDDA78C9A52475A /* EuromsgAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
