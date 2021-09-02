@@ -120,7 +120,15 @@ public class Euromsg {
     }
 
     // MARK: Lifecycle
-    public class func configure(appAlias: String, enableLog: Bool = false) {
+    public class func configure(appAlias: String, enableLog: Bool = false, appGroupsKey: String? = nil) {
+        
+        if let appGroupName = EMTools.getAppGroupName(appGroupName: appGroupsKey) {
+            EMTools.setAppGroupsUserDefaults(appGroupName: appGroupName)
+            EMLog.info("App Group Key : \(appGroupName)")
+        }
+        
+        
+        
         Euromsg.shared = Euromsg(appKey: appAlias)
         EMLog.shared.isEnabled = enableLog
         Euromsg.shared?.euromsgAPI = EuromsgAPI()

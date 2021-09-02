@@ -26,6 +26,9 @@ class EMKey {
     internal static let userAgent = "user-agent"
     
     
+    
+    
+    
     internal static let timeoutInterval = 30
     internal static let prodBaseUrl = ".euromsg.com"
 }

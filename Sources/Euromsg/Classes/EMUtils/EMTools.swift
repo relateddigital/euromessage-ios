@@ -15,6 +15,9 @@ internal class EMTools {
     static private var webView: WKWebView?
     
     static let userDefaults = UserDefaults(suiteName: EMKey.userDefaultSuiteKey)
+    static var appGroupUserDefaults : UserDefaults?
+    
+    
     static func validatePhone(phone: String?) -> Bool {
         guard phone != nil else {
             return false
@@ -104,5 +107,27 @@ internal class EMTools {
                 }
             })
         }
+    }
+    
+    private static func primaryBundleIdentifier() -> String? {
+        var bundle = Bundle.main
+        if bundle.bundleURL.pathExtension == "appex" {
+            if let b = Bundle(url: bundle.bundleURL.deletingLastPathComponent().deletingLastPathComponent()) {
+                bundle = b
+            }
+        }
+        return bundle.bundleIdentifier
+    }
+    
+    static func getAppGroupName(appGroupName: String?) -> String? {
+        var name = appGroupName
+        if name == nil, let primaryBundleIdentifier = primaryBundleIdentifier() {
+            name = "group.\(primaryBundleIdentifier).\("relateddigital")"
+        }
+        return name?.trimmingCharacters(in: CharacterSet.whitespaces)
+    }
+    
+    static func setAppGroupsUserDefaults(appGroupName: String) {
+        appGroupUserDefaults = UserDefaults(suiteName: appGroupName)
     }
 }
