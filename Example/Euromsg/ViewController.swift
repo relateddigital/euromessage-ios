@@ -26,11 +26,12 @@ class ViewController: UIViewController {
     let emailPermitKey = "emailPermit"
     
     
-    let conf = Euromsg.checkConfiguration()
+    var conf: EMConfiguration!
     
     
     
     override func viewDidLoad() {
+        conf = Euromsg.checkConfiguration()
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         pushPermissionSwitch.isOn = conf.properties?.pushPermit == "Y"
