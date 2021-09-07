@@ -35,6 +35,8 @@ class EMNotificationHandler {
             loadAttachments(mediaUrl: mediaUrl,
                             modifiedBestAttemptContent: modifiedBestAttemptContent,
                             withContentHandler: contentHandler)
+        } else if pushDetail.pushType == "Text" {
+            contentHandler(modifiedBestAttemptContent)
         }
     }
 
