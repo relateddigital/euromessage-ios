@@ -57,4 +57,13 @@ class EMLog {
             }
         }
     }
+    
+    /// Send error messages to rd graylog servers.
+    ///
+    /// - Parameter message: Logging message
+    static func sendGraylogMessage(_ message: EMGraylogRequest) {
+        
+        
+        //EMLog.shared.debug(type: "🔴", message: message)
+    }
 }

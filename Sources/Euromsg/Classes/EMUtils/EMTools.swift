@@ -135,7 +135,7 @@ internal class EMTools {
     static func getAppGroupName(appGroupName: String?) -> String? {
         var name = appGroupName
         if name == nil, let primaryBundleIdentifier = primaryBundleIdentifier() {
-            name = "group.\(primaryBundleIdentifier).\("relateddigital")"
+            name = "\(EMKey.appGroupNameDefaultPrefix).\(primaryBundleIdentifier).\(EMKey.appGroupNameDefaultSuffix))"
         }
         return name?.trimmingCharacters(in: CharacterSet.whitespaces)
     }
@@ -143,4 +143,5 @@ internal class EMTools {
     static func setAppGroupsUserDefaults(appGroupName: String) {
         appGroupUserDefaults = UserDefaults(suiteName: appGroupName)
     }
+    
 }

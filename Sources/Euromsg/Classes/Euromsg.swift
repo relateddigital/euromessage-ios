@@ -19,7 +19,8 @@ public class Euromsg {
     private let readWriteLock: EMReadWriteLock
     internal var euromsgAPI: EuromsgAPIProtocol?
     private var observers: [NSObjectProtocol]?
-    internal var emNetworkHandler: EMNetworkHandler?
+    internal var emReadHandler: EMReadHandler?
+    internal var emDeliverHandler: EMDeliverHandler?
     private var pushPermitDidCall: Bool = false
     weak var delegate: EuromsgDelegate?
     internal var subscription: EMSubscriptionRequest
@@ -132,7 +133,8 @@ public class Euromsg {
         Euromsg.shared = Euromsg(appKey: appAlias)
         EMLog.shared.isEnabled = enableLog
         Euromsg.shared?.euromsgAPI = EuromsgAPI()
-        Euromsg.shared?.emNetworkHandler = EMNetworkHandler(euromsg: Euromsg.shared!)
+        Euromsg.shared?.emReadHandler = EMReadHandler(euromsg: Euromsg.shared!)
+        Euromsg.shared?.emDeliverHandler = EMDeliverHandler(euromsg: Euromsg.shared!)
 
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().removeAllDeliveredNotifications()
@@ -364,7 +366,7 @@ extension Euromsg {
         EMLog.info("handlePush: \(pushDictionary)")
         if let jsonData = try? JSONSerialization.data(withJSONObject: pushDictionary, options: .prettyPrinted),
            let message = try? JSONDecoder().decode(EMMessage.self, from: jsonData) {
-            shared.emNetworkHandler?.reportRetention(message: message, status: EMKey.euroReadStatus)
+            shared.emReadHandler?.reportRead(message: message)
         } else {
             EMLog.error("pushDictionary parse failed")
         }
@@ -407,7 +409,7 @@ extension Euromsg {
             UIApplication.shared.applicationIconBadgeNumber = 0
         }
         // check whether the user have an unreported message
-        shared.emNetworkHandler?.checkUserUnreportedMessages()
+        shared.emReadHandler?.checkUserUnreportedMessages()
 
         shared.readWriteLock.read {
             subs = shared.subscription
