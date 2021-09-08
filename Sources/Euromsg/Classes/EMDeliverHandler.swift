@@ -1,14 +1,13 @@
 //
-//  EMNetworkHandler.swift
+//  EMDeliverHandler.swift
 //  Euromsg
 //
-//  Created by Muhammed ARAFA on 7.05.2020.
-//  Copyright © 2020 Muhammed ARAFA. All rights reserved.
+//  Created by Egemen Gulkilik on 8.09.2021.
 //
 
 import Foundation
 
-class EMNetworkHandler {
+class EMDeliverHandler {
     private let readWriteLock: EMReadWriteLock
     private var euromsg: Euromsg!
     private var inProgressPushId: String?
@@ -18,26 +17,23 @@ class EMNetworkHandler {
     
     init(euromsg: Euromsg) {
         self.euromsg = euromsg
-        self.readWriteLock = EMReadWriteLock(label: "EMNetworkHandlerLock")
+        self.readWriteLock = EMReadWriteLock(label: "EMDeliverHandler")
     }
-    
-    // MARK: Report Methods
-    
+        
     /// Reports recieved push to Euromsg services
     /// - Parameters:
     ///   - message: Push data
-    ///   - status: Euromsg services push status ( euroReceivedStatus = "D",  euroReadStatus = "O" )
-    internal func reportRetention(message: EMMessage, status: String) {
+    internal func reportDeliver(message: EMMessage) {
         guard let appKey = euromsg.subscription.appKey,
               let token = euromsg.subscription.token else {
-            EMLog.error("EMNetworkHandler reportRetention appKey or token does not exist")
+            EMLog.error("EMDeliverHandler reportDeliver appKey or token does not exist")
             return
         }
         
         var request: EMRetentionRequest?
         
         guard let pushID = message.pushId, let emPushSp = message.emPushSp else {
-            EMLog.warning("pushId or emPushSp is empty")
+            EMLog.warning("EMDeliverHandler pushId or emPushSp is empty")
             return
         }
         
@@ -50,7 +46,7 @@ class EMNetworkHandler {
         }
         
         if !isRequestValid {
-            EMLog.warning("EMNetworkHandler request not valid")
+            EMLog.warning("EMDeliverHandler request not valid")
             return
         }
         
@@ -58,10 +54,10 @@ class EMNetworkHandler {
             inProgressPushId = pushID
             inProgressEmPushSp = emPushSp
             emMessage = message
-            EMLog.info("reportRetention: \(message.encoded)")
+            EMLog.info("reportDeliver: \(message.encoded)")
             request = EMRetentionRequest(key: appKey,
                                          token: token,
-                                         status: status,
+                                         status: EMKey.euroReceivedStatus,
                                          pushId: pushID,
                                          emPushSp: emPushSp)
         }
@@ -70,12 +66,12 @@ class EMNetworkHandler {
             DispatchQueue.main.asyncAfter(deadline: .now() + .nanoseconds(2)) { [weak self] in
                 guard let self = self else { return }
                 self.euromsg.euromsgAPI?.request(requestModel: request, retry: 3,
-                                                 completion: self.retentionRequestHandler)
+                                                 completion: self.deliverRequestHandler)
             }
         }
     }
     
-    private func retentionRequestHandler(result: Result<EMResponse?, EuromsgAPIError>) {
+    private func deliverRequestHandler(result: Result<EMResponse?, EuromsgAPIError>) {
         switch result {
         case .success:
             EMTools.removeUserDefaults(userKey: EMKey.euroLastMessageKey)
@@ -91,15 +87,5 @@ class EMNetworkHandler {
         }
     }
     
-    /// Controls locale storage for unreported changes on user data
-    internal func checkUserUnreportedMessages() {
-        let messageJson = EMTools.retrieveUserDefaults(userKey: EMKey.euroLastMessageKey) as? Data
-        if let messageJson = messageJson {
-            EMLog.info("Old message : \(messageJson)")
-            let lastMessage = try? JSONDecoder().decode(EMMessage.self, from: messageJson)
-            if let lastMessage = lastMessage {
-                reportRetention(message: lastMessage, status: EMKey.euroReadStatus)
-            }
-        }
-    }
 }
+
