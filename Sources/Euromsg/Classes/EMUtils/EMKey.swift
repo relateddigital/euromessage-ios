@@ -13,7 +13,7 @@ class EMKey {
                     appAlias not provided. Please use Euromsg.configure(::) function first.
                     For more information visit https://github.com/relateddigital/euromessage-ios
                     """
-    internal static let sdkVersion = "2.3.1"
+    internal static let sdkVersion = "2.4.0"
     internal static let tokenKey = "EURO_TOKEN_KEY"
     internal static let registerKey = "EURO_REGISTER_KEY"
     internal static let euroLastMessageKey = "EURO_LAST_MESSAGE_KEY"
@@ -25,10 +25,14 @@ class EMKey {
     internal static let userDefaultSuiteKey =  "group.relateddigital.euromsg" // TODO: bu sabit olmamalı, müşteri set etmeli.
     internal static let userAgent = "user-agent"
     
-    
-    
-    
-    
     internal static let timeoutInterval = 30
     internal static let prodBaseUrl = ".euromsg.com"
+    
+    
+    internal static let payloadDayThreshold = 30
+    internal static let euroPayloadsKey = "EURO_PAYLOADS_KEY"
+    internal static let appGroupNameDefaultPrefix = "group"
+    internal static let appGroupNameDefaultSuffix = "relateddigital"
+    
+    
 }
