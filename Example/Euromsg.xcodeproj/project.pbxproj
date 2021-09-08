@@ -98,8 +98,6 @@
 		88185DF824DADDB50061839C /* EMNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMNotificationViewController.swift; sourceTree = "<group>"; };
 		88185DFB24DADDB50061839C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		88185DFD24DADDB50061839C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		88621ECA24DAE54000109E8E /* EuromsgExampleDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EuromsgExampleDebug.entitlements; sourceTree = "<group>"; };
-		887F63B82652F3C9000561C5 /* EuromsgExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EuromsgExample.entitlements; sourceTree = "<group>"; };
 		887F63B92652F3F3000561C5 /* NotificationService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationService.entitlements; sourceTree = "<group>"; };
 		887F63BA2652F892000561C5 /* NotificationContent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationContent.entitlements; sourceTree = "<group>"; };
 		8895A27124DC2950009AFDE7 /* EuromsgTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EuromsgTests.swift; sourceTree = "<group>"; };
@@ -172,8 +170,6 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
-				887F63B82652F3C9000561C5 /* EuromsgExample.entitlements */,
-				88621ECA24DAE54000109E8E /* EuromsgExampleDebug.entitlements */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for Euromsg */,
 				607FACE81AFB9204008FA782 /* Tests */,
