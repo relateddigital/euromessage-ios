@@ -9,6 +9,7 @@
 import Foundation
 
 public struct EMMessage: EMCodable {
+    public var date: String?
     public let aps: Aps?
     public let altURL: String?
     public let cid: String?
