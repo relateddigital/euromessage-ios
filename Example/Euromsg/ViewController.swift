@@ -47,7 +47,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func pushNotificationPermissionButtonAction(_ sender: UIButton) {
-//         Euromsg.askForNotificationPermissionProvisional()
+        Euromsg.askForNotificationPermissionProvisional()
         Euromsg.sync()
     }
 
