@@ -559,5 +559,9 @@ extension Euromsg {
     public static func getIdentifierForVendorString() -> String {
         return EMTools.getIdentifierForVendorString()
     }
+    
+    public static func getPushMessages( completion: @escaping ((_ payloads: [EMMessage]) -> Void)) {
+        
+    }
 
 }

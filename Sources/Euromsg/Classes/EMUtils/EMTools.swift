@@ -144,4 +144,16 @@ internal class EMTools {
         appGroupUserDefaults = UserDefaults(suiteName: appGroupName)
     }
     
+    static private let dateFormatter = DateFormatter()
+
+    static func formatDate(_ date: Date, format: String = "yyyy-MM-dd HH:mm:ss") -> String {
+        dateFormatter.dateFormat = format
+        return dateFormatter.string(from: date)
+    }
+    
+    static func parseDate(_ dateString: String, format: String = "yyyy-MM-dd HH:mm:ss") -> Date? {
+        dateFormatter.dateFormat = format
+        return dateFormatter.date(from: dateString)
+    }
+    
 }
