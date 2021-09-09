@@ -85,8 +85,12 @@ class ViewController: UIViewController {
             Euromsg.removeUserProperty(key: key.trimmingCharacters(in: .whitespacesAndNewlines))
             Euromsg.sync()
         }
+    }
+    
+    @IBAction func getPushMessages(_ sender: Any) {
         
     }
+    
 }
 
 extension UIViewController {
