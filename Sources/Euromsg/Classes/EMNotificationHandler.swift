@@ -11,7 +11,6 @@ import UIKit
 
 class EMNotificationHandler {
 
-    @available(iOS 10.0, *)
     public static func didReceive(_ bestAttemptContent: UNMutableNotificationContent?,
                                   withContentHandler contentHandler:  @escaping (UNNotificationContent) -> Void) {
         guard let userInfo = bestAttemptContent?.userInfo,
@@ -42,7 +41,6 @@ class EMNotificationHandler {
         }
     }
 
-    @available(iOS 10.0, *)
     static func addCarouselActionButtons() {
         let categoryIdentifier = "carousel"
         let carouselNext = UNNotificationAction(identifier: "carousel.next",
@@ -55,7 +53,6 @@ class EMNotificationHandler {
         UNUserNotificationCenter.current().setNotificationCategories([carouselCategory])
     }
 
-    @available(iOS 10.0, *)
     static func loadAttachments(mediaUrl: URL,
                                 modifiedBestAttemptContent: UNMutableNotificationContent,
                                 withContentHandler contentHandler:  @escaping (UNNotificationContent) -> Void) {

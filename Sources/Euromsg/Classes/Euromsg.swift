@@ -502,7 +502,6 @@ extension Euromsg {
 extension Euromsg {
     
     // MARK: - Notification Extension
-    @available(iOS 10.0, *)
     public static func didReceive(_ bestAttemptContent: UNMutableNotificationContent?,
                                   withContentHandler contentHandler:  @escaping (UNNotificationContent) -> Void) {
         EMNotificationHandler.didReceive(bestAttemptContent, withContentHandler: contentHandler)
