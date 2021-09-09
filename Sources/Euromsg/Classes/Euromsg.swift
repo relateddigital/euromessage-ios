@@ -561,7 +561,7 @@ extension Euromsg {
     }
     
     public static func getPushMessages( completion: @escaping ((_ payloads: [EMMessage]) -> Void)) {
-        
+        completion(EMPayloadUtils.getRecentPayloads())
     }
 
 }

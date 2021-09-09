@@ -135,7 +135,7 @@ internal class EMTools {
     static func getAppGroupName(appGroupName: String?) -> String? {
         var name = appGroupName
         if name == nil, let primaryBundleIdentifier = primaryBundleIdentifier() {
-            name = "\(EMKey.appGroupNameDefaultPrefix).\(primaryBundleIdentifier).\(EMKey.appGroupNameDefaultSuffix))"
+            name = "\(EMKey.appGroupNameDefaultPrefix).\(primaryBundleIdentifier).\(EMKey.appGroupNameDefaultSuffix)"
         }
         return name?.trimmingCharacters(in: CharacterSet.whitespaces)
     }

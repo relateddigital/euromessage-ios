@@ -20,6 +20,8 @@ class EMPayloadUtils {
                 recentPayloads.insert(payload, at: 0)
                 if let recentPayloadsData = try? JSONEncoder().encode(recentPayloads) {
                     EMTools.saveUserDefaults(key: EMKey.euroPayloadsKey, value: recentPayloadsData as AnyObject)
+                } else {
+                    EMLog.warning("Can not encode recentPayloads : \(String(describing: recentPayloads))")
                 }
             }
         } else {
@@ -37,7 +39,7 @@ class EMPayloadUtils {
         if let filterDate = Calendar.current.date(byAdding: .day, value: -EMKey.payloadDayThreshold, to: Date()) {
             finalPayloads = finalPayloads.filter({ payload in
                 if let date = payload.getDate() {
-                    return filterDate > date
+                    return date > filterDate
                 } else {
                     return false
                 }

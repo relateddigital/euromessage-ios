@@ -20,7 +20,10 @@ class EMNotificationHandler {
         guard let pushDetail = try? JSONDecoder.init().decode(EMMessage.self,
                                                               from: data) else { return }
         Euromsg.shared?.emDeliverHandler?.reportDeliver(message: pushDetail)
-        EMTools.saveUserDefaults(key: EMKey.euroLastMessageKey, value: data as AnyObject)
+        
+        //TODO: egemen bunu kaldırdım. gerek yok sanki
+        //EMTools.saveUserDefaults(key: EMKey.euroLastMessageKey, value: data as AnyObject)
+        EMPayloadUtils.savePayload(payload: pushDetail)
 
         // Setup carousel buttons
         if pushDetail.aps?.category == "carousel" {
