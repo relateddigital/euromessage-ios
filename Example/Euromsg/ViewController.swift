@@ -88,7 +88,15 @@ class ViewController: UIViewController {
     }
     
     @IBAction func getPushMessages(_ sender: Any) {
-        
+        print("🚲 getPushMessages called")
+        Euromsg.getPushMessages(completion: { messages in
+            for message in messages {
+                print("🆔: \(message.pushId)")
+                print("📅: \(message.formattedDateString)")
+                print(message.encoded)
+            }
+            
+        })
     }
     
 }
