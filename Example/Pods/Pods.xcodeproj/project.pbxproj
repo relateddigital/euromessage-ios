@@ -145,7 +145,7 @@
 		DD9DB35497EF00C7986381BA22C72102 /* Pods-Euromsg_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Euromsg_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		E426E0E3648DB85D90D2BB7A90A4EB63 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E546F68EF68DA067E447E36A3E5627AC /* Pods-Euromsg_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Euromsg_Tests-Info.plist"; sourceTree = "<group>"; };
-		E5FA9ADE1E66ED7A4D727ED931505CE6 /* EMReadWriteLock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMReadWriteLock.swift; path = Sources/Euromsg/Classes/EMReadWriteLock.swift; sourceTree = "<group>"; };
+		E5FA9ADE1E66ED7A4D727ED931505CE6 /* EMReadWriteLock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMReadWriteLock.swift; sourceTree = "<group>"; };
 		E7329E00BCABF99490F4B1BC8AA2A6C5 /* EMRetentionRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMRetentionRequest.swift; path = Sources/Euromsg/Classes/EMRetentionRequest.swift; sourceTree = "<group>"; };
 		E80C282759A4BEC85A0FFAAB02577D24 /* Pods-NotificationContent.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-NotificationContent.modulemap"; sourceTree = "<group>"; };
 		E842A1B4909D5D0E613F99CC897624B5 /* Euromsg.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Euromsg.debug.xcconfig; sourceTree = "<group>"; };
@@ -212,7 +212,6 @@
 				B179637C37966764175C015363FC6E64 /* EMNotificationHandler.swift */,
 				C7EDE0A35F77815AAE274899419E127F /* EMPushTracker.swift */,
 				415D654EB7647BEB2D4C9F94639350F0 /* EMReadHandler.swift */,
-				E5FA9ADE1E66ED7A4D727ED931505CE6 /* EMReadWriteLock.swift */,
 				6CDA3060E8D3A586D86B8C9E0C235969 /* EMRequestProtocol.swift */,
 				E7329E00BCABF99490F4B1BC8AA2A6C5 /* EMRetentionRequest.swift */,
 				D8A660E3E165AAC10A0867C9E2F98564 /* EMSubscriptionRequest.swift */,
@@ -307,6 +306,7 @@
 				AFAB3A5E69241CD566D90515C2B01D65 /* EMKeychain.swift */,
 				FC8C6B680E0BBC19C856CE8687043271 /* EMLog.swift */,
 				89A2FD89799E1339CA696538B70A9B9F /* EMPayloadUtils.swift */,
+				E5FA9ADE1E66ED7A4D727ED931505CE6 /* EMReadWriteLock.swift */,
 				2F064EE19BB6C92C0F7ACCB166D16609 /* EMSwizzle.swift */,
 				C76E54E71D8C4174BBC6F36987F86D7D /* EMTools.swift */,
 			);
