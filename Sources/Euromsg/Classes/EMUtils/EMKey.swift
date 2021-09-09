@@ -34,5 +34,8 @@ class EMKey {
     internal static let appGroupNameDefaultPrefix = "group"
     internal static let appGroupNameDefaultSuffix = "relateddigital"
     
+    internal static let graylogLogLevelError = "e"
+    internal static let graylogLogLevelWarning = "w"
+    
     
 }

@@ -30,6 +30,7 @@ class EMReadHandler {
         guard let appKey = euromsg.subscription.appKey,
               let token = euromsg.subscription.token else {
             EMLog.error("EMReadHandler reportRead appKey or token does not exist")
+            Euromsg.sendGraylogMessage(logLevel: EMKey.graylogLogLevelError, logMessage: "EMReadHandler reportRead appKey or token does not exist")
             return
         }
         

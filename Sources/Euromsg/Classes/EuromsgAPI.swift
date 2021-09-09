@@ -81,7 +81,7 @@ class EuromsgAPI: EuromsgAPIProtocol {
     }
 
     func setupUrlRequest<R: EMRequestProtocol>(_ requestModel: R) -> URLRequest? {
-        let urlString = "https://\(requestModel.subdomain)\(EMKey.prodBaseUrl)/\(requestModel.path)"
+        let urlString = "https://\(requestModel.subdomain)\(requestModel.prodBaseUrl)/\(requestModel.path)"
         guard let url = URL.init(string: urlString) else {
             EMLog.info("URL couldn't be initialized")
             return nil

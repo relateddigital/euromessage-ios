@@ -11,6 +11,7 @@ struct EMGraylogRequest: EMCodable, EMRequestProtocol {
     internal var path = "log/mobileSdk"
     internal var method = "POST"
     internal var subdomain = "gt"
+    internal var prodBaseUrl = ".relateddigital.com"
 
     var logLevel: String?
     var logMessage: String?
@@ -26,10 +27,24 @@ struct EMGraylogRequest: EMCodable, EMRequestProtocol {
     var deviceName: String?
     var userAgent: String?
     var identifierForVendor: String?
-    var extra: [String: String]?
+    var extra: [String: String]? = [String: String]()
     
-    init() {
-        self.token = nil
-        self.extra = [:]
+    enum CodingKeys: String, CodingKey {
+        case logLevel = "logLevel"
+        case logMessage = "logMessage"
+        case logPlace = "logPlace"
+        case googleAppAlias = "googleAppAlias"
+        case huaweiAppAlias = "huaweiAppAlias"
+        case iosAppAlias = "iosAppAlias"
+        case token = "token"
+        case appVersion = "appVersion"
+        case sdkVersion = "sdkVersion"
+        case osType = "osType"
+        case osVersion = "osVersion"
+        case deviceName = "deviceName"
+        case userAgent = "userAgent"
+        case identifierForVendor = "identifierForVendor"
+        case extra = "extra"
     }
+    
 }

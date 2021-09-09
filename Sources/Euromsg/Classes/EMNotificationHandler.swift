@@ -66,6 +66,7 @@ class EMNotificationHandler {
                 if let err = error {
                     let desc = err.localizedDescription
                     EMLog.error("Error with downloading rich push: \(String(describing: desc))")
+                    Euromsg.sendGraylogMessage(logLevel: EMKey.graylogLogLevelError, logMessage: "Error with downloading rich push: \(String(describing: desc))")
                     contentHandler(modifiedBestAttemptContent)
                     return
                 }
@@ -87,6 +88,7 @@ class EMNotificationHandler {
                     }
                 } catch {
                     EMLog.error("Error with the rich push attachment: \(error)")
+                    Euromsg.sendGraylogMessage(logLevel: EMKey.graylogLogLevelError, logMessage: "Error with the rich push attachment: \(error)")
                     contentHandler(modifiedBestAttemptContent)
                     return
                 }

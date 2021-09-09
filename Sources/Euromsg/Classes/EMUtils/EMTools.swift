@@ -116,7 +116,8 @@ internal class EMTools {
                 if error == nil, let userAgentString = userAgent as? String, userAgentString.count > 0 {
                     completion(userAgentString)
                 } else {
-                    EMLog.error("Can not computed userAgent")
+                    EMLog.error("Can not evaluate userAgent")
+                    Euromsg.sendGraylogMessage(logLevel: EMKey.graylogLogLevelError, logMessage: "Can not evaluate userAgent")
                 }
             })
         }
