@@ -24,12 +24,14 @@ public class Euromsg {
     private var pushPermitDidCall: Bool = false
     weak var delegate: EuromsgDelegate?
     internal var subscription: EMSubscriptionRequest
+    internal var graylog: EMGraylogRequest
     private static var previousSubscription: EMSubscriptionRequest?
     private var previousRegisterEmailSubscription: EMSubscriptionRequest?
     internal var userAgent: String? = nil 
 
     private init(appKey: String) {
         EMLog.info("INITCALL \(appKey)")
+        self.readWriteLock = EMReadWriteLock(label: "EuromsgLock")
         if let lastSubscriptionData = EMTools.retrieveUserDefaults(userKey: EMKey.registerKey) as? Data,
            let lastSubscription = try? JSONDecoder().decode(EMSubscriptionRequest.self, from: lastSubscriptionData) {
             subscription = lastSubscription
@@ -39,7 +41,10 @@ public class Euromsg {
         subscription.setDeviceParameters()
         subscription.appKey = appKey
         subscription.token = EMTools.retrieveUserDefaults(userKey: EMKey.tokenKey) as? String
-        self.readWriteLock = EMReadWriteLock(label: "EuromsgLock")
+        
+        graylog = EMGraylogRequest()
+        fillGraylogModel()
+        
         let ncd = NotificationCenter.default
         observers = []
         observers?.append(ncd.addObserver(
@@ -62,8 +67,10 @@ public class Euromsg {
                             object: nil,
                             queue: nil,
                             using: Euromsg.sync))
+        
+        
+        
         setUserAgent()
-
     }
 
     deinit {
@@ -128,8 +135,6 @@ public class Euromsg {
             EMLog.info("App Group Key : \(appGroupName)")
         }
         
-        
-        
         Euromsg.shared = Euromsg(appKey: appAlias)
         EMLog.shared.isEnabled = enableLog
         Euromsg.shared?.euromsgAPI = EuromsgAPI()
@@ -146,23 +151,15 @@ public class Euromsg {
     /// Request to user for authorization for push notification
     /// - Parameter register: also register for deviceToken. _default : false_
     public static func askForNotificationPermission(register: Bool = false) {
-        if #available(iOS 10.0, *) {
-            let center = UNUserNotificationCenter.current()
-            center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
-                if granted {
-                    EMLog.success("Notification permission granted")
-                    if register {
-                        Euromsg.registerForPushNotifications()
-                    }
-                } else {
-                    EMLog.error("An error occurred while notification permission: \(error.debugDescription)")
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            if granted {
+                EMLog.success("Notification permission granted")
+                if register {
+                    Euromsg.registerForPushNotifications()
                 }
-            }
-        } else {
-            let settings = UIUserNotificationSettings(types: [.sound, .alert, .badge], categories: nil)
-            UIApplication.shared.registerUserNotificationSettings(settings)
-            if register {
-                self.registerForPushNotifications()
+            } else {
+                EMLog.error("An error occurred while notification permission: \(error.debugDescription)")
             }
         }
     }
@@ -314,6 +311,7 @@ extension Euromsg {
             var subs: EMSubscriptionRequest?
             shared.readWriteLock.read {
                 subs = shared.subscription
+                shared.fillGraylogModel()
             }
             if let subs = subs, let subscriptionData = try? JSONEncoder().encode(subs) {
                 EMTools.saveUserDefaults(key: EMKey.registerKey, value: subscriptionData as AnyObject)
@@ -475,7 +473,9 @@ extension Euromsg {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: registerRequest.extra ?? [:], options: [])
             properties = try JSONDecoder().decode(EMProperties.self, from: jsonData)
-        } catch {}
+        } catch {
+            
+        }
         return EMConfiguration(userProperties: registerRequest.extra,
                                properties: properties,
                                firstTime: registerRequest.firstTime,
@@ -562,6 +562,19 @@ extension Euromsg {
     
     public static func getPushMessages( completion: @escaping ((_ payloads: [EMMessage]) -> Void)) {
         completion(EMPayloadUtils.getRecentPayloads())
+    }
+    
+    private func fillGraylogModel() {
+        graylog.iosAppAlias = subscription.appKey
+        graylog.token = subscription.token
+        graylog.appVersion = subscription.appVersion
+        graylog.sdkVersion = subscription.sdkVersion
+        graylog.osType = subscription.osName
+        graylog.osVersion = subscription.osVersion
+        graylog.deviceName = subscription.deviceName
+        graylog.userAgent = self.userAgent
+        graylog.identifierForVendor = subscription.identifierForVendor
+        graylog.extra = subscription.extra
     }
 
 }

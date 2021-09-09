@@ -9,9 +9,9 @@
 import Foundation
 
 struct EMRetentionRequest: EMCodable, EMRequestProtocol {
-    var path = "retention"
-    var method = "POST"
-    var subdomain = "pushr"
+    internal var path = "retention"
+    internal var method = "POST"
+    internal var subdomain = "pushr"
 
     var key: String
     var token: String

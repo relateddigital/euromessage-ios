@@ -8,23 +8,28 @@
 import Foundation
 
 struct EMGraylogRequest: EMCodable, EMRequestProtocol {
-    var path = "log/mobileSdk"
-    var method = "POST"
-    var subdomain = "gt"
+    internal var path = "log/mobileSdk"
+    internal var method = "POST"
+    internal var subdomain = "gt"
 
-    var logLevel: String
-    var logMessage: String
-    var logPlace: String
-    var googleAppAlias: String
-    var huaweiAppAlias: String
-    var iosAppAlias: String
-    var token: String
-    var appVersion: String
-    var sdkVersion: String
-    var osType: String
-    var osVersion: String
-    var deviceName: String
-    var userAgent: String
-    var identifierForVendor: String
+    var logLevel: String?
+    var logMessage: String?
+    var logPlace: String?
+    var googleAppAlias: String?
+    var huaweiAppAlias: String?
+    var iosAppAlias: String?
+    var token: String?
+    var appVersion: String?
+    var sdkVersion: String?
+    var osType: String?
+    var osVersion: String?
+    var deviceName: String?
+    var userAgent: String?
+    var identifierForVendor: String?
     var extra: [String: String]?
+    
+    init() {
+        self.token = nil
+        self.extra = [:]
+    }
 }
