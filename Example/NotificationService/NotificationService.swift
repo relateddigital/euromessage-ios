@@ -22,12 +22,13 @@ class NotificationService: UNNotificationServiceExtension {
     }
 
     override func serviceExtensionTimeWillExpire() {
-        // Called just before the extension will be terminated by the system.
-        // Use this as an opportunity to deliver your "best attempt" at modified content, otherwise the original push payload will be used.
-        if let contentHandler = contentHandler, let bestAttemptContent =  bestAttemptContent {
-            Euromsg.configure(appAlias: "EuromsgIOSTest", enableLog: true)
-            Euromsg.didReceive(bestAttemptContent, withContentHandler: contentHandler)
+        guard let contentHandler = self.contentHandler else {
+            return;
         }
+        guard let bestAttemptContent = self.bestAttemptContent else {
+            return;
+        }
+        contentHandler(bestAttemptContent)
     }
 
 }
