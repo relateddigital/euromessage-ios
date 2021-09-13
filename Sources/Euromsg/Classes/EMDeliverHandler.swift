@@ -20,7 +20,7 @@ class EMDeliverHandler {
         self.readWriteLock = EMReadWriteLock(label: "EMDeliverHandler")
     }
         
-    /// Reports recieved push to Euromsg services
+    /// Reports delivered push to Euromsg services
     /// - Parameters:
     ///   - message: Push data
     internal func reportDeliver(message: EMMessage) {
