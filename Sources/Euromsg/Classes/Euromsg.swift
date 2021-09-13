@@ -348,7 +348,7 @@ extension Euromsg {
         Euromsg.sync()
     }
     
-    /// Report Euromsg services that a push notification successfully delivered
+    /// Report Euromsg services that a push notification successfully read
     /// - Parameter pushDictionary: push notification data that comes from APNS
     public static func handlePush(pushDictionary: [AnyHashable: Any]) {
         guard let shared = getShared() else { return }
