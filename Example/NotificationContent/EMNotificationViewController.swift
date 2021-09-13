@@ -11,7 +11,6 @@ import UserNotifications
 import UserNotificationsUI
 import Euromsg
 
-@available(iOS 10.0, *)
 @objc(EMNotificationViewController)
 class EMNotificationViewController: UIViewController, UNNotificationContentExtension {
 
