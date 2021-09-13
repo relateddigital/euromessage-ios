@@ -138,7 +138,10 @@ public class Euromsg {
         Euromsg.shared?.euromsgAPI = EuromsgAPI()
         Euromsg.shared?.emReadHandler = EMReadHandler(euromsg: Euromsg.shared!)
         Euromsg.shared?.emDeliverHandler = EMDeliverHandler(euromsg: Euromsg.shared!)
-        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        
+        if !EMTools.isiOSAppExtension() {
+            UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        }
         
     }
     
@@ -319,7 +322,6 @@ extension Euromsg {
     public static func setBadge(count: Int) {
         EMTools.userDefaults?.set(count == -1 ? false : true, forKey: EMKey.isBadgeCustom)
         UIApplication.shared.applicationIconBadgeNumber = count == -1 ? 0 : count
-        // sync() //TODO: kaldırdım ne gerek var?
     }
     
     // MARK: API Methods
