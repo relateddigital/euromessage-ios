@@ -67,15 +67,18 @@ class NotificationService: UNNotificationServiceExtension {
     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
         self.contentHandler = contentHandler
         bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
+        Euromsg.configure(appAlias: "YOUR_APP_ALIAS", enableLog: true)
         Euromsg.didReceive(bestAttemptContent, withContentHandler: contentHandler)
     }
-    
+
     override func serviceExtensionTimeWillExpire() {
-        // Called just before the extension will be terminated by the system.
-        // Use this as an opportunity to deliver your "best attempt" at modified content, otherwise the original push payload will be used.
-        if let contentHandler = contentHandler, let bestAttemptContent =  bestAttemptContent {
-            Euromsg.didReceive(bestAttemptContent, withContentHandler: contentHandler)
+        guard let contentHandler = self.contentHandler else {
+            return;
         }
+        guard let bestAttemptContent = self.bestAttemptContent else {
+            return;
+        }
+        contentHandler(bestAttemptContent)
     }
 
 }
@@ -133,6 +136,7 @@ class EMNotificationViewController: UIViewController, UNNotificationContentExten
     let carouselView = EMNotificationCarousel.initView()
     var completion: ((_ url: URL?, _ userInfo: [AnyHashable: Any]?) -> Void)?    
     func didReceive(_ notification: UNNotification) {
+        Euromsg.configure(appAlias: "YOUR_APP_ALIAS", enableLog: true)
         carouselView.didReceive(notification)
     }
     func didReceive(_ response: UNNotificationResponse,
@@ -306,8 +310,8 @@ Run the code below when the user successfully logs in, registers and the first t
 
 ```swift
 Euromsg.setEmail(email: "test@relateddigital.com", permission: true)
-        Euromsg.setEuroUserId(userKey: "1234567890")
-        Euromsg.sync()
+Euromsg.setEuroUserId(userKey: "1234567890")
+Euromsg.sync()
 ```
 
 ### Optional Parameters
