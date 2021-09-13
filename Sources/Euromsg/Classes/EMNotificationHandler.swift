@@ -20,8 +20,6 @@ class EMNotificationHandler {
                                                               from: data) else { return }
         Euromsg.shared?.emDeliverHandler?.reportDeliver(message: pushDetail)
         
-        //TODO: egemen bunu kaldırdım. gerek yok sanki
-        //EMTools.saveUserDefaults(key: EMKey.euroLastMessageKey, value: data as AnyObject)
         EMPayloadUtils.savePayload(payload: pushDetail)
 
         // Setup carousel buttons
