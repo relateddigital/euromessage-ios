@@ -9,6 +9,15 @@
 import Foundation
 
 public struct EMMessage: EMCodable {
+    
+    public func getDate() -> Date? {
+        guard let dateString = formattedDateString  else {
+            return nil
+        }
+        return EMTools.parseDate(dateString)
+    }
+    
+    public var formattedDateString: String?
     public let aps: Aps?
     public let altURL: String?
     public let cid: String?

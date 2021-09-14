@@ -8,8 +8,8 @@
 
 import UIKit
 
-protocol EMCodable: Codable {}
-extension EMCodable {
+public protocol EMCodable: Codable {}
+public extension EMCodable {
     var encoded: String {
         guard let data = try? JSONEncoder().encode(self) else { return "" }
         return String(data: data, encoding: .utf8) ?? ""

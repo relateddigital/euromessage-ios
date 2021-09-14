@@ -11,14 +11,16 @@ import UserNotifications
 import UserNotificationsUI
 import Euromsg
 
-@available(iOS 10.0, *)
 @objc(EMNotificationViewController)
 class EMNotificationViewController: UIViewController, UNNotificationContentExtension {
-
+    
     let appUrl = URL(string: "euromsgExample://")
     let carouselView = EMNotificationCarousel.initView()
     var completion: ((_ url: URL?, _ userInfo: [AnyHashable: Any]?) -> Void)?
+    
+    
     func didReceive(_ notification: UNNotification) {
+        Euromsg.configure(appAlias: "EuromsgIOSTest", enableLog: true)
         carouselView.didReceive(notification)
     }
     func didReceive(_ response: UNNotificationResponse,

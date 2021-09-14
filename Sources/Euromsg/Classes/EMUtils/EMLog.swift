@@ -50,11 +50,8 @@ class EMLog {
     private func debug(type: Any?, message: Any?) {
         guard EMLog.shared.isEnabled else { return }
         DispatchQueue.main.async {
-            if #available(iOS 10.0, *) {
-                os_log("%@", type: .debug, "\(type ?? "") -> \(message ?? "")")
-            } else {
-                debugPrint("\(type ?? "") -> \(message ?? "")")
-            }
+            os_log("%@", type: .debug, "\(type ?? "") -> \(message ?? "")")
         }
     }
+
 }

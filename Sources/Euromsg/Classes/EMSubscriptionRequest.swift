@@ -15,6 +15,8 @@ struct EMSubscriptionRequest: EMRequestProtocol, Equatable {
     internal var path = "subscription"
     internal var method = "POST"
     internal var subdomain = "pushs"
+    internal var prodBaseUrl = ".euromsg.com"
+    
     var extra: [String: String]?
     var firstTime: Int?
     var osVersion: String?

@@ -11,7 +11,6 @@ import UIKit
 
 class EMNotificationHandler {
 
-    @available(iOS 10.0, *)
     public static func didReceive(_ bestAttemptContent: UNMutableNotificationContent?,
                                   withContentHandler contentHandler:  @escaping (UNNotificationContent) -> Void) {
         guard let userInfo = bestAttemptContent?.userInfo,
@@ -19,9 +18,9 @@ class EMNotificationHandler {
                                                    options: []) else { return }
         guard let pushDetail = try? JSONDecoder.init().decode(EMMessage.self,
                                                               from: data) else { return }
-        Euromsg.shared?.emNetworkHandler?.reportRetention(message: pushDetail,
-                                                          status: EMKey.euroReceivedStatus)
-        EMTools.saveUserDefaults(key: EMKey.euroLastMessageKey, value: data as AnyObject)
+        Euromsg.shared?.emDeliverHandler?.reportDeliver(message: pushDetail)
+        
+        EMPayloadUtils.savePayload(payload: pushDetail)
 
         // Setup carousel buttons
         if pushDetail.aps?.category == "carousel" {
@@ -35,10 +34,11 @@ class EMNotificationHandler {
             loadAttachments(mediaUrl: mediaUrl,
                             modifiedBestAttemptContent: modifiedBestAttemptContent,
                             withContentHandler: contentHandler)
+        } else if pushDetail.pushType == "Text" {
+            contentHandler(modifiedBestAttemptContent)
         }
     }
 
-    @available(iOS 10.0, *)
     static func addCarouselActionButtons() {
         let categoryIdentifier = "carousel"
         let carouselNext = UNNotificationAction(identifier: "carousel.next",
@@ -51,7 +51,6 @@ class EMNotificationHandler {
         UNUserNotificationCenter.current().setNotificationCategories([carouselCategory])
     }
 
-    @available(iOS 10.0, *)
     static func loadAttachments(mediaUrl: URL,
                                 modifiedBestAttemptContent: UNMutableNotificationContent,
                                 withContentHandler contentHandler:  @escaping (UNNotificationContent) -> Void) {
@@ -62,6 +61,7 @@ class EMNotificationHandler {
                 if let err = error {
                     let desc = err.localizedDescription
                     EMLog.error("Error with downloading rich push: \(String(describing: desc))")
+                    Euromsg.sendGraylogMessage(logLevel: EMKey.graylogLogLevelError, logMessage: "Error with downloading rich push: \(String(describing: desc))")
                     contentHandler(modifiedBestAttemptContent)
                     return
                 }
@@ -83,6 +83,7 @@ class EMNotificationHandler {
                     }
                 } catch {
                     EMLog.error("Error with the rich push attachment: \(error)")
+                    Euromsg.sendGraylogMessage(logLevel: EMKey.graylogLogLevelError, logMessage: "Error with the rich push attachment: \(error)")
                     contentHandler(modifiedBestAttemptContent)
                     return
                 }

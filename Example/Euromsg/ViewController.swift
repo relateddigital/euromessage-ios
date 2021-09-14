@@ -26,11 +26,12 @@ class ViewController: UIViewController {
     let emailPermitKey = "emailPermit"
     
     
-    let conf = Euromsg.checkConfiguration()
+    var conf: EMConfiguration!
     
     
     
     override func viewDidLoad() {
+        conf = Euromsg.checkConfiguration()
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         pushPermissionSwitch.isOn = conf.properties?.pushPermit == "Y"
@@ -46,7 +47,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func pushNotificationPermissionButtonAction(_ sender: UIButton) {
-//         Euromsg.askForNotificationPermissionProvisional()
+        Euromsg.askForNotificationPermissionProvisional()
         Euromsg.sync()
     }
 
@@ -84,8 +85,20 @@ class ViewController: UIViewController {
             Euromsg.removeUserProperty(key: key.trimmingCharacters(in: .whitespacesAndNewlines))
             Euromsg.sync()
         }
-        
     }
+    
+    @IBAction func getPushMessages(_ sender: Any) {
+        print("🚲 getPushMessages called")
+        Euromsg.getPushMessages(completion: { messages in
+            for message in messages {
+                print("🆔: \(message.pushId)")
+                print("📅: \(message.formattedDateString)")
+                print(message.encoded)
+            }
+            
+        })
+    }
+    
 }
 
 extension UIViewController {

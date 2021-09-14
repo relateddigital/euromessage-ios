@@ -9,7 +9,6 @@
 import UserNotifications
 import UserNotificationsUI
 
-@available(iOS 10.0, *)
 public class EMNotificationCarousel: UIView {
 
     @IBOutlet var contentView: UIView!
@@ -105,7 +104,6 @@ public class EMNotificationCarousel: UIView {
 
 }
 
-@available(iOS 10.0, *)
 extension EMNotificationCarousel: UICollectionViewDelegate, UICollectionViewDataSource {
 
     public func collectionView(_ collectionView: UICollectionView,
@@ -143,7 +141,6 @@ extension EMNotificationCarousel: UICollectionViewDelegate, UICollectionViewData
     }
 }
 
-@available(iOS 10.0, *)
 extension EMNotificationCarousel: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView,
                                layout collectionViewLayout: UICollectionViewLayout,

@@ -12,4 +12,5 @@ protocol EMRequestProtocol: EMCodable {
     var path: String { get }
     var method: String { get }
     var subdomain: String { get }
+    var prodBaseUrl: String { get }
 }
