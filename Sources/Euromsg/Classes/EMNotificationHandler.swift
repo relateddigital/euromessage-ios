@@ -18,7 +18,7 @@ class EMNotificationHandler {
                                                    options: []) else { return }
         guard let pushDetail = try? JSONDecoder.init().decode(EMMessage.self,
                                                               from: data) else { return }
-        Euromsg.shared?.emDeliverHandler?.reportDeliver(message: pushDetail)
+        Euromsg.emDeliverHandler?.reportDeliver(message: pushDetail)
         
         EMPayloadUtils.savePayload(payload: pushDetail)
 

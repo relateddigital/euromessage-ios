@@ -91,8 +91,8 @@ class ViewController: UIViewController {
         print("🚲 getPushMessages called")
         Euromsg.getPushMessages(completion: { messages in
             for message in messages {
-                print("🆔: \(message.pushId)")
-                print("📅: \(message.formattedDateString)")
+                print("🆔: \(message.pushId ?? "")")
+                print("📅: \(message.formattedDateString ?? "")")
                 print(message.encoded)
             }
             

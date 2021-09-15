@@ -19,8 +19,8 @@ public class Euromsg {
     private let readWriteLock: EMReadWriteLock
     internal var euromsgAPI: EuromsgAPIProtocol?
     private var observers: [NSObjectProtocol]?
-    internal var emReadHandler: EMReadHandler?
-    internal var emDeliverHandler: EMDeliverHandler?
+    static var emReadHandler: EMReadHandler?
+    static var emDeliverHandler: EMDeliverHandler?
     private var pushPermitDidCall: Bool = false
     weak var delegate: EuromsgDelegate?
     internal var subscription: EMSubscriptionRequest
@@ -136,8 +136,20 @@ public class Euromsg {
         Euromsg.shared = Euromsg(appKey: appAlias)
         EMLog.shared.isEnabled = enableLog
         Euromsg.shared?.euromsgAPI = EuromsgAPI()
-        Euromsg.shared?.emReadHandler = EMReadHandler(euromsg: Euromsg.shared!)
-        Euromsg.shared?.emDeliverHandler = EMDeliverHandler(euromsg: Euromsg.shared!)
+        
+        if let readHandler = Euromsg.emReadHandler {
+            readHandler.euromsg = Euromsg.shared!
+        } else {
+            Euromsg.emReadHandler = EMReadHandler(euromsg: Euromsg.shared!)
+        }
+        
+        if let deliverHandler = Euromsg.emDeliverHandler {
+            deliverHandler.euromsg = Euromsg.shared!
+        } else {
+            Euromsg.emDeliverHandler = EMDeliverHandler(euromsg: Euromsg.shared!)
+        }
+        
+        
         
         if !EMTools.isiOSAppExtension() {
             UNUserNotificationCenter.current().removeAllDeliveredNotifications()
@@ -360,7 +372,7 @@ extension Euromsg {
         EMLog.info("handlePush: \(pushDictionary)")
         if let jsonData = try? JSONSerialization.data(withJSONObject: pushDictionary, options: .prettyPrinted),
            let message = try? JSONDecoder().decode(EMMessage.self, from: jsonData) {
-            shared.emReadHandler?.reportRead(message: message)
+            Euromsg.emReadHandler?.reportRead(message: message)
         } else {
             EMLog.error("pushDictionary parse failed")
             Euromsg.sendGraylogMessage(logLevel: EMKey.graylogLogLevelError, logMessage: "pushDictionary parse failed")
@@ -405,7 +417,7 @@ extension Euromsg {
             UIApplication.shared.applicationIconBadgeNumber = 0
         }
         // check whether the user have an unreported message
-        shared.emReadHandler?.checkUserUnreportedMessages()
+        Euromsg.emReadHandler?.checkUserUnreportedMessages()
         
         shared.readWriteLock.read {
             subs = shared.subscription

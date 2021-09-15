@@ -10,7 +10,7 @@ import Foundation
 
 class EMReadHandler {
     private let readWriteLock: EMReadWriteLock
-    private var euromsg: Euromsg!
+    var euromsg: Euromsg!
     private var inProgressPushId: String?
     private var inProgressEmPushSp: String?
     private var emMessage: EMMessage?
