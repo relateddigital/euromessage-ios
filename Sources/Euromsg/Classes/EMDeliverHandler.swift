@@ -46,7 +46,7 @@ class EMDeliverHandler {
         }
         
         if !isRequestValid {
-            EMLog.warning("EMDeliverHandler request not valid")
+            EMLog.warning("EMDeliverHandler request not valid. Retention request with pushId: \(pushID) and emPushSp \(emPushSp) already sent.")
             return
         }
         

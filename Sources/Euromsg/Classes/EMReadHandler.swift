@@ -30,7 +30,6 @@ class EMReadHandler {
         guard let appKey = euromsg.subscription.appKey,
               let token = euromsg.subscription.token else {
             EMLog.error("EMReadHandler reportRead appKey or token does not exist")
-            Euromsg.sendGraylogMessage(logLevel: EMKey.graylogLogLevelError, logMessage: "EMReadHandler reportRead appKey or token does not exist")
             return
         }
         
@@ -50,7 +49,7 @@ class EMReadHandler {
         }
         
         if !isRequestValid {
-            EMLog.warning("EMReadHandler request not valid")
+            EMLog.warning("EMReadHandler request not valid. Retention request with pushId: \(pushID) and emPushSp \(emPushSp) already sent.")
             return
         }
         

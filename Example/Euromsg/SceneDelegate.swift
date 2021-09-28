@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         guard (scene as? UIWindowScene) != nil else { return }
         if let userInfo = connectionOptions.notificationResponse?.notification.request.content.userInfo {
-            Euromsg.handlePush(pushDictionary: userInfo)
+            //Euromsg.handlePush(pushDictionary: userInfo)
         }
 
     }

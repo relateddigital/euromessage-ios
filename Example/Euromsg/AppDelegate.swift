@@ -18,16 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         UNUserNotificationCenter.current().delegate = self
         // Configure Euromsg SDK
-        Euromsg.configure(appAlias: "EuromsgIOSTest", enableLog: true)
+        Euromsg.configure(appAlias: "EuromsgIOSTest", launchOptions: launchOptions, enableLog: true)
         Euromsg.registerForPushNotifications()
 
-        if #available(iOS 13, *) {
-            // handle push for iOS 13 and later in sceneDelegate
-        } else if let userInfo = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? [String: Any] {
-            Euromsg.handlePush(pushDictionary: userInfo)
-        }
-
-        
         // Customize badge
 //        Euromsg.setBadge(count: 5)
         return true
@@ -39,13 +32,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_ application: UIApplication,
                      didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        Euromsg.handlePush(pushDictionary: userInfo)
+        //Euromsg.handlePush(pushDictionary: userInfo)
+        print("didReceiveRemoteNotification userInfo: [AnyHashable: Any]")
     }
 
     func application(_ application: UIApplication,
                      didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        Euromsg.handlePush(pushDictionary: userInfo)
+        //Euromsg.handlePush(pushDictionary: userInfo)
+        print("fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)")
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,
@@ -60,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         
         
-        Euromsg.handlePush(pushDictionary: response.notification.request.content.userInfo)
+        //Euromsg.handlePush(pushDictionary: response.notification.request.content.userInfo)
         
         //userInfoPayload = response.notification.request.content.userInfo.toString() ?? "çevrilemedi"
         //let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -68,6 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
                         
         //        self.window?.rootViewController?.present(presentViewController, animated: true, completion: nil)
+        print("userNotificationCenter didReceive")
         completionHandler()
     }
 }

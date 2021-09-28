@@ -8,20 +8,22 @@
 
 import UserNotifications
 import UserNotificationsUI
+import UIKit
 
 public class EMNotificationCarousel: UIView {
-
+    
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     let identifier = "CarouselCell"
-
+    
     var bestAttemptContent: UNMutableNotificationContent?
     var carouselElements: [EMMessage.Element] = []
     var currentIndex: Int = 0
     var userInfo: [AnyHashable: Any]?
     public var completion: ((_ url: URL?, _ userInfo: [AnyHashable: Any]?) -> Void)?
+    
     public weak var delegate: CarouselDelegate?
-
+    
     public static func initView() -> EMNotificationCarousel {
         let view = EMNotificationCarousel()
         return view
@@ -30,22 +32,22 @@ public class EMNotificationCarousel: UIView {
         super.init(frame: frame)
         commonInit()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
     }
-
+    
     func commonInit() {
         Bundle(for: type(of: self)).loadNibNamed("EMNotificationCarousel", owner: self, options: nil)
         contentView.fixInView(self)
     }
-
+    
     public func didReceive(_ notification: UNNotification) {
         self.bestAttemptContent = (notification.request.content.mutableCopy() as? UNMutableNotificationContent)
         guard let userInfo = bestAttemptContent?.userInfo,
-            let data = try? JSONSerialization.data(withJSONObject: userInfo,
-                                                   options: []) else { return }
+              let data = try? JSONSerialization.data(withJSONObject: userInfo,
+                                                     options: []) else { return }
         self.userInfo = userInfo
         let pushDetail = try? JSONDecoder.init().decode(EMMessage.self,
                                                         from: data)
@@ -61,10 +63,10 @@ public class EMNotificationCarousel: UIView {
             self.collectionView.reloadData()
         }
     }
-
+    
     public func didReceive(_ response: UNNotificationResponse,
                            completionHandler completion:
-        @escaping (UNNotificationContentExtensionResponseOption) -> Void) {
+                           @escaping (UNNotificationContentExtensionResponseOption) -> Void) {
         if response.actionIdentifier == "carousel.next" {
             self.scrollNextItem()
             completion(UNNotificationContentExtensionResponseOption.doNotDismiss)
@@ -72,18 +74,18 @@ public class EMNotificationCarousel: UIView {
             self.scrollPreviousItem()
             completion(UNNotificationContentExtensionResponseOption.doNotDismiss)
         } else {
-            completion(UNNotificationContentExtensionResponseOption.dismissAndForwardAction)
+            completion(.dismissAndForwardAction)
         }
     }
-
+    
     @IBAction func swipeLeft(_ sender: UISwipeGestureRecognizer) {
         scrollNextItem()
     }
-
+    
     @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
         scrollPreviousItem()
     }
-
+    
     private func scrollNextItem() {
         self.currentIndex == (self.carouselElements.count - 1) ? (self.currentIndex = 0) : ( self.currentIndex += 1 )
         let indexPath = IndexPath(row: self.currentIndex, section: 0)
@@ -92,7 +94,7 @@ public class EMNotificationCarousel: UIView {
         self.collectionView.contentInset.left = cond ? 10.0 : 20.0
         self.collectionView.scrollToItem(at: indexPath, at: UICollectionView.ScrollPosition.right, animated: true)
     }
-
+    
     private func scrollPreviousItem() {
         self.currentIndex == 0 ? (self.currentIndex = self.carouselElements.count - 1) : ( self.currentIndex -= 1 )
         let indexPath = IndexPath(row: self.currentIndex, section: 0)
@@ -101,41 +103,44 @@ public class EMNotificationCarousel: UIView {
         self.collectionView.contentInset.left = cond ? 10.0 : 20.0
         self.collectionView.scrollToItem(at: indexPath, at: UICollectionView.ScrollPosition.left, animated: true)
     }
-
+    
 }
 
 extension EMNotificationCarousel: UICollectionViewDelegate, UICollectionViewDataSource {
-
+    
     public func collectionView(_ collectionView: UICollectionView,
                                didSelectItemAt indexPath: IndexPath) {
         guard let userInfo = bestAttemptContent?.userInfo else { return }
-        Euromsg.handlePush(pushDictionary: userInfo)
-        guard let urlString = self.carouselElements[indexPath.row].url,
-            let url = URL(string: urlString) else {
-                completion?(nil, nil)
-                return
+        guard let urlString = self.carouselElements[indexPath.row].url, let url = URL(string: urlString) else {
+            completion?(nil, nil)
+            return
         }
+        
+        if !EMTools.doesMatchURLScheme(url.scheme ?? "") {
+            Euromsg.handlePush(pushDictionary: userInfo) // TODO: buraya dikkat et, hem extension'dan hem de uygulamadan retention gidebilir.
+        }
+        
         completion?(url, userInfo)
         guard indexPath.row < carouselElements.count else { return }
         self.delegate?.selectedItem(carouselElements[indexPath.row])
     }
-
+    
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-
+    
     public func collectionView(_ collectionView: UICollectionView,
                                numberOfItemsInSection section: Int) -> Int {
         return self.carouselElements.count
     }
-
+    
     public func collectionView(_ collectionView: UICollectionView,
                                cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? CarouselCell
         let element = self.carouselElements[indexPath.row]
         cell?.setupCell(imageUrl: element.picture,
-                       title: element.title,
-                       content: element.content)
+                        title: element.title,
+                        content: element.content)
         cell?.layer.cornerRadius = 8.0
         return cell!
     }
@@ -150,7 +155,7 @@ extension EMNotificationCarousel: UICollectionViewDelegateFlowLayout {
         let cellWidth = cond ? (width - 30) : (width - 40)
         return CGSize(width: cellWidth, height: width - 20.0)
     }
-
+    
 }
 
 extension UIView {

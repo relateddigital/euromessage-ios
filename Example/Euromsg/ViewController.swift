@@ -75,6 +75,7 @@ class ViewController: UIViewController {
     
     @IBAction func setEmail(_ sender: Any) {
         if let email = emailTextField.text {
+            Euromsg.configure(appAlias: "EuromsgIOSTest", launchOptions: nil, enableLog: true)
             Euromsg.setEmail(email: email.trimmingCharacters(in: .whitespacesAndNewlines), permission: emailPermissionSwitch.isOn)
             Euromsg.sync()
         }

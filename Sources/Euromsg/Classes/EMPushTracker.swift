@@ -6,20 +6,25 @@
 //
 
 import Foundation
+import UIKit
 import UserNotifications
 
 class EMPushTracker : NSObject {
     
+    var initializedAutomaticPushOpenTracking = false
     var hasAddedObserver = false
     
     func initializeAutomaticPushOpenTracking() {
+        if initializedAutomaticPushOpenTracking {
+            return
+        }
+        initializedAutomaticPushOpenTracking = true
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             self.setupAutomaticPushOpenTracking()
         }
     }
     
-    //TODO: appextension kontrolü yap
     func setupAutomaticPushOpenTracking() {
         guard let appDelegate = Euromsg.sharedUIApplication()?.delegate else {
             return
@@ -42,27 +47,53 @@ class EMPushTracker : NSObject {
             newSelector = #selector(NSObject.em_userNotificationCenter(_:newDidReceive:withCompletionHandler:))
         } else if class_getInstanceMethod(aClass, NSSelectorFromString("application:didReceiveRemoteNotification:fetchCompletionHandler:")) != nil {
             selector = NSSelectorFromString("application:didReceiveRemoteNotification:fetchCompletionHandler:")
-            newSelector = #selector(UIResponder.mp_application(_:newDidReceiveRemoteNotification:fetchCompletionHandler:))
+            newSelector = #selector(UIResponder.em_application(_:newDidReceiveRemoteNotification:fetchCompletionHandler:))
         } else if class_getInstanceMethod(aClass, NSSelectorFromString("application:didReceiveRemoteNotification:")) != nil {
             selector = NSSelectorFromString("application:didReceiveRemoteNotification:")
-            newSelector = #selector(UIResponder.mp_application(_:newDidReceiveRemoteNotification:))
+            newSelector = #selector(UIResponder.em_application(_:newDidReceiveRemoteNotification:))
         }
         
         if let selector = selector, let newSelector = newSelector {
-            let block = { (_: AnyObject?, _: Selector, _: AnyObject?, param2: AnyObject?) in
-                if let param2 = param2 as? [AnyHashable: Any] {
-                    //TODO: burada open isteği gönderilecek
-                    //self.delegate?.trackPushNotification(param2, event: "$campaign_received", properties: [:])
+            let block = { (_: AnyObject?, _: Selector, _: AnyObject?, pushDictionary: AnyObject?) in
+                if let pushDictionary = pushDictionary as? [AnyHashable: Any] {
+                    Euromsg.handlePush(pushDictionary: pushDictionary)
                 }
             }
             EMSwizzler.swizzleSelector(selector,
                                        withSelector: newSelector,
                                        for: newClass ?? aClass,
-                                       name: "notification opened",
+                                       name: "push notification opened",
                                        block: block)
         }
     }
     
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "delegate",
+           let UNDelegate = UNUserNotificationCenter.current().delegate {
+            let delegateClass: AnyClass = type(of: UNDelegate)
+            if class_getInstanceMethod(delegateClass,
+                                       NSSelectorFromString("userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:")) != nil {
+                let selector = NSSelectorFromString("userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:")
+                let newSelector = #selector(NSObject.em_userNotificationCenter(_:newDidReceive:withCompletionHandler:))
+                let block = { (_: AnyObject?, _: Selector, _: AnyObject?, pushDictionary: AnyObject?) in
+                    if let pushDictionary = pushDictionary as? [AnyHashable: Any] {
+                        Euromsg.handlePush(pushDictionary: pushDictionary)
+                    }
+                }
+                EMSwizzler.swizzleSelector(selector,
+                                           withSelector: newSelector,
+                                           for: delegateClass,
+                                           name: "push notification opened",
+                                           block: block)
+            }
+        }
+    }
+    
+    deinit {
+        if hasAddedObserver {
+            UNUserNotificationCenter.current().removeDelegateObserver(emPushTracker: self)
+        }
+    }
 }
 
 extension UNUserNotificationCenter {
@@ -76,7 +107,7 @@ extension UNUserNotificationCenter {
 }
 
 extension UIResponder {
-    @objc func mp_application(_ application: UIApplication, newDidReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Swift.Void) {
+    @objc func em_application(_ application: UIApplication, newDidReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Swift.Void) {
         let originalSelector = NSSelectorFromString("application:didReceiveRemoteNotification:fetchCompletionHandler:")
         if let originalMethod = class_getInstanceMethod(type(of: self), originalSelector),
            let swizzle = EMSwizzler.swizzles[originalMethod] {
@@ -90,7 +121,7 @@ extension UIResponder {
         }
     }
     
-    @objc func mp_application(_ application: UIApplication, newDidReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+    @objc func em_application(_ application: UIApplication, newDidReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         let originalSelector = NSSelectorFromString("application:didReceiveRemoteNotification:")
         if let originalMethod = class_getInstanceMethod(type(of: self), originalSelector),
            let swizzle = EMSwizzler.swizzles[originalMethod] {

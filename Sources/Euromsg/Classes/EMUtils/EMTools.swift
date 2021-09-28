@@ -157,4 +157,26 @@ internal class EMTools {
         return dateFormatter.date(from: dateString)
     }
     
+    static func doesMatchURLScheme(_ scheme: String) -> Bool {
+        if Bundle.main.object(forInfoDictionaryKey: "CFBundleURLTypes") != nil, !scheme.isEmpty {
+            let urlTypes = Bundle.main.object(forInfoDictionaryKey: "CFBundleURLTypes") as? [AnyHashable]
+            for urlType in urlTypes ?? [] {
+                guard let urlType = urlType as? [AnyHashable : Any] else {
+                    continue
+                }
+                if urlType["CFBundleURLSchemes"] != nil, let urlSchemes = urlType["CFBundleURLSchemes"] as? [AnyHashable] {
+                    for urlScheme in urlSchemes{
+                        guard let urlScheme = urlScheme as? String else {
+                            continue
+                        }
+                        if urlScheme.caseInsensitiveCompare(scheme) == .orderedSame {
+                            return true
+                        }
+                    }
+                }
+            }
+        }
+        return false
+    }
+    
 }

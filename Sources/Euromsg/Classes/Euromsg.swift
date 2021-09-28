@@ -27,9 +27,11 @@ public class Euromsg {
     internal var graylog: EMGraylogRequest
     private static var previousSubscription: EMSubscriptionRequest?
     private var previousRegisterEmailSubscription: EMSubscriptionRequest?
-    internal var userAgent: String? = nil 
+    internal var userAgent: String? = nil
     
-    private init(appKey: String) {
+    static var emPushTracker = EMPushTracker()
+    
+    private init(appKey: String, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         EMLog.info("INITCALL \(appKey)")
         self.readWriteLock = EMReadWriteLock(label: "EuromsgLock")
         if let lastSubscriptionData = EMTools.retrieveUserDefaults(userKey: EMKey.registerKey) as? Data,
@@ -86,7 +88,7 @@ public class Euromsg {
                                                   object: nil)
     }
     
-    static func sharedUIApplication() -> UIApplication? {
+    public static func sharedUIApplication() -> UIApplication? {
         let shared = UIApplication.perform(NSSelectorFromString("sharedApplication"))?.takeUnretainedValue()
         guard let sharedApplication = shared as? UIApplication else {
             return nil
@@ -112,7 +114,7 @@ public class Euromsg {
                         EMLog.warning(EMKey.appAliasNotProvidedMessage)
                         return nil
                     }
-                    Euromsg.configure(appAlias: appKey)
+                    Euromsg.configure(appAlias: appKey, launchOptions: nil)
                     return sharedInstance
                 }
                 EMLog.warning(EMKey.appAliasNotProvidedMessage)
@@ -126,14 +128,14 @@ public class Euromsg {
     }
     
     // MARK: Lifecycle
-    public class func configure(appAlias: String, enableLog: Bool = false, appGroupsKey: String? = nil) {
+    public class func configure(appAlias: String, launchOptions: [UIApplication.LaunchOptionsKey: Any]?, enableLog: Bool = false, appGroupsKey: String? = nil) {
         
         if let appGroupName = EMTools.getAppGroupName(appGroupName: appGroupsKey) {
             EMTools.setAppGroupsUserDefaults(appGroupName: appGroupName)
             EMLog.info("App Group Key : \(appGroupName)")
         }
         
-        Euromsg.shared = Euromsg(appKey: appAlias)
+        Euromsg.shared = Euromsg(appKey: appAlias, launchOptions: launchOptions)
         EMLog.shared.isEnabled = enableLog
         Euromsg.shared?.euromsgAPI = EuromsgAPI()
         
@@ -150,10 +152,14 @@ public class Euromsg {
         }
         
         
-        
         if !EMTools.isiOSAppExtension() {
+            Euromsg.emPushTracker.initializeAutomaticPushOpenTracking()
+            if let notification = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? [AnyHashable: Any] {
+                Euromsg.handlePush(pushDictionary: notification)
+            }
             UNUserNotificationCenter.current().removeAllDeliveredNotifications()
         }
+
         
     }
     
@@ -362,10 +368,11 @@ extension Euromsg {
         Euromsg.sync()
     }
     
-    /// Report Euromsg services that a push notification successfully read
+    
+    /// Report Euromsg services that a push notification successfully opened
     /// - Parameter pushDictionary: push notification data that comes from APNS
-    public static func handlePush(pushDictionary: [AnyHashable: Any]) {
-        guard let shared = getShared() else { return }
+    static func handlePush(pushDictionary: [AnyHashable: Any]) {
+        guard getShared() != nil else { return }
         guard pushDictionary["pushId"] != nil else {
             return
         }
@@ -590,7 +597,7 @@ extension Euromsg {
         graylog.extra = subscription.extra
     }
     
-    public static func sendGraylogMessage(logLevel: String, logMessage: String, _ path: String = #file, _ function: String = #function, _ line: Int = #line) {
+    static func sendGraylogMessage(logLevel: String, logMessage: String, _ path: String = #file, _ function: String = #function, _ line: Int = #line) {
         guard let shared = getShared() else { return }
         var emGraylogRequest: EMGraylogRequest!
         shared.readWriteLock.read {

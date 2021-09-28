@@ -14,13 +14,15 @@ import Euromsg
 @objc(EMNotificationViewController)
 class EMNotificationViewController: UIViewController, UNNotificationContentExtension {
     
+    //let appUrl: URL? = nil // URL(string: "euromsgExample://")
     let appUrl = URL(string: "euromsgExample://")
+    
     let carouselView = EMNotificationCarousel.initView()
     var completion: ((_ url: URL?, _ userInfo: [AnyHashable: Any]?) -> Void)?
     
     
     func didReceive(_ notification: UNNotification) {
-        Euromsg.configure(appAlias: "EuromsgIOSTest", enableLog: true)
+        Euromsg.configure(appAlias: "EuromsgIOSTest", launchOptions: nil, enableLog: true)
         carouselView.didReceive(notification)
     }
     func didReceive(_ response: UNNotificationResponse,
@@ -30,12 +32,22 @@ class EMNotificationViewController: UIViewController, UNNotificationContentExten
     override func loadView() {
         completion = { [weak self] url, userInfo in
             if let url = url {
-                self?.extensionContext?.open(url)
-                if url.scheme != self?.appUrl?.scheme, let userInfo = userInfo {
-                    Euromsg.handlePush(pushDictionary: userInfo)
-                }
+
+                self?.extensionContext?.open(url, completionHandler: { success in
+                    if !success, #available(iOSApplicationExtension 12.0, *) {
+                        self?.extensionContext?.performNotificationDefaultAction()
+                    }
+                })
             } else if let url = self?.appUrl {
-                self?.extensionContext?.open(url)
+                self?.extensionContext?.open(url, completionHandler: { success in
+                    if !success, #available(iOSApplicationExtension 12.0, *) {
+                        self?.extensionContext?.performNotificationDefaultAction()
+                    }
+                })
+            } else {
+                if #available(iOSApplicationExtension 12.0, *) {
+                    self?.extensionContext?.performNotificationDefaultAction()
+                }
             }
         }
         carouselView.completion = completion
@@ -49,10 +61,10 @@ class EMNotificationViewController: UIViewController, UNNotificationContentExten
  Add if you want to track which carousel element has been selected
  */
 extension EMNotificationViewController: CarouselDelegate {
-
+    
     func selectedItem(_ element: EMMessage.Element) {
         // Add your work...
         print("Selected element is => \(element)")
     }
-
+    
 }
