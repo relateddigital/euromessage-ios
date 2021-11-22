@@ -10,7 +10,9 @@ import UIKit
 @testable import Euromsg
 
 class EuromsgSpec: Euromsg {
-    override class func configure(appAlias: String, enableLog: Bool = false) {
+    
+    override class func configure(appAlias: String, launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil, enableLog: Bool = false, appGroupsKey: String? = nil) {
         shared = nil
     }
+    
 }

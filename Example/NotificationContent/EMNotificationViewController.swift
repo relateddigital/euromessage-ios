@@ -33,10 +33,12 @@ class EMNotificationViewController: UIViewController, UNNotificationContentExten
         completion = { [weak self] url, userInfo in
             if let url = url {
                 
+                /*
                 if #available(iOSApplicationExtension 12.0, *) {
                     self?.extensionContext?.notificationActions.append(UNNotificationAction(identifier: "", title: "rw", options: []))
                 }
-
+                */
+                
                 self?.extensionContext?.open(url, completionHandler: { success in
                     if !success, #available(iOSApplicationExtension 12.0, *) {
                         self?.extensionContext?.performNotificationDefaultAction()

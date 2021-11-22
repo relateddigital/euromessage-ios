@@ -128,7 +128,7 @@ public class Euromsg {
     }
     
     // MARK: Lifecycle
-    public class func configure(appAlias: String, launchOptions: [UIApplication.LaunchOptionsKey: Any]?, enableLog: Bool = false, appGroupsKey: String? = nil) {
+    public class func configure(appAlias: String, launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil, enableLog: Bool = false, appGroupsKey: String? = nil) {
         
         EMLog.isEnabled = enableLog
         

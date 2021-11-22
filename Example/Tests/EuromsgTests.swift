@@ -12,8 +12,7 @@ import XCTest
 class EuromsgTests: XCTestCase {
 
     override func setUp() {
-        Euromsg.configure(appAlias: "appKey",
-                          enableLog: true)
+        Euromsg.configure(appAlias: "appKey", enableLog: true)
         Euromsg.logout()
     }
 
