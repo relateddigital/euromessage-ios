@@ -17,7 +17,7 @@ class EMLog {
     private init() {}
 
     /// is Logging enable
-    var isEnabled: Bool = true
+    static var isEnabled: Bool = true
 
     /// Log for success. Will add 🟢 emoji to see better
     ///
@@ -48,7 +48,7 @@ class EMLog {
     }
 
     private func debug(type: Any?, message: Any?) {
-        guard EMLog.shared.isEnabled else { return }
+        guard EMLog.isEnabled else { return }
         DispatchQueue.main.async {
             os_log("%@", type: .debug, "\(type ?? "") -> \(message ?? "")")
         }

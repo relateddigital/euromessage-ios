@@ -130,13 +130,15 @@ public class Euromsg {
     // MARK: Lifecycle
     public class func configure(appAlias: String, launchOptions: [UIApplication.LaunchOptionsKey: Any]?, enableLog: Bool = false, appGroupsKey: String? = nil) {
         
+        EMLog.isEnabled = enableLog
+        
         if let appGroupName = EMTools.getAppGroupName(appGroupName: appGroupsKey) {
             EMTools.setAppGroupsUserDefaults(appGroupName: appGroupName)
             EMLog.info("App Group Key : \(appGroupName)")
         }
         
         Euromsg.shared = Euromsg(appKey: appAlias, launchOptions: launchOptions)
-        EMLog.shared.isEnabled = enableLog
+        
         Euromsg.shared?.euromsgAPI = EuromsgAPI()
         
         if let readHandler = Euromsg.emReadHandler {
@@ -157,6 +159,14 @@ public class Euromsg {
             if let notification = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? [AnyHashable: Any] {
                 Euromsg.handlePush(pushDictionary: notification)
             }
+            
+            //TODO: userInfo nasıl alınacak
+            UNUserNotificationCenter.current().getDeliveredNotifications { a in
+                if let last = a.last {
+                    last.request.content.userInfo
+                }
+            }
+            
             UNUserNotificationCenter.current().removeAllDeliveredNotifications()
         }
 
