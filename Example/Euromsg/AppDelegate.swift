@@ -15,40 +15,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var userInfoPayload = ""
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
+        
         UNUserNotificationCenter.current().delegate = self
         // Configure Euromsg SDK
         Euromsg.configure(appAlias: "EuromsgIOSTest", launchOptions: launchOptions, enableLog: true)
         Euromsg.registerForPushNotifications()
-
+        
         // Customize badge
-//        Euromsg.setBadge(count: 5)
+        //        Euromsg.setBadge(count: 5)
         return true
     }
-
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        print(url.absoluteString)
+        if let scheme = url.scheme, scheme.localizedCaseInsensitiveCompare("euromsgExample") == .orderedSame, let view = url.host {
+            print(view)
+            var parameters: [String: String] = [:]
+            URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems?.forEach {
+                parameters[$0.name] = $0.value
+            }
+            //redirect(to: view, with: parameters)
+        }
+        return true
+    }
+    
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Euromsg.registerToken(tokenData: deviceToken)
     }
-
+    
     func application(_ application: UIApplication,
                      didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         //Euromsg.handlePush(pushDictionary: userInfo)
         print("didReceiveRemoteNotification userInfo: [AnyHashable: Any]")
     }
-
+    
     func application(_ application: UIApplication,
                      didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         //Euromsg.handlePush(pushDictionary: userInfo)
         print("fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)")
     }
-
+    
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert, .badge, .sound])
     }
-
+    
     // This function will be called right after user tap on the notification
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
@@ -60,8 +73,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         //userInfoPayload = response.notification.request.content.userInfo.toString() ?? "çevrilemedi"
         //let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         //        let presentViewController = storyBoard.instantiateViewController(withIdentifier: "payload") as! PayloadViewController
-
-                        
+        
+        
         //        self.window?.rootViewController?.present(presentViewController, animated: true, completion: nil)
         print("userNotificationCenter didReceive")
         completionHandler()
@@ -69,13 +82,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 }
 
 extension Dictionary {
-
+    
     func toString() -> String? {
         return (self.compactMap({ (key, value) -> String in
             return "\(key)=\(value)"
         }) as Array).joined(separator: "\n\n")
     }
-
+    
 }
 
 extension String {

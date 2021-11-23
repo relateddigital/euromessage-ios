@@ -115,5 +115,100 @@ class EuromsgTests: XCTestCase {
             XCTAssertEqual(content, bestAttemptContent)
         })
     }
+    
+    
+    // TEXT
+    /*
+    {
+      "pushId": "1",
+      "emPushSp": "B7207722C89644C196D781330190CBBD|2CCE03D672E4492EB6C85CDBD8AB9D5E|DA35236EEA334089B422FACBAE1D1CE5|328181|1|0|true|false|0|0|014c1ad4-5819-43d4-a27c-c8e6f822b18c",
+      "altUrl": "",
+      "mediaUrl": "https://media-cdn.t24.com.tr/media/library/2020/06/1592077904529-kirklareli.jpg",
+      "aps": {
+        "badge": 5,
+        "alert": {
+          "title": "ios-test",
+          "body": "ios-test mes"
+        },
+        "mutable-content": 1,
+        "category": "image",
+        "sound": ""
+      },
+      "url": "https://relateddigital.com",
+      "pushType": "Text",
+      "deepLink": "https://visilabs.com"
+    }
+    */
+    
+    // IMAGE
+    /*
+    {
+      "pushId": "1",
+      "emPushSp": "B7207722C89644C196D781330190CBBD|2CCE03D672E4492EB6C85CDBD8AB9D5E|DA35236EEA334089B422FACBAE1D1CE5|328181|1|0|true|false|0|0|014c1ad4-5819-43d4-a27c-c8e6f822b18c",
+      "altUrl": "",
+      "mediaUrl": "https://media-cdn.t24.com.tr/media/library/2020/06/1592077904529-kirklareli.jpg",
+      "aps": {
+        "badge": 5,
+        "alert": {
+          "title": "ios-test",
+          "body": "ios-test mes"
+        },
+        "mutable-content": 1,
+        "category": "image",
+        "sound": ""
+      },
+      "url": "https://relateddigital.com",
+      "pushType": "Image",
+      "deepLink": "https://visilabs.com"
+    }
+    */
+    
+    
+    // CAROUSEL
+    /*
+    {
+      "pushId": "1",
+      "emPushSp": "B7207722C89644C196D781330190CBBD|2CCE03D672E4492EB6C85CDBD8AB9D5E|DA35236EEA334089B422FACBAE1D1CE5|328181|1|0|true|false|0|0|014c1ad4-5819-43d4-a27c-c8e6f822b18c",
+      "altUrl": "",
+      "elements": [
+        {
+          "id": 1,
+          "title": "baş1",
+          "content": "mes1",
+          "url": "https://google.com",
+          "picture": "https://media-cdn.t24.com.tr/media/library/2020/06/1592077904529-kirklareli.jpg"
+        },
+        {
+          "id": 2,
+          "title": "baş2",
+          "content": "mes2",
+          "url": "https://google2.com",
+          "picture": "https://github.com/relateddigital/visilabs-ios/raw/master/Screenshots/visilabs.png"
+        },
+        {
+          "id": 3,
+          "title": "baş3",
+          "content": "mes3",
+          "url": "https://google3.com",
+          "picture": "https://github.com/relateddigital/visilabs-ios/raw/master/Screenshots/InAppNotification/nps_with_numbers.png"
+        }
+      ],
+      "mediaUrl": "https://media-cdn.t24.com.tr/media/library/2020/06/1592077904529-kirklareli.jpg",
+      "aps": {
+        "badge": 5,
+        "alert": {
+          "title": "ios-test",
+          "body": "ios-test mes"
+        },
+        "mutable-content": 1,
+        "category": "carousel",
+        "sound": ""
+      },
+      "url": "https://visilabs.com",
+      "pushType": "Image",
+      "deepLink": "visilabs.com"
+    }
+    
+     */
 
 }

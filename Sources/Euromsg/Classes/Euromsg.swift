@@ -164,6 +164,7 @@ public class Euromsg {
             UNUserNotificationCenter.current().getDeliveredNotifications { a in
                 if let last = a.last {
                     last.request.content.userInfo
+                    //UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [String])
                 }
             }
             
@@ -189,10 +190,13 @@ public class Euromsg {
         }
     }
     
+    
+    //TODO: provisional keep kontrol et
     public static func askForNotificationPermissionProvisional(register: Bool = false) {
         if #available(iOS 12.0, *) {
             let center = UNUserNotificationCenter.current()
-            center.requestAuthorization(options: [.alert, .sound, .badge, .provisional]) { granted, error in
+            let options: UNAuthorizationOptions = [.provisional, .alert, .sound, .badge]
+            center.requestAuthorization(options: options) { granted, error in
                 if granted {
                     EMLog.success("Notification permission granted")
                     if register {

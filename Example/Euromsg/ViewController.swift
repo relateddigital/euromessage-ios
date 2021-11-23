@@ -47,7 +47,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func pushNotificationPermissionButtonAction(_ sender: UIButton) {
-        Euromsg.askForNotificationPermissionProvisional()
+        Euromsg.askForNotificationPermissionProvisional(register: true)
+        //Euromsg.askForNotificationPermission()
         Euromsg.sync()
     }
 
@@ -91,6 +92,11 @@ class ViewController: UIViewController {
     @IBAction func getPushMessages(_ sender: Any) {
         print("🚲 getPushMessages called")
         Euromsg.getPushMessages(completion: { messages in
+            
+            if messages.isEmpty {
+                print("🚲 there is no recorded push message.")
+            }
+            
             for message in messages {
                 print("🆔: \(message.pushId ?? "")")
                 print("📅: \(message.formattedDateString ?? "")")
