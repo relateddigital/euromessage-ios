@@ -126,7 +126,8 @@ public class Euromsg {
     }
     
     // MARK: Lifecycle
-    public class func configure(appAlias: String, launchOptions: [UIApplication.LaunchOptionsKey: Any]?, enableLog: Bool = false, appGroupsKey: String? = nil) {
+    public class func configure(appAlias: String, launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+                                , enableLog: Bool = false, appGroupsKey: String? = nil) {
         
         if let appGroupName = EMTools.getAppGroupName(appGroupName: appGroupsKey) {
             EMTools.setAppGroupsUserDefaults(appGroupName: appGroupName)
@@ -150,10 +151,11 @@ public class Euromsg {
         }
         
         
-        
+        /*
         if !EMTools.isiOSAppExtension() {
             UNUserNotificationCenter.current().removeAllDeliveredNotifications()
         }
+         */
         
     }
     
@@ -365,7 +367,7 @@ extension Euromsg {
     /// Report Euromsg services that a push notification successfully read
     /// - Parameter pushDictionary: push notification data that comes from APNS
     public static func handlePush(pushDictionary: [AnyHashable: Any]) {
-        guard let shared = getShared() else { return }
+        guard let _ = getShared() else { return }
         guard pushDictionary["pushId"] != nil else {
             return
         }
@@ -414,7 +416,16 @@ extension Euromsg {
         // Clear badge
         if !(subs.isBadgeCustom ?? false) {
             EMTools.removeUserDefaults(userKey: EMKey.badgeCount)
-            UIApplication.shared.applicationIconBadgeNumber = 0
+            
+            if !EMTools.isiOSAppExtension() {
+                UNUserNotificationCenter.current().getDeliveredNotifications(completionHandler: { notifications in
+                    DispatchQueue.main.async {
+                        UIApplication.shared.applicationIconBadgeNumber = notifications.count
+                    }
+                })
+            }
+            
+            //UIApplication.shared.applicationIconBadgeNumber = 0
         }
         // check whether the user have an unreported message
         Euromsg.emReadHandler?.checkUserUnreportedMessages()

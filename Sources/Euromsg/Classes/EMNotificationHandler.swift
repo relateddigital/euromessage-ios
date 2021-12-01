@@ -11,14 +11,15 @@ import UIKit
 
 class EMNotificationHandler {
 
-    public static func didReceive(_ bestAttemptContent: UNMutableNotificationContent?,
-                                  withContentHandler contentHandler:  @escaping (UNNotificationContent) -> Void) {
-        guard let userInfo = bestAttemptContent?.userInfo,
-            let data = try? JSONSerialization.data(withJSONObject: userInfo,
-                                                   options: []) else { return }
-        guard let pushDetail = try? JSONDecoder.init().decode(EMMessage.self,
-                                                              from: data) else { return }
-        Euromsg.emDeliverHandler?.reportDeliver(message: pushDetail)
+    public static func didReceive(_ bestAttemptContent: UNMutableNotificationContent?
+                                  , withContentHandler contentHandler:  @escaping (UNNotificationContent) -> Void) {
+        
+        guard let userInfo = bestAttemptContent?.userInfo, let data = try? JSONSerialization.data(withJSONObject: userInfo, options: []) else { return }
+        guard let pushDetail = try? JSONDecoder.init().decode(EMMessage.self, from: data) else { return }
+        
+        if pushDetail.sendDeliver() {
+            Euromsg.emDeliverHandler?.reportDeliver(message: pushDetail)
+        }
         
         EMPayloadUtils.savePayload(payload: pushDetail)
 

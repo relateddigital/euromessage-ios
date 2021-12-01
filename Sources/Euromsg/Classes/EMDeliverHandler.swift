@@ -36,6 +36,11 @@ class EMDeliverHandler {
             return
         }
         
+        if EMPayloadUtils.payloadContains(pushId: pushID) {
+            EMLog.warning("EMDeliverHandler pushId already sent.")
+            return
+        }
+        
         var isRequestValid = true
         
         self.readWriteLock.read {

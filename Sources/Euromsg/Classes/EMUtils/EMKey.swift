@@ -13,7 +13,7 @@ class EMKey {
                     appAlias not provided. Please use Euromsg.configure(::) function first.
                     For more information visit https://github.com/relateddigital/euromessage-ios
                     """
-    internal static let sdkVersion = "2.4.1"
+    internal static let sdkVersion = "2.4.2"
     internal static let tokenKey = "EURO_TOKEN_KEY"
     internal static let registerKey = "EURO_REGISTER_KEY"
     internal static let euroLastMessageKey = "EURO_LAST_MESSAGE_KEY"
@@ -33,6 +33,8 @@ class EMKey {
     internal static let euroPayloadsKey = "EURO_PAYLOADS_KEY"
     internal static let appGroupNameDefaultPrefix = "group"
     internal static let appGroupNameDefaultSuffix = "relateddigital"
+    
+    internal static let euroReadPushIdListKey = "EURO_READ_PUSHID_LIST_KEY"
     
     internal static let graylogLogLevelError = "e"
     internal static let graylogLogLevelWarning = "w"

@@ -106,8 +106,7 @@ public class EMNotificationCarousel: UIView {
 
 extension EMNotificationCarousel: UICollectionViewDelegate, UICollectionViewDataSource {
 
-    public func collectionView(_ collectionView: UICollectionView,
-                               didSelectItemAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let userInfo = bestAttemptContent?.userInfo else { return }
         Euromsg.handlePush(pushDictionary: userInfo)
         guard let urlString = self.carouselElements[indexPath.row].url,

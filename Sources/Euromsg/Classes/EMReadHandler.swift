@@ -36,7 +36,12 @@ class EMReadHandler {
         var request: EMRetentionRequest?
         
         guard let pushID = message.pushId, let emPushSp = message.emPushSp else {
-            EMLog.warning("EMReadHandler pushId or emPushSp is empty")
+            EMLog.warning("EMReadHandler pushId or emPushSp is empty.")
+            return
+        }
+        
+        if EMPayloadUtils.pushIdListContains(pushId: pushID) {
+            EMLog.warning("EMReadHandler pushId already sent.")
             return
         }
         
@@ -73,6 +78,9 @@ class EMReadHandler {
         switch result {
         case .success:
             EMTools.removeUserDefaults(userKey: EMKey.euroLastMessageKey)
+            if let pushId = inProgressPushId {
+                EMPayloadUtils.saveReadPushId(pushId: pushId)
+            }
         case .failure:
             if let emMessage = emMessage, let emMessageData = try? JSONEncoder().encode(emMessage) {
                 EMTools.saveUserDefaults(key: EMKey.euroLastMessageKey, value: emMessageData as AnyObject)

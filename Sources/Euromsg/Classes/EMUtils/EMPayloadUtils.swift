@@ -8,7 +8,42 @@
 import Foundation
 
 class EMPayloadUtils {
-
+    
+    private static let pushIdLock = EMReadWriteLock(label: "EMPushIdLock")
+    //private static let payloadLock = EMReadWriteLock(label: "EMPayloadLock")
+    
+    static func saveReadPushId(pushId: String) {
+        var pushIdList = getReadPushIdList()
+        pushIdLock.write {
+            if !pushIdList.contains(pushId) {
+                pushIdList.append(pushId)
+                if let pushIdListData = try? JSONEncoder().encode(pushIdList) {
+                    EMTools.saveUserDefaults(key: EMKey.euroReadPushIdListKey, value: pushIdListData as AnyObject)
+                } else {
+                    EMLog.warning("Can not encode pushIdList : \(String(describing: pushIdList))")
+                }
+            } else {
+                EMLog.warning("PushId already exists. pushId: \(pushId)")
+            }
+        }
+    }
+    
+    static func getReadPushIdList() -> [String] {
+        var finalPushIdList = [String]()
+        pushIdLock.read {
+            if let pushIdListJsonData = EMTools.retrieveUserDefaults(userKey: EMKey.euroReadPushIdListKey) as? Data {
+                if let pushIdList = try? JSONDecoder().decode([String].self, from: pushIdListJsonData) {
+                    finalPushIdList = pushIdList
+                }
+            }
+        }
+        return Array(finalPushIdList.suffix(50))
+    }
+    
+    static func pushIdListContains(pushId: String) -> Bool {
+        return getReadPushIdList().contains(pushId)
+    }
+    
     static func savePayload(payload: EMMessage) {
         var payload = payload
         if let pushId = payload.pushId {
@@ -52,6 +87,11 @@ class EMPayloadUtils {
                 return false
             }
         })
+    }
+    
+    static func payloadContains(pushId: String) -> Bool {
+        let payloads = getRecentPayloads()
+        return payloads.first(where: { $0.pushId == pushId }) != nil
     }
 
 }
