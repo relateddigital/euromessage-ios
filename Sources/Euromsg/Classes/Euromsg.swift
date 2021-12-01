@@ -150,13 +150,6 @@ public class Euromsg {
             Euromsg.emDeliverHandler = EMDeliverHandler(euromsg: Euromsg.shared!)
         }
         
-        
-        /*
-        if !EMTools.isiOSAppExtension() {
-            UNUserNotificationCenter.current().removeAllDeliveredNotifications()
-        }
-         */
-        
     }
     
     /// Request to user for authorization for push notification

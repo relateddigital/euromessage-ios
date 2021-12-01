@@ -19,7 +19,7 @@ public class EMNotificationCarousel: UIView {
     var carouselElements: [EMMessage.Element] = []
     var currentIndex: Int = 0
     var userInfo: [AnyHashable: Any]?
-    public var completion: ((_ url: URL?, _ userInfo: [AnyHashable: Any]?) -> Void)?
+    public var completion: ((_ url: URL?, _ bestAttemptContent: UNMutableNotificationContent?) -> Void)?
     public weak var delegate: CarouselDelegate?
     
     
@@ -111,14 +111,12 @@ extension EMNotificationCarousel: UICollectionViewDelegate, UICollectionViewData
         guard indexPath.row < carouselElements.count else { return }
         self.delegate?.selectedItem(carouselElements[indexPath.row])
         if let urlString = self.carouselElements[indexPath.row].url, let url = URL(string: urlString) {
-                completion?(url, userInfo)
+                completion?(url, bestAttemptContent)
         } else {
-            completion?(nil, userInfo)
+            completion?(nil, bestAttemptContent)
         }
-        
         self.carouselElements = []
         collectionView.reloadData()
-        
     }
 
     public func numberOfSections(in collectionView: UICollectionView) -> Int {

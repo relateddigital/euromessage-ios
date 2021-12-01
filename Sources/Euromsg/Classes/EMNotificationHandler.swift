@@ -31,6 +31,10 @@ class EMNotificationHandler {
         // Setup notification for image/video
         guard let modifiedBestAttemptContent = bestAttemptContent else { return }
         
+        if let sound = pushDetail.aps?.sound, sound.count > 0 {
+            modifiedBestAttemptContent.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: sound))
+        }
+        
         if pushDetail.pushType == "Image" || pushDetail.pushType == "Video",
             let attachmentMedia = pushDetail.mediaUrl, let mediaUrl = URL(string: attachmentMedia) {
             loadAttachments(mediaUrl: mediaUrl, modifiedBestAttemptContent: modifiedBestAttemptContent, withContentHandler: contentHandler)

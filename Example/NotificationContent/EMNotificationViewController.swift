@@ -15,7 +15,7 @@ import Euromsg
 class EMNotificationViewController: UIViewController, UNNotificationContentExtension {
     
     let carouselView = EMNotificationCarousel.initView()
-    var completion: ((_ url: URL?, _ userInfo: [AnyHashable: Any]?) -> Void)?
+    var completion: ((_ url: URL?, _ bestAttemptContent: UNMutableNotificationContent?) -> Void)?
     
     var notificationRequestIdentifier = ""
     
@@ -27,20 +27,27 @@ class EMNotificationViewController: UIViewController, UNNotificationContentExten
     }
     func didReceive(_ response: UNNotificationResponse, completionHandler completion: @escaping (UNNotificationContentExtensionResponseOption) -> Void) {
         carouselView.didReceive(response, completionHandler: completion)
+
     }
     override func loadView() {
-        completion = { [weak self] url, userInfo in
+        completion = { [weak self] url, bestAttemptContent in
+            if let identifier = self?.notificationRequestIdentifier {
+                print("didReceiveResponse notificationRequestIdentifier: \(identifier)")
+                UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [identifier])
+                UNUserNotificationCenter.current().getDeliveredNotifications(completionHandler: { notifications in
+                    bestAttemptContent?.badge =  NSNumber(value: notifications.count)
+                })
+            }
+            
             if let url = url {
+                if #available(iOSApplicationExtension 12.0, *) {
+                    self?.extensionContext?.dismissNotificationContentExtension()
+                }
                 self?.extensionContext?.open(url)
             } else {
                 if #available(iOSApplicationExtension 12.0, *) {
                     self?.extensionContext?.performNotificationDefaultAction()
                 }
-            }
-            
-            if let identifier = self?.notificationRequestIdentifier {
-                print("didReceiveResponse notificationRequestIdentifier: \(identifier)")
-                UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [identifier])
             }
             
         }
