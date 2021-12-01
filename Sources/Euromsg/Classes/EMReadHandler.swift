@@ -27,8 +27,8 @@ class EMReadHandler {
     /// - Parameters:
     ///   - message: Push data
     internal func reportRead(message: EMMessage) {
-        guard let appKey = euromsg.subscription.appKey,
-              let token = euromsg.subscription.token else {
+        
+        guard let appKey = euromsg.subscription.appKey, let token = euromsg.subscription.token else {
             EMLog.error("EMReadHandler reportRead appKey or token does not exist")
             return
         }
@@ -58,18 +58,13 @@ class EMReadHandler {
             inProgressEmPushSp = emPushSp
             emMessage = message
             EMLog.info("reportRead: \(message.encoded)")
-            request = EMRetentionRequest(key: appKey,
-                                         token: token,
-                                         status: EMKey.euroReadStatus,
-                                         pushId: pushID,
-                                         emPushSp: emPushSp)
+            request = EMRetentionRequest(key: appKey, token: token, status: EMKey.euroReadStatus, pushId: pushID, emPushSp: emPushSp)
         }
         
         if let request = request {
             DispatchQueue.main.asyncAfter(deadline: .now() + .nanoseconds(2)) { [weak self] in
                 guard let self = self else { return }
-                self.euromsg.euromsgAPI?.request(requestModel: request, retry: 3,
-                                                 completion: self.readRequestHandler)
+                self.euromsg.euromsgAPI?.request(requestModel: request, retry: 3, completion: self.readRequestHandler)
             }
         }
     }

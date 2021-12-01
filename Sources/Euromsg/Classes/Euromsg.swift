@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import UserNotifications
 
 protocol EuromsgDelegate: AnyObject {
     func didRegisterSuccessfully()
@@ -29,7 +30,7 @@ public class Euromsg {
     private var previousRegisterEmailSubscription: EMSubscriptionRequest?
     internal var userAgent: String? = nil
     
-    static var emPushTracker = EMPushTracker()
+    //static var emPushTracker = EMPushTracker()
     
     private init(appKey: String, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         EMLog.info("INITCALL \(appKey)")
@@ -48,6 +49,8 @@ public class Euromsg {
         fillGraylogModel()
         
         let ncd = NotificationCenter.default
+        
+        
         observers = []
         observers?.append(ncd.addObserver(
                             forName: UIApplication.willResignActiveNotification,
@@ -70,6 +73,8 @@ public class Euromsg {
                             queue: nil,
                             using: Euromsg.sync))
         
+
+        
         setUserAgent()
     }
     
@@ -86,14 +91,6 @@ public class Euromsg {
         NotificationCenter.default.removeObserver(self,
                                                   name: UIApplication.didBecomeActiveNotification,
                                                   object: nil)
-    }
-    
-    public static func sharedUIApplication() -> UIApplication? {
-        let shared = UIApplication.perform(NSSelectorFromString("sharedApplication"))?.takeUnretainedValue()
-        guard let sharedApplication = shared as? UIApplication else {
-            return nil
-        }
-        return sharedApplication
     }
     
     private static func getShared() -> Euromsg? {
@@ -138,9 +135,7 @@ public class Euromsg {
         }
         
         Euromsg.shared = Euromsg(appKey: appAlias, launchOptions: launchOptions)
-        
         Euromsg.shared?.euromsgAPI = EuromsgAPI()
-        
         if let readHandler = Euromsg.emReadHandler {
             readHandler.euromsg = Euromsg.shared!
         } else {
@@ -154,6 +149,8 @@ public class Euromsg {
         }
         
         
+        //TODO:
+        /*
         if !EMTools.isiOSAppExtension() {
             Euromsg.emPushTracker.initializeAutomaticPushOpenTracking()
             if let notification = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? [AnyHashable: Any] {
@@ -167,11 +164,9 @@ public class Euromsg {
                     //UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [String])
                 }
             }
-            
             UNUserNotificationCenter.current().removeAllDeliveredNotifications()
         }
-
-        
+        */
     }
     
     /// Request to user for authorization for push notification
@@ -637,6 +632,15 @@ extension Euromsg {
         case .failure(let error):
             EMLog.error("GraylogMessage request failed : \(error)")
         }
+    }
+    
+}
+
+
+extension Euromsg: EMAppDelegateSwizzlerDelegate {
+    
+    func didRegisterForRemoteNotificationsWithDeviceToken(deviceToken: Data) {
+        Self.registerToken(tokenData: deviceToken)
     }
     
 }

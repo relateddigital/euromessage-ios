@@ -72,9 +72,12 @@
 
 /* Begin PBXFileReference section */
 		000430F2234FFA7059C0E85B /* Pods-NotificationContent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationContent.debug.xcconfig"; path = "Target Support Files/Pods-NotificationContent/Pods-NotificationContent.debug.xcconfig"; sourceTree = "<group>"; };
+		01AFFB598DA6CBC3A43F5913 /* Pods-Euromsg_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Euromsg_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Euromsg_Tests/Pods-Euromsg_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		02B5712FEA5311EC213832B8 /* Pods-Euromsg_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Euromsg_Tests.debug.xcconfig"; path = "Target Support Files/Pods-Euromsg_Tests/Pods-Euromsg_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		03C03A4FDA6BDABCD2CFFEBF /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		11BFFCA690A6D54B824FAE21 /* Pods-NotificationContent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationContent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NotificationContent/Pods-NotificationContent.debug.xcconfig"; sourceTree = "<group>"; };
 		36B5AF2E26AEA7CC00E179EE /* PayloadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadViewController.swift; sourceTree = "<group>"; };
+		49ECB305EB2F161528F07D7F /* Pods-Euromsg_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Euromsg_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Euromsg_Example/Pods-Euromsg_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		5F9DF86A766D836AE2CA3E83 /* Pods_Euromsg_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Euromsg_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* EuromsgExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EuromsgExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -104,13 +107,18 @@
 		8895A27324DC29E6009AFDE7 /* EuromsgUnInitializedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EuromsgUnInitializedTests.swift; sourceTree = "<group>"; };
 		8895A27524DC2BAC009AFDE7 /* EMToolsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMToolsTests.swift; sourceTree = "<group>"; };
 		9A0D6C44258B2A6CFCCE5710 /* Pods-NotificationService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationService.release.xcconfig"; path = "Target Support Files/Pods-NotificationService/Pods-NotificationService.release.xcconfig"; sourceTree = "<group>"; };
+		A37D09FF2696B42F78D9B86F /* Pods-NotificationService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationService.release.xcconfig"; path = "Pods/Target Support Files/Pods-NotificationService/Pods-NotificationService.release.xcconfig"; sourceTree = "<group>"; };
 		A3C7371E545F39352C2AC3BC /* Pods_NotificationService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NotificationService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5FD926700A9E823B4B56CA7 /* Pods-NotificationContent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationContent.release.xcconfig"; path = "Pods/Target Support Files/Pods-NotificationContent/Pods-NotificationContent.release.xcconfig"; sourceTree = "<group>"; };
 		B7CB3809C2F4BE74CDC5E743 /* Pods_NotificationContent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NotificationContent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB12FEA40F34C28D60925927 /* Pods-Euromsg_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Euromsg_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Euromsg_Tests/Pods-Euromsg_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		CE11F0C4E945AED1EC26DA2C /* Pods_Euromsg_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Euromsg_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF051D2B902D1DF2ED7672B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		D3A6E162DE350AE7E6479158 /* Pods-Euromsg_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Euromsg_Example.release.xcconfig"; path = "Target Support Files/Pods-Euromsg_Example/Pods-Euromsg_Example.release.xcconfig"; sourceTree = "<group>"; };
+		DF033BBC043A9FB1C90718E6 /* Pods-NotificationService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationService.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NotificationService/Pods-NotificationService.debug.xcconfig"; sourceTree = "<group>"; };
 		DF28FB3522EFDE7EA76F808C /* Pods-Euromsg_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Euromsg_Tests.release.xcconfig"; path = "Target Support Files/Pods-Euromsg_Tests/Pods-Euromsg_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		E732DCFE9DE1A64A751FB28A /* Euromsg.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Euromsg.podspec; path = ../Euromsg.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F273B024A82D25AA8C4A6D1F /* Pods-Euromsg_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Euromsg_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Euromsg_Example/Pods-Euromsg_Example.release.xcconfig"; sourceTree = "<group>"; };
 		F93688504C36BE672C2E5D61 /* Pods-NotificationService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationService.debug.xcconfig"; path = "Target Support Files/Pods-NotificationService/Pods-NotificationService.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -163,6 +171,14 @@
 				6FAE8C55453A79B28585555A /* Pods-NotificationContent.release.xcconfig */,
 				F93688504C36BE672C2E5D61 /* Pods-NotificationService.debug.xcconfig */,
 				9A0D6C44258B2A6CFCCE5710 /* Pods-NotificationService.release.xcconfig */,
+				49ECB305EB2F161528F07D7F /* Pods-Euromsg_Example.debug.xcconfig */,
+				F273B024A82D25AA8C4A6D1F /* Pods-Euromsg_Example.release.xcconfig */,
+				BB12FEA40F34C28D60925927 /* Pods-Euromsg_Tests.debug.xcconfig */,
+				01AFFB598DA6CBC3A43F5913 /* Pods-Euromsg_Tests.release.xcconfig */,
+				11BFFCA690A6D54B824FAE21 /* Pods-NotificationContent.debug.xcconfig */,
+				B5FD926700A9E823B4B56CA7 /* Pods-NotificationContent.release.xcconfig */,
+				DF033BBC043A9FB1C90718E6 /* Pods-NotificationService.debug.xcconfig */,
+				A37D09FF2696B42F78D9B86F /* Pods-NotificationService.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -474,15 +490,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Euromsg_Tests-checkManifestLockResult.txt",
 			);
@@ -496,15 +508,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-NotificationService-checkManifestLockResult.txt",
 			);
@@ -518,15 +526,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-NotificationContent-checkManifestLockResult.txt",
 			);
@@ -540,15 +544,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Euromsg_Example-checkManifestLockResult.txt",
 			);
