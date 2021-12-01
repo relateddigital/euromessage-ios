@@ -29,7 +29,7 @@ public class Euromsg {
     private var previousRegisterEmailSubscription: EMSubscriptionRequest?
     internal var userAgent: String? = nil
     
-    private init(appKey: String) {
+    private init(appKey: String, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         EMLog.info("INITCALL \(appKey)")
         self.readWriteLock = EMReadWriteLock(label: "EuromsgLock")
         if let lastSubscriptionData = EMTools.retrieveUserDefaults(userKey: EMKey.registerKey) as? Data,
@@ -112,7 +112,7 @@ public class Euromsg {
                         EMLog.warning(EMKey.appAliasNotProvidedMessage)
                         return nil
                     }
-                    Euromsg.configure(appAlias: appKey)
+                    Euromsg.configure(appAlias: appKey, launchOptions: nil)
                     return sharedInstance
                 }
                 EMLog.warning(EMKey.appAliasNotProvidedMessage)
@@ -126,14 +126,14 @@ public class Euromsg {
     }
     
     // MARK: Lifecycle
-    public class func configure(appAlias: String, enableLog: Bool = false, appGroupsKey: String? = nil) {
+    public class func configure(appAlias: String, launchOptions: [UIApplication.LaunchOptionsKey: Any]?, enableLog: Bool = false, appGroupsKey: String? = nil) {
         
         if let appGroupName = EMTools.getAppGroupName(appGroupName: appGroupsKey) {
             EMTools.setAppGroupsUserDefaults(appGroupName: appGroupName)
             EMLog.info("App Group Key : \(appGroupName)")
         }
         
-        Euromsg.shared = Euromsg(appKey: appAlias)
+        Euromsg.shared = Euromsg(appKey: appAlias, launchOptions: launchOptions)
         EMLog.isEnabled = enableLog
         Euromsg.shared?.euromsgAPI = EuromsgAPI()
         
