@@ -30,11 +30,10 @@ class EMNotificationHandler {
 
         // Setup notification for image/video
         guard let modifiedBestAttemptContent = bestAttemptContent else { return }
+        
         if pushDetail.pushType == "Image" || pushDetail.pushType == "Video",
             let attachmentMedia = pushDetail.mediaUrl, let mediaUrl = URL(string: attachmentMedia) {
-            loadAttachments(mediaUrl: mediaUrl,
-                            modifiedBestAttemptContent: modifiedBestAttemptContent,
-                            withContentHandler: contentHandler)
+            loadAttachments(mediaUrl: mediaUrl, modifiedBestAttemptContent: modifiedBestAttemptContent, withContentHandler: contentHandler)
         } else if pushDetail.pushType == "Text" {
             contentHandler(modifiedBestAttemptContent)
         }
@@ -42,13 +41,9 @@ class EMNotificationHandler {
 
     static func addCarouselActionButtons() {
         let categoryIdentifier = "carousel"
-        let carouselNext = UNNotificationAction(identifier: "carousel.next",
-                                                title: "▶", options: [])
-        let carouselPrevious = UNNotificationAction(identifier: "carousel.previous",
-                                                    title: "◀", options: [])
-        let carouselCategory = UNNotificationCategory(identifier: categoryIdentifier,
-                                                      actions: [carouselNext, carouselPrevious],
-                                                      intentIdentifiers: [], options: [])
+        let carouselNext = UNNotificationAction(identifier: "carousel.next", title: "▶", options: [])
+        let carouselPrevious = UNNotificationAction(identifier: "carousel.previous", title: "◀", options: [])
+        let carouselCategory = UNNotificationCategory(identifier: categoryIdentifier, actions: [carouselNext, carouselPrevious], intentIdentifiers: [], options: [])
         UNUserNotificationCenter.current().setNotificationCategories([carouselCategory])
     }
 

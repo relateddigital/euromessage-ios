@@ -21,6 +21,8 @@ public class EMNotificationCarousel: UIView {
     var userInfo: [AnyHashable: Any]?
     public var completion: ((_ url: URL?, _ userInfo: [AnyHashable: Any]?) -> Void)?
     public weak var delegate: CarouselDelegate?
+    
+    
 
     public static func initView() -> EMNotificationCarousel {
         let view = EMNotificationCarousel()
@@ -52,9 +54,7 @@ public class EMNotificationCarousel: UIView {
         guard let list = pushDetail?.elements else { return }
         self.carouselElements = list
         DispatchQueue.main.async {
-            self.collectionView.register(UINib(nibName: self.identifier,
-                                               bundle: Bundle(for: type(of: self))),
-                                         forCellWithReuseIdentifier: self.identifier)
+            self.collectionView.register(UINib(nibName: self.identifier, bundle: Bundle(for: type(of: self))), forCellWithReuseIdentifier: self.identifier)
             self.collectionView.delegate = self
             self.collectionView.dataSource = self
             self.collectionView.contentInset = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
@@ -62,9 +62,7 @@ public class EMNotificationCarousel: UIView {
         }
     }
 
-    public func didReceive(_ response: UNNotificationResponse,
-                           completionHandler completion:
-        @escaping (UNNotificationContentExtensionResponseOption) -> Void) {
+    public func didReceive(_ response: UNNotificationResponse, completionHandler completion: @escaping (UNNotificationContentExtensionResponseOption) -> Void) {
         if response.actionIdentifier == "carousel.next" {
             self.scrollNextItem()
             completion(UNNotificationContentExtensionResponseOption.doNotDismiss)
@@ -75,6 +73,7 @@ public class EMNotificationCarousel: UIView {
             completion(UNNotificationContentExtensionResponseOption.dismissAndForwardAction)
         }
     }
+    
 
     @IBAction func swipeLeft(_ sender: UISwipeGestureRecognizer) {
         scrollNextItem()
@@ -109,14 +108,17 @@ extension EMNotificationCarousel: UICollectionViewDelegate, UICollectionViewData
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let userInfo = bestAttemptContent?.userInfo else { return }
         Euromsg.handlePush(pushDictionary: userInfo)
-        guard let urlString = self.carouselElements[indexPath.row].url,
-            let url = URL(string: urlString) else {
-                completion?(nil, nil)
-                return
-        }
-        completion?(url, userInfo)
         guard indexPath.row < carouselElements.count else { return }
         self.delegate?.selectedItem(carouselElements[indexPath.row])
+        if let urlString = self.carouselElements[indexPath.row].url, let url = URL(string: urlString) {
+                completion?(url, userInfo)
+        } else {
+            completion?(nil, userInfo)
+        }
+        
+        self.carouselElements = []
+        collectionView.reloadData()
+        
     }
 
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
