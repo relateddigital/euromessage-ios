@@ -1,13 +1,12 @@
 //
 //  Euromsg.swift
-//  
+//
 //
 //  Created by Muhammed ARAFA on 27.03.2020.
 //
 
 import Foundation
 import UIKit
-import UserNotifications
 
 protocol EuromsgDelegate: AnyObject {
     func didRegisterSuccessfully()
@@ -30,9 +29,7 @@ public class Euromsg {
     private var previousRegisterEmailSubscription: EMSubscriptionRequest?
     internal var userAgent: String? = nil
     
-    //static var emPushTracker = EMPushTracker()
-    
-    private init(appKey: String, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+    private init(appKey: String) {
         EMLog.info("INITCALL \(appKey)")
         self.readWriteLock = EMReadWriteLock(label: "EuromsgLock")
         if let lastSubscriptionData = EMTools.retrieveUserDefaults(userKey: EMKey.registerKey) as? Data,
@@ -49,8 +46,6 @@ public class Euromsg {
         fillGraylogModel()
         
         let ncd = NotificationCenter.default
-        
-        
         observers = []
         observers?.append(ncd.addObserver(
                             forName: UIApplication.willResignActiveNotification,
@@ -73,8 +68,6 @@ public class Euromsg {
                             queue: nil,
                             using: Euromsg.sync))
         
-
-        
         setUserAgent()
     }
     
@@ -91,6 +84,14 @@ public class Euromsg {
         NotificationCenter.default.removeObserver(self,
                                                   name: UIApplication.didBecomeActiveNotification,
                                                   object: nil)
+    }
+    
+    static func sharedUIApplication() -> UIApplication? {
+        let shared = UIApplication.perform(NSSelectorFromString("sharedApplication"))?.takeUnretainedValue()
+        guard let sharedApplication = shared as? UIApplication else {
+            return nil
+        }
+        return sharedApplication
     }
     
     private static func getShared() -> Euromsg? {
@@ -111,7 +112,7 @@ public class Euromsg {
                         EMLog.warning(EMKey.appAliasNotProvidedMessage)
                         return nil
                     }
-                    Euromsg.configure(appAlias: appKey, launchOptions: nil)
+                    Euromsg.configure(appAlias: appKey)
                     return sharedInstance
                 }
                 EMLog.warning(EMKey.appAliasNotProvidedMessage)
@@ -125,17 +126,17 @@ public class Euromsg {
     }
     
     // MARK: Lifecycle
-    public class func configure(appAlias: String, launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil, enableLog: Bool = false, appGroupsKey: String? = nil) {
-        
-        EMLog.isEnabled = enableLog
+    public class func configure(appAlias: String, enableLog: Bool = false, appGroupsKey: String? = nil) {
         
         if let appGroupName = EMTools.getAppGroupName(appGroupName: appGroupsKey) {
             EMTools.setAppGroupsUserDefaults(appGroupName: appGroupName)
             EMLog.info("App Group Key : \(appGroupName)")
         }
         
-        Euromsg.shared = Euromsg(appKey: appAlias, launchOptions: launchOptions)
+        Euromsg.shared = Euromsg(appKey: appAlias)
+        EMLog.isEnabled = enableLog
         Euromsg.shared?.euromsgAPI = EuromsgAPI()
+        
         if let readHandler = Euromsg.emReadHandler {
             readHandler.euromsg = Euromsg.shared!
         } else {
@@ -149,24 +150,11 @@ public class Euromsg {
         }
         
         
-        //TODO:
-        /*
+        
         if !EMTools.isiOSAppExtension() {
-            Euromsg.emPushTracker.initializeAutomaticPushOpenTracking()
-            if let notification = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? [AnyHashable: Any] {
-                Euromsg.handlePush(pushDictionary: notification)
-            }
-            
-            //TODO: userInfo nasıl alınacak
-            UNUserNotificationCenter.current().getDeliveredNotifications { a in
-                if let last = a.last {
-                    last.request.content.userInfo
-                    //UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [String])
-                }
-            }
             UNUserNotificationCenter.current().removeAllDeliveredNotifications()
         }
-        */
+        
     }
     
     /// Request to user for authorization for push notification
@@ -185,13 +173,10 @@ public class Euromsg {
         }
     }
     
-    
-    //TODO: provisional keep kontrol et
     public static func askForNotificationPermissionProvisional(register: Bool = false) {
         if #available(iOS 12.0, *) {
             let center = UNUserNotificationCenter.current()
-            let options: UNAuthorizationOptions = [.provisional, .alert, .sound, .badge]
-            center.requestAuthorization(options: options) { granted, error in
+            center.requestAuthorization(options: [.alert, .sound, .badge, .provisional]) { granted, error in
                 if granted {
                     EMLog.success("Notification permission granted")
                     if register {
@@ -377,11 +362,10 @@ extension Euromsg {
         Euromsg.sync()
     }
     
-    
-    /// Report Euromsg services that a push notification successfully opened
+    /// Report Euromsg services that a push notification successfully read
     /// - Parameter pushDictionary: push notification data that comes from APNS
-    static func handlePush(pushDictionary: [AnyHashable: Any]) {
-        guard getShared() != nil else { return }
+    public static func handlePush(pushDictionary: [AnyHashable: Any]) {
+        guard let shared = getShared() else { return }
         guard pushDictionary["pushId"] != nil else {
             return
         }
@@ -488,7 +472,7 @@ extension Euromsg {
         }
     }
     
-    /// Returns all the information that set before 
+    /// Returns all the information that set before
     public static func checkConfiguration() -> EMConfiguration {
         guard let shared = getShared() else { return EMConfiguration() }
         var registerRequest: EMSubscriptionRequest!
@@ -606,7 +590,7 @@ extension Euromsg {
         graylog.extra = subscription.extra
     }
     
-    static func sendGraylogMessage(logLevel: String, logMessage: String, _ path: String = #file, _ function: String = #function, _ line: Int = #line) {
+    public static func sendGraylogMessage(logLevel: String, logMessage: String, _ path: String = #file, _ function: String = #function, _ line: Int = #line) {
         guard let shared = getShared() else { return }
         var emGraylogRequest: EMGraylogRequest!
         shared.readWriteLock.read {
@@ -632,15 +616,6 @@ extension Euromsg {
         case .failure(let error):
             EMLog.error("GraylogMessage request failed : \(error)")
         }
-    }
-    
-}
-
-
-extension Euromsg: EMAppDelegateSwizzlerDelegate {
-    
-    func didRegisterForRemoteNotificationsWithDeviceToken(deviceToken: Data) {
-        Self.registerToken(tokenData: deviceToken)
     }
     
 }
