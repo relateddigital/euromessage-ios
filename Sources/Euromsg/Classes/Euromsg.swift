@@ -19,8 +19,12 @@ public class Euromsg {
     private let readWriteLock: EMReadWriteLock
     internal var euromsgAPI: EuromsgAPIProtocol?
     private var observers: [NSObjectProtocol]?
+    
     static var emReadHandler: EMReadHandler?
     static var emDeliverHandler: EMDeliverHandler?
+    static var emSubscriptionHandler: EMDeliverHandler?
+    
+    
     private var pushPermitDidCall: Bool = false
     weak var delegate: EuromsgDelegate?
     internal var subscription: EMSubscriptionRequest
@@ -466,9 +470,7 @@ extension Euromsg {
     private func registerRequestHandler(result: Result<EMResponse?, EuromsgAPIError>) {
         switch result {
         case .success:
-            EMLog.success("""
-                Subscription request successfully send, token: \(String(describing: self.subscription.token))
-                """)
+            EMLog.success("Subscription request successfully send, token: \(String(describing: self.subscription.token))")
             self.delegate?.didRegisterSuccessfully()
         case .failure(let error):
             EMLog.error("Request failed : \(error)")
