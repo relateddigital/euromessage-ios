@@ -48,7 +48,7 @@ class EMUNNotificationServiceExtensionHandler {
         let carouselNext = UNNotificationAction(identifier: "carousel.next", title: "▶", options: [])
         let carouselPrevious = UNNotificationAction(identifier: "carousel.previous", title: "◀", options: [])
         let carouselCategory = UNNotificationCategory(identifier: categoryIdentifier, actions: [carouselNext, carouselPrevious], intentIdentifiers: [], options: [])
-        UNUserNotificationCenter.current().setNotificationCategories([carouselCategory])
+        UNUNC.current().setNotificationCategories([carouselCategory])
     }
 
     static func loadAttachments(mediaUrl: URL,

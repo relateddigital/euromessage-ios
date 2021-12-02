@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+typealias UIA = UIApplication
+typealias NC = NotificationCenter
+typealias UNUNC = UNUserNotificationCenter
+
 protocol EuromsgDelegate: AnyObject {
     func didRegisterSuccessfully()
     func didFailRegister(error: EuromsgAPIError)
@@ -48,53 +52,28 @@ public class Euromsg {
         graylog = EMGraylogRequest()
         fillGraylogModel()
         
-        let ncd = NotificationCenter.default
+        let ncd = NC.default
         observers = []
-        observers?.append(ncd.addObserver(
-                            forName: UIApplication.willResignActiveNotification,
-                            object: nil,
-                            queue: nil,
-                            using: Euromsg.sync))
-        observers?.append(ncd.addObserver(
-                            forName: UIApplication.willTerminateNotification,
-                            object: nil,
-                            queue: nil,
-                            using: Euromsg.sync))
-        observers?.append(ncd.addObserver(
-                            forName: UIApplication.willEnterForegroundNotification,
-                            object: nil,
-                            queue: nil,
-                            using: Euromsg.sync))
-        observers?.append(ncd.addObserver(
-                            forName: UIApplication.didBecomeActiveNotification,
-                            object: nil,
-                            queue: nil,
-                            using: Euromsg.sync))
+        observers?.append(ncd.addObserver(forName: UIA.willResignActiveNotification, object: nil, queue: nil, using: Euromsg.sync))
+        observers?.append(ncd.addObserver(forName: UIA.willTerminateNotification, object: nil, queue: nil, using: Euromsg.sync))
+        observers?.append(ncd.addObserver(forName: UIA.willEnterForegroundNotification, object: nil, queue: nil, using: Euromsg.sync))
+        observers?.append(ncd.addObserver(forName: UIA.didBecomeActiveNotification, object: nil, queue: nil, using: Euromsg.sync))
         
-        setUserAgent()
+        if let userAgent = EMUserDefaultsUtils.retrieveUserDefaults(userKey: EMKey.userAgent) as? String {
+            self.userAgent = userAgent
+        } else {
+            EMTools.computeWebViewUserAgent { str in
+                self.userAgent = str
+                EMUserDefaultsUtils.saveUserDefaults(key: EMKey.userAgent, value: str as AnyObject)
+            }
+        }
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self,
-                                                  name: UIApplication.willResignActiveNotification,
-                                                  object: nil)
-        NotificationCenter.default.removeObserver(self,
-                                                  name: UIApplication.willTerminateNotification,
-                                                  object: nil)
-        NotificationCenter.default.removeObserver(self,
-                                                  name: UIApplication.willEnterForegroundNotification,
-                                                  object: nil)
-        NotificationCenter.default.removeObserver(self,
-                                                  name: UIApplication.didBecomeActiveNotification,
-                                                  object: nil)
-    }
-    
-    static func sharedUIApplication() -> UIApplication? {
-        let shared = UIApplication.perform(NSSelectorFromString("sharedApplication"))?.takeUnretainedValue()
-        guard let sharedApplication = shared as? UIApplication else {
-            return nil
-        }
-        return sharedApplication
+        NC.default.removeObserver(self, name: UIA.willResignActiveNotification, object: nil)
+        NC.default.removeObserver(self, name: UIA.willTerminateNotification, object: nil)
+        NC.default.removeObserver(self, name: UIA.willEnterForegroundNotification, object: nil)
+        NC.default.removeObserver(self, name: UIA.didBecomeActiveNotification, object: nil)
     }
     
     private static func getShared() -> Euromsg? {
@@ -164,7 +143,7 @@ public class Euromsg {
     /// Request to user for authorization for push notification
     /// - Parameter register: also register for deviceToken. _default : false_
     public static func askForNotificationPermission(register: Bool = false) {
-        let center = UNUserNotificationCenter.current()
+        let center = UNUNC.current()
         center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
             if granted {
                 EMLog.success("Notification permission granted")
@@ -179,7 +158,7 @@ public class Euromsg {
     
     public static func askForNotificationPermissionProvisional(register: Bool = false) {
         if #available(iOS 12.0, *) {
-            let center = UNUserNotificationCenter.current()
+            let center = UNUNC.current()
             center.requestAuthorization(options: [.alert, .sound, .badge, .provisional]) { granted, error in
                 if granted {
                     EMLog.success("Notification permission granted")
@@ -201,16 +180,6 @@ public class Euromsg {
         }
     }
     
-    func setUserAgent() {
-        if let userAgent = EMUserDefaultsUtils.retrieveUserDefaults(userKey: EMKey.userAgent) as? String {
-            self.userAgent = userAgent
-        } else {
-            EMTools.computeWebViewUserAgent { str in
-                self.userAgent = str
-                EMUserDefaultsUtils.saveUserDefaults(key: EMKey.userAgent, value: str as AnyObject)
-            }
-        }
-    }
 }
 
 extension Euromsg {
@@ -393,7 +362,7 @@ extension Euromsg {
     public static func sync(notification: Notification? = nil) {
         guard let shared = getShared() else { return }
         if !shared.pushPermitDidCall {
-            let center = UNUserNotificationCenter.current()
+            let center = UNUNC.current()
             center.getNotificationSettings { (settings) in
                 if settings.authorizationStatus == .denied {
                     setUserProperty(key: EMProperties.CodingKeys.pushPermit.rawValue, value: EMProperties.PermissionKeys.not.rawValue)
@@ -420,14 +389,14 @@ extension Euromsg {
             EMUserDefaultsUtils.removeUserDefaults(userKey: EMKey.badgeCount)
             
             if !EMTools.isiOSAppExtension() {
-                UNUserNotificationCenter.current().getDeliveredNotifications(completionHandler: { notifications in
+                UNUNC.current().getDeliveredNotifications(completionHandler: { notifications in
                     DispatchQueue.main.async {
-                        UIApplication.shared.applicationIconBadgeNumber = notifications.count
+                        UIA.shared.applicationIconBadgeNumber = notifications.count
                     }
                 })
             }
             
-            //UIApplication.shared.applicationIconBadgeNumber = 0
+            //UIA.shared.applicationIconBadgeNumber = 0
         }
         // check whether the user have an unreported message
         Euromsg.emReadHandler?.checkUserUnreportedMessages()
