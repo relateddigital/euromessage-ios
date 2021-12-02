@@ -21,7 +21,6 @@ class EMNotificationViewController: UIViewController, UNNotificationContentExten
     
     func didReceive(_ notification: UNNotification) {
         notificationRequestIdentifier = notification.request.identifier
-        print("didReceive notificationRequestIdentifier: \(notificationRequestIdentifier)")
         Euromsg.configure(appAlias: "EuromsgIOSTest", launchOptions: nil, enableLog: true)
         carouselView.didReceive(notification)
     }
@@ -32,13 +31,11 @@ class EMNotificationViewController: UIViewController, UNNotificationContentExten
     override func loadView() {
         completion = { [weak self] url, bestAttemptContent in
             if let identifier = self?.notificationRequestIdentifier {
-                print("didReceiveResponse notificationRequestIdentifier: \(identifier)")
                 UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [identifier])
                 UNUserNotificationCenter.current().getDeliveredNotifications(completionHandler: { notifications in
                     bestAttemptContent?.badge =  NSNumber(value: notifications.count)
                 })
             }
-            
             if let url = url {
                 if #available(iOSApplicationExtension 12.0, *) {
                     self?.extensionContext?.dismissNotificationContentExtension()
@@ -49,7 +46,6 @@ class EMNotificationViewController: UIViewController, UNNotificationContentExten
                     self?.extensionContext?.performNotificationDefaultAction()
                 }
             }
-            
         }
         carouselView.completion = completion
         carouselView.delegate = self

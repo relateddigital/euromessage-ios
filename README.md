@@ -131,32 +131,41 @@ import Euromsg
 
 @objc(EMNotificationViewController)
 class EMNotificationViewController: UIViewController, UNNotificationContentExtension {
-
-    let appUrl = URL(string: "euromsgExample://")
+    
     let carouselView = EMNotificationCarousel.initView()
-    var completion: ((_ url: URL?, _ userInfo: [AnyHashable: Any]?) -> Void)?    
+    var completion: ((_ url: URL?, _ bestAttemptContent: UNMutableNotificationContent?) -> Void)?
+    
+    var notificationRequestIdentifier = ""
+    
     func didReceive(_ notification: UNNotification) {
-        Euromsg.configure(appAlias: "YOUR_APP_ALIAS", enableLog: true)
+        notificationRequestIdentifier = notification.request.identifier
+        Euromsg.configure(appAlias: "EuromsgIOSTest", launchOptions: nil, enableLog: true)
         carouselView.didReceive(notification)
     }
-    func didReceive(_ response: UNNotificationResponse,
-                    completionHandler completion: @escaping (UNNotificationContentExtensionResponseOption) -> Void) {
+    func didReceive(_ response: UNNotificationResponse, completionHandler completion: @escaping (UNNotificationContentExtensionResponseOption) -> Void) {
         carouselView.didReceive(response, completionHandler: completion)
+
     }
     override func loadView() {
-        completion = { [weak self] url, userInfo in
-            if let url = url {
-                self?.extensionContext?.open(url)
-                if url.scheme != self?.appUrl?.scheme, let userInfo = userInfo {
-                    Euromsg.handlePush(pushDictionary: userInfo)
-                }
+        completion = { [weak self] url, bestAttemptContent in
+            if let identifier = self?.notificationRequestIdentifier {
+                UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [identifier])
+                UNUserNotificationCenter.current().getDeliveredNotifications(completionHandler: { notifications in
+                    bestAttemptContent?.badge =  NSNumber(value: notifications.count)
+                })
             }
-            else if let url = self?.appUrl {
+            if let url = url {
+                if #available(iOSApplicationExtension 12.0, *) {
+                    self?.extensionContext?.dismissNotificationContentExtension()
+                }
                 self?.extensionContext?.open(url)
+            } else {
+                if #available(iOSApplicationExtension 12.0, *) {
+                    self?.extensionContext?.performNotificationDefaultAction()
+                }
             }
         }
         carouselView.completion = completion
-        //Add if you want to track which element has been selected
         carouselView.delegate = self
         self.view = carouselView
     }
@@ -168,7 +177,7 @@ class EMNotificationViewController: UIViewController, UNNotificationContentExten
 extension EMNotificationViewController: CarouselDelegate {
     
     func selectedItem(_ element: EMMessage.Element) {
-        //Add your work...
+        // Add your work...
         print("Selected element is => \(element)")
     }
     
@@ -194,6 +203,36 @@ target 'NotificationContent' do
   pod 'Euromsg'
 end
 ```
+
+
+
+### App Groups
+
+Enable `App Groups` Capability for your targets. App Groups allow your app to execute code when a notification is recieved, even if your app is not active. This is required for Related Digital's analytics features and to store and access notification payloads of the last 30 days.
+
+- In your Main App Target go to `Signing & Capabilities > All`. 
+- Click `+ Capability` if you do not have App Groups in your app yet.
+- Select App Groups.
+- Under App Groups click the `+` button.
+- Set the `App Groups` container to be `group.BUNDLE_ID.relateddigital` where `BUNDLE_ID` is the same as set in `Bundle Identifier`.
+- Press OK.
+- In the NotificationServiceExtension Target
+- Go to `Signing & Capabilities > All`
+- Click `+ Capability` if you do not have App Groups in your app yet.
+- Select App Groups
+- In the NotificationContentExtension Target go to `Signing & Capabilities` > All`.
+- Click `+ Capability`.
+- Select App Groups
+- Under App Groups click the `+` button.
+- Set the `App Groups` container to be `group.BUNDLE_ID.relateddigital` where `BUNDLE_ID` is the same as your Main App Target `Bundle Identifier`. Do Not Include `NotificationServiceExtension` and `NotificationContentExtension`.
+- Press OK
+
+![App Groups](https://github.com/relateddigital/euromessage-ios/blob/master/screenshots/appgroups.png)
+
+![App Groups Name](https://github.com/relateddigital/euromessage-ios/blob/master/screenshots/appgroups-name.png)
+
+
+
 ### AppDelegate.swift
 Firstly import Euromsg and UserNotifications
 

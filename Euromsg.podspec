@@ -8,12 +8,12 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Euromsg'
-  s.version          = '2.4.1'
+  s.version          = '2.5.0'
   s.summary          = 'Euromsg SDK'
-  s.description      = 'Euromsg SDK'
+  s.description      = 'Euromsg SDK for push notifications'
   s.homepage         = 'https://github.com/relateddigital/euromessage-ios'
   s.license          = 'Related Digital'
-  s.author           = { 'Muhammed ARAFA' => 'Muhammed ARAFA' }
+  s.author           = { 'Related Digital' => 'developer@relateddigital.com' }
   s.source           = { :git => 'https://github.com/relateddigital/euromessage-ios.git', :tag => s.version.to_s }
   s.ios.deployment_target = '10.0'
   s.swift_version = '5.0'
