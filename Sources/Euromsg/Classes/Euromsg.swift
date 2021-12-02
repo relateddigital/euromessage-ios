@@ -22,8 +22,7 @@ public class Euromsg {
     
     static var emReadHandler: EMReadHandler?
     static var emDeliverHandler: EMDeliverHandler?
-    static var emSubscriptionHandler: EMDeliverHandler?
-    
+    static var emSubscriptionHandler: EMSubscriptionHandler?
     
     private var pushPermitDidCall: Bool = false
     weak var delegate: EuromsgDelegate?
@@ -141,6 +140,12 @@ public class Euromsg {
         Euromsg.shared = Euromsg(appKey: appAlias, launchOptions: launchOptions)
         EMLog.isEnabled = enableLog
         Euromsg.shared?.euromsgAPI = EuromsgAPI()
+        
+        if let subscriptionHandler = Euromsg.emSubscriptionHandler {
+            subscriptionHandler.euromsg = Euromsg.shared!
+        } else {
+            Euromsg.emSubscriptionHandler = EMSubscriptionHandler(euromsg: Euromsg.shared!)
+        }
         
         if let readHandler = Euromsg.emReadHandler {
             readHandler.euromsg = Euromsg.shared!
