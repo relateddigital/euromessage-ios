@@ -23,7 +23,7 @@ protocol EuromsgAPIProtocol {
 }
 
 class EuromsgAPI: EuromsgAPIProtocol {
-
+    
     private var urlSession: URLSession {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.timeoutIntervalForRequest = 30
@@ -31,55 +31,50 @@ class EuromsgAPI: EuromsgAPIProtocol {
         configuration.httpMaximumConnectionsPerHost = 3
         return URLSession.init(configuration: configuration)
     }
-
+    
     func request<R: EMRequestProtocol,
                  T: EMResponseProtocol>(requestModel: R,
                                         retry: Int,
                                         completion: @escaping (Result<T?, EuromsgAPIError>) -> Void) {
-
+        
         guard let request = setupUrlRequest(requestModel) else {return}
-
-        URLSession.shared.dataTask(with: request) {data, response, connectionError in
+        
+        URLSession.shared.dataTask(with: request) { [weak self, retry] data, response, connectionError in
             if connectionError == nil {
                 let remoteResponse = response as? HTTPURLResponse
                 DispatchQueue.main.async {
                     if connectionError == nil &&
                         (remoteResponse?.statusCode == 200 || remoteResponse?.statusCode == 201) {
                         if let remoteResponse = remoteResponse {
-                            EMLog.info("Server response code : \(remoteResponse.statusCode)")
+                            EMLog.success("Server response success : \(remoteResponse.statusCode)")
                         }
-                        guard let data = data else {
-                            completion( .failure(EuromsgAPIError.connectionFailed))
-                            if retry < 3 {
-                                Euromsg.shared?.euromsgAPI?.request(requestModel: requestModel, retry: retry + 1, completion: completion)
-                            }
-                            return
+                        var responseData: T? = nil
+                        if let data = data {
+                            responseData =  try? JSONDecoder().decode(T.self, from: data)
                         }
-                        EMLog.success("Server response with success : \(String(decoding: data, as: UTF8.self))")
-                        let responseData = try? JSONDecoder().decode(T.self, from: data)
                         completion(.success(responseData))
                     } else {
-                        completion(.failure(EuromsgAPIError.connectionFailed))
-                        if retry < 3 {
-                            Euromsg.shared?.euromsgAPI?.request(requestModel: requestModel, retry: retry + 1, completion: completion)
-                        }
-                        if let remoteResponse = remoteResponse {
-                            EMLog.error("Server response with failure : \(remoteResponse)")
+                        EMLog.error("Server response with failure : \(String(describing: remoteResponse))")
+                        if retry > 0 {
+                            self?.request(requestModel: requestModel, retry: retry - 1, completion: completion)
+                            
+                        } else {
+                            completion(.failure(EuromsgAPIError.connectionFailed))
                         }
                     }
                 }
             } else {
                 guard let connectionError = connectionError else {return}
-                if retry < 3 {
-                    Euromsg.shared?.euromsgAPI?.request(requestModel: requestModel, retry: retry + 1, completion: completion)
+                EMLog.error("Connection error \(connectionError)")
+                if retry > 0 {
+                    self?.request(requestModel: requestModel, retry: retry - 1, completion: completion)
                 } else {
                     completion( .failure(EuromsgAPIError.connectionFailed))
                 }
-                EMLog.error("Connection error \(connectionError)")
             }
         }.resume()
     }
-
+    
     func setupUrlRequest<R: EMRequestProtocol>(_ requestModel: R) -> URLRequest? {
         let urlString = "https://\(requestModel.subdomain)\(requestModel.prodBaseUrl)/\(requestModel.path)"
         guard let url = URL.init(string: urlString) else {
@@ -93,11 +88,11 @@ class EuromsgAPI: EuromsgAPIProtocol {
         request.setValue("no-cache", forHTTPHeaderField: "Cache-Control")
         request.setValue(userAgent, forHTTPHeaderField: EMKey.userAgent)
         request.timeoutInterval = TimeInterval(EMKey.timeoutInterval)
-
+        
         if requestModel.method == "POST" || requestModel.method == "PUT" {
             request.httpBody = try? JSONEncoder().encode(requestModel)
         }
-
+        
         if let httpBody = request.httpBody {
             EMLog.info("""
                 Request to \(url) with body

@@ -8,16 +8,12 @@
 import Foundation
 
 class EMSubscriptionHandler {
-    private let readWriteLock: EMReadWriteLock
+    
     var euromsg: Euromsg!
     
+    private let semaphore = DispatchSemaphore(value: 0)
+    private let readWriteLock: EMReadWriteLock
     private var inProgressSubscriptionRequest: EMSubscriptionRequest?
-    
-    
-    private var inProgressPushId: String? //TODO:sil
-    private var inProgressEmPushSp: String? //TODO:sil
-    private var emMessage: EMMessage?
-    
     
     init(euromsg: Euromsg) {
         self.euromsg = euromsg
@@ -27,82 +23,65 @@ class EMSubscriptionHandler {
     /// Reports user, device data and APNS token to Euromsg services
     /// - Parameters:
     ///   - subscription: Subscription data
-    internal func reportSubscription(subscription: EMSubscriptionRequest) {
-        guard let _ = subscription.appKey, let _ = subscription.token else {
+    internal func reportSubscription(subscriptionRequest: EMSubscriptionRequest) {
+        guard let _ = subscriptionRequest.appKey, let _ = subscriptionRequest.token else {
             EMLog.error("EMSubscriptionHandler reportSubscription appKey or token does not exist")
             return
         }
         
-        
-        
-        
-    }
-        
-    /// Reports delivered push to Euromsg services
-    /// - Parameters:
-    ///   - message: Push data
-    internal func reportSubscription222(message: EMMessage) {
-        guard let appKey = euromsg.subscription.appKey, let token = euromsg.subscription.token else {
-            EMLog.error("EMDeliverHandler reportDeliver appKey or token does not exist")
-            return
-        }
-        
-        var request: EMRetentionRequest?
-        
-        guard let pushID = message.pushId, let emPushSp = message.emPushSp else {
-            EMLog.warning("EMDeliverHandler pushId or emPushSp is empty")
-            return
-        }
-        
-        if EMUserDefaultsUtils.payloadContains(pushId: pushID) {
-            EMLog.warning("EMDeliverHandler pushId already sent.")
-            return
-        }
-        
-        var isRequestValid = true
-        
+        var isRequestSame = false
+        var isRequestSameAsLastSuccessfulSubscriptionRequest = false
         self.readWriteLock.read {
-            if pushID == inProgressPushId && emPushSp == inProgressEmPushSp  {
-                isRequestValid = false
+            if subscriptionRequest == inProgressSubscriptionRequest {
+                isRequestSame = true
+            }
+            if let lastSuccessfulSubscriptionRequest = EMUserDefaultsUtils.getLastSuccessfulSubscription()
+                , EMUserDefaultsUtils.getLastSuccessfulSubscriptionTime().addingTimeInterval(TimeInterval(EMKey.threeDaysInSeconds)) > Date()
+                , lastSuccessfulSubscriptionRequest == subscriptionRequest {
+                isRequestSameAsLastSuccessfulSubscriptionRequest = true
             }
         }
+                
+        if isRequestSame {
+            EMLog.info("EMSubscriptionHandler request is not valid. EMSubscriptionRequest is the same as the previous one.")
+            return
+        }
         
-        if !isRequestValid {
-            EMLog.warning("EMDeliverHandler request not valid. Retention request with pushId: \(pushID) and emPushSp \(emPushSp) already sent.")
+        if isRequestSameAsLastSuccessfulSubscriptionRequest {
+            EMLog.info("EMSubscriptionHandler request is not valid. EMSubscriptionRequest is the same as the lastSuccessfulSubscription.")
             return
         }
         
         self.readWriteLock.write {
-            inProgressPushId = pushID
-            inProgressEmPushSp = emPushSp
-            emMessage = message
-            EMLog.info("reportDeliver: \(message.encoded)")
-            request = EMRetentionRequest(key: appKey, token: token, status: EMKey.euroReceivedStatus, pushId: pushID, emPushSp: emPushSp)
+            inProgressSubscriptionRequest = subscriptionRequest
+            EMLog.info("EMSubscriptionHandler reportSubscription: \(subscriptionRequest.encoded)")
         }
         
-        if let request = request {
-            DispatchQueue.main.asyncAfter(deadline: .now() + .nanoseconds(2)) { [weak self] in
-                guard let self = self else { return }
-                self.euromsg.euromsgAPI?.request(requestModel: request, retry: 3, completion: self.deliverRequestHandler)
-            }
-        }
+        euromsg.euromsgAPI?.request(requestModel: subscriptionRequest, retry: 3, completion: self.subscriptionRequestHandler)
+        _ = semaphore.wait(timeout: DispatchTime.distantFuture)
+        
     }
     
-    private func deliverRequestHandler(result: Result<EMResponse?, EuromsgAPIError>) {
+    private func subscriptionRequestHandler(result: Result<EMResponse?, EuromsgAPIError>) {
         switch result {
         case .success:
-            EMUserDefaultsUtils.removeUserDefaults(userKey: EMKey.euroLastMessageKey)
-        case .failure:
-            if let emMessage = emMessage, let emMessageData = try? JSONEncoder().encode(emMessage) {
-                EMUserDefaultsUtils.saveUserDefaults(key: EMKey.euroLastMessageKey, value: emMessageData as AnyObject)
+            euromsg.delegate?.didRegisterSuccessfully()
+            if let subscriptionRequest = inProgressSubscriptionRequest {
+                EMLog.success("EMSubscriptionHandler: Request successfully send, token: \(String(describing: subscriptionRequest.token))")
+                EMUserDefaultsUtils.saveLastSuccessfulSubscriptionTime(time: Date())
+                EMUserDefaultsUtils.saveLastSuccessfulSubscription(subscription: subscriptionRequest)
             }
-            self.readWriteLock.write {
-                inProgressPushId = nil
-                inProgressEmPushSp = nil
-                emMessage = nil
-            }
+        case .failure(let error):
+            EMLog.error("EMSubscriptionHandler: Request failed : \(error)")
+            euromsg.delegate?.didFailRegister(error: error)
         }
+        self.readWriteLock.write {
+            inProgressSubscriptionRequest = nil
+        }
+        semaphore.signal()
     }
+    
+    
     
 }
 

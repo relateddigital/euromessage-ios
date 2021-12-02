@@ -147,4 +147,48 @@ class EMUserDefaultsUtils {
         return payloads.first(where: { $0.pushId == pushId }) != nil
     }
     
+    // MARK: - Subscription
+    
+    private static let subscriptionLock = EMReadWriteLock(label: "EMSubscriptionLock")
+    
+    static func saveLastSuccessfulSubscriptionTime(time: Date) {
+        subscriptionLock.write {
+            saveUserDefaults(key: EMKey.euroLastSuccessfulSubscriptionDateKey, value: time as AnyObject)
+        }
+    }
+    
+    static func getLastSuccessfulSubscriptionTime() -> Date {
+        var lastSuccessfulSubscriptionTime = Date(timeIntervalSince1970: 0)
+        subscriptionLock.read {
+            if let date = retrieveUserDefaults(userKey: EMKey.euroLastSuccessfulSubscriptionDateKey) as? Date {
+                lastSuccessfulSubscriptionTime = date
+            }
+        }
+        return lastSuccessfulSubscriptionTime
+    }
+    
+    static func saveLastSuccessfulSubscription(subscription: EMSubscriptionRequest) {
+        subscriptionLock.write {
+            if let subscriptionData = try? JSONEncoder().encode(subscription) {
+                saveUserDefaults(key: EMKey.euroLastSuccessfulSubscriptionKey, value: subscriptionData as AnyObject)
+            } else {
+                EMLog.error("EMUserDefaultsUtils saveLastSuccessfulSubscription encode error.")
+            }
+        }
+    }
+    
+    static func getLastSuccessfulSubscription() -> EMSubscriptionRequest? {
+        var lastSuccessfulSubscription: EMSubscriptionRequest?
+        subscriptionLock.read {
+            if let lastSuccessfulSubscriptionData = retrieveUserDefaults(userKey: EMKey.euroLastSuccessfulSubscriptionKey) as? Data {
+                if let subscription = try? JSONDecoder().decode(EMSubscriptionRequest.self, from: lastSuccessfulSubscriptionData) {
+                    lastSuccessfulSubscription = subscription
+                } else {
+                    EMLog.error("EMUserDefaultsUtils getLastSuccessfulSubscription decode error.")
+                }
+            }
+        }
+        return lastSuccessfulSubscription
+    }
+    
 }

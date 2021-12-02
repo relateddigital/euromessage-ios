@@ -63,10 +63,7 @@ class EMDeliverHandler {
         }
         
         if let request = request {
-            DispatchQueue.main.asyncAfter(deadline: .now() + .nanoseconds(2)) { [weak self] in
-                guard let self = self else { return }
-                self.euromsg.euromsgAPI?.request(requestModel: request, retry: 3, completion: self.deliverRequestHandler)
-            }
+            self.euromsg.euromsgAPI?.request(requestModel: request, retry: 3, completion: self.deliverRequestHandler)
         }
     }
     

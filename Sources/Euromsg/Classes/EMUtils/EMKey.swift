@@ -37,8 +37,9 @@ class EMKey {
     internal static let euroReadPushIdListKey = "EURO_READ_PUSHID_LIST_KEY"
     
     
-    internal static let euroLastSubscriptionTimeKey = "EURO_LAST_SUBSCRIPTION_TIME_KEY"
-    internal static let euroLastSubscriptionKey = "EURO_LAST_SUBSCRIPTION_KEY"
+    internal static let euroLastSuccessfulSubscriptionDateKey = "EURO_LAST_SUCCESSFUL_SUBSCRIPTION_DATE_KEY"
+    internal static let euroLastSuccessfulSubscriptionKey = "EURO_LAST_SUCCESSFUL_SUBSCRIPTION_KEY"
+    internal static let threeDaysInSeconds = 259200 // 3 days
     
     internal static let graylogLogLevelError = "e"
     internal static let graylogLogLevelWarning = "w"

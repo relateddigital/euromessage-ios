@@ -20,14 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Configure Euromsg SDK
         Euromsg.configure(appAlias: "EuromsgIOSTest", launchOptions: launchOptions, enableLog: true)
         Euromsg.registerForPushNotifications()
-
-        if #available(iOS 13, *) {
-            // handle push for iOS 13 and later in sceneDelegate
-        } else if let userInfo = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? [String: Any] {
-            Euromsg.handlePush(pushDictionary: userInfo)
-        }
-
-        
         // Customize badge
 //        Euromsg.setBadge(count: 5)
         return true

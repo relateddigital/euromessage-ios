@@ -18,7 +18,11 @@ class EMUNNotificationServiceExtensionHandler {
         guard let pushDetail = try? JSONDecoder.init().decode(EMMessage.self, from: data) else { return }
         
         if pushDetail.sendDeliver() {
-            Euromsg.emDeliverHandler?.reportDeliver(message: pushDetail)
+            if let shared = Euromsg.shared {
+                shared.networkQueue.async {
+                    Euromsg.emDeliverHandler?.reportDeliver(message: pushDetail)
+                }
+            }
         }
         
         EMUserDefaultsUtils.savePayload(payload: pushDetail)
