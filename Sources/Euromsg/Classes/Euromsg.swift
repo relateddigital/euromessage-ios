@@ -35,7 +35,7 @@ public class Euromsg {
     private init(appKey: String, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         EMLog.info("INITCALL \(appKey)")
         self.readWriteLock = EMReadWriteLock(label: "EuromsgLock")
-        if let lastSubscriptionData = EMTools.retrieveUserDefaults(userKey: EMKey.registerKey) as? Data,
+        if let lastSubscriptionData = EMUserDefaultsUtils.retrieveUserDefaults(userKey: EMKey.registerKey) as? Data,
            let lastSubscription = try? JSONDecoder().decode(EMSubscriptionRequest.self, from: lastSubscriptionData) {
             subscription = lastSubscription
         } else {
@@ -43,7 +43,7 @@ public class Euromsg {
         }
         subscription.setDeviceParameters()
         subscription.appKey = appKey
-        subscription.token = EMTools.retrieveUserDefaults(userKey: EMKey.tokenKey) as? String
+        subscription.token = EMUserDefaultsUtils.retrieveUserDefaults(userKey: EMKey.tokenKey) as? String
         
         graylog = EMGraylogRequest()
         fillGraylogModel()
@@ -109,7 +109,7 @@ public class Euromsg {
         get {
             guard sharedInstance?.subscription.appKey != nil,
                   sharedInstance?.subscription.appKey != "" else {
-                if let subscriptionData = EMTools.retrieveUserDefaults(userKey: EMKey.registerKey) as? Data {
+                if let subscriptionData = EMUserDefaultsUtils.retrieveUserDefaults(userKey: EMKey.registerKey) as? Data {
                     guard let subscriptionRequest = try? JSONDecoder().decode(EMSubscriptionRequest.self, from: subscriptionData),
                           let appKey = subscriptionRequest.appKey else {
                         EMLog.warning(EMKey.appAliasNotProvidedMessage)
@@ -133,7 +133,7 @@ public class Euromsg {
                                 , enableLog: Bool = false, appGroupsKey: String? = nil) {
         
         if let appGroupName = EMTools.getAppGroupName(appGroupName: appGroupsKey) {
-            EMTools.setAppGroupsUserDefaults(appGroupName: appGroupName)
+            EMUserDefaultsUtils.setAppGroupsUserDefaults(appGroupName: appGroupName)
             EMLog.info("App Group Key : \(appGroupName)")
         }
         
@@ -202,12 +202,12 @@ public class Euromsg {
     }
     
     func setUserAgent() {
-        if let userAgent = EMTools.retrieveUserDefaults(userKey: EMKey.userAgent) as? String {
+        if let userAgent = EMUserDefaultsUtils.retrieveUserDefaults(userKey: EMKey.userAgent) as? String {
             self.userAgent = userAgent
         } else {
             EMTools.computeWebViewUserAgent { str in
                 self.userAgent = str
-                EMTools.saveUserDefaults(key: EMKey.userAgent, value: str as AnyObject)
+                EMUserDefaultsUtils.saveUserDefaults(key: EMKey.userAgent, value: str as AnyObject)
             }
         }
     }
@@ -312,7 +312,7 @@ extension Euromsg {
                 shared.subscription.token = nil
                 shared.subscription.extra = [String: String]()
             }
-            EMTools.removeUserDefaults(userKey: EMKey.tokenKey) // TODO: burada niye token var, android'de token silme yok
+            EMUserDefaultsUtils.removeUserDefaults(userKey: EMKey.tokenKey) // TODO: burada niye token var, android'de token silme yok
             // EMTools.removeUserDefaults(userKey: EMKey.registerKey) // TODO: bunu kaldırdım. zaten token yoksa request atılmıyor.
             saveSubscription()
         }
@@ -327,7 +327,7 @@ extension Euromsg {
                 shared.fillGraylogModel()
             }
             if let subs = subs, let subscriptionData = try? JSONEncoder().encode(subs) {
-                EMTools.saveUserDefaults(key: EMKey.registerKey, value: subscriptionData as AnyObject)
+                EMUserDefaultsUtils.saveUserDefaults(key: EMKey.registerKey, value: subscriptionData as AnyObject)
             }
         }
     }
@@ -336,7 +336,7 @@ extension Euromsg {
     /// To get back this configuration set count to "-1".
     /// - Parameter count: badge count ( "-1" to give control to SDK )
     public static func setBadge(count: Int) {
-        EMTools.userDefaults?.set(count == -1 ? false : true, forKey: EMKey.isBadgeCustom)
+        EMUserDefaultsUtils.userDefaults?.set(count == -1 ? false : true, forKey: EMKey.isBadgeCustom)
         UIApplication.shared.applicationIconBadgeNumber = count == -1 ? 0 : count
     }
     
@@ -417,7 +417,7 @@ extension Euromsg {
         
         // Clear badge
         if !(subs.isBadgeCustom ?? false) {
-            EMTools.removeUserDefaults(userKey: EMKey.badgeCount)
+            EMUserDefaultsUtils.removeUserDefaults(userKey: EMKey.badgeCount)
             
             if !EMTools.isiOSAppExtension() {
                 UNUserNotificationCenter.current().getDeliveredNotifications(completionHandler: { notifications in
@@ -456,7 +456,7 @@ extension Euromsg {
             shared.readWriteLock.read {
                 subs = shared.subscription
             }
-            EMTools.saveUserDefaults(key: EMKey.tokenKey, value: subs.token as AnyObject)
+            EMUserDefaultsUtils.saveUserDefaults(key: EMKey.tokenKey, value: subs.token as AnyObject)
             EMLog.info("Current subscription \(subs.encoded)")
         } else {
             EMLog.warning("Subscription request is not valid : \(String(describing: subs))")
@@ -519,7 +519,7 @@ extension Euromsg {
     }
     
     public static func getPushMessages( completion: @escaping ((_ payloads: [EMMessage]) -> Void)) {
-        completion(EMPayloadUtils.getRecentPayloads())
+        completion(EMUserDefaultsUtils.getRecentPayloads())
     }
     
 }
@@ -529,7 +529,7 @@ extension Euromsg {
     // MARK: - Notification Extension
     public static func didReceive(_ bestAttemptContent: UNMutableNotificationContent?,
                                   withContentHandler contentHandler:  @escaping (UNNotificationContent) -> Void) {
-        EMNotificationHandler.didReceive(bestAttemptContent, withContentHandler: contentHandler)
+        EMUNNotificationServiceExtensionHandler.didReceive(bestAttemptContent, withContentHandler: contentHandler)
     }
 }
 

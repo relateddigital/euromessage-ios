@@ -14,10 +14,6 @@ internal class EMTools {
     
     static private var webView: WKWebView?
     
-    static let userDefaults = UserDefaults(suiteName: EMKey.userDefaultSuiteKey)
-    static var appGroupUserDefaults : UserDefaults?
-    
-    
     static func validatePhone(phone: String?) -> Bool {
         guard phone != nil else {
             return false
@@ -32,41 +28,6 @@ internal class EMTools {
         }
         let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegex)
         return (emailTest.evaluate(with: email!))
-    }
-    
-    static func retrieveUserDefaults(userKey: String) -> AnyObject? {
-        var val: Any?
-        if let value = appGroupUserDefaults?.object(forKey: userKey) {
-            val = value
-        }
-        else if let value = userDefaults?.object(forKey: userKey) {
-            val = value
-        }
-        guard let value = val else {
-            return nil
-        }
-        return value as AnyObject?
-    }
-    
-    static func removeUserDefaults(userKey: String) {
-        if userDefaults?.object(forKey: userKey) != nil {
-            userDefaults?.removeObject(forKey: userKey)
-            userDefaults?.synchronize()
-        }
-        if appGroupUserDefaults?.object(forKey: userKey) != nil {
-            appGroupUserDefaults?.removeObject(forKey: userKey)
-            appGroupUserDefaults?.synchronize()
-        }
-    }
-    
-    static func saveUserDefaults(key: String?, value: AnyObject?) {
-        guard key != nil && value != nil else {
-            return
-        }
-        userDefaults?.set(value, forKey: key!)
-        userDefaults?.synchronize()
-        appGroupUserDefaults?.set(value, forKey: key!)
-        appGroupUserDefaults?.synchronize()
     }
     
     static func getInfoString(key: String) -> String? {
@@ -84,19 +45,19 @@ internal class EMTools {
     // TODO: UserDefaults'taki suiteName kısmı dinamik olmalı
     static func getIdentifierForVendorString() -> String {
         let emptyUUID = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
-        if let identifierForVendorString = retrieveUserDefaults(userKey: EMKey.identifierForVendorKey) as? String, let uuid = UUID(uuidString: identifierForVendorString), !uuid.uuidString.elementsEqual(emptyUUID.uuidString) {
+        if let identifierForVendorString = EMUserDefaultsUtils.retrieveUserDefaults(userKey: EMKey.identifierForVendorKey) as? String, let uuid = UUID(uuidString: identifierForVendorString), !uuid.uuidString.elementsEqual(emptyUUID.uuidString) {
             if !isiOSAppExtension() {
                 EMKeychain.set(identifierForVendorString, forKey: EMKey.identifierForVendorKey)
             }
             return identifierForVendorString
         } else if let identifierForVendorString = EMKeychain.get(EMKey.identifierForVendorKey), let uuid = UUID(uuidString: identifierForVendorString), !uuid.uuidString.elementsEqual(emptyUUID.uuidString) {
             if !isiOSAppExtension() {
-                saveUserDefaults(key: EMKey.identifierForVendorKey, value: identifierForVendorString as AnyObject)
+                EMUserDefaultsUtils.saveUserDefaults(key: EMKey.identifierForVendorKey, value: identifierForVendorString as AnyObject)
             }
             return identifierForVendorString
         } else if let identifierForVendorString = UIDevice.current.identifierForVendor?.uuidString, let uuid = UUID(uuidString: identifierForVendorString), !uuid.uuidString.elementsEqual(emptyUUID.uuidString) {
             if !isiOSAppExtension() {
-                saveUserDefaults(key: EMKey.identifierForVendorKey, value: identifierForVendorString as AnyObject)
+                EMUserDefaultsUtils.saveUserDefaults(key: EMKey.identifierForVendorKey, value: identifierForVendorString as AnyObject)
                 EMKeychain.set(identifierForVendorString, forKey: EMKey.identifierForVendorKey)
             }
             return identifierForVendorString
@@ -139,10 +100,6 @@ internal class EMTools {
             name = "\(EMKey.appGroupNameDefaultPrefix).\(primaryBundleIdentifier).\(EMKey.appGroupNameDefaultSuffix)"
         }
         return name?.trimmingCharacters(in: CharacterSet.whitespaces)
-    }
-    
-    static func setAppGroupsUserDefaults(appGroupName: String) {
-        appGroupUserDefaults = UserDefaults(suiteName: appGroupName)
     }
     
     static private let dateFormatter = DateFormatter()

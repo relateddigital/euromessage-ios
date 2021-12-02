@@ -40,7 +40,7 @@ class EMReadHandler {
             return
         }
         
-        if EMPayloadUtils.pushIdListContains(pushId: pushID) {
+        if EMUserDefaultsUtils.pushIdListContains(pushId: pushID) {
             EMLog.warning("EMReadHandler pushId already sent.")
             return
         }
@@ -77,13 +77,13 @@ class EMReadHandler {
     private func readRequestHandler(result: Result<EMResponse?, EuromsgAPIError>) {
         switch result {
         case .success:
-            EMTools.removeUserDefaults(userKey: EMKey.euroLastMessageKey)
+            EMUserDefaultsUtils.removeUserDefaults(userKey: EMKey.euroLastMessageKey)
             if let pushId = inProgressPushId {
-                EMPayloadUtils.saveReadPushId(pushId: pushId)
+                EMUserDefaultsUtils.saveReadPushId(pushId: pushId)
             }
         case .failure:
             if let emMessage = emMessage, let emMessageData = try? JSONEncoder().encode(emMessage) {
-                EMTools.saveUserDefaults(key: EMKey.euroLastMessageKey, value: emMessageData as AnyObject)
+                EMUserDefaultsUtils.saveUserDefaults(key: EMKey.euroLastMessageKey, value: emMessageData as AnyObject)
             }
             self.readWriteLock.write {
                 inProgressPushId = nil
@@ -95,7 +95,7 @@ class EMReadHandler {
     
     /// Controls locale storage for unreported changes on user data
     internal func checkUserUnreportedMessages() {
-        let messageJson = EMTools.retrieveUserDefaults(userKey: EMKey.euroLastMessageKey) as? Data
+        let messageJson = EMUserDefaultsUtils.retrieveUserDefaults(userKey: EMKey.euroLastMessageKey) as? Data
         if let messageJson = messageJson {
             EMLog.info("Old message : \(messageJson)")
             let lastMessage = try? JSONDecoder().decode(EMMessage.self, from: messageJson)

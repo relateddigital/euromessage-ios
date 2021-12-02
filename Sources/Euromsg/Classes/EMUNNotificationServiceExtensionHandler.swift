@@ -1,5 +1,5 @@
 //
-//  EMNotificationServiceHandler.swift
+//  EMUNNotificationServiceExtensionHandler.swift
 //  Euromsg
 //
 //  Created by Muhammed ARAFA on 20.04.2020.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class EMNotificationHandler {
+class EMUNNotificationServiceExtensionHandler {
 
     public static func didReceive(_ bestAttemptContent: UNMutableNotificationContent?
                                   , withContentHandler contentHandler:  @escaping (UNNotificationContent) -> Void) {
@@ -21,7 +21,7 @@ class EMNotificationHandler {
             Euromsg.emDeliverHandler?.reportDeliver(message: pushDetail)
         }
         
-        EMPayloadUtils.savePayload(payload: pushDetail)
+        EMUserDefaultsUtils.savePayload(payload: pushDetail)
 
         // Setup carousel buttons
         if pushDetail.aps?.category == "carousel" {

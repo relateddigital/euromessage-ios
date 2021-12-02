@@ -36,7 +36,7 @@ class EMDeliverHandler {
             return
         }
         
-        if EMPayloadUtils.payloadContains(pushId: pushID) {
+        if EMUserDefaultsUtils.payloadContains(pushId: pushID) {
             EMLog.warning("EMDeliverHandler pushId already sent.")
             return
         }
@@ -73,10 +73,10 @@ class EMDeliverHandler {
     private func deliverRequestHandler(result: Result<EMResponse?, EuromsgAPIError>) {
         switch result {
         case .success:
-            EMTools.removeUserDefaults(userKey: EMKey.euroLastMessageKey)
+            EMUserDefaultsUtils.removeUserDefaults(userKey: EMKey.euroLastMessageKey)
         case .failure:
             if let emMessage = emMessage, let emMessageData = try? JSONEncoder().encode(emMessage) {
-                EMTools.saveUserDefaults(key: EMKey.euroLastMessageKey, value: emMessageData as AnyObject)
+                EMUserDefaultsUtils.saveUserDefaults(key: EMKey.euroLastMessageKey, value: emMessageData as AnyObject)
             }
             self.readWriteLock.write {
                 inProgressPushId = nil
