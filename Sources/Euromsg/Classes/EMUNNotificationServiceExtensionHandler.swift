@@ -29,7 +29,7 @@ class EMUNNotificationServiceExtensionHandler {
 
         // Setup carousel buttons
         if pushDetail.aps?.category == "carousel" {
-            addCarouselActionButtons()
+            UNUNC.current().setNotificationCategories(getCarouselActionCategorySet())
         }
 
         // Setup notification for image/video
@@ -47,12 +47,12 @@ class EMUNNotificationServiceExtensionHandler {
         }
     }
 
-    static func addCarouselActionButtons() {
+    static func getCarouselActionCategorySet() -> Set<UNNotificationCategory>  {
         let categoryIdentifier = "carousel"
         let carouselNext = UNNotificationAction(identifier: "carousel.next", title: "▶", options: [])
         let carouselPrevious = UNNotificationAction(identifier: "carousel.previous", title: "◀", options: [])
         let carouselCategory = UNNotificationCategory(identifier: categoryIdentifier, actions: [carouselNext, carouselPrevious], intentIdentifiers: [], options: [])
-        UNUNC.current().setNotificationCategories([carouselCategory])
+        return [carouselCategory]
     }
 
     static func loadAttachments(mediaUrl: URL,
