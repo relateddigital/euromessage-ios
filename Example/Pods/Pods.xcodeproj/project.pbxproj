@@ -7,168 +7,438 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		050940AEC4C524E920097020810EB882 /* EMRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4227F5C6EDB760665982332AA41833B9 /* EMRequestProtocol.swift */; };
-		15E4974F89D11F1F5D2488C33D7B71B0 /* Euromsg-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CED2E98E4A624F52CB6755D1D624917 /* Euromsg-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0A2A0639A0783EBE6035B2091D6A9468 /* Euromsg-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 282DFBBBD03A802C056DD71EE24DDC83 /* Euromsg-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0C75C7FE3BD31EF10A2282045E843D66 /* EMDeliverHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A153AD23D6AD61212B2300DD686C0E /* EMDeliverHandler.swift */; };
+		13C6C19E5C95C027EE85C0EDF7082974 /* EMReadWriteLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C166D1F5A9FC161B773BCD6D9B9D9E /* EMReadWriteLock.swift */; };
+		1D2B259F38979960C4916FE046332114 /* Euromsg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86772DB65B71CA868B22EA1805795891 /* Euromsg.swift */; };
+		204EA5381ACF2D838A927376E2330D06 /* EMAPNSRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E31DA880C5E0A4FA78548985530D3A6 /* EMAPNSRegistration.swift */; };
+		211F9B1E4B764D22F374D7B3DEBAA738 /* Euromsg.h in Headers */ = {isa = PBXBuildFile; fileRef = 9844D0FAC041F878364435CBCE6A205E /* Euromsg.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		294B534178DC5665D76A4C35F8A3560B /* EMGraylogRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB68EFA5FEE6D22132A927F3DF9A5565 /* EMGraylogRequest.swift */; };
+		2BA5D1E21B64B6B05771908CCC461A98 /* EMKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E405E10CD1F20106F370BCD88CEC /* EMKey.swift */; };
 		2E9989A9EF22D7C949B44663942D405C /* Pods-Euromsg_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B24588EC92D80D2E93EB28E3D4711C /* Pods-Euromsg_Example-dummy.m */; };
-		310E7E497238277FE4626DCCC1B4CFA1 /* EMLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31A9F99709F324E51AC92777C51D3A9 /* EMLog.swift */; };
-		39CFEE59A23BF03CF72CC8345899287D /* EMUNNotificationServiceExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E0F3DFB2DF3BF396E0D3D9270F0C10 /* EMUNNotificationServiceExtensionHandler.swift */; };
+		3BE03FFC7A4ED968FB9CDF28D1E023DA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		4275BBF603D312D38973014D28CCB283 /* Pods-NotificationContent-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 99F0236D4F676D81AA57BE7ECDC17A56 /* Pods-NotificationContent-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4501C3656FE8B2081D2749FD01216A39 /* EMSubscriptionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0DA94030720E10D4DB305BD5F7DF05 /* EMSubscriptionRequest.swift */; };
+		4CA258F0EBA6015CFC8545CDF8B50D4C /* EMKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8D34F4BA3AC21236687633C90A1BB3 /* EMKeychain.swift */; };
+		4E08CB0B265A7C45AD7A2EF44DA82C16 /* Euromsg-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F224196E79C27A6EDB7EEAC886739C21 /* Euromsg-dummy.m */; };
+		4E6A7A08B9EAA1B41209C85B284ECDB9 /* EMUNNotificationServiceExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871507A9B61CF0748D48F3F7CAF2A132 /* EMUNNotificationServiceExtensionHandler.swift */; };
+		50F58704A2AFCD5015A030AD61B409AA /* EuromsgAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F461E9FD9A44BF83E74DBB6CB597D4E /* EuromsgAPI.swift */; };
 		5258A8294B7EA85CAF21AC17205F73D6 /* Pods-NotificationService-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F247A5AD20F27476B23A0D5587770F /* Pods-NotificationService-dummy.m */; };
+		52CD93D86080974FE96C0FC412A78256 /* EMMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E009EC90DFBCCDBE35CF60F3A0F770A7 /* EMMessage.swift */; };
+		556BD63B991625771D0863BAFEF1DEE6 /* EMSwizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F76ED8E536B3AB736E09B9D83B42B9D /* EMSwizzle.swift */; };
 		61250AF747E9AE79FE1299FD8C4DE0DA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		628E4107439AA565D7FD3FA2646DF158 /* EMReadWriteLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6720A75F666ED9F17C1722AD77CDAF0B /* EMReadWriteLock.swift */; };
+		614543972779E2A200651B39 /* VisilabsInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614542F72779E2A100651B39 /* VisilabsInstance.swift */; };
+		614543982779E2A200651B39 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614542F92779E2A100651B39 /* Constraints.swift */; };
+		614543992779E2A200651B39 /* VisilabsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614542FA2779E2A100651B39 /* VisilabsHelper.swift */; };
+		6145439A2779E2A200651B39 /* VisilabsParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614542FB2779E2A100651B39 /* VisilabsParameter.swift */; };
+		6145439B2779E2A200651B39 /* VisilabsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614542FC2779E2A100651B39 /* VisilabsExtensions.swift */; };
+		6145439C2779E2A200651B39 /* VisilabsConstraintHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614542FD2779E2A100651B39 /* VisilabsConstraintHelper.swift */; };
+		6145439D2779E2A200651B39 /* StarLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614542FF2779E2A100651B39 /* StarLayer.swift */; };
+		6145439E2779E2A200651B39 /* CosmosAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543002779E2A100651B39 /* CosmosAccessibility.swift */; };
+		6145439F2779E2A200651B39 /* CosmosText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543012779E2A100651B39 /* CosmosText.swift */; };
+		614543A02779E2A200651B39 /* CosmosDefaultSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543022779E2A100651B39 /* CosmosDefaultSettings.swift */; };
+		614543A12779E2A200651B39 /* CosmosSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543032779E2A100651B39 /* CosmosSize.swift */; };
+		614543A22779E2A200651B39 /* CosmosLayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543042779E2A100651B39 /* CosmosLayers.swift */; };
+		614543A32779E2A200651B39 /* CosmosDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543052779E2A100651B39 /* CosmosDistrib.swift */; };
+		614543A42779E2A200651B39 /* CosmosLocalizedRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543062779E2A100651B39 /* CosmosLocalizedRating.swift */; };
+		614543A52779E2A200651B39 /* CosmosTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543072779E2A100651B39 /* CosmosTouch.swift */; };
+		614543A62779E2A200651B39 /* CosmosRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543082779E2A100651B39 /* CosmosRating.swift */; };
+		614543A72779E2A200651B39 /* CosmosSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543092779E2A100651B39 /* CosmosSettings.swift */; };
+		614543A82779E2A200651B39 /* CosmosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145430A2779E2A100651B39 /* CosmosView.swift */; };
+		614543A92779E2A200651B39 /* VisilabsReadWriteLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145430B2779E2A100651B39 /* VisilabsReadWriteLock.swift */; };
+		614543AA2779E2A200651B39 /* VisilabsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145430C2779E2A100651B39 /* VisilabsConstants.swift */; };
+		614543AB2779E2A200651B39 /* ConstraintAbstraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145430D2779E2A100651B39 /* ConstraintAbstraction.swift */; };
+		614543AC2779E2A200651B39 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145430E2779E2A100651B39 /* String+Extension.swift */; };
+		614543AD2779E2A200651B39 /* VisilabsLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145430F2779E2A100651B39 /* VisilabsLogger.swift */; };
+		614543AE2779E2A200651B39 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543102779E2A100651B39 /* Checkbox.swift */; };
+		614543AF2779E2A200651B39 /* VisilabsPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543112779E2A100651B39 /* VisilabsPersistence.swift */; };
+		614543B02779E2A200651B39 /* VisilabsIOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 614543122779E2A100651B39 /* VisilabsIOS.h */; };
+		614543B12779E2A200651B39 /* spintowin.html in Resources */ = {isa = PBXBuildFile; fileRef = 614543142779E2A100651B39 /* spintowin.html */; };
+		614543B22779E2A200651B39 /* unGreat.png in Resources */ = {isa = PBXBuildFile; fileRef = 614543172779E2A100651B39 /* unGreat.png */; };
+		614543B32779E2A200651B39 /* good.png in Resources */ = {isa = PBXBuildFile; fileRef = 614543182779E2A100651B39 /* good.png */; };
+		614543B42779E2A200651B39 /* terrible.png in Resources */ = {isa = PBXBuildFile; fileRef = 614543192779E2A100651B39 /* terrible.png */; };
+		614543B52779E2A200651B39 /* okay.png in Resources */ = {isa = PBXBuildFile; fileRef = 6145431A2779E2A100651B39 /* okay.png */; };
+		614543B62779E2A200651B39 /* unBad.png in Resources */ = {isa = PBXBuildFile; fileRef = 6145431B2779E2A100651B39 /* unBad.png */; };
+		614543B72779E2A200651B39 /* unOkay.png in Resources */ = {isa = PBXBuildFile; fileRef = 6145431C2779E2A100651B39 /* unOkay.png */; };
+		614543B82779E2A200651B39 /* unTerrible.png in Resources */ = {isa = PBXBuildFile; fileRef = 6145431D2779E2A100651B39 /* unTerrible.png */; };
+		614543B92779E2A200651B39 /* bad.png in Resources */ = {isa = PBXBuildFile; fileRef = 6145431E2779E2A100651B39 /* bad.png */; };
+		614543BA2779E2A200651B39 /* unGood.png in Resources */ = {isa = PBXBuildFile; fileRef = 6145431F2779E2A100651B39 /* unGood.png */; };
+		614543BB2779E2A200651B39 /* great.png in Resources */ = {isa = PBXBuildFile; fileRef = 614543202779E2A100651B39 /* great.png */; };
+		614543BC2779E2A200651B39 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 614543212779E2A100651B39 /* placeholder.png */; };
+		614543BD2779E2A200651B39 /* VisilabsCloseButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 614543222779E2A100651B39 /* VisilabsCloseButton.png */; };
+		614543BE2779E2A200651B39 /* RelatedCopyButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 614543232779E2A100651B39 /* RelatedCopyButton.png */; };
+		614543BF2779E2A200651B39 /* VisilabsRetryButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 614543242779E2A100651B39 /* VisilabsRetryButton.png */; };
+		614543C02779E2A200651B39 /* VisilabsCloseButtonBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 614543252779E2A100651B39 /* VisilabsCloseButtonBlack.png */; };
+		614543C12779E2A200651B39 /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 614543262779E2A100651B39 /* loading.png */; };
+		614543C22779E2A200651B39 /* spintowin.js in Resources */ = {isa = PBXBuildFile; fileRef = 614543272779E2A100651B39 /* spintowin.js */; };
+		614543C32779E2A200651B39 /* VisilabsRecommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543292779E2A100651B39 /* VisilabsRecommendation.swift */; };
+		614543C42779E2A200651B39 /* VisilabsRecommendationFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145432A2779E2A100651B39 /* VisilabsRecommendationFilterType.swift */; };
+		614543C52779E2A200651B39 /* VisilabsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145432B2779E2A100651B39 /* VisilabsManager.swift */; };
+		614543C62779E2A200651B39 /* VisilabsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145432D2779E2A100651B39 /* VisilabsEvent.swift */; };
+		614543C72779E2A200651B39 /* VisilabsCookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145432E2779E2A100651B39 /* VisilabsCookie.swift */; };
+		614543C82779E2A200651B39 /* VisilabsSend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145432F2779E2A100651B39 /* VisilabsSend.swift */; };
+		614543C92779E2A200651B39 /* ScratchUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543312779E2A100651B39 /* ScratchUIView.swift */; };
+		614543CA2779E2A200651B39 /* ScratchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543322779E2A100651B39 /* ScratchView.swift */; };
+		614543CB2779E2A200651B39 /* ScratchToWinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543332779E2A100651B39 /* ScratchToWinModel.swift */; };
+		614543CC2779E2A200651B39 /* VisilabsGeofence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543352779E2A100651B39 /* VisilabsGeofence.swift */; };
+		614543CD2779E2A200651B39 /* VisilabsCLAuthorizationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543372779E2A100651B39 /* VisilabsCLAuthorizationStatus.swift */; };
+		614543CE2779E2A200651B39 /* VisilabsGeofenceHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543382779E2A100651B39 /* VisilabsGeofenceHistory.swift */; };
+		614543CF2779E2A200651B39 /* VisilabsGeofenceEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543392779E2A100651B39 /* VisilabsGeofenceEntity.swift */; };
+		614543D02779E2A200651B39 /* VisilabsLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145433A2779E2A100651B39 /* VisilabsLocationManager.swift */; };
+		614543D12779E2A200651B39 /* VisilabsRemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145433C2779E2A200651B39 /* VisilabsRemoteConfig.swift */; };
+		614543D22779E2A200651B39 /* VisilabsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145433D2779E2A200651B39 /* VisilabsRequest.swift */; };
+		614543D32779E2A200651B39 /* VisilabsNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145433E2779E2A200651B39 /* VisilabsNetwork.swift */; };
+		614543D42779E2A200651B39 /* ShakeToWinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543402779E2A200651B39 /* ShakeToWinViewModel.swift */; };
+		614543D52779E2A200651B39 /* SpinToWinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543412779E2A200651B39 /* SpinToWinModel.swift */; };
+		614543D62779E2A200651B39 /* TargetingActionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543422779E2A200651B39 /* TargetingActionViewModel.swift */; };
+		614543D72779E2A200651B39 /* CountdownModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543432779E2A200651B39 /* CountdownModel.swift */; };
+		614543D82779E2A200651B39 /* VisilabsInAppNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543452779E2A200651B39 /* VisilabsInAppNotifications.swift */; };
+		614543D92779E2A200651B39 /* UIImageView+Calculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543472779E2A200651B39 /* UIImageView+Calculations.swift */; };
+		614543DA2779E2A200651B39 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543482779E2A200651B39 /* UIView+Animations.swift */; };
+		614543DB2779E2A200651B39 /* VisilabsSliderStepRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543492779E2A200651B39 /* VisilabsSliderStepRating.swift */; };
+		614543DC2779E2A200651B39 /* VisilabsTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145434A2779E2A200651B39 /* VisilabsTransitionAnimator.swift */; };
+		614543DD2779E2A200651B39 /* VisilabsPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145434B2779E2A200651B39 /* VisilabsPresentationManager.swift */; };
+		614543DE2779E2A200651B39 /* VisilabsPopupUIElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145434C2779E2A200651B39 /* VisilabsPopupUIElements.swift */; };
+		614543DF2779E2A200651B39 /* VisilabsInAppNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145434D2779E2A200651B39 /* VisilabsInAppNotification.swift */; };
+		614543E02779E2A200651B39 /* UIViewController+Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145434E2779E2A200651B39 /* UIViewController+Visibility.swift */; };
+		614543E12779E2A200651B39 /* VisilabsTransitionAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145434F2779E2A200651B39 /* VisilabsTransitionAnimations.swift */; };
+		614543E22779E2A200651B39 /* VisilabsInAppNotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543502779E2A200651B39 /* VisilabsInAppNotificationType.swift */; };
+		614543E32779E2A200651B39 /* VisilabsPopupDialogOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543512779E2A200651B39 /* VisilabsPopupDialogOverlayView.swift */; };
+		614543E42779E2A200651B39 /* VisilabsPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543522779E2A200651B39 /* VisilabsPresentationController.swift */; };
+		614543E52779E2A200651B39 /* UIImage+Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543532779E2A200651B39 /* UIImage+Blur.swift */; };
+		614543E62779E2A200651B39 /* VisilabsPopupDialogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543542779E2A200651B39 /* VisilabsPopupDialogButton.swift */; };
+		614543E72779E2A200651B39 /* VisilabsInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543552779E2A200651B39 /* VisilabsInteractiveTransition.swift */; };
+		614543E82779E2A200651B39 /* VisilabsPopupDialogDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543562779E2A200651B39 /* VisilabsPopupDialogDefaultView.swift */; };
+		614543E92779E2A200651B39 /* CarouselViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543572779E2A200651B39 /* CarouselViewModel.swift */; };
+		614543EA2779E2A200651B39 /* VisilabsPopupDialogContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543582779E2A200651B39 /* VisilabsPopupDialogContainerView.swift */; };
+		614543EB2779E2A200651B39 /* SpinToWinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543592779E2A200651B39 /* SpinToWinViewController.swift */; };
+		614543EC2779E2A200651B39 /* RatingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145435A2779E2A200651B39 /* RatingCollectionViewCell.swift */; };
+		614543ED2779E2A200651B39 /* VisilabsFullNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145435C2779E2A200651B39 /* VisilabsFullNotificationViewController.swift */; };
+		614543EE2779E2A200651B39 /* CountdownTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145435D2779E2A200651B39 /* CountdownTimerViewController.swift */; };
+		614543EF2779E2A200651B39 /* HalfScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145435E2779E2A200651B39 /* HalfScreenViewController.swift */; };
+		614543F02779E2A200651B39 /* VisilabsHalfScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145435F2779E2A200651B39 /* VisilabsHalfScreenViewController.swift */; };
+		614543F12779E2A200651B39 /* VisilabsBaseNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543602779E2A200651B39 /* VisilabsBaseNotificationViewController.swift */; };
+		614543F22779E2A200651B39 /* VisilabsProductStatNotifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543612779E2A200651B39 /* VisilabsProductStatNotifierViewController.swift */; };
+		614543F32779E2A200651B39 /* VisilabsMiniNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543622779E2A200651B39 /* VisilabsMiniNotificationViewController.swift */; };
+		614543F42779E2A200651B39 /* VisilabsCarouselNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543632779E2A200651B39 /* VisilabsCarouselNotificationViewController.swift */; };
+		614543F52779E2A200651B39 /* VisilabsPopupNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543642779E2A200651B39 /* VisilabsPopupNotificationViewController.swift */; };
+		614543F62779E2A200651B39 /* VisilabsDefaultPopupNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543652779E2A200651B39 /* VisilabsDefaultPopupNotificationViewController.swift */; };
+		614543F72779E2A200651B39 /* VisilabsHalfScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543672779E2A200651B39 /* VisilabsHalfScreenView.swift */; };
+		614543F82779E2A200651B39 /* VisilabsMiniNotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 614543682779E2A200651B39 /* VisilabsMiniNotificationViewController.xib */; };
+		614543F92779E2A200651B39 /* VisilabsCarouselNotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 614543692779E2A200651B39 /* VisilabsCarouselNotificationViewController.xib */; };
+		614543FA2779E2A200651B39 /* VisilabsProductStatNotifierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145436A2779E2A200651B39 /* VisilabsProductStatNotifierView.swift */; };
+		614543FB2779E2A200651B39 /* CountdownTimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6145436B2779E2A200651B39 /* CountdownTimerViewController.xib */; };
+		614543FC2779E2A200651B39 /* VisilabsFullNotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6145436C2779E2A200651B39 /* VisilabsFullNotificationViewController.xib */; };
+		614543FD2779E2A200651B39 /* VisilabsTargetingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145436D2779E2A200651B39 /* VisilabsTargetingAction.swift */; };
+		614543FE2779E2A200651B39 /* VisilabsFavoriteAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145436E2779E2A200651B39 /* VisilabsFavoriteAttribute.swift */; };
+		614543FF2779E2A200651B39 /* MailSubscriptionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145436F2779E2A200651B39 /* MailSubscriptionModel.swift */; };
+		614544002779E2A200651B39 /* ShakeToWinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543702779E2A200651B39 /* ShakeToWinViewController.swift */; };
+		614544012779E2A200651B39 /* VisilabsFavoriteAttributeActionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543712779E2A200651B39 /* VisilabsFavoriteAttributeActionResponse.swift */; };
+		614544022779E2A200651B39 /* VisilabsStoryActionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543732779E2A200651B39 /* VisilabsStoryActionResponse.swift */; };
+		614544032779E2A200651B39 /* VisilabsStoryImageRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543742779E2A200651B39 /* VisilabsStoryImageRequestable.swift */; };
+		614544042779E2A200651B39 /* VisilabsStoryImageURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543752779E2A200651B39 /* VisilabsStoryImageURLSession.swift */; };
+		614544052779E2A200651B39 /* VisilabsStoryImageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543762779E2A200651B39 /* VisilabsStoryImageError.swift */; };
+		614544062779E2A200651B39 /* customObjectsVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543782779E2A200651B39 /* customObjectsVariables.swift */; };
+		614544072779E2A200651B39 /* VisilabsStoryPreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543792779E2A200651B39 /* VisilabsStoryPreviewModel.swift */; };
+		614544082779E2A200651B39 /* VisilabsStoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145437A2779E2A200651B39 /* VisilabsStoryItem.swift */; };
+		614544092779E2A200651B39 /* VisilabsStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145437B2779E2A200651B39 /* VisilabsStory.swift */; };
+		6145440A2779E2A200651B39 /* VisilabsStoryAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145437C2779E2A200651B39 /* VisilabsStoryAction.swift */; };
+		6145440B2779E2A200651B39 /* VisilabsStoryPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145437E2779E2A200651B39 /* VisilabsStoryPreviewController.swift */; };
+		6145440C2779E2A200651B39 /* VisilabsStoryHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145437F2779E2A200651B39 /* VisilabsStoryHomeViewController.swift */; };
+		6145440D2779E2A200651B39 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543812779E2A200651B39 /* UIImageView+Extension.swift */; };
+		6145440E2779E2A200651B39 /* VisilabsStoryRoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543822779E2A200651B39 /* VisilabsStoryRoundedView.swift */; };
+		6145440F2779E2A200651B39 /* VisilabsStoryHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543832779E2A200651B39 /* VisilabsStoryHomeView.swift */; };
+		614544102779E2A200651B39 /* VisilabsStoryHomeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543842779E2A200651B39 /* VisilabsStoryHomeViewCell.swift */; };
+		614544112779E2A200651B39 /* VisilabsCellConfigurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543852779E2A200651B39 /* VisilabsCellConfigurer.swift */; };
+		614544122779E2A200651B39 /* VisilabsSnapProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543862779E2A200651B39 /* VisilabsSnapProgressView.swift */; };
+		614544132779E2A200651B39 /* VisilabsStoryPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543872779E2A200651B39 /* VisilabsStoryPreviewView.swift */; };
+		614544142779E2A200651B39 /* VisilabsStoryPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543882779E2A200651B39 /* VisilabsStoryPreviewCell.swift */; };
+		614544152779E2A200651B39 /* VisilabsPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543892779E2A200651B39 /* VisilabsPlayerView.swift */; };
+		614544162779E2A200651B39 /* VisilabsRetryLoaderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145438A2779E2A200651B39 /* VisilabsRetryLoaderButton.swift */; };
+		614544172779E2A200651B39 /* VisilabsStoryPreviewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145438B2779E2A200651B39 /* VisilabsStoryPreviewHeaderView.swift */; };
+		614544182779E2A200651B39 /* CubeAttributesAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145438D2779E2A200651B39 /* CubeAttributesAnimator.swift */; };
+		614544192779E2A200651B39 /* AnimatedCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145438E2779E2A200651B39 /* AnimatedCollectionViewLayout.swift */; };
+		6145441A2779E2A200651B39 /* ParallaxAttributesAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6145438F2779E2A200651B39 /* ParallaxAttributesAnimator.swift */; };
+		6145441B2779E2A200651B39 /* UIView+Anchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543902779E2A200651B39 /* UIView+Anchor.swift */; };
+		6145441C2779E2A200651B39 /* LayoutAttributesAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543912779E2A200651B39 /* LayoutAttributesAnimator.swift */; };
+		6145441D2779E2A200651B39 /* UIView+AnchorAndSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543922779E2A200651B39 /* UIView+AnchorAndSizes.swift */; };
+		6145441E2779E2A200651B39 /* VisilabsStoryImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543932779E2A200651B39 /* VisilabsStoryImageCache.swift */; };
+		6145441F2779E2A200651B39 /* VisilabsVideoCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543942779E2A200651B39 /* VisilabsVideoCacheManager.swift */; };
+		614544202779E2A200651B39 /* VisilabsProductStatNotifierViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543952779E2A200651B39 /* VisilabsProductStatNotifierViewModel.swift */; };
+		614544212779E2A200651B39 /* Visilabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614543962779E2A200651B39 /* Visilabs.swift */; };
 		65F70EBCFDF78AF91C8D7812521453B1 /* Pods-Euromsg_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CB5A3AB3D4C037D8E85CD889EDE21DD /* Pods-Euromsg_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		660D8C6CDA60D0F4AF8B421F17ACB631 /* CarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76023429E45E83D711D6ADA49EEB334D /* CarouselCell.swift */; };
-		673DC628419068A30F4200D3E50EDC5B /* Euromsg.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA36775DE08E729F8EC8E151BDCD2034 /* Euromsg.swift */; };
-		6F46EE2842342D820F4DDD30C0742C8E /* CarouselCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = B94C9510ADA6862DF9506771EC641884 /* CarouselCell.xib */; };
-		77A0D6D3649B3411B67D6EB18F2B6F4D /* EMRetentionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6BD8535D139D012A7D0C26DB674932 /* EMRetentionRequest.swift */; };
+		691F2D74FA77A5E0890F6672564412DA /* CarouselCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 9B3A7BF0356EB31DE5F3C5E372EA5BA4 /* CarouselCell.xib */; };
+		6AC0F0D43EB11C4B883C9BA1F0B9366F /* EMConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D92FC3A7F67AF5BA2B87CB030DB691 /* EMConfiguration.swift */; };
+		6DA6337374A9940F562A130661A2BD61 /* EMCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76FAB503BB53D5D31FBC639C9948F8A /* EMCodable.swift */; };
 		77B9236D730331286354F7B9BBE9CED3 /* Pods-Euromsg_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D282A36E072360CF8F70203F0AA7ED2F /* Pods-Euromsg_Tests-dummy.m */; };
-		7B955F58BC1BBA4060AF3D41208C20DC /* EuromsgAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BAAB38B81303D553787644B49B4D3E /* EuromsgAPI.swift */; };
-		7D915DCC29802CB00D1C89A8DA569F24 /* Euromsg-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 74931B071B3F40E5C05BA333F66F49C6 /* Euromsg-dummy.m */; };
 		7E746055BE68A175F318DBB44C87565C /* Pods-NotificationService-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 143604E23E5CD6A086C0D5787B02A7B0 /* Pods-NotificationService-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		85F80E24EEA6519267F99C775FDF769D /* Euromsg.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CED82E91EC3A31ACAC9E7D78B5A59DE /* Euromsg.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		868471F680108B3A182F4E8E53F3B1EB /* EMMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADF536278A920B6A582DAF52AEFEB5E /* EMMessage.swift */; };
-		88E2795A2768B6530059ACDA /* EMAPNSRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E279592768B6530059ACDA /* EMAPNSRegistration.swift */; };
-		9E0B9DD0565942943874D40EE789936A /* EMNotificationCarousel.xib in Sources */ = {isa = PBXBuildFile; fileRef = 1082F784A2235047D6C138B9A6E42627 /* EMNotificationCarousel.xib */; };
-		AA9CDCC3D82DA46B291D2DA8872717CA /* EMDeliverHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8EE82290FF0E3FDDA1C0B26FC89236 /* EMDeliverHandler.swift */; };
-		AB740D908EEEC6FD411D448D03F39268 /* EMNotificationCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9322B2D5313D915711BD1FEFE0C6E5FF /* EMNotificationCarousel.swift */; };
-		AFB5DAD090A4181DE2C1A5B0A09F3F1B /* EMTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4254CE34DA0B5D51E00FC8F90223F6CF /* EMTools.swift */; };
-		B92E4F51F571E9D51771DAE55F8A0039 /* EMSubscriptionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE5516D8BA4B2F78D81088EB5469A19 /* EMSubscriptionHandler.swift */; };
+		84978FB903946286AB112EC09AA00BCF /* EMSubscriptionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30C04E3A8030D0A4219431CA56379D7 /* EMSubscriptionHandler.swift */; };
+		A01D23BDCE8FCFA53A754DB7238E9078 /* EMRetentionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E152EF0DDD4E741BCDCBFA26A8432EDA /* EMRetentionRequest.swift */; };
+		A8971E1E2254015D8927317EE3BED409 /* EMReadHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C1DCE9B11A318A36DD0177EECFCAD2 /* EMReadHandler.swift */; };
+		B64901A2B996A5A11C4D247816EC5EEF /* CarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BDB3AD92B0283D1C27BF4559033EF4 /* CarouselCell.swift */; };
+		B80771AB20A2C6059C925CB6893D672D /* EMNotificationCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E8828E9B11C679147F353C53F5872C /* EMNotificationCarousel.swift */; };
 		BE75A1948E1633BD7E763A4756E343E9 /* Pods-NotificationContent-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FD67BBC2C1B2C25EF9D74680E236D3 /* Pods-NotificationContent-dummy.m */; };
-		BED621553B674715AA3CF69021ACEDD2 /* EMKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EEBFA3A0EE9045B286CD4AF5CAB9F5 /* EMKey.swift */; };
-		C83E1912B827A1B0953F07D3D229BD9B /* EMGraylogRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A7DC7BF8D987BC3867915655181830 /* EMGraylogRequest.swift */; };
-		CBB756B79656F0587E0EAB37E78453AB /* EMSwizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78B198E4C4A6FF691C1787630FF9D05 /* EMSwizzle.swift */; };
-		CCCBFECB99246329751272C482414BCD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		C26AD17EE44B74D5476E40AAE7FF1455 /* EMTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41216E00B22457B4DFD2F66760C29F6 /* EMTools.swift */; };
+		C652AF61C2637B1C9E9E93230C1C6AE5 /* EMRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC790B5FB3724FA8D654EAE1DD3A01A /* EMRequestProtocol.swift */; };
 		CFEFC7291880016E5B865629B15CE06A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		D4C20BD2E31078D4C56BC33BBA1CA3D1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		DB6807C4DC61BF183EFA53354535F503 /* EMReadHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CE83C4974498BCE66285F6CB3C2F7A /* EMReadHandler.swift */; };
+		D8EAFB2D86A597B990165096BE7CF2C0 /* EMLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5788B9A1A386EF71DC690589FFDD88 /* EMLog.swift */; };
 		DC00FF05CE44451827D628E617B4495C /* Pods-Euromsg_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 01D435C56CD707D42342259A9796C180 /* Pods-Euromsg_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E2A0559AA430E8F65FEC1980883AB6C3 /* EMSubscriptionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8787C0B1B7BAB29428C40C7AC5B75208 /* EMSubscriptionRequest.swift */; };
+		E4EC1C09EA9B8E748259192B42E606EF /* EMNotificationCarousel.xib in Sources */ = {isa = PBXBuildFile; fileRef = CDE1F727E41D3EBC7EAAA726D4C65816 /* EMNotificationCarousel.xib */; };
 		E51052C713814B14F5D24FE15C975397 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		E6987255638165D5ECECA465C586612E /* EMUserDefaultsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8306E850AE4F3910EF531100373F0477 /* EMUserDefaultsUtils.swift */; };
-		EDB6D3AE98700C7014C0110538CDD528 /* EMKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA55C3AB4904407B46F61B4201D22BF /* EMKeychain.swift */; };
-		F836E1B8B1DE7A1D4E744034DBB11EA6 /* EMCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A40B5BB6D86EA3DDD290938B86BFFA /* EMCodable.swift */; };
-		FA42D909B721E3E29E77392667AF58B8 /* EMConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D2AD1F6EAF1BCCFF3822D27703C40C /* EMConfiguration.swift */; };
+		E56A4CDC184CB9116F7734C4A5177525 /* EMUserDefaultsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC7E16A90A2B97AE2EC4E435806796D /* EMUserDefaultsUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1561CEAA749285E1386714A439168E81 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 50C5C9DC9878F435CFCF3BB251043E6F;
-			remoteInfo = Euromsg;
-		};
-		4C5348EF79A32D48661221BEBEEEAA0D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 50C5C9DC9878F435CFCF3BB251043E6F;
-			remoteInfo = Euromsg;
-		};
-		82A9BF790B922602865A09C5BAC93820 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 50C5C9DC9878F435CFCF3BB251043E6F;
-			remoteInfo = Euromsg;
-		};
-		E660E2815EA7F051FB377CF8CB80F0A8 /* PBXContainerItemProxy */ = {
+		245F7EC21E494F071B277B39F73D7AD4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 1A140EBD0F95F9AAEC60708B0FB853F9;
 			remoteInfo = "Pods-Euromsg_Example";
 		};
+		6CC2459540DDAA311067CA8FFDF5F452 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 50C5C9DC9878F435CFCF3BB251043E6F;
+			remoteInfo = Euromsg;
+		};
+		BB8687526FBA5F46F685400C108D0499 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 50C5C9DC9878F435CFCF3BB251043E6F;
+			remoteInfo = Euromsg;
+		};
+		CBC9263903120FBEF99D2A7B9B8D43D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 50C5C9DC9878F435CFCF3BB251043E6F;
+			remoteInfo = Euromsg;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00368BE18844673363B3D83639121AE4 /* Euromsg.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = Euromsg.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		016429C70AB2A2E9CBF548BAAF90C36F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		01C166D1F5A9FC161B773BCD6D9B9D9E /* EMReadWriteLock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMReadWriteLock.swift; sourceTree = "<group>"; };
 		01D435C56CD707D42342259A9796C180 /* Pods-Euromsg_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Euromsg_Tests-umbrella.h"; sourceTree = "<group>"; };
+		03D92FC3A7F67AF5BA2B87CB030DB691 /* EMConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMConfiguration.swift; path = Sources/Euromsg/Classes/EMConfiguration.swift; sourceTree = "<group>"; };
 		04CDFA5685CF060415F2B4B22542629E /* Pods-Euromsg_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Euromsg_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		0CB5A3AB3D4C037D8E85CD889EDE21DD /* Pods-Euromsg_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Euromsg_Example-umbrella.h"; sourceTree = "<group>"; };
-		1082F784A2235047D6C138B9A6E42627 /* EMNotificationCarousel.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = EMNotificationCarousel.xib; sourceTree = "<group>"; };
 		143604E23E5CD6A086C0D5787B02A7B0 /* Pods-NotificationService-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NotificationService-umbrella.h"; sourceTree = "<group>"; };
 		1687CD618B058C444F139EA993B2A56E /* Pods-Euromsg_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Euromsg_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		1ADF536278A920B6A582DAF52AEFEB5E /* EMMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMMessage.swift; path = Sources/Euromsg/Classes/EMMessage.swift; sourceTree = "<group>"; };
-		27EEBFA3A0EE9045B286CD4AF5CAB9F5 /* EMKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMKey.swift; sourceTree = "<group>"; };
+		1C0DA94030720E10D4DB305BD5F7DF05 /* EMSubscriptionRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMSubscriptionRequest.swift; path = Sources/Euromsg/Classes/EMSubscriptionRequest.swift; sourceTree = "<group>"; };
+		1EC7E16A90A2B97AE2EC4E435806796D /* EMUserDefaultsUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMUserDefaultsUtils.swift; sourceTree = "<group>"; };
+		282DFBBBD03A802C056DD71EE24DDC83 /* Euromsg-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Euromsg-umbrella.h"; sourceTree = "<group>"; };
 		29F1BDE7860B1B32DC3AEF92C231D62D /* Pods-Euromsg_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Euromsg_Example-Info.plist"; sourceTree = "<group>"; };
 		2D7199DE444DD1A99D36CB671A60ABF7 /* Pods-Euromsg_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Euromsg_Tests.modulemap"; sourceTree = "<group>"; };
-		2F5E2BDB8EBF11B8B248A885ADC9162A /* Euromsg-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Euromsg-prefix.pch"; sourceTree = "<group>"; };
+		2FC790B5FB3724FA8D654EAE1DD3A01A /* EMRequestProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMRequestProtocol.swift; sourceTree = "<group>"; };
+		303FC8DE296830885625FC9C3DC6A869 /* Euromsg-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Euromsg-prefix.pch"; sourceTree = "<group>"; };
+		32E8828E9B11C679147F353C53F5872C /* EMNotificationCarousel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMNotificationCarousel.swift; sourceTree = "<group>"; };
 		36DB929F0AE3C6CCF12567563844A78E /* Pods-Euromsg_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Euromsg_Example.release.xcconfig"; sourceTree = "<group>"; };
+		3753E405E10CD1F20106F370BCD88CEC /* EMKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMKey.swift; sourceTree = "<group>"; };
 		378DEAC8A85F8295B8C27E060B89142F /* Pods-NotificationService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NotificationService-Info.plist"; sourceTree = "<group>"; };
-		3CED2E98E4A624F52CB6755D1D624917 /* Euromsg-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Euromsg-umbrella.h"; sourceTree = "<group>"; };
-		3F8383E3C45C602705B4E67B465731A1 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		4227F5C6EDB760665982332AA41833B9 /* EMRequestProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMRequestProtocol.swift; sourceTree = "<group>"; };
-		4254CE34DA0B5D51E00FC8F90223F6CF /* EMTools.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMTools.swift; sourceTree = "<group>"; };
+		432DD8FD254EA355B40F3DD903B6A8FC /* Euromsg.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = Euromsg.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		49B24588EC92D80D2E93EB28E3D4711C /* Pods-Euromsg_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Euromsg_Example-dummy.m"; sourceTree = "<group>"; };
+		4AA315366298DC90316C154487C4784B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		4F461E9FD9A44BF83E74DBB6CB597D4E /* EuromsgAPI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EuromsgAPI.swift; sourceTree = "<group>"; };
 		54929C9DE1EABE6976B03AA3DE553555 /* Pods-NotificationService-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NotificationService-acknowledgements.plist"; sourceTree = "<group>"; };
 		54D53D1E6DAA2C57F77DC7D666A037DC /* Pods-Euromsg_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Euromsg_Example-frameworks.sh"; sourceTree = "<group>"; };
 		55B8ADA9F2F86DCC611556BD33D57FD0 /* Pods-Euromsg_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Euromsg_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		55D2AD1F6EAF1BCCFF3822D27703C40C /* EMConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMConfiguration.swift; path = Sources/Euromsg/Classes/EMConfiguration.swift; sourceTree = "<group>"; };
 		563E0A0FEB65B564D6A02A0A948B2E62 /* Pods-NotificationService */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-NotificationService"; path = Pods_NotificationService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E31DA880C5E0A4FA78548985530D3A6 /* EMAPNSRegistration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMAPNSRegistration.swift; path = Sources/Euromsg/Classes/EMAPNSRegistration.swift; sourceTree = "<group>"; };
+		5E54E552327693E851F3748C3BA56A4E /* Euromsg.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Euromsg.modulemap; sourceTree = "<group>"; };
+		614542F72779E2A100651B39 /* VisilabsInstance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsInstance.swift; sourceTree = "<group>"; };
+		614542F92779E2A100651B39 /* Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
+		614542FA2779E2A100651B39 /* VisilabsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsHelper.swift; sourceTree = "<group>"; };
+		614542FB2779E2A100651B39 /* VisilabsParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsParameter.swift; sourceTree = "<group>"; };
+		614542FC2779E2A100651B39 /* VisilabsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsExtensions.swift; sourceTree = "<group>"; };
+		614542FD2779E2A100651B39 /* VisilabsConstraintHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsConstraintHelper.swift; sourceTree = "<group>"; };
+		614542FF2779E2A100651B39 /* StarLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarLayer.swift; sourceTree = "<group>"; };
+		614543002779E2A100651B39 /* CosmosAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosAccessibility.swift; sourceTree = "<group>"; };
+		614543012779E2A100651B39 /* CosmosText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosText.swift; sourceTree = "<group>"; };
+		614543022779E2A100651B39 /* CosmosDefaultSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosDefaultSettings.swift; sourceTree = "<group>"; };
+		614543032779E2A100651B39 /* CosmosSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosSize.swift; sourceTree = "<group>"; };
+		614543042779E2A100651B39 /* CosmosLayers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosLayers.swift; sourceTree = "<group>"; };
+		614543052779E2A100651B39 /* CosmosDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosDistrib.swift; sourceTree = "<group>"; };
+		614543062779E2A100651B39 /* CosmosLocalizedRating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosLocalizedRating.swift; sourceTree = "<group>"; };
+		614543072779E2A100651B39 /* CosmosTouch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosTouch.swift; sourceTree = "<group>"; };
+		614543082779E2A100651B39 /* CosmosRating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosRating.swift; sourceTree = "<group>"; };
+		614543092779E2A100651B39 /* CosmosSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosSettings.swift; sourceTree = "<group>"; };
+		6145430A2779E2A100651B39 /* CosmosView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosView.swift; sourceTree = "<group>"; };
+		6145430B2779E2A100651B39 /* VisilabsReadWriteLock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsReadWriteLock.swift; sourceTree = "<group>"; };
+		6145430C2779E2A100651B39 /* VisilabsConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsConstants.swift; sourceTree = "<group>"; };
+		6145430D2779E2A100651B39 /* ConstraintAbstraction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintAbstraction.swift; sourceTree = "<group>"; };
+		6145430E2779E2A100651B39 /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		6145430F2779E2A100651B39 /* VisilabsLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsLogger.swift; sourceTree = "<group>"; };
+		614543102779E2A100651B39 /* Checkbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
+		614543112779E2A100651B39 /* VisilabsPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsPersistence.swift; sourceTree = "<group>"; };
+		614543122779E2A100651B39 /* VisilabsIOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisilabsIOS.h; sourceTree = "<group>"; };
+		614543142779E2A100651B39 /* spintowin.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = spintowin.html; sourceTree = "<group>"; };
+		614543172779E2A100651B39 /* unGreat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unGreat.png; sourceTree = "<group>"; };
+		614543182779E2A100651B39 /* good.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = good.png; sourceTree = "<group>"; };
+		614543192779E2A100651B39 /* terrible.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terrible.png; sourceTree = "<group>"; };
+		6145431A2779E2A100651B39 /* okay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = okay.png; sourceTree = "<group>"; };
+		6145431B2779E2A100651B39 /* unBad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unBad.png; sourceTree = "<group>"; };
+		6145431C2779E2A100651B39 /* unOkay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unOkay.png; sourceTree = "<group>"; };
+		6145431D2779E2A100651B39 /* unTerrible.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unTerrible.png; sourceTree = "<group>"; };
+		6145431E2779E2A100651B39 /* bad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bad.png; sourceTree = "<group>"; };
+		6145431F2779E2A100651B39 /* unGood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unGood.png; sourceTree = "<group>"; };
+		614543202779E2A100651B39 /* great.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = great.png; sourceTree = "<group>"; };
+		614543212779E2A100651B39 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
+		614543222779E2A100651B39 /* VisilabsCloseButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VisilabsCloseButton.png; sourceTree = "<group>"; };
+		614543232779E2A100651B39 /* RelatedCopyButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RelatedCopyButton.png; sourceTree = "<group>"; };
+		614543242779E2A100651B39 /* VisilabsRetryButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VisilabsRetryButton.png; sourceTree = "<group>"; };
+		614543252779E2A100651B39 /* VisilabsCloseButtonBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VisilabsCloseButtonBlack.png; sourceTree = "<group>"; };
+		614543262779E2A100651B39 /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
+		614543272779E2A100651B39 /* spintowin.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = spintowin.js; sourceTree = "<group>"; };
+		614543292779E2A100651B39 /* VisilabsRecommendation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsRecommendation.swift; sourceTree = "<group>"; };
+		6145432A2779E2A100651B39 /* VisilabsRecommendationFilterType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsRecommendationFilterType.swift; sourceTree = "<group>"; };
+		6145432B2779E2A100651B39 /* VisilabsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsManager.swift; sourceTree = "<group>"; };
+		6145432D2779E2A100651B39 /* VisilabsEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsEvent.swift; sourceTree = "<group>"; };
+		6145432E2779E2A100651B39 /* VisilabsCookie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsCookie.swift; sourceTree = "<group>"; };
+		6145432F2779E2A100651B39 /* VisilabsSend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsSend.swift; sourceTree = "<group>"; };
+		614543312779E2A100651B39 /* ScratchUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScratchUIView.swift; sourceTree = "<group>"; };
+		614543322779E2A100651B39 /* ScratchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScratchView.swift; sourceTree = "<group>"; };
+		614543332779E2A100651B39 /* ScratchToWinModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScratchToWinModel.swift; sourceTree = "<group>"; };
+		614543352779E2A100651B39 /* VisilabsGeofence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsGeofence.swift; sourceTree = "<group>"; };
+		614543372779E2A100651B39 /* VisilabsCLAuthorizationStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsCLAuthorizationStatus.swift; sourceTree = "<group>"; };
+		614543382779E2A100651B39 /* VisilabsGeofenceHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsGeofenceHistory.swift; sourceTree = "<group>"; };
+		614543392779E2A100651B39 /* VisilabsGeofenceEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsGeofenceEntity.swift; sourceTree = "<group>"; };
+		6145433A2779E2A100651B39 /* VisilabsLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsLocationManager.swift; sourceTree = "<group>"; };
+		6145433C2779E2A200651B39 /* VisilabsRemoteConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsRemoteConfig.swift; sourceTree = "<group>"; };
+		6145433D2779E2A200651B39 /* VisilabsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsRequest.swift; sourceTree = "<group>"; };
+		6145433E2779E2A200651B39 /* VisilabsNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsNetwork.swift; sourceTree = "<group>"; };
+		614543402779E2A200651B39 /* ShakeToWinViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShakeToWinViewModel.swift; sourceTree = "<group>"; };
+		614543412779E2A200651B39 /* SpinToWinModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinToWinModel.swift; sourceTree = "<group>"; };
+		614543422779E2A200651B39 /* TargetingActionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetingActionViewModel.swift; sourceTree = "<group>"; };
+		614543432779E2A200651B39 /* CountdownModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownModel.swift; sourceTree = "<group>"; };
+		614543452779E2A200651B39 /* VisilabsInAppNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsInAppNotifications.swift; sourceTree = "<group>"; };
+		614543472779E2A200651B39 /* UIImageView+Calculations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Calculations.swift"; sourceTree = "<group>"; };
+		614543482779E2A200651B39 /* UIView+Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
+		614543492779E2A200651B39 /* VisilabsSliderStepRating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsSliderStepRating.swift; sourceTree = "<group>"; };
+		6145434A2779E2A200651B39 /* VisilabsTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsTransitionAnimator.swift; sourceTree = "<group>"; };
+		6145434B2779E2A200651B39 /* VisilabsPresentationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsPresentationManager.swift; sourceTree = "<group>"; };
+		6145434C2779E2A200651B39 /* VisilabsPopupUIElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsPopupUIElements.swift; sourceTree = "<group>"; };
+		6145434D2779E2A200651B39 /* VisilabsInAppNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsInAppNotification.swift; sourceTree = "<group>"; };
+		6145434E2779E2A200651B39 /* UIViewController+Visibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Visibility.swift"; sourceTree = "<group>"; };
+		6145434F2779E2A200651B39 /* VisilabsTransitionAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsTransitionAnimations.swift; sourceTree = "<group>"; };
+		614543502779E2A200651B39 /* VisilabsInAppNotificationType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsInAppNotificationType.swift; sourceTree = "<group>"; };
+		614543512779E2A200651B39 /* VisilabsPopupDialogOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsPopupDialogOverlayView.swift; sourceTree = "<group>"; };
+		614543522779E2A200651B39 /* VisilabsPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsPresentationController.swift; sourceTree = "<group>"; };
+		614543532779E2A200651B39 /* UIImage+Blur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Blur.swift"; sourceTree = "<group>"; };
+		614543542779E2A200651B39 /* VisilabsPopupDialogButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsPopupDialogButton.swift; sourceTree = "<group>"; };
+		614543552779E2A200651B39 /* VisilabsInteractiveTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsInteractiveTransition.swift; sourceTree = "<group>"; };
+		614543562779E2A200651B39 /* VisilabsPopupDialogDefaultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsPopupDialogDefaultView.swift; sourceTree = "<group>"; };
+		614543572779E2A200651B39 /* CarouselViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarouselViewModel.swift; sourceTree = "<group>"; };
+		614543582779E2A200651B39 /* VisilabsPopupDialogContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsPopupDialogContainerView.swift; sourceTree = "<group>"; };
+		614543592779E2A200651B39 /* SpinToWinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinToWinViewController.swift; sourceTree = "<group>"; };
+		6145435A2779E2A200651B39 /* RatingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingCollectionViewCell.swift; sourceTree = "<group>"; };
+		6145435C2779E2A200651B39 /* VisilabsFullNotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsFullNotificationViewController.swift; sourceTree = "<group>"; };
+		6145435D2779E2A200651B39 /* CountdownTimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownTimerViewController.swift; sourceTree = "<group>"; };
+		6145435E2779E2A200651B39 /* HalfScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HalfScreenViewController.swift; sourceTree = "<group>"; };
+		6145435F2779E2A200651B39 /* VisilabsHalfScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsHalfScreenViewController.swift; sourceTree = "<group>"; };
+		614543602779E2A200651B39 /* VisilabsBaseNotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsBaseNotificationViewController.swift; sourceTree = "<group>"; };
+		614543612779E2A200651B39 /* VisilabsProductStatNotifierViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsProductStatNotifierViewController.swift; sourceTree = "<group>"; };
+		614543622779E2A200651B39 /* VisilabsMiniNotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsMiniNotificationViewController.swift; sourceTree = "<group>"; };
+		614543632779E2A200651B39 /* VisilabsCarouselNotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsCarouselNotificationViewController.swift; sourceTree = "<group>"; };
+		614543642779E2A200651B39 /* VisilabsPopupNotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsPopupNotificationViewController.swift; sourceTree = "<group>"; };
+		614543652779E2A200651B39 /* VisilabsDefaultPopupNotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsDefaultPopupNotificationViewController.swift; sourceTree = "<group>"; };
+		614543672779E2A200651B39 /* VisilabsHalfScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsHalfScreenView.swift; sourceTree = "<group>"; };
+		614543682779E2A200651B39 /* VisilabsMiniNotificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VisilabsMiniNotificationViewController.xib; sourceTree = "<group>"; };
+		614543692779E2A200651B39 /* VisilabsCarouselNotificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VisilabsCarouselNotificationViewController.xib; sourceTree = "<group>"; };
+		6145436A2779E2A200651B39 /* VisilabsProductStatNotifierView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsProductStatNotifierView.swift; sourceTree = "<group>"; };
+		6145436B2779E2A200651B39 /* CountdownTimerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountdownTimerViewController.xib; sourceTree = "<group>"; };
+		6145436C2779E2A200651B39 /* VisilabsFullNotificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VisilabsFullNotificationViewController.xib; sourceTree = "<group>"; };
+		6145436D2779E2A200651B39 /* VisilabsTargetingAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsTargetingAction.swift; sourceTree = "<group>"; };
+		6145436E2779E2A200651B39 /* VisilabsFavoriteAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsFavoriteAttribute.swift; sourceTree = "<group>"; };
+		6145436F2779E2A200651B39 /* MailSubscriptionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailSubscriptionModel.swift; sourceTree = "<group>"; };
+		614543702779E2A200651B39 /* ShakeToWinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShakeToWinViewController.swift; sourceTree = "<group>"; };
+		614543712779E2A200651B39 /* VisilabsFavoriteAttributeActionResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsFavoriteAttributeActionResponse.swift; sourceTree = "<group>"; };
+		614543732779E2A200651B39 /* VisilabsStoryActionResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsStoryActionResponse.swift; sourceTree = "<group>"; };
+		614543742779E2A200651B39 /* VisilabsStoryImageRequestable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsStoryImageRequestable.swift; sourceTree = "<group>"; };
+		614543752779E2A200651B39 /* VisilabsStoryImageURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsStoryImageURLSession.swift; sourceTree = "<group>"; };
+		614543762779E2A200651B39 /* VisilabsStoryImageError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsStoryImageError.swift; sourceTree = "<group>"; };
+		614543782779E2A200651B39 /* customObjectsVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customObjectsVariables.swift; sourceTree = "<group>"; };
+		614543792779E2A200651B39 /* VisilabsStoryPreviewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsStoryPreviewModel.swift; sourceTree = "<group>"; };
+		6145437A2779E2A200651B39 /* VisilabsStoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsStoryItem.swift; sourceTree = "<group>"; };
+		6145437B2779E2A200651B39 /* VisilabsStory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsStory.swift; sourceTree = "<group>"; };
+		6145437C2779E2A200651B39 /* VisilabsStoryAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsStoryAction.swift; sourceTree = "<group>"; };
+		6145437E2779E2A200651B39 /* VisilabsStoryPreviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsStoryPreviewController.swift; sourceTree = "<group>"; };
+		6145437F2779E2A200651B39 /* VisilabsStoryHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsStoryHomeViewController.swift; sourceTree = "<group>"; };
+		614543812779E2A200651B39 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		614543822779E2A200651B39 /* VisilabsStoryRoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsStoryRoundedView.swift; sourceTree = "<group>"; };
+		614543832779E2A200651B39 /* VisilabsStoryHomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsStoryHomeView.swift; sourceTree = "<group>"; };
+		614543842779E2A200651B39 /* VisilabsStoryHomeViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsStoryHomeViewCell.swift; sourceTree = "<group>"; };
+		614543852779E2A200651B39 /* VisilabsCellConfigurer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsCellConfigurer.swift; sourceTree = "<group>"; };
+		614543862779E2A200651B39 /* VisilabsSnapProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsSnapProgressView.swift; sourceTree = "<group>"; };
+		614543872779E2A200651B39 /* VisilabsStoryPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsStoryPreviewView.swift; sourceTree = "<group>"; };
+		614543882779E2A200651B39 /* VisilabsStoryPreviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsStoryPreviewCell.swift; sourceTree = "<group>"; };
+		614543892779E2A200651B39 /* VisilabsPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsPlayerView.swift; sourceTree = "<group>"; };
+		6145438A2779E2A200651B39 /* VisilabsRetryLoaderButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsRetryLoaderButton.swift; sourceTree = "<group>"; };
+		6145438B2779E2A200651B39 /* VisilabsStoryPreviewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsStoryPreviewHeaderView.swift; sourceTree = "<group>"; };
+		6145438D2779E2A200651B39 /* CubeAttributesAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubeAttributesAnimator.swift; sourceTree = "<group>"; };
+		6145438E2779E2A200651B39 /* AnimatedCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedCollectionViewLayout.swift; sourceTree = "<group>"; };
+		6145438F2779E2A200651B39 /* ParallaxAttributesAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParallaxAttributesAnimator.swift; sourceTree = "<group>"; };
+		614543902779E2A200651B39 /* UIView+Anchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Anchor.swift"; sourceTree = "<group>"; };
+		614543912779E2A200651B39 /* LayoutAttributesAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAttributesAnimator.swift; sourceTree = "<group>"; };
+		614543922779E2A200651B39 /* UIView+AnchorAndSizes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AnchorAndSizes.swift"; sourceTree = "<group>"; };
+		614543932779E2A200651B39 /* VisilabsStoryImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsStoryImageCache.swift; sourceTree = "<group>"; };
+		614543942779E2A200651B39 /* VisilabsVideoCacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsVideoCacheManager.swift; sourceTree = "<group>"; };
+		614543952779E2A200651B39 /* VisilabsProductStatNotifierViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisilabsProductStatNotifierViewModel.swift; sourceTree = "<group>"; };
+		614543962779E2A200651B39 /* Visilabs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Visilabs.swift; sourceTree = "<group>"; };
+		61D2917B78734B33608678014B6EFDA5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		61ECECDA19FED471853EE54754C00408 /* Pods-NotificationService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NotificationService.debug.xcconfig"; sourceTree = "<group>"; };
-		6720A75F666ED9F17C1722AD77CDAF0B /* EMReadWriteLock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMReadWriteLock.swift; sourceTree = "<group>"; };
 		6AB905016BAE9BD4E699B4505EDD205A /* Pods-Euromsg_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-Euromsg_Example"; path = Pods_Euromsg_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B0E12EBCD864508F7967644CCE1F648 /* Pods-Euromsg_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Euromsg_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		6F42646A3EB51928EE5E38873EA5C7E0 /* Pods-Euromsg_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Euromsg_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		6FA55C3AB4904407B46F61B4201D22BF /* EMKeychain.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMKeychain.swift; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		74931B071B3F40E5C05BA333F66F49C6 /* Euromsg-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Euromsg-dummy.m"; sourceTree = "<group>"; };
+		73C1DCE9B11A318A36DD0177EECFCAD2 /* EMReadHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMReadHandler.swift; sourceTree = "<group>"; };
 		74C927D2D4B0C3B482AEA2E8738F9C4C /* Pods-NotificationContent */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-NotificationContent"; path = Pods_NotificationContent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		76023429E45E83D711D6ADA49EEB334D /* CarouselCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CarouselCell.swift; sourceTree = "<group>"; };
-		774EA737C338FC18CE0FDCE66A32A51B /* Euromsg.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Euromsg.modulemap; sourceTree = "<group>"; };
-		7A6BD8535D139D012A7D0C26DB674932 /* EMRetentionRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMRetentionRequest.swift; path = Sources/Euromsg/Classes/EMRetentionRequest.swift; sourceTree = "<group>"; };
-		7CE5516D8BA4B2F78D81088EB5469A19 /* EMSubscriptionHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMSubscriptionHandler.swift; sourceTree = "<group>"; };
-		80ECB553589DEF1EAF9C391291F33BEB /* Euromsg-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Euromsg-Info.plist"; sourceTree = "<group>"; };
-		8306E850AE4F3910EF531100373F0477 /* EMUserDefaultsUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMUserDefaultsUtils.swift; sourceTree = "<group>"; };
-		8787C0B1B7BAB29428C40C7AC5B75208 /* EMSubscriptionRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMSubscriptionRequest.swift; path = Sources/Euromsg/Classes/EMSubscriptionRequest.swift; sourceTree = "<group>"; };
-		88E279592768B6530059ACDA /* EMAPNSRegistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EMAPNSRegistration.swift; path = Sources/Euromsg/Classes/EMAPNSRegistration.swift; sourceTree = "<group>"; };
+		7C5788B9A1A386EF71DC690589FFDD88 /* EMLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMLog.swift; sourceTree = "<group>"; };
+		86772DB65B71CA868B22EA1805795891 /* Euromsg.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Euromsg.swift; path = Sources/Euromsg/Classes/Euromsg.swift; sourceTree = "<group>"; };
+		871507A9B61CF0748D48F3F7CAF2A132 /* EMUNNotificationServiceExtensionHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMUNNotificationServiceExtensionHandler.swift; path = Sources/Euromsg/Classes/EMUNNotificationServiceExtensionHandler.swift; sourceTree = "<group>"; };
 		89451842FEAAE1BB06B52921FD18A461 /* Pods-Euromsg_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-Euromsg_Tests"; path = Pods_Euromsg_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89FD67BBC2C1B2C25EF9D74680E236D3 /* Pods-NotificationContent-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NotificationContent-dummy.m"; sourceTree = "<group>"; };
-		8CED82E91EC3A31ACAC9E7D78B5A59DE /* Euromsg.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Euromsg.h; path = Sources/Euromsg/Classes/Euromsg.h; sourceTree = "<group>"; };
 		8EF3FD1B9334204303C83305D2BE1F59 /* Pods-NotificationService.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-NotificationService.modulemap"; sourceTree = "<group>"; };
-		90BAAB38B81303D553787644B49B4D3E /* EuromsgAPI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EuromsgAPI.swift; sourceTree = "<group>"; };
-		9322B2D5313D915711BD1FEFE0C6E5FF /* EMNotificationCarousel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMNotificationCarousel.swift; sourceTree = "<group>"; };
-		97A7DC7BF8D987BC3867915655181830 /* EMGraylogRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMGraylogRequest.swift; path = Sources/Euromsg/Classes/EMGraylogRequest.swift; sourceTree = "<group>"; };
-		9836EDEB821D140E8A6B3B6262104426 /* Euromsg.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Euromsg.debug.xcconfig; sourceTree = "<group>"; };
-		990450F448FBA0224FC3105073725991 /* Euromsg.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Euromsg.release.xcconfig; sourceTree = "<group>"; };
+		8F76ED8E536B3AB736E09B9D83B42B9D /* EMSwizzle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMSwizzle.swift; sourceTree = "<group>"; };
+		9844D0FAC041F878364435CBCE6A205E /* Euromsg.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Euromsg.h; path = Sources/Euromsg/Classes/Euromsg.h; sourceTree = "<group>"; };
 		99F0236D4F676D81AA57BE7ECDC17A56 /* Pods-NotificationContent-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NotificationContent-umbrella.h"; sourceTree = "<group>"; };
+		9B3A7BF0356EB31DE5F3C5E372EA5BA4 /* CarouselCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = CarouselCell.xib; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A2A40B5BB6D86EA3DDD290938B86BFFA /* EMCodable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMCodable.swift; sourceTree = "<group>"; };
 		ABFD34D76E990790C34ED259515F54C7 /* Pods-NotificationService-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-NotificationService-acknowledgements.markdown"; sourceTree = "<group>"; };
-		B4CE83C4974498BCE66285F6CB3C2F7A /* EMReadHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMReadHandler.swift; sourceTree = "<group>"; };
+		B30C04E3A8030D0A4219431CA56379D7 /* EMSubscriptionHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMSubscriptionHandler.swift; sourceTree = "<group>"; };
+		B64461D0F84F6F57A9D30672F5EB3A07 /* Euromsg.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Euromsg.release.xcconfig; sourceTree = "<group>"; };
 		B8F247A5AD20F27476B23A0D5587770F /* Pods-NotificationService-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NotificationService-dummy.m"; sourceTree = "<group>"; };
-		B94C9510ADA6862DF9506771EC641884 /* CarouselCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = CarouselCell.xib; sourceTree = "<group>"; };
-		C0E0F3DFB2DF3BF396E0D3D9270F0C10 /* EMUNNotificationServiceExtensionHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMUNNotificationServiceExtensionHandler.swift; path = Sources/Euromsg/Classes/EMUNNotificationServiceExtensionHandler.swift; sourceTree = "<group>"; };
-		CA36775DE08E729F8EC8E151BDCD2034 /* Euromsg.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Euromsg.swift; path = Sources/Euromsg/Classes/Euromsg.swift; sourceTree = "<group>"; };
+		BB68EFA5FEE6D22132A927F3DF9A5565 /* EMGraylogRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMGraylogRequest.swift; path = Sources/Euromsg/Classes/EMGraylogRequest.swift; sourceTree = "<group>"; };
+		CDE1F727E41D3EBC7EAAA726D4C65816 /* EMNotificationCarousel.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = EMNotificationCarousel.xib; sourceTree = "<group>"; };
 		D282A36E072360CF8F70203F0AA7ED2F /* Pods-Euromsg_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Euromsg_Tests-dummy.m"; sourceTree = "<group>"; };
 		D64DDC64F79BB75B2831E81E43C8D285 /* Pods-NotificationService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NotificationService.release.xcconfig"; sourceTree = "<group>"; };
-		D78B198E4C4A6FF691C1787630FF9D05 /* EMSwizzle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMSwizzle.swift; sourceTree = "<group>"; };
 		D795464CB6C27DA04CEDE9A0B96E6693 /* Pods-NotificationContent-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NotificationContent-Info.plist"; sourceTree = "<group>"; };
+		D8BDB3AD92B0283D1C27BF4559033EF4 /* CarouselCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CarouselCell.swift; sourceTree = "<group>"; };
 		DAF86A83DF43EEBF781571FEA605B260 /* Pods-NotificationContent-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NotificationContent-acknowledgements.plist"; sourceTree = "<group>"; };
 		DC1E41E9D98ED42631040F23340AA176 /* Pods-NotificationContent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NotificationContent.release.xcconfig"; sourceTree = "<group>"; };
 		DD9DB35497EF00C7986381BA22C72102 /* Pods-Euromsg_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Euromsg_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		DF8EE82290FF0E3FDDA1C0B26FC89236 /* EMDeliverHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMDeliverHandler.swift; sourceTree = "<group>"; };
+		E009EC90DFBCCDBE35CF60F3A0F770A7 /* EMMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMMessage.swift; path = Sources/Euromsg/Classes/EMMessage.swift; sourceTree = "<group>"; };
+		E152EF0DDD4E741BCDCBFA26A8432EDA /* EMRetentionRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EMRetentionRequest.swift; path = Sources/Euromsg/Classes/EMRetentionRequest.swift; sourceTree = "<group>"; };
+		E3A7877C442955423EC6D96422432AFB /* Euromsg-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Euromsg-Info.plist"; sourceTree = "<group>"; };
+		E41216E00B22457B4DFD2F66760C29F6 /* EMTools.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMTools.swift; sourceTree = "<group>"; };
 		E546F68EF68DA067E447E36A3E5627AC /* Pods-Euromsg_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Euromsg_Tests-Info.plist"; sourceTree = "<group>"; };
 		E80C282759A4BEC85A0FFAAB02577D24 /* Pods-NotificationContent.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-NotificationContent.modulemap"; sourceTree = "<group>"; };
+		E8E9691B8B74685B5340B04441B0660F /* Euromsg.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Euromsg.debug.xcconfig; sourceTree = "<group>"; };
 		E979B3A21CD478F36B0046FDFEBEA1EF /* Pods-NotificationContent-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-NotificationContent-acknowledgements.markdown"; sourceTree = "<group>"; };
+		EE8D34F4BA3AC21236687633C90A1BB3 /* EMKeychain.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMKeychain.swift; sourceTree = "<group>"; };
 		F0354B6E1A74140A41B94AC7F62C2B57 /* Pods-NotificationContent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NotificationContent.debug.xcconfig"; sourceTree = "<group>"; };
-		F31A9F99709F324E51AC92777C51D3A9 /* EMLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMLog.swift; sourceTree = "<group>"; };
+		F224196E79C27A6EDB7EEAC886739C21 /* Euromsg-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Euromsg-dummy.m"; sourceTree = "<group>"; };
 		F3D9E91BD5ED845B9B72E76C3CA296F8 /* Pods-Euromsg_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Euromsg_Example.modulemap"; sourceTree = "<group>"; };
+		F6A153AD23D6AD61212B2300DD686C0E /* EMDeliverHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMDeliverHandler.swift; sourceTree = "<group>"; };
+		F76FAB503BB53D5D31FBC639C9948F8A /* EMCodable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EMCodable.swift; sourceTree = "<group>"; };
 		FACF79A638DEF08C35FBA12CE0659C14 /* Pods-Euromsg_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Euromsg_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		FE0BC6D62731206ED1C889A7CCDF5D52 /* Euromsg */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Euromsg; path = Euromsg.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		18A169C58B0EBDDA21AFBC307EC2CA23 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CCCBFECB99246329751272C482414BCD /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		32AF0F88F59EAACDF6C222551732149E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -201,41 +471,40 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D5376E33E7D5919F59ED0BBC005033F7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BE03FFC7A4ED968FB9CDF28D1E023DA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		30BB973491744588C086C77E564E2974 /* EMNotificationCarousel */ = {
+		1CC5CEEEED0AABD86BFABF1785035C96 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				76023429E45E83D711D6ADA49EEB334D /* CarouselCell.swift */,
-				B94C9510ADA6862DF9506771EC641884 /* CarouselCell.xib */,
-				9322B2D5313D915711BD1FEFE0C6E5FF /* EMNotificationCarousel.swift */,
-				1082F784A2235047D6C138B9A6E42627 /* EMNotificationCarousel.xib */,
+				432DD8FD254EA355B40F3DD903B6A8FC /* Euromsg.podspec */,
+				4AA315366298DC90316C154487C4784B /* LICENSE */,
+				61D2917B78734B33608678014B6EFDA5 /* README.md */,
 			);
-			name = EMNotificationCarousel;
-			path = Sources/Euromsg/Classes/EMNotificationCarousel;
+			name = Pod;
 			sourceTree = "<group>";
 		};
-		34422B0021C58E65CAD3B5ADF4F228AC /* Euromsg */ = {
+		23F8D4D5FD7B1BC9BEFBD1C673471D61 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				88E279592768B6530059ACDA /* EMAPNSRegistration.swift */,
-				55D2AD1F6EAF1BCCFF3822D27703C40C /* EMConfiguration.swift */,
-				97A7DC7BF8D987BC3867915655181830 /* EMGraylogRequest.swift */,
-				1ADF536278A920B6A582DAF52AEFEB5E /* EMMessage.swift */,
-				7A6BD8535D139D012A7D0C26DB674932 /* EMRetentionRequest.swift */,
-				8787C0B1B7BAB29428C40C7AC5B75208 /* EMSubscriptionRequest.swift */,
-				C0E0F3DFB2DF3BF396E0D3D9270F0C10 /* EMUNNotificationServiceExtensionHandler.swift */,
-				8CED82E91EC3A31ACAC9E7D78B5A59DE /* Euromsg.h */,
-				CA36775DE08E729F8EC8E151BDCD2034 /* Euromsg.swift */,
-				661EC9F29A3C03658B59204F615FF80C /* EMNetwork */,
-				30BB973491744588C086C77E564E2974 /* EMNotificationCarousel */,
-				A3D632A90E0D1BD91E306D8EADF48538 /* EMUtils */,
-				7F3C3D32E33821FC4F03BF2B22DE0B48 /* Pod */,
-				FCFFD88BDE7D29C35C0F79AAFE24536F /* Support Files */,
+				5E54E552327693E851F3748C3BA56A4E /* Euromsg.modulemap */,
+				F224196E79C27A6EDB7EEAC886739C21 /* Euromsg-dummy.m */,
+				E3A7877C442955423EC6D96422432AFB /* Euromsg-Info.plist */,
+				303FC8DE296830885625FC9C3DC6A869 /* Euromsg-prefix.pch */,
+				282DFBBBD03A802C056DD71EE24DDC83 /* Euromsg-umbrella.h */,
+				E8E9691B8B74685B5340B04441B0660F /* Euromsg.debug.xcconfig */,
+				B64461D0F84F6F57A9D30672F5EB3A07 /* Euromsg.release.xcconfig */,
 			);
-			name = Euromsg;
-			path = ../..;
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/Euromsg";
 			sourceTree = "<group>";
 		};
 		3A0FCC9AC2704F933448201EB89A38AA /* Targets Support Files */ = {
@@ -249,12 +518,354 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
+		5260990A3BADADACFC5FB0927080B92E /* EMUtils */ = {
+			isa = PBXGroup;
+			children = (
+				F76FAB503BB53D5D31FBC639C9948F8A /* EMCodable.swift */,
+				3753E405E10CD1F20106F370BCD88CEC /* EMKey.swift */,
+				EE8D34F4BA3AC21236687633C90A1BB3 /* EMKeychain.swift */,
+				7C5788B9A1A386EF71DC690589FFDD88 /* EMLog.swift */,
+				01C166D1F5A9FC161B773BCD6D9B9D9E /* EMReadWriteLock.swift */,
+				8F76ED8E536B3AB736E09B9D83B42B9D /* EMSwizzle.swift */,
+				E41216E00B22457B4DFD2F66760C29F6 /* EMTools.swift */,
+				1EC7E16A90A2B97AE2EC4E435806796D /* EMUserDefaultsUtils.swift */,
+			);
+			name = EMUtils;
+			path = Sources/Euromsg/Classes/EMUtils;
+			sourceTree = "<group>";
+		};
 		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
 			isa = PBXGroup;
 			children = (
 				73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */,
 			);
 			name = iOS;
+			sourceTree = "<group>";
+		};
+		5B9772CFF31383FB6A333EA9428D8330 /* EMNotificationCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				D8BDB3AD92B0283D1C27BF4559033EF4 /* CarouselCell.swift */,
+				9B3A7BF0356EB31DE5F3C5E372EA5BA4 /* CarouselCell.xib */,
+				32E8828E9B11C679147F353C53F5872C /* EMNotificationCarousel.swift */,
+				CDE1F727E41D3EBC7EAAA726D4C65816 /* EMNotificationCarousel.xib */,
+			);
+			name = EMNotificationCarousel;
+			path = Sources/Euromsg/Classes/EMNotificationCarousel;
+			sourceTree = "<group>";
+		};
+		614542F62779E20700651B39 /* visilabsIOS */ = {
+			isa = PBXGroup;
+			children = (
+				614543132779E2A100651B39 /* Assets */,
+				6145432C2779E2A100651B39 /* Event */,
+				614543342779E2A100651B39 /* Geofence */,
+				6145433B2779E2A200651B39 /* Networking */,
+				614543282779E2A100651B39 /* Recommendation */,
+				614543302779E2A100651B39 /* ScratchToWin */,
+				6145433F2779E2A200651B39 /* TargetingAction */,
+				614542F82779E2A100651B39 /* Utilities */,
+				614543962779E2A200651B39 /* Visilabs.swift */,
+				614542F72779E2A100651B39 /* VisilabsInstance.swift */,
+				614543122779E2A100651B39 /* VisilabsIOS.h */,
+				6145432B2779E2A100651B39 /* VisilabsManager.swift */,
+			);
+			path = visilabsIOS;
+			sourceTree = "<group>";
+		};
+		614542F82779E2A100651B39 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				614542F92779E2A100651B39 /* Constraints.swift */,
+				614542FA2779E2A100651B39 /* VisilabsHelper.swift */,
+				614542FB2779E2A100651B39 /* VisilabsParameter.swift */,
+				614542FC2779E2A100651B39 /* VisilabsExtensions.swift */,
+				614542FD2779E2A100651B39 /* VisilabsConstraintHelper.swift */,
+				614542FE2779E2A100651B39 /* Cosmos */,
+				6145430B2779E2A100651B39 /* VisilabsReadWriteLock.swift */,
+				6145430C2779E2A100651B39 /* VisilabsConstants.swift */,
+				6145430D2779E2A100651B39 /* ConstraintAbstraction.swift */,
+				6145430E2779E2A100651B39 /* String+Extension.swift */,
+				6145430F2779E2A100651B39 /* VisilabsLogger.swift */,
+				614543102779E2A100651B39 /* Checkbox.swift */,
+				614543112779E2A100651B39 /* VisilabsPersistence.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		614542FE2779E2A100651B39 /* Cosmos */ = {
+			isa = PBXGroup;
+			children = (
+				614542FF2779E2A100651B39 /* StarLayer.swift */,
+				614543002779E2A100651B39 /* CosmosAccessibility.swift */,
+				614543012779E2A100651B39 /* CosmosText.swift */,
+				614543022779E2A100651B39 /* CosmosDefaultSettings.swift */,
+				614543032779E2A100651B39 /* CosmosSize.swift */,
+				614543042779E2A100651B39 /* CosmosLayers.swift */,
+				614543052779E2A100651B39 /* CosmosDistrib.swift */,
+				614543062779E2A100651B39 /* CosmosLocalizedRating.swift */,
+				614543072779E2A100651B39 /* CosmosTouch.swift */,
+				614543082779E2A100651B39 /* CosmosRating.swift */,
+				614543092779E2A100651B39 /* CosmosSettings.swift */,
+				6145430A2779E2A100651B39 /* CosmosView.swift */,
+			);
+			path = Cosmos;
+			sourceTree = "<group>";
+		};
+		614543132779E2A100651B39 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				614543142779E2A100651B39 /* spintowin.html */,
+				614543152779E2A100651B39 /* Images */,
+				614543272779E2A100651B39 /* spintowin.js */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		614543152779E2A100651B39 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				614543162779E2A100651B39 /* Smiley */,
+				614543212779E2A100651B39 /* placeholder.png */,
+				614543222779E2A100651B39 /* VisilabsCloseButton.png */,
+				614543232779E2A100651B39 /* RelatedCopyButton.png */,
+				614543242779E2A100651B39 /* VisilabsRetryButton.png */,
+				614543252779E2A100651B39 /* VisilabsCloseButtonBlack.png */,
+				614543262779E2A100651B39 /* loading.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		614543162779E2A100651B39 /* Smiley */ = {
+			isa = PBXGroup;
+			children = (
+				614543172779E2A100651B39 /* unGreat.png */,
+				614543182779E2A100651B39 /* good.png */,
+				614543192779E2A100651B39 /* terrible.png */,
+				6145431A2779E2A100651B39 /* okay.png */,
+				6145431B2779E2A100651B39 /* unBad.png */,
+				6145431C2779E2A100651B39 /* unOkay.png */,
+				6145431D2779E2A100651B39 /* unTerrible.png */,
+				6145431E2779E2A100651B39 /* bad.png */,
+				6145431F2779E2A100651B39 /* unGood.png */,
+				614543202779E2A100651B39 /* great.png */,
+			);
+			path = Smiley;
+			sourceTree = "<group>";
+		};
+		614543282779E2A100651B39 /* Recommendation */ = {
+			isa = PBXGroup;
+			children = (
+				614543292779E2A100651B39 /* VisilabsRecommendation.swift */,
+				6145432A2779E2A100651B39 /* VisilabsRecommendationFilterType.swift */,
+			);
+			path = Recommendation;
+			sourceTree = "<group>";
+		};
+		6145432C2779E2A100651B39 /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				6145432D2779E2A100651B39 /* VisilabsEvent.swift */,
+				6145432E2779E2A100651B39 /* VisilabsCookie.swift */,
+				6145432F2779E2A100651B39 /* VisilabsSend.swift */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
+		614543302779E2A100651B39 /* ScratchToWin */ = {
+			isa = PBXGroup;
+			children = (
+				614543312779E2A100651B39 /* ScratchUIView.swift */,
+				614543322779E2A100651B39 /* ScratchView.swift */,
+				614543332779E2A100651B39 /* ScratchToWinModel.swift */,
+			);
+			path = ScratchToWin;
+			sourceTree = "<group>";
+		};
+		614543342779E2A100651B39 /* Geofence */ = {
+			isa = PBXGroup;
+			children = (
+				614543352779E2A100651B39 /* VisilabsGeofence.swift */,
+				614543362779E2A100651B39 /* Model */,
+				6145433A2779E2A100651B39 /* VisilabsLocationManager.swift */,
+			);
+			path = Geofence;
+			sourceTree = "<group>";
+		};
+		614543362779E2A100651B39 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				614543372779E2A100651B39 /* VisilabsCLAuthorizationStatus.swift */,
+				614543382779E2A100651B39 /* VisilabsGeofenceHistory.swift */,
+				614543392779E2A100651B39 /* VisilabsGeofenceEntity.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6145433B2779E2A200651B39 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				6145433C2779E2A200651B39 /* VisilabsRemoteConfig.swift */,
+				6145433D2779E2A200651B39 /* VisilabsRequest.swift */,
+				6145433E2779E2A200651B39 /* VisilabsNetwork.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		6145433F2779E2A200651B39 /* TargetingAction */ = {
+			isa = PBXGroup;
+			children = (
+				614543402779E2A200651B39 /* ShakeToWinViewModel.swift */,
+				614543412779E2A200651B39 /* SpinToWinModel.swift */,
+				614543422779E2A200651B39 /* TargetingActionViewModel.swift */,
+				614543432779E2A200651B39 /* CountdownModel.swift */,
+				614543442779E2A200651B39 /* InAppNotification */,
+				6145436D2779E2A200651B39 /* VisilabsTargetingAction.swift */,
+				6145436E2779E2A200651B39 /* VisilabsFavoriteAttribute.swift */,
+				6145436F2779E2A200651B39 /* MailSubscriptionModel.swift */,
+				614543702779E2A200651B39 /* ShakeToWinViewController.swift */,
+				614543712779E2A200651B39 /* VisilabsFavoriteAttributeActionResponse.swift */,
+				614543722779E2A200651B39 /* Story */,
+				614543952779E2A200651B39 /* VisilabsProductStatNotifierViewModel.swift */,
+			);
+			path = TargetingAction;
+			sourceTree = "<group>";
+		};
+		614543442779E2A200651B39 /* InAppNotification */ = {
+			isa = PBXGroup;
+			children = (
+				614543452779E2A200651B39 /* VisilabsInAppNotifications.swift */,
+				614543462779E2A200651B39 /* Models */,
+				614543592779E2A200651B39 /* SpinToWinViewController.swift */,
+				6145435A2779E2A200651B39 /* RatingCollectionViewCell.swift */,
+				6145435B2779E2A200651B39 /* Controllers */,
+				614543662779E2A200651B39 /* Views */,
+			);
+			path = InAppNotification;
+			sourceTree = "<group>";
+		};
+		614543462779E2A200651B39 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				614543472779E2A200651B39 /* UIImageView+Calculations.swift */,
+				614543482779E2A200651B39 /* UIView+Animations.swift */,
+				614543492779E2A200651B39 /* VisilabsSliderStepRating.swift */,
+				6145434A2779E2A200651B39 /* VisilabsTransitionAnimator.swift */,
+				6145434B2779E2A200651B39 /* VisilabsPresentationManager.swift */,
+				6145434C2779E2A200651B39 /* VisilabsPopupUIElements.swift */,
+				6145434D2779E2A200651B39 /* VisilabsInAppNotification.swift */,
+				6145434E2779E2A200651B39 /* UIViewController+Visibility.swift */,
+				6145434F2779E2A200651B39 /* VisilabsTransitionAnimations.swift */,
+				614543502779E2A200651B39 /* VisilabsInAppNotificationType.swift */,
+				614543512779E2A200651B39 /* VisilabsPopupDialogOverlayView.swift */,
+				614543522779E2A200651B39 /* VisilabsPresentationController.swift */,
+				614543532779E2A200651B39 /* UIImage+Blur.swift */,
+				614543542779E2A200651B39 /* VisilabsPopupDialogButton.swift */,
+				614543552779E2A200651B39 /* VisilabsInteractiveTransition.swift */,
+				614543562779E2A200651B39 /* VisilabsPopupDialogDefaultView.swift */,
+				614543572779E2A200651B39 /* CarouselViewModel.swift */,
+				614543582779E2A200651B39 /* VisilabsPopupDialogContainerView.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6145435B2779E2A200651B39 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6145435C2779E2A200651B39 /* VisilabsFullNotificationViewController.swift */,
+				6145435D2779E2A200651B39 /* CountdownTimerViewController.swift */,
+				6145435E2779E2A200651B39 /* HalfScreenViewController.swift */,
+				6145435F2779E2A200651B39 /* VisilabsHalfScreenViewController.swift */,
+				614543602779E2A200651B39 /* VisilabsBaseNotificationViewController.swift */,
+				614543612779E2A200651B39 /* VisilabsProductStatNotifierViewController.swift */,
+				614543622779E2A200651B39 /* VisilabsMiniNotificationViewController.swift */,
+				614543632779E2A200651B39 /* VisilabsCarouselNotificationViewController.swift */,
+				614543642779E2A200651B39 /* VisilabsPopupNotificationViewController.swift */,
+				614543652779E2A200651B39 /* VisilabsDefaultPopupNotificationViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		614543662779E2A200651B39 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				614543672779E2A200651B39 /* VisilabsHalfScreenView.swift */,
+				614543682779E2A200651B39 /* VisilabsMiniNotificationViewController.xib */,
+				614543692779E2A200651B39 /* VisilabsCarouselNotificationViewController.xib */,
+				6145436A2779E2A200651B39 /* VisilabsProductStatNotifierView.swift */,
+				6145436B2779E2A200651B39 /* CountdownTimerViewController.xib */,
+				6145436C2779E2A200651B39 /* VisilabsFullNotificationViewController.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		614543722779E2A200651B39 /* Story */ = {
+			isa = PBXGroup;
+			children = (
+				614543732779E2A200651B39 /* VisilabsStoryActionResponse.swift */,
+				614543742779E2A200651B39 /* VisilabsStoryImageRequestable.swift */,
+				614543752779E2A200651B39 /* VisilabsStoryImageURLSession.swift */,
+				614543762779E2A200651B39 /* VisilabsStoryImageError.swift */,
+				614543772779E2A200651B39 /* Model */,
+				6145437C2779E2A200651B39 /* VisilabsStoryAction.swift */,
+				6145437D2779E2A200651B39 /* Controllers */,
+				614543802779E2A200651B39 /* Views */,
+				614543932779E2A200651B39 /* VisilabsStoryImageCache.swift */,
+				614543942779E2A200651B39 /* VisilabsVideoCacheManager.swift */,
+			);
+			path = Story;
+			sourceTree = "<group>";
+		};
+		614543772779E2A200651B39 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				614543782779E2A200651B39 /* customObjectsVariables.swift */,
+				614543792779E2A200651B39 /* VisilabsStoryPreviewModel.swift */,
+				6145437A2779E2A200651B39 /* VisilabsStoryItem.swift */,
+				6145437B2779E2A200651B39 /* VisilabsStory.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6145437D2779E2A200651B39 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6145437E2779E2A200651B39 /* VisilabsStoryPreviewController.swift */,
+				6145437F2779E2A200651B39 /* VisilabsStoryHomeViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		614543802779E2A200651B39 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				614543812779E2A200651B39 /* UIImageView+Extension.swift */,
+				614543822779E2A200651B39 /* VisilabsStoryRoundedView.swift */,
+				614543832779E2A200651B39 /* VisilabsStoryHomeView.swift */,
+				614543842779E2A200651B39 /* VisilabsStoryHomeViewCell.swift */,
+				614543852779E2A200651B39 /* VisilabsCellConfigurer.swift */,
+				614543862779E2A200651B39 /* VisilabsSnapProgressView.swift */,
+				614543872779E2A200651B39 /* VisilabsStoryPreviewView.swift */,
+				614543882779E2A200651B39 /* VisilabsStoryPreviewCell.swift */,
+				614543892779E2A200651B39 /* VisilabsPlayerView.swift */,
+				6145438A2779E2A200651B39 /* VisilabsRetryLoaderButton.swift */,
+				6145438B2779E2A200651B39 /* VisilabsStoryPreviewHeaderView.swift */,
+				6145438C2779E2A200651B39 /* AnimatedCollectionViewLayout */,
+				614543922779E2A200651B39 /* UIView+AnchorAndSizes.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6145438C2779E2A200651B39 /* AnimatedCollectionViewLayout */ = {
+			isa = PBXGroup;
+			children = (
+				6145438D2779E2A200651B39 /* CubeAttributesAnimator.swift */,
+				6145438E2779E2A200651B39 /* AnimatedCollectionViewLayout.swift */,
+				6145438F2779E2A200651B39 /* ParallaxAttributesAnimator.swift */,
+				614543902779E2A200651B39 /* UIView+Anchor.swift */,
+				614543912779E2A200651B39 /* LayoutAttributesAnimator.swift */,
+			);
+			path = AnimatedCollectionViewLayout;
 			sourceTree = "<group>";
 		};
 		62127637FC80AA7BE356C99642E63730 /* Products */ = {
@@ -269,35 +880,26 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		661EC9F29A3C03658B59204F615FF80C /* EMNetwork */ = {
+		740C447CAF159B79B7987440CC8B0014 /* Euromsg */ = {
 			isa = PBXGroup;
 			children = (
-				DF8EE82290FF0E3FDDA1C0B26FC89236 /* EMDeliverHandler.swift */,
-				B4CE83C4974498BCE66285F6CB3C2F7A /* EMReadHandler.swift */,
-				4227F5C6EDB760665982332AA41833B9 /* EMRequestProtocol.swift */,
-				7CE5516D8BA4B2F78D81088EB5469A19 /* EMSubscriptionHandler.swift */,
-				90BAAB38B81303D553787644B49B4D3E /* EuromsgAPI.swift */,
+				5E31DA880C5E0A4FA78548985530D3A6 /* EMAPNSRegistration.swift */,
+				03D92FC3A7F67AF5BA2B87CB030DB691 /* EMConfiguration.swift */,
+				BB68EFA5FEE6D22132A927F3DF9A5565 /* EMGraylogRequest.swift */,
+				E009EC90DFBCCDBE35CF60F3A0F770A7 /* EMMessage.swift */,
+				E152EF0DDD4E741BCDCBFA26A8432EDA /* EMRetentionRequest.swift */,
+				1C0DA94030720E10D4DB305BD5F7DF05 /* EMSubscriptionRequest.swift */,
+				871507A9B61CF0748D48F3F7CAF2A132 /* EMUNNotificationServiceExtensionHandler.swift */,
+				9844D0FAC041F878364435CBCE6A205E /* Euromsg.h */,
+				86772DB65B71CA868B22EA1805795891 /* Euromsg.swift */,
+				FB0A37357EDB60F1B81F547F917B64FF /* EMNetwork */,
+				5B9772CFF31383FB6A333EA9428D8330 /* EMNotificationCarousel */,
+				5260990A3BADADACFC5FB0927080B92E /* EMUtils */,
+				1CC5CEEEED0AABD86BFABF1785035C96 /* Pod */,
+				23F8D4D5FD7B1BC9BEFBD1C673471D61 /* Support Files */,
 			);
-			name = EMNetwork;
-			path = Sources/Euromsg/Classes/EMNetwork;
-			sourceTree = "<group>";
-		};
-		68C6474B91C3F4CBF795A1C26D05311B /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				34422B0021C58E65CAD3B5ADF4F228AC /* Euromsg */,
-			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		7F3C3D32E33821FC4F03BF2B22DE0B48 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				00368BE18844673363B3D83639121AE4 /* Euromsg.podspec */,
-				016429C70AB2A2E9CBF548BAAF90C36F /* LICENSE */,
-				3F8383E3C45C602705B4E67B465731A1 /* README.md */,
-			);
-			name = Pod;
+			name = Euromsg;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		836E3580386EB5F8EFF75C3D882A69D9 /* Pods-NotificationContent */ = {
@@ -332,20 +934,13 @@
 			path = "Target Support Files/Pods-Euromsg_Tests";
 			sourceTree = "<group>";
 		};
-		A3D632A90E0D1BD91E306D8EADF48538 /* EMUtils */ = {
+		9D68FC86311103B4B15996C3970C270E /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A2A40B5BB6D86EA3DDD290938B86BFFA /* EMCodable.swift */,
-				27EEBFA3A0EE9045B286CD4AF5CAB9F5 /* EMKey.swift */,
-				6FA55C3AB4904407B46F61B4201D22BF /* EMKeychain.swift */,
-				F31A9F99709F324E51AC92777C51D3A9 /* EMLog.swift */,
-				6720A75F666ED9F17C1722AD77CDAF0B /* EMReadWriteLock.swift */,
-				D78B198E4C4A6FF691C1787630FF9D05 /* EMSwizzle.swift */,
-				4254CE34DA0B5D51E00FC8F90223F6CF /* EMTools.swift */,
-				8306E850AE4F3910EF531100373F0477 /* EMUserDefaultsUtils.swift */,
+				614542F62779E20700651B39 /* visilabsIOS */,
+				740C447CAF159B79B7987440CC8B0014 /* Euromsg */,
 			);
-			name = EMUtils;
-			path = Sources/Euromsg/Classes/EMUtils;
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		C27F425E2E493543D91B0D7FBE7736F9 /* Pods-NotificationService */ = {
@@ -368,7 +963,7 @@
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				68C6474B91C3F4CBF795A1C26D05311B /* Development Pods */,
+				9D68FC86311103B4B15996C3970C270E /* Development Pods */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
 				62127637FC80AA7BE356C99642E63730 /* Products */,
 				3A0FCC9AC2704F933448201EB89A38AA /* Targets Support Files */,
@@ -400,19 +995,17 @@
 			path = "Target Support Files/Pods-Euromsg_Example";
 			sourceTree = "<group>";
 		};
-		FCFFD88BDE7D29C35C0F79AAFE24536F /* Support Files */ = {
+		FB0A37357EDB60F1B81F547F917B64FF /* EMNetwork */ = {
 			isa = PBXGroup;
 			children = (
-				774EA737C338FC18CE0FDCE66A32A51B /* Euromsg.modulemap */,
-				74931B071B3F40E5C05BA333F66F49C6 /* Euromsg-dummy.m */,
-				80ECB553589DEF1EAF9C391291F33BEB /* Euromsg-Info.plist */,
-				2F5E2BDB8EBF11B8B248A885ADC9162A /* Euromsg-prefix.pch */,
-				3CED2E98E4A624F52CB6755D1D624917 /* Euromsg-umbrella.h */,
-				9836EDEB821D140E8A6B3B6262104426 /* Euromsg.debug.xcconfig */,
-				990450F448FBA0224FC3105073725991 /* Euromsg.release.xcconfig */,
+				F6A153AD23D6AD61212B2300DD686C0E /* EMDeliverHandler.swift */,
+				73C1DCE9B11A318A36DD0177EECFCAD2 /* EMReadHandler.swift */,
+				2FC790B5FB3724FA8D654EAE1DD3A01A /* EMRequestProtocol.swift */,
+				B30C04E3A8030D0A4219431CA56379D7 /* EMSubscriptionHandler.swift */,
+				4F461E9FD9A44BF83E74DBB6CB597D4E /* EuromsgAPI.swift */,
 			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/Euromsg";
+			name = EMNetwork;
+			path = Sources/Euromsg/Classes/EMNetwork;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -434,6 +1027,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		55DECF31CEE18B479651B11E06004F70 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				211F9B1E4B764D22F374D7B3DEBAA738 /* Euromsg.h in Headers */,
+				0A2A0639A0783EBE6035B2091D6A9468 /* Euromsg-umbrella.h in Headers */,
+				614543B02779E2A200651B39 /* VisilabsIOS.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		597BA1E02A08058E3FFF1870630DC2CA /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -447,15 +1050,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				65F70EBCFDF78AF91C8D7812521453B1 /* Pods-Euromsg_Example-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F43D96FCE4AA781CFCB06B4BEA9CF290 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				85F80E24EEA6519267F99C775FDF769D /* Euromsg.h in Headers */,
-				15E4974F89D11F1F5D2488C33D7B71B0 /* Euromsg-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,7 +1068,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9AF3F03A7572C18F80983262F60A5CA8 /* PBXTargetDependency */,
+				EE8DBA7500C7E2DE27DDE19AAD2C2E4C /* PBXTargetDependency */,
 			);
 			name = "Pods-Euromsg_Example";
 			productName = Pods_Euromsg_Example;
@@ -483,12 +1077,12 @@
 		};
 		50C5C9DC9878F435CFCF3BB251043E6F /* Euromsg */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 99F61069AB667737C6974E5289835A30 /* Build configuration list for PBXNativeTarget "Euromsg" */;
+			buildConfigurationList = FB691F5B43E2177580F1687767C5C000 /* Build configuration list for PBXNativeTarget "Euromsg" */;
 			buildPhases = (
-				F43D96FCE4AA781CFCB06B4BEA9CF290 /* Headers */,
-				76316D2017AB5D6D488DF0E3107C3B11 /* Sources */,
-				18A169C58B0EBDDA21AFBC307EC2CA23 /* Frameworks */,
-				24B35AD57260CE7A83CEA95755D77B22 /* Resources */,
+				55DECF31CEE18B479651B11E06004F70 /* Headers */,
+				6E1ABE4B64EEAC5BDFF443C7BC61C1CD /* Sources */,
+				D5376E33E7D5919F59ED0BBC005033F7 /* Frameworks */,
+				BD75339D95707864C1F48019430F41CF /* Resources */,
 			);
 			buildRules = (
 			);
@@ -511,7 +1105,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				467D1A9E0E841E0AF45693572AACAE08 /* PBXTargetDependency */,
+				F5876E9DF933983A19B90A1937E170C3 /* PBXTargetDependency */,
 			);
 			name = "Pods-Euromsg_Tests";
 			productName = Pods_Euromsg_Tests;
@@ -530,7 +1124,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				AD08593C3DA1BC6BA193BA0B33A8BBC9 /* PBXTargetDependency */,
+				908C05A391E58BCD47D6A5F8FF54211E /* PBXTargetDependency */,
 			);
 			name = "Pods-NotificationContent";
 			productName = Pods_NotificationContent;
@@ -549,7 +1143,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				5BCC940A71E1763E07039C653FAFB36D /* PBXTargetDependency */,
+				A3BE572BCD372FC11567D7879B76F9E8 /* PBXTargetDependency */,
 			);
 			name = "Pods-NotificationService";
 			productName = Pods_NotificationService;
@@ -588,13 +1182,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		24B35AD57260CE7A83CEA95755D77B22 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		34A502FEDFD47839349546FECE9A1A9E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -623,6 +1210,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BD75339D95707864C1F48019430F41CF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				614543BE2779E2A200651B39 /* RelatedCopyButton.png in Resources */,
+				614543B62779E2A200651B39 /* unBad.png in Resources */,
+				614543BC2779E2A200651B39 /* placeholder.png in Resources */,
+				614543B42779E2A200651B39 /* terrible.png in Resources */,
+				614543B52779E2A200651B39 /* okay.png in Resources */,
+				614543BA2779E2A200651B39 /* unGood.png in Resources */,
+				614543BF2779E2A200651B39 /* VisilabsRetryButton.png in Resources */,
+				614543BD2779E2A200651B39 /* VisilabsCloseButton.png in Resources */,
+				614543C12779E2A200651B39 /* loading.png in Resources */,
+				614543B92779E2A200651B39 /* bad.png in Resources */,
+				614543F82779E2A200651B39 /* VisilabsMiniNotificationViewController.xib in Resources */,
+				614543C22779E2A200651B39 /* spintowin.js in Resources */,
+				614543F92779E2A200651B39 /* VisilabsCarouselNotificationViewController.xib in Resources */,
+				614543FC2779E2A200651B39 /* VisilabsFullNotificationViewController.xib in Resources */,
+				614543B22779E2A200651B39 /* unGreat.png in Resources */,
+				614543FB2779E2A200651B39 /* CountdownTimerViewController.xib in Resources */,
+				614543B72779E2A200651B39 /* unOkay.png in Resources */,
+				614543C02779E2A200651B39 /* VisilabsCloseButtonBlack.png in Resources */,
+				614543B82779E2A200651B39 /* unTerrible.png in Resources */,
+				614543BB2779E2A200651B39 /* great.png in Resources */,
+				614543B12779E2A200651B39 /* spintowin.html in Resources */,
+				614543B32779E2A200651B39 /* good.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -642,36 +1258,152 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		76316D2017AB5D6D488DF0E3107C3B11 /* Sources */ = {
+		6E1ABE4B64EEAC5BDFF443C7BC61C1CD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				660D8C6CDA60D0F4AF8B421F17ACB631 /* CarouselCell.swift in Sources */,
-				6F46EE2842342D820F4DDD30C0742C8E /* CarouselCell.xib in Sources */,
-				F836E1B8B1DE7A1D4E744034DBB11EA6 /* EMCodable.swift in Sources */,
-				FA42D909B721E3E29E77392667AF58B8 /* EMConfiguration.swift in Sources */,
-				AA9CDCC3D82DA46B291D2DA8872717CA /* EMDeliverHandler.swift in Sources */,
-				C83E1912B827A1B0953F07D3D229BD9B /* EMGraylogRequest.swift in Sources */,
-				BED621553B674715AA3CF69021ACEDD2 /* EMKey.swift in Sources */,
-				EDB6D3AE98700C7014C0110538CDD528 /* EMKeychain.swift in Sources */,
-				310E7E497238277FE4626DCCC1B4CFA1 /* EMLog.swift in Sources */,
-				868471F680108B3A182F4E8E53F3B1EB /* EMMessage.swift in Sources */,
-				88E2795A2768B6530059ACDA /* EMAPNSRegistration.swift in Sources */,
-				AB740D908EEEC6FD411D448D03F39268 /* EMNotificationCarousel.swift in Sources */,
-				9E0B9DD0565942943874D40EE789936A /* EMNotificationCarousel.xib in Sources */,
-				DB6807C4DC61BF183EFA53354535F503 /* EMReadHandler.swift in Sources */,
-				628E4107439AA565D7FD3FA2646DF158 /* EMReadWriteLock.swift in Sources */,
-				050940AEC4C524E920097020810EB882 /* EMRequestProtocol.swift in Sources */,
-				77A0D6D3649B3411B67D6EB18F2B6F4D /* EMRetentionRequest.swift in Sources */,
-				B92E4F51F571E9D51771DAE55F8A0039 /* EMSubscriptionHandler.swift in Sources */,
-				E2A0559AA430E8F65FEC1980883AB6C3 /* EMSubscriptionRequest.swift in Sources */,
-				CBB756B79656F0587E0EAB37E78453AB /* EMSwizzle.swift in Sources */,
-				AFB5DAD090A4181DE2C1A5B0A09F3F1B /* EMTools.swift in Sources */,
-				39CFEE59A23BF03CF72CC8345899287D /* EMUNNotificationServiceExtensionHandler.swift in Sources */,
-				E6987255638165D5ECECA465C586612E /* EMUserDefaultsUtils.swift in Sources */,
-				673DC628419068A30F4200D3E50EDC5B /* Euromsg.swift in Sources */,
-				7D915DCC29802CB00D1C89A8DA569F24 /* Euromsg-dummy.m in Sources */,
-				7B955F58BC1BBA4060AF3D41208C20DC /* EuromsgAPI.swift in Sources */,
+				B64901A2B996A5A11C4D247816EC5EEF /* CarouselCell.swift in Sources */,
+				614543D72779E2A200651B39 /* CountdownModel.swift in Sources */,
+				614543A12779E2A200651B39 /* CosmosSize.swift in Sources */,
+				614543EE2779E2A200651B39 /* CountdownTimerViewController.swift in Sources */,
+				6145440D2779E2A200651B39 /* UIImageView+Extension.swift in Sources */,
+				691F2D74FA77A5E0890F6672564412DA /* CarouselCell.xib in Sources */,
+				614543E42779E2A200651B39 /* VisilabsPresentationController.swift in Sources */,
+				614544192779E2A200651B39 /* AnimatedCollectionViewLayout.swift in Sources */,
+				204EA5381ACF2D838A927376E2330D06 /* EMAPNSRegistration.swift in Sources */,
+				6DA6337374A9940F562A130661A2BD61 /* EMCodable.swift in Sources */,
+				614544042779E2A200651B39 /* VisilabsStoryImageURLSession.swift in Sources */,
+				614544012779E2A200651B39 /* VisilabsFavoriteAttributeActionResponse.swift in Sources */,
+				614543C32779E2A200651B39 /* VisilabsRecommendation.swift in Sources */,
+				6145441F2779E2A200651B39 /* VisilabsVideoCacheManager.swift in Sources */,
+				614543A52779E2A200651B39 /* CosmosTouch.swift in Sources */,
+				614543C92779E2A200651B39 /* ScratchUIView.swift in Sources */,
+				6145439E2779E2A200651B39 /* CosmosAccessibility.swift in Sources */,
+				614544092779E2A200651B39 /* VisilabsStory.swift in Sources */,
+				614544062779E2A200651B39 /* customObjectsVariables.swift in Sources */,
+				614543D92779E2A200651B39 /* UIImageView+Calculations.swift in Sources */,
+				614543E72779E2A200651B39 /* VisilabsInteractiveTransition.swift in Sources */,
+				614543D42779E2A200651B39 /* ShakeToWinViewModel.swift in Sources */,
+				614543CC2779E2A200651B39 /* VisilabsGeofence.swift in Sources */,
+				614543ED2779E2A200651B39 /* VisilabsFullNotificationViewController.swift in Sources */,
+				614543D82779E2A200651B39 /* VisilabsInAppNotifications.swift in Sources */,
+				6AC0F0D43EB11C4B883C9BA1F0B9366F /* EMConfiguration.swift in Sources */,
+				0C75C7FE3BD31EF10A2282045E843D66 /* EMDeliverHandler.swift in Sources */,
+				614543A72779E2A200651B39 /* CosmosSettings.swift in Sources */,
+				614543CF2779E2A200651B39 /* VisilabsGeofenceEntity.swift in Sources */,
+				614543AF2779E2A200651B39 /* VisilabsPersistence.swift in Sources */,
+				6145439F2779E2A200651B39 /* CosmosText.swift in Sources */,
+				294B534178DC5665D76A4C35F8A3560B /* EMGraylogRequest.swift in Sources */,
+				614543C52779E2A200651B39 /* VisilabsManager.swift in Sources */,
+				614543F62779E2A200651B39 /* VisilabsDefaultPopupNotificationViewController.swift in Sources */,
+				614543DF2779E2A200651B39 /* VisilabsInAppNotification.swift in Sources */,
+				614543C62779E2A200651B39 /* VisilabsEvent.swift in Sources */,
+				614543A92779E2A200651B39 /* VisilabsReadWriteLock.swift in Sources */,
+				2BA5D1E21B64B6B05771908CCC461A98 /* EMKey.swift in Sources */,
+				614543FA2779E2A200651B39 /* VisilabsProductStatNotifierView.swift in Sources */,
+				6145439B2779E2A200651B39 /* VisilabsExtensions.swift in Sources */,
+				614543F22779E2A200651B39 /* VisilabsProductStatNotifierViewController.swift in Sources */,
+				614543EA2779E2A200651B39 /* VisilabsPopupDialogContainerView.swift in Sources */,
+				614543F72779E2A200651B39 /* VisilabsHalfScreenView.swift in Sources */,
+				614543CA2779E2A200651B39 /* ScratchView.swift in Sources */,
+				614543982779E2A200651B39 /* Constraints.swift in Sources */,
+				614543E32779E2A200651B39 /* VisilabsPopupDialogOverlayView.swift in Sources */,
+				614543E82779E2A200651B39 /* VisilabsPopupDialogDefaultView.swift in Sources */,
+				614544002779E2A200651B39 /* ShakeToWinViewController.swift in Sources */,
+				614544152779E2A200651B39 /* VisilabsPlayerView.swift in Sources */,
+				614544052779E2A200651B39 /* VisilabsStoryImageError.swift in Sources */,
+				614543AC2779E2A200651B39 /* String+Extension.swift in Sources */,
+				614543DE2779E2A200651B39 /* VisilabsPopupUIElements.swift in Sources */,
+				4CA258F0EBA6015CFC8545CDF8B50D4C /* EMKeychain.swift in Sources */,
+				6145439D2779E2A200651B39 /* StarLayer.swift in Sources */,
+				614544212779E2A200651B39 /* Visilabs.swift in Sources */,
+				D8EAFB2D86A597B990165096BE7CF2C0 /* EMLog.swift in Sources */,
+				614543D12779E2A200651B39 /* VisilabsRemoteConfig.swift in Sources */,
+				614543972779E2A200651B39 /* VisilabsInstance.swift in Sources */,
+				52CD93D86080974FE96C0FC412A78256 /* EMMessage.swift in Sources */,
+				614543CB2779E2A200651B39 /* ScratchToWinModel.swift in Sources */,
+				614543AD2779E2A200651B39 /* VisilabsLogger.swift in Sources */,
+				614543F32779E2A200651B39 /* VisilabsMiniNotificationViewController.swift in Sources */,
+				B80771AB20A2C6059C925CB6893D672D /* EMNotificationCarousel.swift in Sources */,
+				E4EC1C09EA9B8E748259192B42E606EF /* EMNotificationCarousel.xib in Sources */,
+				6145441D2779E2A200651B39 /* UIView+AnchorAndSizes.swift in Sources */,
+				614543E62779E2A200651B39 /* VisilabsPopupDialogButton.swift in Sources */,
+				614544072779E2A200651B39 /* VisilabsStoryPreviewModel.swift in Sources */,
+				614543DC2779E2A200651B39 /* VisilabsTransitionAnimator.swift in Sources */,
+				A8971E1E2254015D8927317EE3BED409 /* EMReadHandler.swift in Sources */,
+				614543CE2779E2A200651B39 /* VisilabsGeofenceHistory.swift in Sources */,
+				614544182779E2A200651B39 /* CubeAttributesAnimator.swift in Sources */,
+				614543EC2779E2A200651B39 /* RatingCollectionViewCell.swift in Sources */,
+				614544032779E2A200651B39 /* VisilabsStoryImageRequestable.swift in Sources */,
+				614543A02779E2A200651B39 /* CosmosDefaultSettings.swift in Sources */,
+				6145441E2779E2A200651B39 /* VisilabsStoryImageCache.swift in Sources */,
+				13C6C19E5C95C027EE85C0EDF7082974 /* EMReadWriteLock.swift in Sources */,
+				614543D02779E2A200651B39 /* VisilabsLocationManager.swift in Sources */,
+				614543E02779E2A200651B39 /* UIViewController+Visibility.swift in Sources */,
+				614544082779E2A200651B39 /* VisilabsStoryItem.swift in Sources */,
+				614544102779E2A200651B39 /* VisilabsStoryHomeViewCell.swift in Sources */,
+				614543EB2779E2A200651B39 /* SpinToWinViewController.swift in Sources */,
+				6145440A2779E2A200651B39 /* VisilabsStoryAction.swift in Sources */,
+				6145440E2779E2A200651B39 /* VisilabsStoryRoundedView.swift in Sources */,
+				C652AF61C2637B1C9E9E93230C1C6AE5 /* EMRequestProtocol.swift in Sources */,
+				A01D23BDCE8FCFA53A754DB7238E9078 /* EMRetentionRequest.swift in Sources */,
+				6145440B2779E2A200651B39 /* VisilabsStoryPreviewController.swift in Sources */,
+				614543992779E2A200651B39 /* VisilabsHelper.swift in Sources */,
+				614543DA2779E2A200651B39 /* UIView+Animations.swift in Sources */,
+				614543E12779E2A200651B39 /* VisilabsTransitionAnimations.swift in Sources */,
+				614543E92779E2A200651B39 /* CarouselViewModel.swift in Sources */,
+				84978FB903946286AB112EC09AA00BCF /* EMSubscriptionHandler.swift in Sources */,
+				614544132779E2A200651B39 /* VisilabsStoryPreviewView.swift in Sources */,
+				614543AA2779E2A200651B39 /* VisilabsConstants.swift in Sources */,
+				4501C3656FE8B2081D2749FD01216A39 /* EMSubscriptionRequest.swift in Sources */,
+				614543AE2779E2A200651B39 /* Checkbox.swift in Sources */,
+				6145439A2779E2A200651B39 /* VisilabsParameter.swift in Sources */,
+				614543D22779E2A200651B39 /* VisilabsRequest.swift in Sources */,
+				556BD63B991625771D0863BAFEF1DEE6 /* EMSwizzle.swift in Sources */,
+				614543E52779E2A200651B39 /* UIImage+Blur.swift in Sources */,
+				614543AB2779E2A200651B39 /* ConstraintAbstraction.swift in Sources */,
+				614543A42779E2A200651B39 /* CosmosLocalizedRating.swift in Sources */,
+				C26AD17EE44B74D5476E40AAE7FF1455 /* EMTools.swift in Sources */,
+				614543FD2779E2A200651B39 /* VisilabsTargetingAction.swift in Sources */,
+				614544122779E2A200651B39 /* VisilabsSnapProgressView.swift in Sources */,
+				614544162779E2A200651B39 /* VisilabsRetryLoaderButton.swift in Sources */,
+				614543A82779E2A200651B39 /* CosmosView.swift in Sources */,
+				4E6A7A08B9EAA1B41209C85B284ECDB9 /* EMUNNotificationServiceExtensionHandler.swift in Sources */,
+				614543D62779E2A200651B39 /* TargetingActionViewModel.swift in Sources */,
+				614543E22779E2A200651B39 /* VisilabsInAppNotificationType.swift in Sources */,
+				6145439C2779E2A200651B39 /* VisilabsConstraintHelper.swift in Sources */,
+				614544142779E2A200651B39 /* VisilabsStoryPreviewCell.swift in Sources */,
+				614544022779E2A200651B39 /* VisilabsStoryActionResponse.swift in Sources */,
+				6145440F2779E2A200651B39 /* VisilabsStoryHomeView.swift in Sources */,
+				614544172779E2A200651B39 /* VisilabsStoryPreviewHeaderView.swift in Sources */,
+				614543A22779E2A200651B39 /* CosmosLayers.swift in Sources */,
+				614543DD2779E2A200651B39 /* VisilabsPresentationManager.swift in Sources */,
+				E56A4CDC184CB9116F7734C4A5177525 /* EMUserDefaultsUtils.swift in Sources */,
+				614543F52779E2A200651B39 /* VisilabsPopupNotificationViewController.swift in Sources */,
+				614543F12779E2A200651B39 /* VisilabsBaseNotificationViewController.swift in Sources */,
+				614543EF2779E2A200651B39 /* HalfScreenViewController.swift in Sources */,
+				6145441C2779E2A200651B39 /* LayoutAttributesAnimator.swift in Sources */,
+				614543D52779E2A200651B39 /* SpinToWinModel.swift in Sources */,
+				614543F02779E2A200651B39 /* VisilabsHalfScreenViewController.swift in Sources */,
+				614543A32779E2A200651B39 /* CosmosDistrib.swift in Sources */,
+				614543F42779E2A200651B39 /* VisilabsCarouselNotificationViewController.swift in Sources */,
+				614543DB2779E2A200651B39 /* VisilabsSliderStepRating.swift in Sources */,
+				614543FE2779E2A200651B39 /* VisilabsFavoriteAttribute.swift in Sources */,
+				1D2B259F38979960C4916FE046332114 /* Euromsg.swift in Sources */,
+				614544202779E2A200651B39 /* VisilabsProductStatNotifierViewModel.swift in Sources */,
+				614543FF2779E2A200651B39 /* MailSubscriptionModel.swift in Sources */,
+				614543C42779E2A200651B39 /* VisilabsRecommendationFilterType.swift in Sources */,
+				4E08CB0B265A7C45AD7A2EF44DA82C16 /* Euromsg-dummy.m in Sources */,
+				614543A62779E2A200651B39 /* CosmosRating.swift in Sources */,
+				6145441A2779E2A200651B39 /* ParallaxAttributesAnimator.swift in Sources */,
+				614543C82779E2A200651B39 /* VisilabsSend.swift in Sources */,
+				614543C72779E2A200651B39 /* VisilabsCookie.swift in Sources */,
+				50F58704A2AFCD5015A030AD61B409AA /* EuromsgAPI.swift in Sources */,
+				614544112779E2A200651B39 /* VisilabsCellConfigurer.swift in Sources */,
+				614543CD2779E2A200651B39 /* VisilabsCLAuthorizationStatus.swift in Sources */,
+				6145441B2779E2A200651B39 /* UIView+Anchor.swift in Sources */,
+				6145440C2779E2A200651B39 /* VisilabsStoryHomeViewController.swift in Sources */,
+				614543D32779E2A200651B39 /* VisilabsNetwork.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,29 +1426,29 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		467D1A9E0E841E0AF45693572AACAE08 /* PBXTargetDependency */ = {
+		908C05A391E58BCD47D6A5F8FF54211E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Euromsg;
+			target = 50C5C9DC9878F435CFCF3BB251043E6F /* Euromsg */;
+			targetProxy = 6CC2459540DDAA311067CA8FFDF5F452 /* PBXContainerItemProxy */;
+		};
+		A3BE572BCD372FC11567D7879B76F9E8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Euromsg;
+			target = 50C5C9DC9878F435CFCF3BB251043E6F /* Euromsg */;
+			targetProxy = CBC9263903120FBEF99D2A7B9B8D43D3 /* PBXContainerItemProxy */;
+		};
+		EE8DBA7500C7E2DE27DDE19AAD2C2E4C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Euromsg;
+			target = 50C5C9DC9878F435CFCF3BB251043E6F /* Euromsg */;
+			targetProxy = BB8687526FBA5F46F685400C108D0499 /* PBXContainerItemProxy */;
+		};
+		F5876E9DF933983A19B90A1937E170C3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-Euromsg_Example";
 			target = 1A140EBD0F95F9AAEC60708B0FB853F9 /* Pods-Euromsg_Example */;
-			targetProxy = E660E2815EA7F051FB377CF8CB80F0A8 /* PBXContainerItemProxy */;
-		};
-		5BCC940A71E1763E07039C653FAFB36D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Euromsg;
-			target = 50C5C9DC9878F435CFCF3BB251043E6F /* Euromsg */;
-			targetProxy = 82A9BF790B922602865A09C5BAC93820 /* PBXContainerItemProxy */;
-		};
-		9AF3F03A7572C18F80983262F60A5CA8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Euromsg;
-			target = 50C5C9DC9878F435CFCF3BB251043E6F /* Euromsg */;
-			targetProxy = 1561CEAA749285E1386714A439168E81 /* PBXContainerItemProxy */;
-		};
-		AD08593C3DA1BC6BA193BA0B33A8BBC9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Euromsg;
-			target = 50C5C9DC9878F435CFCF3BB251043E6F /* Euromsg */;
-			targetProxy = 4C5348EF79A32D48661221BEBEEEAA0D /* PBXContainerItemProxy */;
+			targetProxy = 245F7EC21E494F071B277B39F73D7AD4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -827,39 +1559,6 @@
 			};
 			name = Release;
 		};
-		47458C0E06C7C90DFD18D94829C4526C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9836EDEB821D140E8A6B3B6262104426 /* Euromsg.debug.xcconfig */;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = No;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Euromsg/Euromsg-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Euromsg/Euromsg-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Euromsg/Euromsg.modulemap";
-				PRODUCT_MODULE_NAME = Euromsg;
-				PRODUCT_NAME = Euromsg;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		663D4DA4A59FC45F67CABDB775B88605 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DC1E41E9D98ED42631040F23340AA176 /* Pods-NotificationContent.release.xcconfig */;
@@ -930,40 +1629,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		74EEB6F32E5460A564326096A29FC68A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 990450F448FBA0224FC3105073725991 /* Euromsg.release.xcconfig */;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = No;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Euromsg/Euromsg-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Euromsg/Euromsg-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Euromsg/Euromsg.modulemap";
-				PRODUCT_MODULE_NAME = Euromsg;
-				PRODUCT_NAME = Euromsg;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
 		};
 		903A0004D3E6651EFD5D2E16214D101B /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1062,6 +1727,39 @@
 			};
 			name = Release;
 		};
+		A6A1EE3F827464A22C98EB008DF5A765 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E8E9691B8B74685B5340B04441B0660F /* Euromsg.debug.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = No;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Euromsg/Euromsg-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Euromsg/Euromsg-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Euromsg/Euromsg.modulemap";
+				PRODUCT_MODULE_NAME = Euromsg;
+				PRODUCT_NAME = Euromsg;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		B4EFE046ACF8F37157F6E322C7FCFC28 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1127,6 +1825,40 @@
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Debug;
+		};
+		C31AD4C4C83FAE63AEDC19815F8F910D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B64461D0F84F6F57A9D30672F5EB3A07 /* Euromsg.release.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = No;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Euromsg/Euromsg-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Euromsg/Euromsg-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Euromsg/Euromsg.modulemap";
+				PRODUCT_MODULE_NAME = Euromsg;
+				PRODUCT_NAME = Euromsg;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 		CBB8B9BBDF7D251B3601F69CD6E146D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1238,20 +1970,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		99F61069AB667737C6974E5289835A30 /* Build configuration list for PBXNativeTarget "Euromsg" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				47458C0E06C7C90DFD18D94829C4526C /* Debug */,
-				74EEB6F32E5460A564326096A29FC68A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		CE17C5433DCB472BD6B056F497940563 /* Build configuration list for PBXNativeTarget "Pods-Euromsg_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				07D08AF7D32E18028AFD3A9B1CEDF1A0 /* Debug */,
 				F9A383327EF14121EC3E9D8BE60C6AE6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FB691F5B43E2177580F1687767C5C000 /* Build configuration list for PBXNativeTarget "Euromsg" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6A1EE3F827464A22C98EB008DF5A765 /* Debug */,
+				C31AD4C4C83FAE63AEDC19815F8F910D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
