@@ -541,7 +541,9 @@ extension Euromsg {
             }
             EMLog.info("Current subscription \(registerEmailSubscriptionRequest.encoded)")
         } else {
-            EMLog.warning("Subscription request not ready : \(String(describing: registerEmailSubscriptionRequest))")
+            let message = "Subscription request not ready : \(String(describing: registerEmailSubscriptionRequest))"
+            EMLog.warning(message)
+            shared.delegate?.didFailRegister(error: .other(message))
             return
         }
         

@@ -13,6 +13,7 @@ class EMResponse: EMResponseProtocol {}
 
 public enum EuromsgAPIError: Error {
     case connectionFailed
+    case other(String)
 }
 
 protocol EuromsgAPIProtocol {
