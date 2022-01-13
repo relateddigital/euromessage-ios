@@ -511,7 +511,9 @@ extension Euromsg {
     public static func registerEmail(email: String, permission: Bool, isCommercial: Bool = false, customDelegate: EuromsgDelegate? = nil) {
         guard let shared = getShared() else { return }
         
-        shared.delegate = customDelegate
+        if let customDelegate = customDelegate {
+            shared.delegate = customDelegate
+        }
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
