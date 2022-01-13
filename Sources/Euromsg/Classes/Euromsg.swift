@@ -12,7 +12,7 @@ typealias UIA = UIApplication
 typealias NC = NotificationCenter
 typealias UNUNC = UNUserNotificationCenter
 
-protocol EuromsgDelegate: AnyObject {
+public protocol EuromsgDelegate: AnyObject {
     func didRegisterSuccessfully()
     func didFailRegister(error: EuromsgAPIError)
 }
@@ -508,8 +508,11 @@ extension Euromsg {
 // MARK: - IYS Register Email Extension
 extension Euromsg {
     
-    public static func registerEmail(email: String, permission: Bool, isCommercial: Bool = false) {
+    public static func registerEmail(email: String, permission: Bool, isCommercial: Bool = false, customDelegate: EuromsgDelegate? = nil) {
         guard let shared = getShared() else { return }
+        
+        shared.delegate = customDelegate
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 60 * 60 * 3)
