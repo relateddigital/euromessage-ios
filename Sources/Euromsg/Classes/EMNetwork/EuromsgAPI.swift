@@ -11,7 +11,7 @@ import Foundation
 protocol EMResponseProtocol: Decodable {}
 class EMResponse: EMResponseProtocol {}
 
-enum EuromsgAPIError: Error {
+public enum EuromsgAPIError: Error {
     case connectionFailed
 }
 
