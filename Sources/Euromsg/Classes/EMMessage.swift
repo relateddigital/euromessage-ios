@@ -24,6 +24,13 @@ public struct EMMessage: EMCodable {
         return false
     }
     
+    public func isSilent() -> Bool {
+        if let silent = silent, silent {
+            return true
+        }
+        return false
+    }
+    
     public var formattedDateString: String?
     public let aps: Aps?
     public let altURL: String?
@@ -40,6 +47,7 @@ public struct EMMessage: EMCodable {
     public let elements: [Element]?
     
     public let deliver: String?
+    public let silent: Bool?
 
     // MARK: - Aps
     public struct Aps: Codable {

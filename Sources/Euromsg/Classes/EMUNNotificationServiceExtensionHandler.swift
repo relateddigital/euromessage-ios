@@ -26,25 +26,35 @@ class EMUNNotificationServiceExtensionHandler {
         }
         
         EMUserDefaultsUtils.savePayload(payload: pushDetail)
-
-        // Setup carousel buttons
-        if pushDetail.aps?.category == "carousel" {
-            UNUNC.current().setNotificationCategories(getCarouselActionCategorySet())
-        }
-
-        // Setup notification for image/video
-        guard let modifiedBestAttemptContent = bestAttemptContent else { return }
         
-        if let sound = pushDetail.aps?.sound, sound.count > 0 {
-            modifiedBestAttemptContent.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: sound))
+        if pushDetail.isSilent() {
+            if let shared = Euromsg.shared {
+                shared.networkQueue.async {
+                    Euromsg.emDeliverHandler?.reportDeliver(message: pushDetail, silent: true)
+                }
+            }
+            return
+        } else {
+            // Setup carousel buttons
+            if pushDetail.aps?.category == "carousel" {
+                UNUNC.current().setNotificationCategories(getCarouselActionCategorySet())
+            }
+
+            // Setup notification for image/video
+            guard let modifiedBestAttemptContent = bestAttemptContent else { return }
+            
+            if let sound = pushDetail.aps?.sound, sound.count > 0 {
+                modifiedBestAttemptContent.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: sound))
+            }
+            
+            if pushDetail.pushType == "Image" || pushDetail.pushType == "Video",
+                let attachmentMedia = pushDetail.mediaUrl, let mediaUrl = URL(string: attachmentMedia) {
+                loadAttachments(mediaUrl: mediaUrl, modifiedBestAttemptContent: modifiedBestAttemptContent, withContentHandler: contentHandler)
+            } else if pushDetail.pushType == "Text" {
+                contentHandler(modifiedBestAttemptContent)
+            }
         }
-        
-        if pushDetail.pushType == "Image" || pushDetail.pushType == "Video",
-            let attachmentMedia = pushDetail.mediaUrl, let mediaUrl = URL(string: attachmentMedia) {
-            loadAttachments(mediaUrl: mediaUrl, modifiedBestAttemptContent: modifiedBestAttemptContent, withContentHandler: contentHandler)
-        } else if pushDetail.pushType == "Text" {
-            contentHandler(modifiedBestAttemptContent)
-        }
+
     }
 
     static func getCarouselActionCategorySet() -> Set<UNNotificationCategory>  {

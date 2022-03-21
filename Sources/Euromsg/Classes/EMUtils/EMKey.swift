@@ -20,6 +20,7 @@ class EMKey {
     internal static let identifierForVendorKey = "EURO_IDENTIFIER_FOR_VENDOR_KEY"
     internal static let euroReceivedStatus = "D"
     internal static let euroReadStatus = "O"
+    internal static let euroSilentStatus = "S"
     internal static let isBadgeCustom = "EMisBadgeCustom"
     internal static let badgeCount = "EMbadgeCount"
     internal static let userDefaultSuiteKey =  "group.relateddigital.euromsg" // TODO: bu sabit olmamalı, müşteri set etmeli.

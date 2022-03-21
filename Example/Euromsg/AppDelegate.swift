@@ -54,14 +54,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         Euromsg.handlePush(pushDictionary: response.notification.request.content.userInfo)
         
-        
-        
-        //userInfoPayload = response.notification.request.content.userInfo.toString() ?? "çevrilemedi"
-        //let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        //        let presentViewController = storyBoard.instantiateViewController(withIdentifier: "payload") as! PayloadViewController
+        userInfoPayload = response.notification.request.content.userInfo.toString() ?? "çevrilemedi"
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let presentViewController = storyBoard.instantiateViewController(withIdentifier: "payload") as! PayloadViewController
 
                         
-        //        self.window?.rootViewController?.present(presentViewController, animated: true, completion: nil)
+                self.window?.rootViewController?.present(presentViewController, animated: true, completion: nil)
         completionHandler()
     }
 }

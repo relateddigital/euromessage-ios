@@ -23,7 +23,7 @@ class EMDeliverHandler {
     /// Reports delivered push to Euromsg services
     /// - Parameters:
     ///   - message: Push data
-    internal func reportDeliver(message: EMMessage) {
+    internal func reportDeliver(message: EMMessage, silent: Bool? = false) {
         guard let appKey = euromsg.subscription.appKey, let token = euromsg.subscription.token else {
             EMLog.error("EMDeliverHandler reportDeliver appKey or token does not exist")
             return
@@ -59,7 +59,12 @@ class EMDeliverHandler {
             inProgressEmPushSp = emPushSp
             emMessage = message
             EMLog.info("reportDeliver: \(message.encoded)")
-            request = EMRetentionRequest(key: appKey, token: token, status: EMKey.euroReceivedStatus, pushId: pushID, emPushSp: emPushSp)
+            if silent == true {
+                request = EMRetentionRequest(key: appKey, token: token, status: EMKey.euroSilentStatus, pushId: pushID, emPushSp: emPushSp)
+            } else {
+                request = EMRetentionRequest(key: appKey, token: token, status: EMKey.euroReceivedStatus, pushId: pushID, emPushSp: emPushSp)
+            }
+            
         }
         
         if let request = request {
