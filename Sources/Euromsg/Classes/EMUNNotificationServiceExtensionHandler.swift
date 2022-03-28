@@ -33,7 +33,12 @@ class EMUNNotificationServiceExtensionHandler {
                     Euromsg.emDeliverHandler?.reportDeliver(message: pushDetail, silent: true)
                 }
             }
-            return
+            guard let modifiedBestAttemptContent = bestAttemptContent else { return }
+            modifiedBestAttemptContent.title = ""
+            modifiedBestAttemptContent.body = ""
+            modifiedBestAttemptContent.attachments = []
+            modifiedBestAttemptContent.subtitle = ""
+            contentHandler(modifiedBestAttemptContent)
         } else {
             // Setup carousel buttons
             if pushDetail.aps?.category == "carousel" {
