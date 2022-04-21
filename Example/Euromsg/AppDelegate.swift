@@ -5,8 +5,8 @@
 // Created by cicimen on 08/04/2020.
 // Copyright (c) 2020 cicimen. All rights reserved.
 //
-import UIKit
 import Euromsg
+import UIKit
 import UserNotifications
 @UIApplicationMain
 
@@ -15,7 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var userInfoPayload = ""
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
         UNUserNotificationCenter.current().delegate = self
         // Configure Euromsg SDK
         Euromsg.configure(appAlias: "EuromsgIOSTest", launchOptions: launchOptions, enableLog: true)
@@ -42,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if #available(iOS 14.0, *) {
             completionHandler([.banner, .sound, .badge])
         } else {
-          completionHandler([.alert, .badge, .sound]);
+            completionHandler([.alert, .badge, .sound])
         }
     }
 
@@ -50,28 +49,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
-        
-        
         Euromsg.handlePush(pushDictionary: response.notification.request.content.userInfo)
-        
+
         userInfoPayload = response.notification.request.content.userInfo.toString() ?? "çevrilemedi"
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let presentViewController = storyBoard.instantiateViewController(withIdentifier: "payload") as! PayloadViewController
+        let presentViewController = storyBoard.instantiateViewController(withIdentifier: "payload") as! PayloadViewController
 
-                        
-                self.window?.rootViewController?.present(presentViewController, animated: true, completion: nil)
+        window?.rootViewController?.present(presentViewController, animated: true, completion: nil)
         completionHandler()
     }
 }
 
 extension Dictionary {
-
     func toString() -> String? {
-        return (self.compactMap({ (key, value) -> String in
-            return "\(key)=\(value)"
+        return (compactMap({ (key, value) -> String in
+            "\(key)=\(value)"
         }) as Array).joined(separator: "\n\n")
     }
-
 }
 
 extension String {
