@@ -28,7 +28,9 @@ public struct EMMessage: EMCodable {
         if let silent = silent, silent {
             return true
         }
+        
         return false
+        
     }
     
     public var formattedDateString: String?

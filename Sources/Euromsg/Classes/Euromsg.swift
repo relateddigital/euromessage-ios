@@ -351,10 +351,16 @@ extension Euromsg {
             return
         }
         EMLog.info("handlePush: \(pushDictionary)")
+        
         if let jsonData = try? JSONSerialization.data(withJSONObject: pushDictionary, options: .prettyPrinted),
            let message = try? JSONDecoder().decode(EMMessage.self, from: jsonData) {
             shared.networkQueue.async {
-                Euromsg.emReadHandler?.reportRead(message: message)
+                if message.isSilent() {
+                    Euromsg.emDeliverHandler?.reportDeliver(message: message, silent: true)
+                } else {
+                    Euromsg.emReadHandler?.reportRead(message: message)
+                }
+
             }
         } else {
             EMLog.error("pushDictionary parse failed")

@@ -27,19 +27,6 @@ class EMUNNotificationServiceExtensionHandler {
         
         EMUserDefaultsUtils.savePayload(payload: pushDetail)
         
-        if pushDetail.isSilent() {
-            if let shared = Euromsg.shared {
-                shared.networkQueue.async {
-                    Euromsg.emDeliverHandler?.reportDeliver(message: pushDetail, silent: true)
-                }
-            }
-            guard let modifiedBestAttemptContent = bestAttemptContent else { return }
-            modifiedBestAttemptContent.title = ""
-            modifiedBestAttemptContent.body = ""
-            modifiedBestAttemptContent.attachments = []
-            modifiedBestAttemptContent.subtitle = ""
-            contentHandler(modifiedBestAttemptContent)
-        } else {
             // Setup carousel buttons
             if pushDetail.aps?.category == "carousel" {
                 UNUNC.current().setNotificationCategories(getCarouselActionCategorySet())
@@ -58,8 +45,7 @@ class EMUNNotificationServiceExtensionHandler {
             } else if pushDetail.pushType == "Text" {
                 contentHandler(modifiedBestAttemptContent)
             }
-        }
-
+        
     }
 
     static func getCarouselActionCategorySet() -> Set<UNNotificationCategory>  {
