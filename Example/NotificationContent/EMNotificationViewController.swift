@@ -21,7 +21,7 @@ class EMNotificationViewController: UIViewController, UNNotificationContentExten
     
     func didReceive(_ notification: UNNotification) {
         notificationRequestIdentifier = notification.request.identifier
-        Euromsg.configure(appAlias: "EuromsgIOSTest", launchOptions: nil, enableLog: true)
+        Euromsg.configure(appAlias: "EuromsgIOSTest", launchOptions: nil, enableLog: true, deliveredBadge: false)
         carouselView.didReceive(notification)
     }
     func didReceive(_ response: UNNotificationResponse, completionHandler completion: @escaping (UNNotificationContentExtensionResponseOption) -> Void) {
