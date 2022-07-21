@@ -14,7 +14,24 @@ class EMUNNotificationServiceExtensionHandler {
     public static func didReceive(_ bestAttemptContent: UNMutableNotificationContent?
                                   , withContentHandler contentHandler:  @escaping (UNNotificationContent) -> Void) {
         
-        guard let userInfo = bestAttemptContent?.userInfo, let data = try? JSONSerialization.data(withJSONObject: userInfo, options: []) else { return }
+        guard let userInfo = bestAttemptContent?.userInfo else { return }
+
+        var modifiedUserInfo = userInfo
+
+        do {
+            if let aps = modifiedUserInfo["aps"] as? [AnyHashable: Any] {
+                if let alert = aps["alert"] as? String {
+                    var newAlert = [String: String]()
+                    newAlert["body"] = alert
+                    var modifiedAps = aps
+                    modifiedAps["alert"] = newAlert
+
+                    modifiedUserInfo["aps"] = modifiedAps
+                }
+            }
+        }
+
+        guard let data = try? JSONSerialization.data(withJSONObject: modifiedUserInfo, options: []) else { return }
         guard let pushDetail = try? JSONDecoder.init().decode(EMMessage.self, from: data) else { return }
         
         if pushDetail.sendDeliver() {

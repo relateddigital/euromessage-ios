@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UNUserNotificationCenter.current().delegate = self
         // Configure Euromsg SDK
-        Euromsg.configure(appAlias: "EuromsgIOSTest", launchOptions: launchOptions, enableLog: true, deliveredBadge: false)
+        Euromsg.configure(appAlias: "EuromsgIOSTest", launchOptions: launchOptions, enableLog: true, appGroupsKey: "group.com.relateddigital.EuromsgExample.relateddigital", deliveredBadge: false)
         return true
     }
 

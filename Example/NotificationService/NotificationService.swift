@@ -17,7 +17,7 @@ class NotificationService: UNNotificationServiceExtension {
     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
         self.contentHandler = contentHandler
         bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
-        Euromsg.configure(appAlias: "EuromsgIOSTest", launchOptions: nil, enableLog: true, deliveredBadge: false)
+        Euromsg.configure(appAlias: "EuromsgIOSTest", launchOptions: nil, enableLog: true, appGroupsKey: "group.com.relateddigital.EuromsgExample.relateddigital", deliveredBadge: false)
         Euromsg.didReceive(bestAttemptContent, withContentHandler: contentHandler)
     }
 
