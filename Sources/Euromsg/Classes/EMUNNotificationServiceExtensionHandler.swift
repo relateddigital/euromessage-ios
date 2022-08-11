@@ -44,10 +44,13 @@ class EMUNNotificationServiceExtensionHandler {
         
         EMUserDefaultsUtils.savePayload(payload: pushDetail)
         
-            // Setup carousel buttons
-            if pushDetail.aps?.category == "carousel" {
-                UNUNC.current().setNotificationCategories(getCarouselActionCategorySet())
-            }
+        // Setup carousel buttons
+        if pushDetail.aps?.category == "carousel" {
+            UNUNC.current().setNotificationCategories(getCarouselActionCategorySet())
+        } else if pushDetail.aps?.category == "action.button" {
+            addActionButtons(pushDetail)
+        }
+        
 
             // Setup notification for image/video
             guard let modifiedBestAttemptContent = bestAttemptContent else { return }
@@ -63,6 +66,25 @@ class EMUNNotificationServiceExtensionHandler {
                 contentHandler(modifiedBestAttemptContent)
             }
         
+    }
+    
+    @available(iOS 10.0, *)
+    static func addActionButtons(_ detail: EMMessage) {
+        let categoryIdentifier = "action.button"
+        if let buttons = detail.buttons {
+            var actionButtons: [UNNotificationAction] = []
+            for button in buttons {
+                actionButtons.append(UNNotificationAction(identifier: button.identifier ?? "",
+                                                          title: button.title ?? "",
+                                                          options: [.foreground]))
+            }
+            let actionCategory = UNNotificationCategory(identifier: categoryIdentifier,
+                                                          actions: actionButtons,
+                                                          intentIdentifiers: [], options: [])
+
+            UNUserNotificationCenter.current().setNotificationCategories([actionCategory])
+
+        }
     }
 
     static func getCarouselActionCategorySet() -> Set<UNNotificationCategory>  {

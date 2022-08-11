@@ -47,7 +47,7 @@ public struct EMMessage: EMCodable {
     public let pushId: String?
     public let emPushSp: String?
     public let elements: [Element]?
-    
+    public let buttons: [ActionButtons]?
     public let deliver: String?
     public let silent: Bool?
 
@@ -79,4 +79,9 @@ public struct EMMessage: EMCodable {
         public let picture: String?
     }
 
+    public struct ActionButtons: Codable {
+    public let title: String?
+    public let identifier: String?
+    public let url: String?
+    }
 }
