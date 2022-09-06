@@ -115,6 +115,68 @@ class EMUserDefaultsUtils {
         }
     }
     
+    static func savePayloadWithId(payload: EMMessage, notificationLoginID: String) {
+        var payload = payload
+        if let pushId = payload.pushId, !notificationLoginID.isEmpty {
+            payload.notificationLoginID = notificationLoginID
+            payload.formattedDateString = EMTools.formatDate(Date())
+            var recentPayloads = getRecentPayloads()
+            payloadLock.write {
+                if let existingPayload = recentPayloads.first(where: { $0.pushId == pushId }) {
+                    EMLog.warning("Payload is not valid, there is already another payload with same pushId  New : \(payload.encoded) Existing: \(existingPayload.encoded)")
+                } else {
+                    recentPayloads.insert(payload, at: 0)
+                    if let recentPayloadsData = try? JSONEncoder().encode(recentPayloads) {
+                        saveUserDefaults(key: EMKey.euroPayloadsWithIdKey, value: recentPayloadsData as AnyObject)
+                    } else {
+                        EMLog.warning("Can not encode recentPayloads : \(String(describing: recentPayloads))")
+                    }
+                }
+            }
+        } else {
+            EMLog.warning("Payload is not valid, pushId missing : \(payload.encoded)")
+        }
+    }
+    
+    static func getRecentPayloadsWithId() -> [EMMessage] {
+        var finalPayloads = [EMMessage]()
+        payloadLock.read {
+            guard let notificationLoginId = retrieveUserDefaults(userKey: EMKey.notificationLoginIdKey) as? String,
+                  notificationLoginId.isEmpty else {
+                EMLog.error("EM-getRecentPayloadsWithId() : login ID is empty!");
+                return
+            }
+            
+            if let payloadsJsonData = retrieveUserDefaults(userKey: EMKey.euroPayloadsWithIdKey) as? Data {
+                if let payloads = try? JSONDecoder().decode([EMMessage].self, from: payloadsJsonData) {
+                    finalPayloads = payloads
+                }
+            }
+            if let filterDate = Calendar.current.date(byAdding: .day, value: -EMKey.payloadDayThreshold, to: Date()) {
+                finalPayloads = finalPayloads.filter({ payload in
+                    
+                    if payload.notificationLoginID != notificationLoginId {
+                        return false
+                    }
+                    
+                    if let date = payload.getDate() {
+                        return date > filterDate
+                    } else {
+                        return false
+                    }
+                })
+            }
+        }
+        return finalPayloads.sorted(by: { payload1, payload2 in
+            if let date1 = payload1.getDate(), let date2 = payload2.getDate() {
+                return date1 > date2
+            } else {
+                return false
+            }
+        })
+    }
+    
+    
     static func getRecentPayloads() -> [EMMessage] {
         var finalPayloads = [EMMessage]()
         payloadLock.read {

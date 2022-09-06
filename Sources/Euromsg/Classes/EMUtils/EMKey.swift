@@ -46,4 +46,8 @@ class EMKey {
     internal static let graylogLogLevelWarning = "w"
     
     
+    internal static let notificationLoginIdKey = "EURO_NOTIFICATION_LOGIN_ID_KEY"
+    internal static let euroPayloadsWithIdKey = "EURO_PAYLOADS_WITH_ID_KEY"
+    
+    
 }

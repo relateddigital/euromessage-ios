@@ -363,6 +363,12 @@ extension Euromsg {
             Euromsg.sendGraylogMessage(logLevel: EMKey.graylogLogLevelError, logMessage: "pushDictionary parse failed")
         }
     }
+    
+    public static func setNotificationLoginID(notificationLoginID: String?) {
+        setUserProperty(key: EMKey.notificationLoginIdKey, value: notificationLoginID)
+        EMUserDefaultsUtils.saveUserDefaults(key: EMKey.notificationLoginIdKey, value: notificationLoginID as AnyObject)
+    }
+    
 }
 
 extension Euromsg {
@@ -492,6 +498,10 @@ extension Euromsg {
 
     public static func getPushMessages(completion: @escaping ((_ payloads: [EMMessage]) -> Void)) {
         completion(EMUserDefaultsUtils.getRecentPayloads())
+    }
+    
+    public static func getPushMessagesWithId(completion: @escaping ((_ payloads: [EMMessage]) -> Void)) {
+        completion(EMUserDefaultsUtils.getRecentPayloadsWithId())
     }
 }
 

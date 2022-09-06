@@ -137,6 +137,7 @@ public struct EMProperties: Codable, Equatable {
         case consentTime
         case recipientType
         case consentSource
+        case notificationLoginID
     }
 
     var keyID: String?
@@ -152,6 +153,8 @@ public struct EMProperties: Codable, Equatable {
     var recipientType: String?
     var consentSource: String? = "HS_MOBIL"
     var userAgent: String?
+    
+    var notificationLoginID: String?
 
     public static func == (lhs: EMProperties, rhs: EMProperties) -> Bool {
         lhs.keyID == rhs.keyID &&

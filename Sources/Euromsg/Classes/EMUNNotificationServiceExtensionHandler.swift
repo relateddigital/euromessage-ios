@@ -42,7 +42,15 @@ class EMUNNotificationServiceExtensionHandler {
             }
         }
         
-        EMUserDefaultsUtils.savePayload(payload: pushDetail)
+        if let notificationLoginId = EMUserDefaultsUtils.retrieveUserDefaults(userKey: EMKey.notificationLoginIdKey) as? String,
+           !notificationLoginId.isEmpty {
+            EMUserDefaultsUtils.savePayloadWithId(payload: pushDetail, notificationLoginID: notificationLoginId)
+        } else {
+            EMUserDefaultsUtils.savePayload(payload: pushDetail)
+        }
+        
+        
+        
         
         // Setup carousel buttons
         if pushDetail.aps?.category == "carousel" {

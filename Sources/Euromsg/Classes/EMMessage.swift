@@ -50,6 +50,8 @@ public struct EMMessage: EMCodable {
     public let buttons: [ActionButtons]?
     public let deliver: String?
     public let silent: Bool?
+    
+    public var notificationLoginID: String?
 
     // MARK: - Aps
     public struct Aps: Codable {
