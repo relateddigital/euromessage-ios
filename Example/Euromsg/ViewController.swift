@@ -46,6 +46,10 @@ class ViewController: UIViewController {
         print(value)
     }
     
+    func testSavePushCustomID() {
+        Euromsg.setNotificationLoginID(notificationLoginID: "customID")
+    }
+    
     @IBAction func pushNotificationPermissionButtonAction(_ sender: UIButton) {
         Euromsg.askForNotificationPermission(register: true)
         Euromsg.sync()
@@ -98,6 +102,24 @@ class ViewController: UIViewController {
     @IBAction func getPushMessages(_ sender: Any) {
         print("🚲 getPushMessages called")
         Euromsg.getPushMessages(completion: { messages in
+            
+            if messages.isEmpty {
+                print("🚲 there is no recorded push message.")
+            }
+            
+            for message in messages {
+                print("🆔: \(message.pushId ?? "")")
+                print("📅: \(message.formattedDateString ?? "")")
+                print(message.encoded)
+            }
+            
+        })
+    }
+    
+    
+    @IBAction func getPushMessagesWithID(_ sender: Any) {
+        print("🚲 getPushMessages called")
+        Euromsg.getPushMessagesWithId(completion: { messages in
             
             if messages.isEmpty {
                 print("🚲 there is no recorded push message.")
