@@ -142,7 +142,7 @@ class EMUserDefaultsUtils {
         var finalPayloads = [EMMessage]()
         payloadLock.read {
             guard let notificationLoginId = retrieveUserDefaults(userKey: EMKey.notificationLoginIdKey) as? String,
-                  notificationLoginId.isEmpty else {
+                  !notificationLoginId.isEmpty else {
                 EMLog.error("EM-getRecentPayloadsWithId() : login ID is empty!");
                 return
             }
