@@ -120,7 +120,7 @@ class EMUserDefaultsUtils {
         if let pushId = payload.pushId, !notificationLoginID.isEmpty {
             payload.notificationLoginID = notificationLoginID
             payload.formattedDateString = EMTools.formatDate(Date())
-            var recentPayloads = getRecentPayloads()
+            var recentPayloads = getRecentPayloadsWithId()
             payloadLock.write {
                 if let existingPayload = recentPayloads.first(where: { $0.pushId == pushId }) {
                     EMLog.warning("Payload is not valid, there is already another payload with same pushId  New : \(payload.encoded) Existing: \(existingPayload.encoded)")
