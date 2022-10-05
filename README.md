@@ -258,7 +258,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
         
         UNUserNotificationCenter.current().delegate = self
         
-        Euromsg.configure(appAlias: "YOUR_APP_ALIAS", enableLog: true)
+        Euromsg.configure(appAlias: "YOUR_APP_ALIAS", launchOptions: launchOptions, enableLog: true, appGroupsKey: "group.YOUR_BUNDLE_ID.relateddigital", deliveredBadge: false)
         Euromsg.registerForPushNotifications()
         Euromsg.askForNotificationPermissionProvisional()
         if #available(iOS 13, *) {
@@ -278,7 +278,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
         
         UNUserNotificationCenter.current().delegate = self
         
-        Euromsg.configure(appAlias: "YOUR_APP_ALIAS", enableLog: true)
+        Euromsg.configure(appAlias: "YOUR_APP_ALIAS", launchOptions: launchOptions, enableLog: true, appGroupsKey: "group.YOUR_BUNDLE_ID.relateddigital", deliveredBadge: false)
         Euromsg.registerForPushNotifications()
         Euromsg.askForNotificationPermission()
         if #available(iOS 13, *) {
