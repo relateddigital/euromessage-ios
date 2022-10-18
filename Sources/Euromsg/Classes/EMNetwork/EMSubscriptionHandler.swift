@@ -24,10 +24,12 @@ class EMSubscriptionHandler {
     /// - Parameters:
     ///   - subscription: Subscription data
     internal func reportSubscription(subscriptionRequest: EMSubscriptionRequest) {
-        guard let _ = subscriptionRequest.appKey, let _ = subscriptionRequest.token else {
+        guard let appKey = subscriptionRequest.appKey, let token = subscriptionRequest.token
+                , !appKey.isEmpty, !token.isEmpty else {
             EMLog.error("EMSubscriptionHandler reportSubscription appKey or token does not exist")
             return
         }
+        
         
         var isRequestSame = false
         var isRequestSameAsLastSuccessfulSubscriptionRequest = false
