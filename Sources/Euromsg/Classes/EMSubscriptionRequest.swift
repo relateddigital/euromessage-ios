@@ -10,30 +10,30 @@ import UIKit
 import CoreTelephony
 
 // MARK: - Subscription
-struct EMSubscriptionRequest: EMRequestProtocol, Equatable {
+public struct EMSubscriptionRequest: EMRequestProtocol, Equatable {
 
-    internal var path = "subscription"
-    internal var method = "POST"
-    internal var subdomain = "pushs"
-    internal var prodBaseUrl = ".euromsg.com"
+    public var path = "subscription"
+    public var method = "POST"
+    public var subdomain = "pushs"
+    public var prodBaseUrl = ".euromsg.com"
     
-    var extra: [String: String]?
-    var firstTime: Int?
-    var osVersion: String?
-    var deviceType: String?
-    var osName: String?
-    var deviceName: String?
-    var token: String?
-    var local: String?
-    var identifierForVendor: String?
-    var appKey: String?
-    var appVersion: String?
-    var advertisingIdentifier: String?
-    var sdkVersion: String?
-    var carrier: String?
+    public var extra: [String: String]?
+    public var firstTime: Int?
+    public var osVersion: String?
+    public var deviceType: String?
+    public var osName: String?
+    public var deviceName: String?
+    public var token: String?
+    public var local: String?
+    public var identifierForVendor: String?
+    public var appKey: String?
+    public var appVersion: String?
+    public var advertisingIdentifier: String?
+    public var sdkVersion: String?
+    public var carrier: String?
 
     // local variable
-    var isBadgeCustom: Bool?
+    public var isBadgeCustom: Bool?
 
     enum CodingKeys: String, CodingKey {
         case extra = "extra"
@@ -97,7 +97,7 @@ struct EMSubscriptionRequest: EMRequestProtocol, Equatable {
         self.local = NSLocale.preferredLanguages.first
     }
 
-    static func == (lhs: EMSubscriptionRequest, rhs: EMSubscriptionRequest) -> Bool {
+    public static func == (lhs: EMSubscriptionRequest, rhs: EMSubscriptionRequest) -> Bool {
         lhs.extra == rhs.extra &&
         lhs.firstTime == rhs.firstTime &&
         lhs.osVersion == rhs.osVersion &&
@@ -140,21 +140,21 @@ public struct EMProperties: Codable, Equatable {
         case notificationLoginID
     }
 
-    var keyID: String?
-    var email: String?
+    public var keyID: String?
+    public var email: String?
     public var emailPermit: String?
     public var pushPermit: String?
     public var gsmPermit: String?
-    var msisdn: String?
-    var location: String?
-    var facebook: String?
-    var twitter: String?
-    var consentTime: String?
-    var recipientType: String?
-    var consentSource: String? = "HS_MOBIL"
-    var userAgent: String?
+    public var msisdn: String?
+    public var location: String?
+    public var facebook: String?
+    public var twitter: String?
+    public var consentTime: String?
+    public var recipientType: String?
+    public var consentSource: String? = "HS_MOBIL"
+    public var userAgent: String?
     
-    var notificationLoginID: String?
+    public var notificationLoginID: String?
 
     public static func == (lhs: EMProperties, rhs: EMProperties) -> Bool {
         lhs.keyID == rhs.keyID &&

@@ -119,6 +119,7 @@ class ViewController: UIViewController {
     
     @IBAction func getPushMessagesWithID(_ sender: Any) {
         print("🚲 getPushMessages called")
+        getSubscription()
         Euromsg.getPushMessagesWithId(completion: { messages in
             
             if messages.isEmpty {
@@ -132,6 +133,12 @@ class ViewController: UIViewController {
             }
             
         })
+    }
+    
+    private func getSubscription() {
+        let subs = Euromsg.getSubscription()
+        print("subs: \(subs)")
+        print("token: \(subs.token ?? "" )")
     }
     
 }
