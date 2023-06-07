@@ -25,12 +25,10 @@ public struct EMMessage: EMCodable {
     }
     
     public func isSilent() -> Bool {
-        if let silent = silent, silent {
+        if let silent = silent, silent.compare("true", options: .caseInsensitive) == .orderedSame {
             return true
         }
-        
         return false
-        
     }
     
     public var formattedDateString: String?
@@ -49,7 +47,7 @@ public struct EMMessage: EMCodable {
     public let elements: [Element]?
     public let buttons: [ActionButtons]?
     public let deliver: String?
-    public let silent: Bool?
+    public let silent: String?
     
     public var notificationLoginID: String?
 
