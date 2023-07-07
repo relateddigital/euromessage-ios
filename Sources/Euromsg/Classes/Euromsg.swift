@@ -283,10 +283,8 @@ extension Euromsg {
     public static func logout() {
         if let shared = getShared() {
             shared.readWriteLock.write {
-                shared.subscription.token = nil
                 shared.subscription.extra = [String: String]()
             }
-            EMUserDefaultsUtils.removeUserDefaults(userKey: EMKey.tokenKey) // TODO: burada niye token var, android'de token silme yok
             // EMTools.removeUserDefaults(userKey: EMKey.registerKey) // TODO: bunu kaldırdım. zaten token yoksa request atılmıyor.
             saveSubscription()
         }
