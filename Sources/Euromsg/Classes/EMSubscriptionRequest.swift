@@ -30,6 +30,7 @@ public struct EMSubscriptionRequest: EMRequestProtocol, Equatable {
     public var appVersion: String?
     public var advertisingIdentifier: String?
     public var sdkVersion: String?
+    public var sdkType: String?
     public var carrier: String?
 
     // local variable
@@ -49,6 +50,7 @@ public struct EMSubscriptionRequest: EMRequestProtocol, Equatable {
         case appVersion = "appVersion"
         case advertisingIdentifier = "advertisingIdentifier"
         case sdkVersion = "sdkVersion"
+        case sdkType = "sdkType"
         case carrier = "carrier"
     }
 
@@ -80,6 +82,7 @@ public struct EMSubscriptionRequest: EMRequestProtocol, Equatable {
         self.osName = device.systemName
         self.osVersion = device.systemVersion
         self.sdkVersion = EMKey.sdkVersion
+        self.sdkType = EMKey.sdkType
         self.deviceName = device.name
         self.deviceType = deviceType
 
@@ -111,6 +114,7 @@ public struct EMSubscriptionRequest: EMRequestProtocol, Equatable {
         lhs.appVersion == rhs.appVersion &&
         lhs.advertisingIdentifier == rhs.advertisingIdentifier &&
         lhs.sdkVersion == rhs.sdkVersion &&
+        lhs.sdkType == rhs.sdkType &&
         lhs.carrier == rhs.carrier
     }
 

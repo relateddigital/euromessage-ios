@@ -22,6 +22,7 @@ struct EMGraylogRequest: EMCodable, EMRequestProtocol {
     var token: String?
     var appVersion: String?
     var sdkVersion: String?
+    var sdkType: String?
     var osType: String?
     var osVersion: String?
     var deviceName: String?
@@ -39,6 +40,7 @@ struct EMGraylogRequest: EMCodable, EMRequestProtocol {
         case token = "token"
         case appVersion = "appVersion"
         case sdkVersion = "sdkVersion"
+        case sdkType = "sdkType"
         case osType = "osType"
         case osVersion = "osVersion"
         case deviceName = "deviceName"
