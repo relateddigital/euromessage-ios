@@ -97,6 +97,8 @@ class EMUserDefaultsUtils {
         var payload = payload
         if let pushId = payload.pushId {
             payload.formattedDateString = EMTools.formatDate(Date())
+            payload.openedDate = ""
+            payload.status = "D"
             var recentPayloads = getRecentPayloads()
             payloadLock.write {
                 if let existingPayload = recentPayloads.first(where: { $0.pushId == pushId }) {
@@ -120,6 +122,8 @@ class EMUserDefaultsUtils {
         if let pushId = payload.pushId, !notificationLoginID.isEmpty {
             payload.notificationLoginID = notificationLoginID
             payload.formattedDateString = EMTools.formatDate(Date())
+            payload.openedDate = ""
+            payload.status = "D"
             var recentPayloads = getRecentPayloadsWithId()
             payloadLock.write {
                 if let existingPayload = recentPayloads.first(where: { $0.pushId == pushId }) {
@@ -135,6 +139,27 @@ class EMUserDefaultsUtils {
             }
         } else {
             EMLog.warning("Payload is not valid, pushId missing : \(payload.encoded)")
+        }
+    }
+    
+    static func updatePayload(pushId: String?) {
+        var recentPayloads = getRecentPayloads()
+        payloadLock.write {
+            if let index = recentPayloads.firstIndex(where: { $0.pushId == pushId }) {
+                var updatedPayload = recentPayloads[index]
+                // Güncelleme işlemlerini yap
+                updatedPayload.status = "O"
+                updatedPayload.openedDate = EMTools.formatDate(Date())
+                // Güncellenmiş payload'ı koleksiyona tekrar ekle
+                recentPayloads[index] = updatedPayload
+                if let updatedPayloadsData = try? JSONEncoder().encode(recentPayloads) {
+                    saveUserDefaults(key: EMKey.euroPayloadsKey, value: updatedPayloadsData as AnyObject)
+                } else {
+                    EMLog.warning("Can not encode updated payloads: \(String(describing: recentPayloads))")
+                }
+            } else {
+                EMLog.warning("Payload with pushId \(pushId ?? "") not found in recent payloads.")
+            }
         }
     }
     

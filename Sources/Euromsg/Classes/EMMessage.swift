@@ -48,6 +48,8 @@ public struct EMMessage: EMCodable {
     public let buttons: [ActionButtons]?
     public let deliver: String?
     public let silent: String?
+    public var status: String?
+    public var openedDate: String?
     
     public var notificationLoginID: String?
 

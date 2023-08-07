@@ -353,6 +353,7 @@ extension Euromsg {
                 if message.isSilent() {
                     Euromsg.emDeliverHandler?.reportDeliver(message: message, silent: true)
                 } else {
+                    EMUserDefaultsUtils.updatePayload(pushId: message.pushId)
                     Euromsg.emReadHandler?.reportRead(message: message)
                 }
             }
