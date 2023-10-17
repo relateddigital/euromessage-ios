@@ -45,11 +45,13 @@ public struct EMMessage: EMCodable {
     public let pushId: String?
     public let emPushSp: String?
     public let elements: [Element]?
-    public let buttons: [ActionButtons]?
+    public var actions: [ActionButtons]?
     public let deliver: String?
     public let silent: String?
     public var status: String?
     public var openedDate: String?
+    public var pushCategory: String?
+
     
     public var notificationLoginID: String?
 
@@ -82,8 +84,10 @@ public struct EMMessage: EMCodable {
     }
 
     public struct ActionButtons: Codable {
-    public let title: String?
-    public let identifier: String?
-    public let url: String?
+        public let Title: String?
+        public let Action: String?
+        public let Icon: String?
+        public let Url: String?
+        public let AlternateUrl: String?
     }
 }

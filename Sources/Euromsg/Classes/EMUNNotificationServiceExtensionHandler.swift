@@ -79,22 +79,39 @@ class EMUNNotificationServiceExtensionHandler {
     @available(iOS 10.0, *)
     static func addActionButtons(_ detail: EMMessage) {
         let categoryIdentifier = "action.button"
-        if let buttons = detail.buttons {
+        if let buttons = detail.actions {
             var actionButtons: [UNNotificationAction] = []
+            var index = 0
             for button in buttons {
-                actionButtons.append(UNNotificationAction(identifier: button.identifier ?? "",
-                                                          title: button.title ?? "",
+                actionButtons.append(UNNotificationAction(identifier: categoryIdentifier + String(index),
+                                                          title: button.Title ?? "",
                                                           options: [.foreground]))
+                index+=1
             }
             let actionCategory = UNNotificationCategory(identifier: categoryIdentifier,
-                                                          actions: actionButtons,
-                                                          intentIdentifiers: [], options: [])
+                                                        actions: actionButtons,
+                                                        intentIdentifiers: [], options: [])
 
             UNUserNotificationCenter.current().setNotificationCategories([actionCategory])
-
         }
     }
 
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        if response.actionIdentifier == "action.button0" {
+            openLink()
+        } else if response.actionIdentifier == "action.button1" {
+            openLink()
+        }
+        
+        completionHandler()
+    }
+    
+    private func openLink() {
+        if let url = URL(string: "") {
+            UIApplication.shared.open(url)
+        }
+    }
+    
     static func getCarouselActionCategorySet() -> Set<UNNotificationCategory>  {
         let categoryIdentifier = "carousel"
         let carouselNext = UNNotificationAction(identifier: "carousel.next", title: "▶", options: [])
