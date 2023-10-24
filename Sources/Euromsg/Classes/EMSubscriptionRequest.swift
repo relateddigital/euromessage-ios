@@ -142,6 +142,7 @@ public struct EMProperties: Codable, Equatable {
         case recipientType
         case consentSource
         case notificationLoginID
+        case SetAnonymous
     }
 
     public var keyID: String?
@@ -159,6 +160,7 @@ public struct EMProperties: Codable, Equatable {
     public var userAgent: String?
     
     public var notificationLoginID: String?
+    public var SetAnonymous: String?
 
     public static func == (lhs: EMProperties, rhs: EMProperties) -> Bool {
         lhs.keyID == rhs.keyID &&
@@ -172,7 +174,8 @@ public struct EMProperties: Codable, Equatable {
         lhs.twitter == rhs.twitter &&
         lhs.consentTime == rhs.consentTime &&
         lhs.recipientType == rhs.recipientType &&
-        lhs.consentSource == rhs.consentSource
+        lhs.consentSource == rhs.consentSource &&
+        lhs.SetAnonymous == rhs.SetAnonymous
     }
 
 }

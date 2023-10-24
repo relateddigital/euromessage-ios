@@ -230,6 +230,15 @@ extension Euromsg {
         }
     }
     
+    public static func setAnonymous(perm: Bool) {
+        if perm {
+            setUserProperty(key: EMProperties.CodingKeys.SetAnonymous.rawValue, value: "true")
+        } else {
+            setUserProperty(key: EMProperties.CodingKeys.SetAnonymous.rawValue, value: "false")
+        }
+        sync()
+    }
+    
     public static func setAppVersion(appVersion: String?) {
         guard let shared = getShared() else { return }
         if let appVersion = appVersion {
