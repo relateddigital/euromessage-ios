@@ -78,14 +78,20 @@ class EMUNNotificationServiceExtensionHandler {
     
     @available(iOS 10.0, *)
     static func addActionButtons(_ detail: EMMessage) {
-        let categoryIdentifier = "action.button"
+        let categoryIdentifier = "action_button"
         if let buttons = detail.actions {
             var actionButtons: [UNNotificationAction] = []
             var index = 0
             for button in buttons {
-                actionButtons.append(UNNotificationAction(identifier: categoryIdentifier + String(index),
-                                                          title: button.Title ?? "",
-                                                          options: [.foreground]))
+                if #available(iOS 15.0, *) {
+                    actionButtons.append(UNNotificationAction(identifier: categoryIdentifier + String(index),
+                                                              title: button.Title ?? "",
+                                                              options: [.foreground],icon: UNNotificationActionIcon.init(systemImageName: "\(button.Icon ?? "")")))
+                } else {
+                    actionButtons.append(UNNotificationAction(identifier: categoryIdentifier + String(index),
+                                                              title: button.Title ?? "",
+                                                              options: [.foreground]))
+                }
                 index+=1
             }
             let actionCategory = UNNotificationCategory(identifier: categoryIdentifier,
@@ -94,16 +100,6 @@ class EMUNNotificationServiceExtensionHandler {
 
             UNUserNotificationCenter.current().setNotificationCategories([actionCategory])
         }
-    }
-
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        if response.actionIdentifier == "action.button0" {
-            openLink()
-        } else if response.actionIdentifier == "action.button1" {
-            openLink()
-        }
-        
-        completionHandler()
     }
     
     private func openLink() {

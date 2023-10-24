@@ -50,6 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         Euromsg.handlePush(pushDictionary: response.notification.request.content.userInfo)
+        Euromsg.handlePushWithActionButtons(response: response)
 
         userInfoPayload = response.notification.request.content.userInfo.toString() ?? "çevrilemedi"
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
