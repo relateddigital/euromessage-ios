@@ -354,9 +354,9 @@ extension Euromsg {
         if let jsonData = try? JSONSerialization.data(withJSONObject: pushDictionary, options: .prettyPrinted),
            let message = try? JSONDecoder().decode(EMMessage.self, from: jsonData) {
             
-            if response.actionIdentifier == "action.button0" {
+            if response.actionIdentifier == "action_0" {
                 openLink(urlStr: message.actions?.first?.Url ?? "")
-            } else if response.actionIdentifier == "action.button1" {
+            } else if response.actionIdentifier == "action_1" {
                 openLink(urlStr: message.actions?.last?.Url ?? "")
             }
         }

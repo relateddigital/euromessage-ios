@@ -70,6 +70,10 @@ class EMUNNotificationServiceExtensionHandler {
             if pushDetail.pushType == "Image" || pushDetail.pushType == "Video",
                 let attachmentMedia = pushDetail.mediaUrl, let mediaUrl = URL(string: attachmentMedia) {
                 loadAttachments(mediaUrl: mediaUrl, modifiedBestAttemptContent: modifiedBestAttemptContent, withContentHandler: contentHandler)
+            } else if pushDetail.pushType == "Text" && pushDetail.actions?.count ?? 0 > 0 {
+                let attachmentMedia = pushDetail.mediaUrl
+                let mediaUrl = URL(string: "https://google.com")!
+                 loadAttachments(mediaUrl: mediaUrl, modifiedBestAttemptContent: modifiedBestAttemptContent, withContentHandler: contentHandler)                
             } else if pushDetail.pushType == "Text" {
                 contentHandler(modifiedBestAttemptContent)
             }
@@ -78,17 +82,17 @@ class EMUNNotificationServiceExtensionHandler {
     
     @available(iOS 10.0, *)
     static func addActionButtons(_ detail: EMMessage) {
-        let categoryIdentifier = "action_button"
+        let categoryIdentifier = detail.aps?.category ??  "action_button"
         if let buttons = detail.actions {
             var actionButtons: [UNNotificationAction] = []
             var index = 0
             for button in buttons {
                 if #available(iOS 15.0, *) {
-                    actionButtons.append(UNNotificationAction(identifier: categoryIdentifier + String(index),
+                    actionButtons.append(UNNotificationAction(identifier: button.Action ?? "action_\(index)",
                                                               title: button.Title ?? "",
                                                               options: [.foreground],icon: UNNotificationActionIcon.init(systemImageName: "\(button.Icon ?? "")")))
                 } else {
-                    actionButtons.append(UNNotificationAction(identifier: categoryIdentifier + String(index),
+                    actionButtons.append(UNNotificationAction(identifier: button.Action ?? "action_\(index)",
                                                               title: button.Title ?? "",
                                                               options: [.foreground]))
                 }
