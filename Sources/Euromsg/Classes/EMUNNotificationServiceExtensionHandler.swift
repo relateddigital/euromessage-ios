@@ -55,7 +55,7 @@ class EMUNNotificationServiceExtensionHandler {
         // Setup carousel buttons
         if pushDetail.aps?.category == "carousel" {
             UNUNC.current().setNotificationCategories(getCarouselActionCategorySet())
-        } else if pushDetail.aps?.category == "action.button" {
+        } else if pushDetail.actions?.count ?? 0 > 0 {
             addActionButtons(pushDetail)
         }
         
