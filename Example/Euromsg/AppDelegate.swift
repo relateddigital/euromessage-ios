@@ -10,7 +10,7 @@ import UIKit
 import UserNotifications
 @UIApplicationMain
 
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate,PushAction {
     var window: UIWindow?
     var userInfoPayload = ""
     func application(_ application: UIApplication,
@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         Euromsg.handlePush(pushDictionary: response.notification.request.content.userInfo)
-        Euromsg.handlePushWithActionButtons(response: response)
+        Euromsg.handlePushWithActionButtons(response: response,type:self)
 
         userInfoPayload = response.notification.request.content.userInfo.toString() ?? "çevrilemedi"
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -58,6 +58,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         window?.rootViewController?.present(presentViewController, animated: true, completion: nil)
         completionHandler()
+    }
+    
+    func actionButtonClicked(identifier: String, url: String) {
+        print(identifier,url)
     }
 }
 

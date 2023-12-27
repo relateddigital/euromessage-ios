@@ -188,6 +188,10 @@ public class Euromsg {
     }
 }
 
+public protocol PushAction {
+    func actionButtonClicked(identifier:String,url:String)
+}
+
 extension Euromsg {
     // MARK: Request Builders
     
@@ -347,7 +351,10 @@ extension Euromsg {
         Euromsg.sync()
     }
     
-    public static func handlePushWithActionButtons(response: UNNotificationResponse) {
+    public static func handlePushWithActionButtons(response: UNNotificationResponse,type:Any) {
+        
+        var actionButtonDelegate : PushAction?
+        actionButtonDelegate = type as? PushAction
         
         let pushDictionary = response.notification.request.content.userInfo
         
@@ -355,9 +362,9 @@ extension Euromsg {
            let message = try? JSONDecoder().decode(EMMessage.self, from: jsonData) {
             
             if response.actionIdentifier == "action_0" {
-                openLink(urlStr: message.actions?.first?.Url ?? "")
+                actionButtonDelegate?.actionButtonClicked(identifier: "action_0", url: message.actions?.first?.Url ?? "")
             } else if response.actionIdentifier == "action_1" {
-                openLink(urlStr: message.actions?.last?.Url ?? "")
+                actionButtonDelegate?.actionButtonClicked(identifier: "action_1", url: message.actions?.last?.Url ?? "")
             }
         }
     }
