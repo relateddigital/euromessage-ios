@@ -88,11 +88,11 @@ class EMUNNotificationServiceExtensionHandler {
             var index = 0
             for button in buttons {
                 if #available(iOS 15.0, *) {
-                    actionButtons.append(UNNotificationAction(identifier: button.Action ?? "action_\(index)",
+                    actionButtons.append(UNNotificationAction(identifier: "action_\(index)",
                                                               title: button.Title ?? "",
                                                               options: [.foreground],icon: UNNotificationActionIcon.init(systemImageName: "\(button.Icon ?? "")")))
                 } else {
-                    actionButtons.append(UNNotificationAction(identifier: button.Action ?? "action_\(index)",
+                    actionButtons.append(UNNotificationAction(identifier: "action_\(index)",
                                                               title: button.Title ?? "",
                                                               options: [.foreground]))
                 }
