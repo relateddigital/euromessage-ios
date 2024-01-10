@@ -10,7 +10,7 @@ import Foundation
 struct EMGraylogRequest: EMCodable, EMRequestProtocol {
     internal var path = "log/mobileSdk"
     internal var method = "POST"
-    internal var subdomain = "gt"
+    internal var subdomain = "rd-gateway"
     internal var prodBaseUrl = ".relateddigital.com"
 
     var logLevel: String?
