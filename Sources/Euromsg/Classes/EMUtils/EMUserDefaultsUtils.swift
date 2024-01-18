@@ -99,6 +99,9 @@ class EMUserDefaultsUtils {
             payload.formattedDateString = EMTools.formatDate(Date())
             payload.openedDate = ""
             payload.status = "D"
+            if let userExVid = appGroupUserDefaults?.string(forKey: "userExVid") {
+                    payload.exVisitorID = userExVid
+            }
             var recentPayloads = getRecentPayloads()
             payloadLock.write {
                 if let existingPayload = recentPayloads.first(where: { $0.pushId == pushId }) {

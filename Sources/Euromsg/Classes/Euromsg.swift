@@ -35,6 +35,7 @@ public class Euromsg {
     private var previousRegisterEmailSubscription: EMSubscriptionRequest?
     internal var userAgent: String?
     static var deliveredBadgeCount: Bool?
+    static var aGK: String? //appGroupsKey ismi olduğu için aGK olarak yazdım
     
     var networkQueue: DispatchQueue!
     
@@ -117,6 +118,7 @@ public class Euromsg {
         if let appGroupName = EMTools.getAppGroupName(appGroupName: appGroupsKey) {
             EMUserDefaultsUtils.setAppGroupsUserDefaults(appGroupName: appGroupName)
             EMLog.info("App Group Key : \(appGroupName)")
+            aGK = appGroupName
         }
         
         Euromsg.shared = Euromsg(appKey: appAlias, launchOptions: launchOptions)
@@ -219,18 +221,21 @@ extension Euromsg {
         setUserProperty(key: EMProperties.CodingKeys.emailPermit.rawValue, value: per)
         if EMTools.validateEmail(email: email), permission {
             setUserProperty(key: EMProperties.CodingKeys.email.rawValue, value: email)
+            UserDefaults(suiteName: aGK)?.set(email, forKey: "userExVid")
         }
     }
     
     public static func setEmail(email: String?) {
         if EMTools.validateEmail(email: email) {
             setUserProperty(key: EMProperties.CodingKeys.email.rawValue, value: email)
+            UserDefaults(suiteName: aGK)?.set(email, forKey: "userExVid")
         }
     }
     
     public static func setEuroUserId(userKey: String?) {
         if let userKey = userKey {
             setUserProperty(key: EMProperties.CodingKeys.keyID.rawValue, value: userKey)
+            UserDefaults(suiteName: aGK)?.set(userKey, forKey: "userExVid")
         }
     }
     
