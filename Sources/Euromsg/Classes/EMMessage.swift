@@ -51,7 +51,8 @@ public struct EMMessage: EMCodable {
     public var status: String?
     public var openedDate: String?
     public var pushCategory: String?
-    public var exVisitorID: String?
+    public var keyID: String?
+    public var email: String?
 
     
     public var notificationLoginID: String?
