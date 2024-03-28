@@ -405,6 +405,12 @@ extension Euromsg {
         EMUserDefaultsUtils.saveUserDefaults(key: EMKey.notificationLoginIdKey, value: notificationLoginID as AnyObject)
     }
     
+    public static func deleteNotifications() {
+        let center = UNUserNotificationCenter.current()
+        center.removeAllPendingNotificationRequests()
+        center.removeAllDeliveredNotifications()
+    }
+    
 }
 
 extension Euromsg {
