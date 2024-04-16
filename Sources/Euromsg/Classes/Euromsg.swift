@@ -547,6 +547,12 @@ extension Euromsg {
         completion(EMUserDefaultsUtils.getRecentPayloadsWithId())
     }
     
+    public static func readAllPushMessages(completion: @escaping ((_ success: Bool) -> Void)) {
+        EMUserDefaultsUtils.readAllPushMessages { success in
+            completion(success)
+        }
+    }
+    
     public static func getSubscription () -> EMSubscriptionRequest {
         guard let shared = getShared() else { return EMSubscriptionRequest() }
         var subs: EMSubscriptionRequest!

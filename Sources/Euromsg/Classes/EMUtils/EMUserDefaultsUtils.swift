@@ -179,6 +179,25 @@ class EMUserDefaultsUtils {
         }
     }
     
+    static func readAllPushMessages(completion: @escaping ((_ success: Bool) -> Void)){
+        var recentPayloads = getRecentPayloads()
+        payloadLock.write {
+            for index in 0..<recentPayloads.count {
+                var updatedPayload = recentPayloads[index]
+                updatedPayload.status = "O"
+                updatedPayload.openedDate = EMTools.formatDate(Date())
+                recentPayloads[index] = updatedPayload
+            }
+            if let updatedPayloadsData = try? JSONEncoder().encode(recentPayloads) {
+                saveUserDefaults(key: EMKey.euroPayloadsKey, value: updatedPayloadsData as AnyObject)
+                completion(true)
+            } else {
+                EMLog.warning("Can not encode updated payloads: \(String(describing: recentPayloads))")
+                completion(false)
+            }
+        }
+    }
+    
     static func getRecentPayloadsWithId() -> [EMMessage] {
         var finalPayloads = [EMMessage]()
         payloadLock.read {
