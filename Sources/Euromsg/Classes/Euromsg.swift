@@ -547,10 +547,17 @@ extension Euromsg {
         completion(EMUserDefaultsUtils.getRecentPayloadsWithId())
     }
     
-    public static func readAllPushMessages(completion: @escaping ((_ success: Bool) -> Void)) {
-        EMUserDefaultsUtils.readAllPushMessages { success in
-            completion(success)
+    public static func readAllPushMessages(pushId: String? = nil, completion: @escaping ((_ success: Bool) -> Void)) {
+        if let pushId = pushId {
+            EMUserDefaultsUtils.readAllPushMessages(pushId: pushId) { success in
+                completion(success)
+            }
+        } else {
+            EMUserDefaultsUtils.readAllPushMessages { success in
+                completion(success)
+            }
         }
+        
     }
     
     public static func getSubscription () -> EMSubscriptionRequest {

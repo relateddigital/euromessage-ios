@@ -179,14 +179,23 @@ class EMUserDefaultsUtils {
         }
     }
     
-    static func readAllPushMessages(completion: @escaping ((_ success: Bool) -> Void)){
+    static func readAllPushMessages(pushId: String? = nil, completion: @escaping ((_ success: Bool) -> Void)){
         var recentPayloads = getRecentPayloads()
         payloadLock.write {
-            for index in 0..<recentPayloads.count {
-                var updatedPayload = recentPayloads[index]
-                updatedPayload.status = "O"
-                updatedPayload.openedDate = EMTools.formatDate(Date())
-                recentPayloads[index] = updatedPayload
+            if let pushId = pushId {
+                if let index = recentPayloads.firstIndex(where: { $0.pushId == pushId }) {
+                    var updatedPayload = recentPayloads[index]
+                    updatedPayload.status = "O"
+                    updatedPayload.openedDate = EMTools.formatDate(Date())
+                    recentPayloads[index] = updatedPayload
+                }
+            } else {
+                for index in 0..<recentPayloads.count {
+                    var updatedPayload = recentPayloads[index]
+                    updatedPayload.status = "O"
+                    updatedPayload.openedDate = EMTools.formatDate(Date())
+                    recentPayloads[index] = updatedPayload
+                }
             }
             if let updatedPayloadsData = try? JSONEncoder().encode(recentPayloads) {
                 saveUserDefaults(key: EMKey.euroPayloadsKey, value: updatedPayloadsData as AnyObject)
