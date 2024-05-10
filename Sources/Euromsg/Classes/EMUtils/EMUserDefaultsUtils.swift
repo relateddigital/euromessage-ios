@@ -188,6 +188,11 @@ class EMUserDefaultsUtils {
                     updatedPayload.status = "O"
                     updatedPayload.openedDate = EMTools.formatDate(Date())
                     recentPayloads[index] = updatedPayload
+                } else {
+                    // Belirtilen pushId'ye sahip bir öğe bulunamadı
+                    EMLog.warning("Push message with pushId \(pushId) not found.")
+                    completion(false)
+                    return // İşlemi sonlandır ve devam etme
                 }
             } else {
                 for index in 0..<recentPayloads.count {
