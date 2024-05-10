@@ -411,18 +411,28 @@ extension Euromsg {
         center.removeAllDeliveredNotifications()
     }
     
-    public static func removeNotification(withPushID pushID: String) {
+    public static func removeNotification(withPushID pushID: String, completion: @escaping ((_ success: Bool) -> Void)) {
         let center = UNUserNotificationCenter.current()
         
         center.getPendingNotificationRequests { requests in
+            var requestFound = false
             for request in requests {
                 if let userInfo = request.content.userInfo as? [String: Any],
                    let notificationPushID = userInfo["pushID"] as? String {
                     if notificationPushID == pushID {
                         center.removePendingNotificationRequests(withIdentifiers: [request.identifier])
+                        completion(true)
+                        requestFound = true
+                        return
+                    } else {
+                        completion(false)
+                        requestFound = true
                         return
                     }
                 }
+            }
+            if !requestFound {
+                completion(false)
             }
         }
     }
