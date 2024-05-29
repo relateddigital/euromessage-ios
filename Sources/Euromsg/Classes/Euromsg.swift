@@ -417,7 +417,7 @@ extension Euromsg {
             }
     }
     
-    func removeNotification(withPushID pushID: String, completion: @escaping (Bool) -> Void) {
+    public static func removeNotification(withPushID pushID: String, completion: @escaping (Bool) -> Void) {
         let center = UNUserNotificationCenter.current()
         
         center.getDeliveredNotifications { notifications in
