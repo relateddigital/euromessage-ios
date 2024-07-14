@@ -574,6 +574,17 @@ extension Euromsg {
         completion(EMUserDefaultsUtils.getRecentPayloadsWithId())
     }
     
+    public static func deletePayloadWithId(pushId: String,completion: @escaping ((_ completed: Bool) -> Void)) {
+        EMUserDefaultsUtils.deletePayloadWithId(pushId: pushId) { succes in
+            completion(succes)
+        }
+    }
+    
+    public static func deleteAllPayloads(completion: @escaping ((_ completed: Bool) -> Void)) {
+        EMUserDefaultsUtils.deleteAllPayloads { succes in
+            completion(succes)
+        }
+    }
     public static func readAllPushMessages(pushId: String? = nil, completion: @escaping ((_ success: Bool) -> Void)) {
         if let pushId = pushId {
             EMUserDefaultsUtils.readAllPushMessages(pushId: pushId) { success in

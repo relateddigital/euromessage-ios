@@ -158,6 +158,39 @@ class EMUserDefaultsUtils {
         }
     }
     
+    static func deletePayloadWithId(pushId: String, completion: @escaping (Bool) -> Void) {
+        var recentPayloads = getRecentPayloads()
+        payloadLock.write {
+            if let index = recentPayloads.firstIndex(where: { $0.pushId == pushId }) {
+                recentPayloads.remove(at: index)
+                if let recentPayloadsData = try? JSONEncoder().encode(recentPayloads) {
+                    saveUserDefaults(key: EMKey.euroPayloadsWithIdKey, value: recentPayloadsData as AnyObject)
+                    completion(true)
+                } else {
+                    EMLog.warning("Can not encode recentPayloads after deletion: \(String(describing: recentPayloads))")
+                    completion(false)
+                }
+            } else {
+                EMLog.warning("Payload with pushId \(pushId) not found.")
+                completion(false)
+            }
+        }
+    }
+
+    static func deleteAllPayloads(completion: @escaping (Bool) -> Void) {
+        payloadLock.write {
+            let emptyPayloads: [EMMessage] = []
+            if let emptyPayloadsData = try? JSONEncoder().encode(emptyPayloads) {
+                saveUserDefaults(key: EMKey.euroPayloadsWithIdKey, value: emptyPayloadsData as AnyObject)
+                EMLog.info("All payloads have been deleted successfully.")
+                completion(true)
+            } else {
+                EMLog.warning("Can not encode empty payloads.")
+                completion(false)
+            }
+        }
+    }
+    
     static func updatePayload(pushId: String?) {
         var recentPayloads = getRecentPayloads()
         payloadLock.write {
