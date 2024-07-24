@@ -164,7 +164,7 @@ class EMUserDefaultsUtils {
             if let index = recentPayloads.firstIndex(where: { $0.pushId == pushId }) {
                 recentPayloads.remove(at: index)
                 if let recentPayloadsData = try? JSONEncoder().encode(recentPayloads) {
-                    saveUserDefaults(key: EMKey.euroPayloadsWithIdKey, value: recentPayloadsData as AnyObject)
+                    saveUserDefaults(key: EMKey.euroPayloadsKey, value: recentPayloadsData as AnyObject)
                     completion(true)
                 } else {
                     EMLog.warning("Can not encode recentPayloads after deletion: \(String(describing: recentPayloads))")
@@ -181,7 +181,7 @@ class EMUserDefaultsUtils {
         payloadLock.write {
             let emptyPayloads: [EMMessage] = []
             if let emptyPayloadsData = try? JSONEncoder().encode(emptyPayloads) {
-                saveUserDefaults(key: EMKey.euroPayloadsWithIdKey, value: emptyPayloadsData as AnyObject)
+                saveUserDefaults(key: EMKey.euroPayloadsKey, value: emptyPayloadsData as AnyObject)
                 EMLog.info("All payloads have been deleted successfully.")
                 completion(true)
             } else {
