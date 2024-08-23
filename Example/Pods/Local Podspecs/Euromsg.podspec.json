@@ -1,6 +1,6 @@
 {
   "name": "Euromsg",
-  "version": "2.8.1",
+  "version": "2.8.2",
   "summary": "Euromsg SDK",
   "description": "Euromsg SDK for push notifications",
   "homepage": "https://github.com/relateddigital/euromessage-ios",
@@ -10,7 +10,7 @@
   },
   "source": {
     "git": "https://github.com/relateddigital/euromessage-ios.git",
-    "tag": "2.8.1"
+    "tag": "2.8.2"
   },
   "platforms": {
     "ios": "10.0"

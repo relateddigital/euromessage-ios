@@ -44,12 +44,14 @@ class EMUserDefaultsUtils {
     }
     
     static func saveUserDefaults(key: String?, value: AnyObject?) {
-        guard key != nil && value != nil else {
+        guard let key = key, let value = value else {
+            print("Key or value is nil. Skipping save operation.")
             return
         }
-        userDefaults?.set(value, forKey: key!)
+
+        userDefaults?.set(value, forKey: key)
         userDefaults?.synchronize()
-        appGroupUserDefaults?.set(value, forKey: key!)
+        appGroupUserDefaults?.set(value, forKey: key)
         appGroupUserDefaults?.synchronize()
     }
     

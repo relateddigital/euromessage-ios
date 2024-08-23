@@ -276,43 +276,75 @@ extension Euromsg {
     }
     
     public static func setUserProperty(key: String, value: String?) {
-        if let shared = getShared(), let value = value {
-            shared.readWriteLock.write {
-                shared.subscription.extra?[key] = value
-            }
-            saveSubscription()
+        guard let shared = getShared() else {
+            print("Euromsg shared instance is nil.")
+            return
         }
+
+        guard let value = value else {
+            print("Value is nil for key: \(key).")
+            return
+        }
+
+        shared.readWriteLock.write {
+            if shared.subscription.extra == nil {
+                shared.subscription.extra = [String: String]()
+            }
+            shared.subscription.extra?[key] = value
+        }
+        saveSubscription()
     }
     
     public static func removeUserProperty(key: String) {
-        if let shared = getShared() {
-            shared.readWriteLock.write {
-                shared.subscription.extra?[key] = nil
-            }
-            saveSubscription()
+        guard let shared = getShared() else {
+            print("Euromsg shared instance is nil.")
+            return
         }
+
+        shared.readWriteLock.write {
+            if shared.subscription.extra != nil {
+                shared.subscription.extra?[key] = nil
+            } else {
+                print("No properties to remove for key: \(key).")
+            }
+        }
+        saveSubscription()
     }
     
     public static func logout() {
-        if let shared = getShared() {
-            shared.readWriteLock.write {
-                shared.subscription.extra = [String: String]()
-            }
-            // EMTools.removeUserDefaults(userKey: EMKey.registerKey) // TODO: bunu kaldırdım. zaten token yoksa request atılmıyor.
-            saveSubscription()
+        guard let shared = getShared() else {
+            print("Euromsg shared instance is nil.")
+            return
         }
+
+        shared.readWriteLock.write {
+            shared.subscription.extra = [String: String]()
+        }
+        saveSubscription()
     }
     
     private static func saveSubscription() {
-        if let shared = Euromsg.getShared() {
-            var subs: EMSubscriptionRequest?
-            shared.readWriteLock.read {
-                subs = shared.subscription
-                shared.fillGraylogModel()
-            }
-            if let subs = subs, let subscriptionData = try? JSONEncoder().encode(subs) {
-                EMUserDefaultsUtils.saveUserDefaults(key: EMKey.registerKey, value: subscriptionData as AnyObject)
-            }
+        guard let shared = Euromsg.getShared() else {
+            print("Euromsg shared instance is nil.")
+            return
+        }
+
+        var subs: EMSubscriptionRequest?
+        shared.readWriteLock.read {
+            subs = shared.subscription
+            shared.fillGraylogModel()
+        }
+
+        guard let validSubs = subs else {
+            print("Subscription data is nil after read operation.")
+            return
+        }
+
+        do {
+            let subscriptionData = try JSONEncoder().encode(validSubs)
+            EMUserDefaultsUtils.saveUserDefaults(key: EMKey.registerKey, value: subscriptionData as AnyObject)
+        } catch {
+            print("Failed to encode subscription: \(error.localizedDescription)")
         }
     }
     
@@ -446,18 +478,28 @@ extension Euromsg {
     /// Synchronize user data with Euromsg servers
     /// - Parameter notification: no need for direct call
     public static func sync(notification: Notification? = nil) {
-        guard let shared = getShared() else { return }
+        guard let shared = getShared() else {
+            EMLog.warning("Euromsg shared instance is nil.")
+            return
+        }
+        
         if !shared.pushPermitDidCall {
             let center = UNUNC.current()
             center.getNotificationSettings { settings in
                 if settings.authorizationStatus == .denied {
                     setUserProperty(key: EMProperties.CodingKeys.pushPermit.rawValue, value: EMProperties.PermissionKeys.not.rawValue)
-                    var subs: EMSubscriptionRequest!
+                    
+                    var subs: EMSubscriptionRequest?
                     shared.readWriteLock.read {
                         subs = shared.subscription
                     }
-                    shared.networkQueue.async {
-                        Euromsg.emSubscriptionHandler?.reportSubscription(subscriptionRequest: subs)
+                    
+                    if let subs = subs {
+                        shared.networkQueue.async {
+                            Euromsg.emSubscriptionHandler?.reportSubscription(subscriptionRequest: subs)
+                        }
+                    } else {
+                        EMLog.warning("Subscription is nil after read operation.")
                     }
                 } else {
                     setUserProperty(key: EMProperties.CodingKeys.pushPermit.rawValue, value: EMProperties.PermissionKeys.yes.rawValue)
@@ -465,69 +507,75 @@ extension Euromsg {
             }
         }
         
-        var subs: EMSubscriptionRequest!
+        var subs: EMSubscriptionRequest?
         var previousSubs: EMSubscriptionRequest?
-        
-        shared.readWriteLock.read {
-            subs = shared.subscription
-        }
-        
-        // Clear badge
-        if !(subs.isBadgeCustom ?? false) {
-            EMUserDefaultsUtils.removeUserDefaults(userKey: EMKey.badgeCount)
-            
-            if !EMTools.isiOSAppExtension() {
-                if deliveredBadgeCount! {
-                    UNUNC.current().getDeliveredNotifications(completionHandler: { notifications in
-                        DispatchQueue.main.async {
-                            UIA.shared.applicationIconBadgeNumber = notifications.count
-                        }
-                    })
-                }
-            }
-        }
-        // check whether the user have an unreported message
-        shared.networkQueue.async {
-            Euromsg.emReadHandler?.checkUserUnreportedMessages()
-        }
-        
+
         shared.readWriteLock.read {
             subs = shared.subscription
             previousSubs = Euromsg.previousSubscription
         }
         
+        guard let validSubs = subs else {
+            EMLog.warning("Subscription is nil.")
+            return
+        }
+        
+        // Clear badge
+        if !(validSubs.isBadgeCustom ?? false) {
+            EMUserDefaultsUtils.removeUserDefaults(userKey: EMKey.badgeCount)
+            
+            if !EMTools.isiOSAppExtension(), let deliveredBadgeCount = deliveredBadgeCount, deliveredBadgeCount {
+                UNUNC.current().getDeliveredNotifications(completionHandler: { notifications in
+                    DispatchQueue.main.async {
+                        UIA.shared.applicationIconBadgeNumber = notifications.count
+                    }
+                })
+            }
+        }
+        
+        // Check for unreported messages
+        shared.networkQueue.async {
+            Euromsg.emReadHandler?.checkUserUnreportedMessages()
+        }
+        
         var shouldSendSubscription = false
         
-        if subs.isValid() {
+        if validSubs.isValid() {
             shared.readWriteLock.write {
-                if previousSubs == nil || subs != previousSubs {
-                    Euromsg.previousSubscription = subs
+                if previousSubs == nil || validSubs != previousSubs {
+                    Euromsg.previousSubscription = validSubs
                     shouldSendSubscription = true
                 }
             }
             
             if !shouldSendSubscription {
-                EMLog.warning("Subscription request not ready : \(String(describing: subs))")
+                EMLog.warning("Subscription request not ready: \(String(describing: validSubs))")
                 return
             }
             
             saveSubscription()
+            
             shared.readWriteLock.read {
                 subs = shared.subscription
             }
-            EMUserDefaultsUtils.saveUserDefaults(key: EMKey.tokenKey, value: subs.token as AnyObject)
-            EMLog.info("Current subscription \(subs.encoded)")
+            
+            if let subs = subs {
+                EMUserDefaultsUtils.saveUserDefaults(key: EMKey.tokenKey, value: subs.token as AnyObject)
+                EMLog.info("Current subscription \(subs.encoded)")
+            } else {
+                EMLog.warning("Failed to retrieve subscription after saving.")
+            }
         } else {
-            EMLog.warning("Subscription request is not valid : \(String(describing: subs))")
+            EMLog.warning("Subscription request is not valid: \(String(describing: validSubs))")
             return
         }
         
-        shared.readWriteLock.read {
-            subs = shared.subscription
-        }
-        
-        shared.networkQueue.async {
-            emSubscriptionHandler?.reportSubscription(subscriptionRequest: subs)
+        if let subs = subs {
+            shared.networkQueue.async {
+                emSubscriptionHandler?.reportSubscription(subscriptionRequest: subs)
+            }
+        } else {
+            EMLog.warning("Failed to retrieve subscription for reporting.")
         }
     }
     
