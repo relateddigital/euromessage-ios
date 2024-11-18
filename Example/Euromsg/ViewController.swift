@@ -47,7 +47,7 @@ class ViewController: UIViewController {
     }
     
     func testSavePushCustomID() {
-        Euromsg.setNotificationLoginID(notificationLoginID: "umut@visilabs.com")
+        Euromsg.setNotificationLoginID(notificationLoginID: "customID")
     }
     
     @IBAction func pushNotificationPermissionButtonAction(_ sender: UIButton) {
@@ -85,10 +85,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func setEmail(_ sender: Any) {
+        if let email = emailTextField.text {
             Euromsg.configure(appAlias: "EuromsgIOSTest", launchOptions: nil, enableLog: true)
-            Euromsg.setEmail(email: emailTextField.text ?? "umut@visilabs.com", permission: emailPermissionSwitch.isOn)
-            testSavePushCustomID()
+            Euromsg.setEmail(email: email.trimmingCharacters(in: .whitespacesAndNewlines), permission: emailPermissionSwitch.isOn)
             Euromsg.sync()
+        }
     }
     
     @IBAction func removeUserProperty(_ sender: Any) {
@@ -117,10 +118,6 @@ class ViewController: UIViewController {
     
     
     @IBAction func getPushMessagesWithID(_ sender: Any) {
-        Euromsg.readPushMessages(pushId: userPropertyTextField.text ?? "1") { success in
-            print(success)
-        }
-        /*
         print("🚲 getPushMessages called")
         getSubscription()
         Euromsg.getPushMessagesWithId(completion: { messages in
@@ -136,7 +133,6 @@ class ViewController: UIViewController {
             }
             
         })
-         */
     }
     
     private func getSubscription() {
