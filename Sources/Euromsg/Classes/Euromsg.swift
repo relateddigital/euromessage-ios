@@ -622,17 +622,30 @@ extension Euromsg {
         completion(EMUserDefaultsUtils.getRecentPayloadsWithId())
     }
     
-    public static func deletePayloadWithId(pushId: String,completion: @escaping ((_ completed: Bool) -> Void)) {
-        EMUserDefaultsUtils.deletePayloadWithId(pushId: pushId) { succes in
-            completion(succes)
+    public static func deletePayloadWithId(pushId: String? = nil, completion: @escaping ((_ completed: Bool) -> Void)) {
+            if let pushId = pushId {
+                EMUserDefaultsUtils.deletePayloadWithId(pushId: pushId) { success in
+                    completion(success)
+                }
+            } else {
+                EMUserDefaultsUtils.deletePayloadWithId { success in
+                    completion(success)
+                }
+            }
+            
         }
-    }
-    
-    public static func deleteAllPayloads(completion: @escaping ((_ completed: Bool) -> Void)) {
-        EMUserDefaultsUtils.deleteAllPayloads { succes in
-            completion(succes)
+        
+    public static func deletePayload(pushId: String? = nil, completion: @escaping ((_ completed: Bool) -> Void)) {
+        if let pushId = pushId {
+                EMUserDefaultsUtils.deletePayload(pushId: pushId) { success in
+                    completion(success)
+                }
+            } else {
+                EMUserDefaultsUtils.deletePayload { success in
+                    completion(success)
+                }
+            }
         }
-    }
     public static func readAllPushMessages(pushId: String? = nil, completion: @escaping ((_ success: Bool) -> Void)) {
         if let pushId = pushId {
             EMUserDefaultsUtils.readAllPushMessages(pushId: pushId) { success in

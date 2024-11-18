@@ -160,38 +160,70 @@ class EMUserDefaultsUtils {
         }
     }
     
-    static func deletePayloadWithId(pushId: String, completion: @escaping (Bool) -> Void) {
-        var recentPayloads = getRecentPayloads()
-        payloadLock.write {
-            if let index = recentPayloads.firstIndex(where: { $0.pushId == pushId }) {
+    static func deletePayloadWithId(pushId: String? = nil, completion: @escaping (Bool) -> Void) {
+            let emptyPayloads: [EMMessage] = []
+            var recentPayloads = getRecentPayloadsWithId()
+            payloadLock.write {
+                
+                guard let pushId = pushId, let index = recentPayloads.firstIndex(where: { $0.pushId == pushId }) else {
+                    do {
+                        let emptyData = try JSONEncoder().encode(emptyPayloads)
+                        saveUserDefaults(key: EMKey.euroPayloadsWithIdKey, value: emptyData as AnyObject)
+                        EMLog.info("All payloads have been deleted successfully.")
+                        completion(true)
+                    } catch {
+                        EMLog.warning("Cannot encode empty payloads: \(error.localizedDescription)")
+                        completion(false)
+                    }
+                    return
+                }
+                
                 recentPayloads.remove(at: index)
-                if let recentPayloadsData = try? JSONEncoder().encode(recentPayloads) {
-                    saveUserDefaults(key: EMKey.euroPayloadsKey, value: recentPayloadsData as AnyObject)
+                
+                do {
+                    let updatedData = try JSONEncoder().encode(recentPayloads)
+                    saveUserDefaults(key: EMKey.euroPayloadsWithIdKey, value: updatedData as AnyObject)
+                    EMLog.info("Push with id \(pushId) was deleted")
                     completion(true)
-                } else {
-                    EMLog.warning("Can not encode recentPayloads after deletion: \(String(describing: recentPayloads))")
+                } catch {
+                    EMLog.warning("Cannot encode recentPayloads after deletion: \(error.localizedDescription)")
                     completion(false)
                 }
-            } else {
-                EMLog.warning("Payload with pushId \(pushId) not found.")
-                completion(false)
             }
         }
-    }
 
-    static func deleteAllPayloads(completion: @escaping (Bool) -> Void) {
-        payloadLock.write {
+        static func deletePayload(pushId: String? = nil, completion: @escaping (Bool) -> Void) {
             let emptyPayloads: [EMMessage] = []
-            if let emptyPayloadsData = try? JSONEncoder().encode(emptyPayloads) {
-                saveUserDefaults(key: EMKey.euroPayloadsKey, value: emptyPayloadsData as AnyObject)
-                EMLog.info("All payloads have been deleted successfully.")
-                completion(true)
-            } else {
-                EMLog.warning("Can not encode empty payloads.")
-                completion(false)
+            var recentPayloads = getRecentPayloads()
+            payloadLock.write {
+                
+                guard let pushId = pushId, let index = recentPayloads.firstIndex(where: { $0.pushId == pushId }) else {
+                    // PushId bulunamadı, tüm payload'ları temizliyoruz
+                    do {
+                        let emptyData = try JSONEncoder().encode(emptyPayloads)
+                        saveUserDefaults(key: EMKey.euroPayloadsKey, value: emptyData as AnyObject)
+                        EMLog.info("All payloads have been deleted successfully.")
+                        completion(true)
+                    } catch {
+                        EMLog.warning("Cannot encode empty payloads: \(error.localizedDescription)")
+                        completion(false)
+                    }
+                    return
+                }
+                
+                recentPayloads.remove(at: index)
+                
+                do {
+                    let updatedData = try JSONEncoder().encode(recentPayloads)
+                    saveUserDefaults(key: EMKey.euroPayloadsKey, value: updatedData as AnyObject)
+                    EMLog.info("Push with id \(pushId) was deleted")
+                    completion(true)
+                } catch {
+                    EMLog.warning("Cannot encode recentPayloads after deletion: \(error.localizedDescription)")
+                    completion(false)
+                }
             }
         }
-    }
     
     static func updatePayload(pushId: String?) {
         var recentPayloads = getRecentPayloads()
