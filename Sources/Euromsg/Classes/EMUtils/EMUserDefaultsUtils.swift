@@ -191,6 +191,8 @@ class EMUserDefaultsUtils {
                 }
             }
         }
+    
+    
 
         static func deletePayload(pushId: String? = nil, completion: @escaping (Bool) -> Void) {
             let emptyPayloads: [EMMessage] = []
@@ -246,36 +248,81 @@ class EMUserDefaultsUtils {
         }
     }
     
-    static func readAllPushMessages(pushId: String? = nil, completion: @escaping ((_ success: Bool) -> Void)){
-        var recentPayloads = getRecentPayloads()
+    static func readPushMessagesWithId(pushId: String? = nil, completion: @escaping (Bool) -> Void) {
+        // Mevcut payload'ları al
+        var recentPayloads = getRecentPayloadsWithId()
+        
         payloadLock.write {
-            if let pushId = pushId {
-                if let index = recentPayloads.firstIndex(where: { $0.pushId == pushId }) {
-                    var updatedPayload = recentPayloads[index]
-                    updatedPayload.status = "O"
-                    updatedPayload.openedDate = EMTools.formatDate(Date())
-                    recentPayloads[index] = updatedPayload
-                } else {
-                    // Belirtilen pushId'ye sahip bir öğe bulunamadı
-                    EMLog.warning("Push message with pushId \(pushId) not found.")
+            guard let pushId = pushId, let index = recentPayloads.firstIndex(where: { $0.pushId == pushId }) else {
+                do {
+                    for index in 0..<recentPayloads.count {
+                        recentPayloads[index].status = "O"
+                        recentPayloads[index].openedDate = EMTools.formatDate(Date())
+                    }
+                    
+                    let updatedData = try JSONEncoder().encode(recentPayloads)
+                    saveUserDefaults(key: EMKey.euroPayloadsWithIdKey, value: updatedData as AnyObject)
+                    EMLog.info("All messages marked as read")
+                    completion(true)
+                } catch {
+                    EMLog.warning("Push message with pushId \(pushId ?? "") not found.")
                     completion(false)
-                    return // İşlemi sonlandır ve devam etme
                 }
-            } else {
-                for index in 0..<recentPayloads.count {
-                    var updatedPayload = recentPayloads[index]
-                    updatedPayload.status = "O"
-                    updatedPayload.openedDate = EMTools.formatDate(Date())
-                    recentPayloads[index] = updatedPayload
-                }
+                return
             }
-            if let updatedPayloadsData = try? JSONEncoder().encode(recentPayloads) {
-                saveUserDefaults(key: EMKey.euroPayloadsKey, value: updatedPayloadsData as AnyObject)
+            
+            recentPayloads[index].status = "O"
+            recentPayloads[index].openedDate = EMTools.formatDate(Date())
+            
+            do {
+                let updatedData = try JSONEncoder().encode(recentPayloads)
+                saveUserDefaults(key: EMKey.euroPayloadsWithIdKey, value: updatedData as AnyObject)
+                EMLog.info("Push with id \(pushId) marked as read")
                 completion(true)
-            } else {
-                EMLog.warning("Can not encode updated payloads: \(String(describing: recentPayloads))")
+            } catch {
+                EMLog.warning("Cannot encode recentPayloads after deletion: \(error.localizedDescription)")
                 completion(false)
             }
+             
+        }
+    }
+    
+    static func readPushMessages(pushId: String? = nil, completion: @escaping (Bool) -> Void) {
+        // Mevcut payload'ları al
+        var recentPayloads = getRecentPayloads()
+        
+        payloadLock.write {
+            guard let pushId = pushId, let index = recentPayloads.firstIndex(where: { $0.pushId == pushId }) else {
+                do {
+                    for index in 0..<recentPayloads.count {
+                        recentPayloads[index].status = "O"
+                        recentPayloads[index].openedDate = EMTools.formatDate(Date())
+                    }
+                    
+                    let updatedData = try JSONEncoder().encode(recentPayloads)
+                    saveUserDefaults(key: EMKey.euroPayloadsKey, value: updatedData as AnyObject)
+                    EMLog.info("All messages marked as read")
+                    completion(true)
+                } catch {
+                    EMLog.warning("Push message with pushId \(pushId ?? "") not found.")
+                    completion(false)
+                }
+                return
+            }
+            
+            recentPayloads[index].status = "O"
+            recentPayloads[index].openedDate = EMTools.formatDate(Date())
+            
+            do {
+                let updatedData = try JSONEncoder().encode(recentPayloads)
+                saveUserDefaults(key: EMKey.euroPayloadsKey, value: updatedData as AnyObject)
+                EMLog.info("Push with id \(pushId) marked as read")
+                completion(true)
+            } catch {
+                EMLog.warning("Cannot encode recentPayloads after deletion: \(error.localizedDescription)")
+                completion(false)
+            }
+             
         }
     }
     

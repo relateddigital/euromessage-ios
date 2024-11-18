@@ -646,17 +646,29 @@ extension Euromsg {
                 }
             }
         }
-    public static func readAllPushMessages(pushId: String? = nil, completion: @escaping ((_ success: Bool) -> Void)) {
+    
+    public static func readPushMessagesWithId(pushId: String? = nil, completion: @escaping ((_ success: Bool) -> Void)) {
         if let pushId = pushId {
-            EMUserDefaultsUtils.readAllPushMessages(pushId: pushId) { success in
+            EMUserDefaultsUtils.readPushMessagesWithId(pushId: pushId) { success in
                 completion(success)
             }
         } else {
-            EMUserDefaultsUtils.readAllPushMessages { success in
+            EMUserDefaultsUtils.readPushMessagesWithId { success in
                 completion(success)
             }
         }
-        
+    }
+    
+    public static func readPushMessages(pushId: String? = nil, completion: @escaping ((_ success: Bool) -> Void)) {
+        if let pushId = pushId {
+            EMUserDefaultsUtils.readPushMessages(pushId: pushId) { success in
+                completion(success)
+            }
+        } else {
+            EMUserDefaultsUtils.readPushMessages { success in
+                completion(success)
+            }
+        }
     }
     
     public static func getSubscription () -> EMSubscriptionRequest {
