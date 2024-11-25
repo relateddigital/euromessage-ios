@@ -62,7 +62,7 @@ class EMReadHandler {
             inProgressPushId = pushID
             inProgressEmPushSp = emPushSp
             emMessage = message
-            EMLog.info("reportRead: \(message.encoded)")
+            EMLog.info("reportRead: \(message.encode ?? "")")
             request = EMRetentionRequest(key: appKey, token: token, status: EMKey.euroReadStatus, pushId: pushID, emPushSp: emPushSp)
         }
         

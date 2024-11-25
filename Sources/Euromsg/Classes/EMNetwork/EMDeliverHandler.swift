@@ -58,7 +58,7 @@ class EMDeliverHandler {
             inProgressPushId = pushID
             inProgressEmPushSp = emPushSp
             emMessage = message
-            EMLog.info("reportDeliver: \(message.encoded)")
+            EMLog.info("reportDeliver: \(message.encode ?? "")")
             if silent == true {
                 request = EMRetentionRequest(key: appKey, token: token, status: EMKey.euroSilentStatus, pushId: pushID, emPushSp: emPushSp)
             } else {

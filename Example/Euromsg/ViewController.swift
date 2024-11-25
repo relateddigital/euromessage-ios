@@ -110,7 +110,8 @@ class ViewController: UIViewController {
             for message in messages {
                 print("🆔: \(message.pushId ?? "")")
                 print("📅: \(message.formattedDateString ?? "")")
-                print(message.encoded)
+                print(message.encode ?? "")
+                print(message.extraFields)
             }
             
         })
@@ -129,7 +130,7 @@ class ViewController: UIViewController {
             for message in messages {
                 print("🆔: \(message.pushId ?? "")")
                 print("📅: \(message.formattedDateString ?? "")")
-                print(message.encoded)
+                print(message.encode ?? "")
             }
             
         })

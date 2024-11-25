@@ -96,35 +96,37 @@ class EMUserDefaultsUtils {
     private static let payloadLock = EMReadWriteLock(label: "EMPayloadLock")
     
     static func savePayload(payload: EMMessage) {
+        
         var payload = payload
         if let pushId = payload.pushId {
             payload.formattedDateString = EMTools.formatDate(Date())
             payload.openedDate = ""
             payload.status = "D"
             if let extra = Euromsg.shared?.subscription.extra {
-                if extra["keyID"] != nil {
-                    payload.keyID = extra["keyID"]
+                if let keyID = extra["keyID"] {
+                    payload.keyID = keyID
                 }
-                if extra["email"] != nil {
-                    payload.email = extra["email"]
+                if let email = extra["email"] {
+                    payload.email = email
                 }
             }
             var recentPayloads = getRecentPayloads()
             payloadLock.write {
                 if let existingPayload = recentPayloads.first(where: { $0.pushId == pushId }) {
-                    EMLog.warning("Payload is not valid, there is already another payload with same pushId  New : \(payload.encoded) Existing: \(existingPayload.encoded)")
+                    EMLog.warning("Payload is not valid, there is already another payload with same pushId. New: \(payload.encode ?? ""), Existing: \(existingPayload.encode ?? "")")
                 } else {
                     recentPayloads.insert(payload, at: 0)
                     if let recentPayloadsData = try? JSONEncoder().encode(recentPayloads) {
                         saveUserDefaults(key: EMKey.euroPayloadsKey, value: recentPayloadsData as AnyObject)
                     } else {
-                        EMLog.warning("Can not encode recentPayloads : \(String(describing: recentPayloads))")
+                        EMLog.warning("Cannot encode recentPayloads: \(String(describing: recentPayloads))")
                     }
                 }
             }
         } else {
-            EMLog.warning("Payload is not valid, pushId missing : \(payload.encoded)")
+            EMLog.warning("Payload is not valid, pushId missing: \(payload.encode ?? "")")
         }
+        
     }
     
     static func savePayloadWithId(payload: EMMessage, notificationLoginID: String) {
@@ -145,7 +147,7 @@ class EMUserDefaultsUtils {
             var recentPayloads = getRecentPayloadsWithId()
             payloadLock.write {
                 if let existingPayload = recentPayloads.first(where: { $0.pushId == pushId }) {
-                    EMLog.warning("Payload is not valid, there is already another payload with same pushId  New : \(payload.encoded) Existing: \(existingPayload.encoded)")
+                    EMLog.warning("Payload is not valid, there is already another payload with same pushId  New : \(payload.encode ?? "") Existing: \(existingPayload)")
                 } else {
                     recentPayloads.insert(payload, at: 0)
                     if let recentPayloadsData = try? JSONEncoder().encode(recentPayloads) {
@@ -156,7 +158,7 @@ class EMUserDefaultsUtils {
                 }
             }
         } else {
-            EMLog.warning("Payload is not valid, pushId missing : \(payload.encoded)")
+            EMLog.warning("Payload is not valid, pushId missing : \(payload.encode ?? "")")
         }
     }
     
@@ -192,8 +194,6 @@ class EMUserDefaultsUtils {
             }
         }
     
-    
-
         static func deletePayload(pushId: String? = nil, completion: @escaping (Bool) -> Void) {
             let emptyPayloads: [EMMessage] = []
             var recentPayloads = getRecentPayloads()
