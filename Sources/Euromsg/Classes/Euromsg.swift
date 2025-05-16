@@ -17,6 +17,11 @@ public protocol EuromsgDelegate: AnyObject {
     func didFailRegister(error: EuromsgAPIError)
 }
 
+struct LogConfig: Codable {
+    let isLoggingEnabled: Bool
+    let excludedCustomerIds: [String]
+}
+
 public class Euromsg {
     private static var sharedInstance: Euromsg?
     private let readWriteLock: EMReadWriteLock
@@ -767,22 +772,106 @@ extension Euromsg {
         graylog.extra = subscription.extra
     }
     
+    private static func fetchLogConfig(completion: @escaping (LogConfig?) -> Void) {
+        // Endpoint URL'sini alırken hata kontrolü yapalım
+    let urlString = "https://mbls.visilabs.net/log_rc.json"
+    
+    guard !urlString.isEmpty, let url = URL(string: urlString) else {
+            EMLog.error("Invalid or undefined log config endpoint URL.")
+            completion(nil)
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        // Gerekirse timeout gibi diğer ayarları ekleyebilirsiniz.
+        // request.timeoutInterval = RelatedDigital.rdProfile.requestTimeoutInterval // Eğer varsa
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                EMLog.error("Log config fetch error: \(error.localizedDescription)")
+                completion(nil) // Hata durumunda varsayılan davranış (loglama yapılabilir veya yapılmayabilir)
+                return
+            }
+
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                EMLog.error("Invalid HTTP response for log config: \(String(describing: response))")
+                completion(nil)
+                return
+            }
+
+            guard let data = data else {
+                EMLog.error("No data received for log config.")
+                completion(nil)
+                return
+            }
+
+            do {
+                let logConfig = try JSONDecoder().decode(LogConfig.self, from: data)
+                 EMLog.info("Log config fetched successfully: \(logConfig)")
+                completion(logConfig)
+            } catch {
+                EMLog.error("Failed to decode log config: \(error.localizedDescription)")
+                completion(nil)
+            }
+        }.resume()
+    }
+    
+    private static func shouldSendLog(dataSource: String, completion: @escaping (Bool) -> Void) {
+        fetchLogConfig { logConfig in
+            // Ana thread'e dönerek state güncellemelerini güvenli yapalım
+            DispatchQueue.main.async {
+                guard let config = logConfig else {
+                    // Konfigürasyon alınamazsa ne yapılmalı? Varsayılan olarak log atılsın mı?
+                    // Şimdilik hata durumunda loglamaya izin verelim.
+                    EMLog.warning("Could not fetch log configuration. Proceeding with logging.")
+                    completion(true)
+                    return
+                }
+                
+                if !config.isLoggingEnabled {
+                    EMLog.info("Logging is disabled via remote config.")
+                    completion(false)
+                    return
+                }
+                
+                if config.excludedCustomerIds.contains(dataSource) {
+                    EMLog.info("Logging disabled for this dataSource (\(dataSource)) via remote config exclusion.")
+                    completion(false)
+                    return
+                }
+                
+                // Loglama aktif ve dataSource hariç tutulmamışsa log gönderilebilir.
+                EMLog.info("Logging is enabled for this dataSource (\(dataSource)).")
+                completion(true)
+            }
+        }
+    }
+    
     public static func sendGraylogMessage(logLevel: String, logMessage: String, _ path: String = #file, _ function: String = #function, _ line: Int = #line) {
         guard let shared = getShared() else { return }
-        var emGraylogRequest: EMGraylogRequest!
-        shared.readWriteLock.read {
-            emGraylogRequest = shared.graylog
+        let currentDataSource = Euromsg.getSubscription().appKey ?? ""
+        shouldSendLog(dataSource: currentDataSource) { shouldLog in
+            // shouldSendLog asenkron olduğu için completion handler içinde devam ediyoruz
+            if !shouldLog {
+                EMLog.info("Skipping Graylog message due to remote configuration: \(logMessage)")
+                return // Log gönderme işlemini atla
+            }
+            var emGraylogRequest: EMGraylogRequest!
+            shared.readWriteLock.read {
+                emGraylogRequest = shared.graylog
+            }
+            emGraylogRequest.logLevel = logLevel
+            emGraylogRequest.logMessage = logMessage
+            
+            if let file = path.components(separatedBy: "/").last {
+                emGraylogRequest.logPlace = "\(file)/\(function)/\(line)"
+            } else {
+                emGraylogRequest.logPlace = "\(path)/\(function)/\(line)"
+            }
+            
+            shared.euromsgAPI?.request(requestModel: emGraylogRequest, retry: 3, completion: shared.sendGraylogMessageHandler)
         }
-        emGraylogRequest.logLevel = logLevel
-        emGraylogRequest.logMessage = logMessage
-        
-        if let file = path.components(separatedBy: "/").last {
-            emGraylogRequest.logPlace = "\(file)/\(function)/\(line)"
-        } else {
-            emGraylogRequest.logPlace = "\(path)/\(function)/\(line)"
-        }
-        
-        shared.euromsgAPI?.request(requestModel: emGraylogRequest, retry: 3, completion: shared.sendGraylogMessageHandler)
     }
     
     private func sendGraylogMessageHandler(result: Result<EMResponse?, EuromsgAPIError>) {
