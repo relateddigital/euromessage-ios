@@ -10,7 +10,6 @@ let package = Package(
     products: [
         .library(
             name: "Euromsg",
-            type: .dynamic, // önemli olabilir
             targets: ["Euromsg"]
         )
     ],
@@ -18,9 +17,7 @@ let package = Package(
     targets: [
         .target(
             name: "Euromsg",
-            dependencies: [],
-            path: "Sources/Euromsg/Classes" // burada sınıflar olduğu için
-        ),
+            dependencies: []),
         .testTarget(
             name: "EuromsgTests",
             dependencies: ["Euromsg"]
