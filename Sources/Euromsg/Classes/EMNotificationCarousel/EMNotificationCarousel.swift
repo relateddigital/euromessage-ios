@@ -44,14 +44,27 @@ public class EMNotificationCarousel: UIView {
     }
 
     public func didReceive(_ notification: UNNotification) {
+        Euromsg.pushTrace("Carousel content extension didReceive started")
         self.bestAttemptContent = (notification.request.content.mutableCopy() as? UNMutableNotificationContent)
         guard let userInfo = bestAttemptContent?.userInfo,
             let data = try? JSONSerialization.data(withJSONObject: userInfo,
-                                                   options: []) else { return }
+                                                   options: []) else {
+            Euromsg.pushError("Carousel payload JSON serialization FAILED, carousel will stay empty")
+            return
+        }
         self.userInfo = userInfo
-        let pushDetail = try? JSONDecoder.init().decode(EMMessage.self,
-                                                        from: data)
-        guard let list = pushDetail?.elements else { return }
+        let pushDetail: EMMessage?
+        do {
+            pushDetail = try JSONDecoder.init().decode(EMMessage.self, from: data)
+        } catch {
+            Euromsg.pushError("Carousel payload decode FAILED: \(error), carousel will stay empty")
+            return
+        }
+        guard let list = pushDetail?.elements, !list.isEmpty else {
+            Euromsg.pushError("Carousel payload has no 'elements', carousel will stay empty. pushId: \(pushDetail?.pushId ?? "nil")")
+            return
+        }
+        Euromsg.pushTrace("Carousel loaded with \(list.count) element(s). pushId: \(pushDetail?.pushId ?? "nil")")
         self.carouselElements = list
         DispatchQueue.main.async {
             self.collectionView.register(UINib(nibName: self.identifier, bundle: Bundle(for: type(of: self))), forCellWithReuseIdentifier: self.identifier)
@@ -63,6 +76,7 @@ public class EMNotificationCarousel: UIView {
     }
 
     public func didReceive(_ response: UNNotificationResponse, completionHandler completion: @escaping (UNNotificationContentExtensionResponseOption) -> Void) {
+        Euromsg.pushTrace("Carousel action received: \(response.actionIdentifier)")
         if response.actionIdentifier == "carousel.next" {
             self.scrollNextItem()
             completion(UNNotificationContentExtensionResponseOption.doNotDismiss)

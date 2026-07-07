@@ -27,12 +27,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         Euromsg.handlePush(pushDictionary: userInfo)
+        printPayloadAsJSON(userInfo)
     }
 
     func application(_ application: UIApplication,
                      didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         Euromsg.handlePush(pushDictionary: userInfo)
+        printPayloadAsJSON(userInfo)
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,
@@ -51,6 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         Euromsg.handlePush(pushDictionary: response.notification.request.content.userInfo)
         Euromsg.handlePushWithActionButtons(response: response,type:self)
+        printPayloadAsJSON(response.notification.request.content.userInfo)
 
         userInfoPayload = response.notification.request.content.userInfo.toString() ?? "çevrilemedi"
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -62,6 +65,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func actionButtonClicked(identifier: String, url: String) {
         print(identifier,url)
+    }
+    
+    func printPayloadAsJSON(_ userInfo: [AnyHashable: Any]) {
+        // AnyHashable -> String dönüşümü
+        var jsonCompatible: [String: Any] = [:]
+        for (key, value) in userInfo {
+            jsonCompatible["\(key)"] = value
+        }
+        
+        // JSONData -> String (pretty format)
+        if let data = try? JSONSerialization.data(withJSONObject: jsonCompatible, options: [.prettyPrinted]),
+           let jsonString = String(data: data, encoding: .utf8) {
+            print("📦 Gelen Push Payload (JSON):\n\(jsonString)")
+        } else {
+            print("⚠️ Payload JSON’a çevrilemedi, raw data:\n\(userInfo)")
+        }
     }
 }
 

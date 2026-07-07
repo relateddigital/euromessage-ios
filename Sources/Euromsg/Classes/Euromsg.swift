@@ -117,8 +117,16 @@ public class Euromsg {
     
     // MARK: Lifecycle
     
+    /// When true, every step of the push pipeline (payload decode, deliver report,
+    /// attachment download, contentHandler calls) is also sent to Graylog as info logs.
+    /// Failure logs are sent to Graylog regardless of this flag.
+    /// Must be set in BOTH the app and the NotificationService extension
+    /// (or passed via `configure(pushDiagnostics:)`).
+    public static var pushDiagnosticsEnabled: Bool = true
+
     public class func configure(appAlias: String, launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
                                 , enableLog: Bool = false, appGroupsKey: String? = nil, deliveredBadge: Bool? = true) {
+        Euromsg.pushDiagnosticsEnabled = true
         if let appGroupName = EMTools.getAppGroupName(appGroupName: appGroupsKey) {
             EMUserDefaultsUtils.setAppGroupsUserDefaults(appGroupName: appGroupName)
             EMLog.info("App Group Key : \(appGroupName)")
@@ -147,9 +155,47 @@ public class Euromsg {
             Euromsg.emDeliverHandler = EMDeliverHandler(euromsg: Euromsg.shared!)
         }
         
+        reportPreviousUnfinishedNSERun()
+
         if let userInfo = launchOptions?[UIA.LaunchOptionsKey.remoteNotification] as? [String: Any] {
             Euromsg.handlePush(pushDictionary: userInfo)
         }
+    }
+
+    /// Call from `UNNotificationServiceExtension.serviceExtensionTimeWillExpire()`.
+    /// Logs the timeout to Graylog and (optionally) delivers the best attempt content.
+    public static func serviceExtensionTimeWillExpire(_ bestAttemptContent: UNMutableNotificationContent? = nil,
+                                                      withContentHandler contentHandler: ((UNNotificationContent) -> Void)? = nil) {
+        let lastRun = EMUserDefaultsUtils.retrieveNSERun()
+        let stage = lastRun?["stage"] as? String ?? "unknown"
+        let pushId = lastRun?["pushId"] as? String ?? "unknown"
+        Euromsg.pushError("NSE serviceExtensionTimeWillExpire fired: ~30s budget exhausted before contentHandler. lastStage: \(stage), pushId: \(pushId). Push shown with original content.")
+        EMUserDefaultsUtils.markNSEStage("timedOut")
+        if let content = bestAttemptContent, let handler = contentHandler {
+            handler(content)
+        }
+    }
+
+    /// If the previous notification service extension run never reached
+    /// contentHandler (timeout, crash, killed before its logs went out),
+    /// report it now from a healthy process.
+    internal static func reportPreviousUnfinishedNSERun() {
+        guard let run = EMUserDefaultsUtils.retrieveNSERun() else { return }
+        if (run["completed"] as? Bool) == true {
+            EMUserDefaultsUtils.clearNSERun()
+            return
+        }
+        // Younger than the ~30s NSE budget: the extension may still be
+        // processing this push, so don't report a false failure yet.
+        let startedAtTs = run["startedAt"] as? Double ?? 0
+        guard Date().timeIntervalSince1970 - startedAtTs > 35 else { return }
+
+        let stage = run["stage"] as? String ?? "unknown"
+        let pushId = run["pushId"] as? String ?? "unknown"
+        let detail = run["detail"] as? String
+        let startedAt = EMTools.formatDate(Date(timeIntervalSince1970: startedAtTs))
+        Euromsg.pushError("Previous NSE run did NOT complete (timed out, crashed or was killed before logging). lastStage: \(stage), pushId: \(pushId), startedAt: \(startedAt)\(detail != nil ? ", detail: \(detail!)" : "")")
+        EMUserDefaultsUtils.clearNSERun()
     }
     
     /// Request to user for authorization for push notification
@@ -375,13 +421,17 @@ extension Euromsg {
      }
      */
     public static func registerToken(tokenData: Data?) {
-        guard let shared = getShared() else { return }
+        guard let shared = getShared() else {
+            Euromsg.pushWarning("registerToken called but Euromsg is not configured, token NOT stored")
+            return
+        }
         guard let tokenData = tokenData else {
-            EMLog.error("Token data cannot be nil")
+            Euromsg.pushError("registerToken called with nil token data, token NOT stored")
             return
         }
         let tokenString = tokenData.reduce("", { $0 + String(format: "%02X", $1) })
         EMLog.info("Your token is \(tokenString)")
+        Euromsg.pushTrace("registerToken stored APNs token: \(tokenString)")
         shared.readWriteLock.write {
             shared.subscription.token = tokenString
         }
@@ -394,15 +444,17 @@ extension Euromsg {
         actionButtonDelegate = type as? PushAction
         
         let pushDictionary = response.notification.request.content.userInfo
-        
+
         if let jsonData = try? JSONSerialization.data(withJSONObject: pushDictionary, options: .prettyPrinted),
            let message = try? JSONDecoder().decode(EMMessage.self, from: jsonData) {
-            
+            Euromsg.pushTrace("handlePushWithActionButtons actionIdentifier: \(response.actionIdentifier), pushId: \(message.pushId ?? "nil")")
             if response.actionIdentifier == "action_0" {
                 actionButtonDelegate?.actionButtonClicked(identifier: "action_0", url: message.actions?.first?.Url ?? "")
             } else if response.actionIdentifier == "action_1" {
                 actionButtonDelegate?.actionButtonClicked(identifier: "action_1", url: message.actions?.last?.Url ?? "")
             }
+        } else {
+            Euromsg.pushError("handlePushWithActionButtons payload parse FAILED, action button click NOT handled")
         }
     }
     
@@ -415,14 +467,20 @@ extension Euromsg {
     /// Report Euromsg services that a push notification successfully read
     /// - Parameter pushDictionary: push notification data that comes from APNS
     public static func handlePush(pushDictionary: [AnyHashable: Any]) {
-        guard let shared = getShared() else { return }
+        guard let shared = getShared() else {
+            Euromsg.pushWarning("handlePush called but Euromsg is not configured, push interaction NOT reported")
+            return
+        }
         guard pushDictionary["pushId"] != nil else {
+            Euromsg.pushTrace("handlePush called without pushId (not a Euromsg push?), ignored. keys: \(pushDictionary.keys.map { "\($0)" }.joined(separator: ","))")
             return
         }
         EMLog.info("handlePush: \(pushDictionary)")
-        
+        reportPreviousUnfinishedNSERun()
+
         if let jsonData = try? JSONSerialization.data(withJSONObject: pushDictionary, options: .prettyPrinted),
            let message = try? JSONDecoder().decode(EMMessage.self, from: jsonData) {
+            Euromsg.pushTrace("handlePush decoded. pushId: \(message.pushId ?? "nil"), silent: \(message.isSilent())")
             shared.networkQueue.async {
                 if message.isSilent() {
                     Euromsg.emDeliverHandler?.reportDeliver(message: message, silent: true)
@@ -432,8 +490,7 @@ extension Euromsg {
                 }
             }
         } else {
-            EMLog.error("pushDictionary parse failed")
-            Euromsg.sendGraylogMessage(logLevel: EMKey.graylogLogLevelError, logMessage: "pushDictionary parse failed")
+            Euromsg.pushError("handlePush pushDictionary parse FAILED, push interaction NOT reported. pushId: \(pushDictionary["pushId"] ?? "nil")")
         }
     }
     
@@ -772,10 +829,25 @@ extension Euromsg {
         graylog.extra = subscription.extra
     }
     
+    // Log config is fetched once per process; every sendGraylogMessage call used to
+    // trigger a fresh network fetch, which wastes the extension's limited lifetime.
+    private static let logConfigLock = NSLock()
+    private static var cachedLogConfig: LogConfig?
+    private static var logConfigFetched = false
+
     private static func fetchLogConfig(completion: @escaping (LogConfig?) -> Void) {
+        logConfigLock.lock()
+        if logConfigFetched {
+            let cached = cachedLogConfig
+            logConfigLock.unlock()
+            completion(cached)
+            return
+        }
+        logConfigLock.unlock()
+
         // Endpoint URL'sini alırken hata kontrolü yapalım
     let urlString = "https://mbls.visilabs.net/log_rc.json"
-    
+
     guard !urlString.isEmpty, let url = URL(string: urlString) else {
             EMLog.error("Invalid or undefined log config endpoint URL.")
             completion(nil)
@@ -788,31 +860,39 @@ extension Euromsg {
         // request.timeoutInterval = RelatedDigital.rdProfile.requestTimeoutInterval // Eğer varsa
 
         URLSession.shared.dataTask(with: request) { data, response, error in
+            let finish: (LogConfig?) -> Void = { config in
+                logConfigLock.lock()
+                cachedLogConfig = config
+                logConfigFetched = true
+                logConfigLock.unlock()
+                completion(config)
+            }
+
             if let error = error {
                 EMLog.error("Log config fetch error: \(error.localizedDescription)")
-                completion(nil) // Hata durumunda varsayılan davranış (loglama yapılabilir veya yapılmayabilir)
+                finish(nil) // Hata durumunda varsayılan davranış (loglama yapılabilir veya yapılmayabilir)
                 return
             }
 
             guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
                 EMLog.error("Invalid HTTP response for log config: \(String(describing: response))")
-                completion(nil)
+                finish(nil)
                 return
             }
 
             guard let data = data else {
                 EMLog.error("No data received for log config.")
-                completion(nil)
+                finish(nil)
                 return
             }
 
             do {
                 let logConfig = try JSONDecoder().decode(LogConfig.self, from: data)
                  EMLog.info("Log config fetched successfully: \(logConfig)")
-                completion(logConfig)
+                finish(logConfig)
             } catch {
                 EMLog.error("Failed to decode log config: \(error.localizedDescription)")
-                completion(nil)
+                finish(nil)
             }
         }.resume()
     }
@@ -881,5 +961,31 @@ extension Euromsg {
         case let .failure(error):
             EMLog.error("GraylogMessage request failed : \(error)")
         }
+    }
+
+    // MARK: - Push pipeline diagnostics
+
+    /// Step-by-step trace of the push pipeline. Always logged locally;
+    /// sent to Graylog only when `pushDiagnosticsEnabled` is true.
+    internal static func pushTrace(_ message: String, _ path: String = #file, _ function: String = #function, _ line: Int = #line) {
+        let prefixed = "\(EMKey.pushDiagPrefix) \(message)"
+        EMLog.info(prefixed)
+        if pushDiagnosticsEnabled {
+            sendGraylogMessage(logLevel: EMKey.graylogLogLevelInfo, logMessage: prefixed, path, function, line)
+        }
+    }
+
+    /// Push pipeline warning. Always sent to Graylog (subject to remote log config).
+    internal static func pushWarning(_ message: String, _ path: String = #file, _ function: String = #function, _ line: Int = #line) {
+        let prefixed = "\(EMKey.pushDiagPrefix) \(message)"
+        EMLog.warning(prefixed)
+        sendGraylogMessage(logLevel: EMKey.graylogLogLevelWarning, logMessage: prefixed, path, function, line)
+    }
+
+    /// Push pipeline failure. Always sent to Graylog (subject to remote log config).
+    internal static func pushError(_ message: String, _ path: String = #file, _ function: String = #function, _ line: Int = #line) {
+        let prefixed = "\(EMKey.pushDiagPrefix) \(message)"
+        EMLog.error(prefixed)
+        sendGraylogMessage(logLevel: EMKey.graylogLogLevelError, logMessage: prefixed, path, function, line)
     }
 }

@@ -55,8 +55,39 @@ class EMUserDefaultsUtils {
         appGroupUserDefaults?.synchronize()
     }
     
+    // MARK: - NSE run tracking
+
+    /// Persists the notification service extension's progress so that if the
+    /// extension times out, crashes or is killed before its Graylog logs go out,
+    /// the next `configure` call (app or extension) can report where it stopped.
+    static func markNSEStage(_ stage: String, pushId: String? = nil, detail: String? = nil, completed: Bool = false) {
+        var record: [String: Any]
+        if stage == "started" {
+            record = ["startedAt": Date().timeIntervalSince1970]
+        } else {
+            record = (retrieveUserDefaults(userKey: EMKey.nseLastRunKey) as? [String: Any]) ?? [:]
+        }
+        record["stage"] = stage
+        if let pushId = pushId {
+            record["pushId"] = pushId
+        }
+        if let detail = detail {
+            record["detail"] = detail
+        }
+        record["completed"] = completed
+        saveUserDefaults(key: EMKey.nseLastRunKey, value: record as AnyObject)
+    }
+
+    static func retrieveNSERun() -> [String: Any]? {
+        return retrieveUserDefaults(userKey: EMKey.nseLastRunKey) as? [String: Any]
+    }
+
+    static func clearNSERun() {
+        removeUserDefaults(userKey: EMKey.nseLastRunKey)
+    }
+
     // MARK: - Retention
-    
+
     private static let pushIdLock = EMReadWriteLock(label: "EMPushIdLock")
     
     static func saveReadPushId(pushId: String) {

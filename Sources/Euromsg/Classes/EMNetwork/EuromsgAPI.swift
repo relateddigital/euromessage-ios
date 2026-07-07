@@ -58,8 +58,12 @@ class EuromsgAPI: EuromsgAPIProtocol {
                         EMLog.error("Server response with failure : \(String(describing: remoteResponse))")
                         if retry > 0 {
                             self?.request(requestModel: requestModel, retry: retry - 1, completion: completion)
-                            
+
                         } else {
+                            // Graylog requests are excluded to avoid a report-failure loop
+                            if !(requestModel is EMGraylogRequest) {
+                                Euromsg.pushError("API request exhausted retries. path: \(requestModel.path), httpStatus: \(remoteResponse?.statusCode ?? -1)")
+                            }
                             completion(.failure(EuromsgAPIError.connectionFailed))
                         }
                     }
@@ -70,6 +74,9 @@ class EuromsgAPI: EuromsgAPIProtocol {
                 if retry > 0 {
                     self?.request(requestModel: requestModel, retry: retry - 1, completion: completion)
                 } else {
+                    if !(requestModel is EMGraylogRequest) {
+                        Euromsg.pushError("API request connection FAILED after retries. path: \(requestModel.path), error: \(connectionError.localizedDescription)")
+                    }
                     completion( .failure(EuromsgAPIError.connectionFailed))
                 }
             }

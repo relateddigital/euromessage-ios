@@ -29,19 +29,19 @@ class EMReadHandler {
     internal func reportRead(message: EMMessage) {
         
         guard let appKey = euromsg.subscription.appKey, let token = euromsg.subscription.token else {
-            EMLog.error("EMReadHandler reportRead appKey or token does not exist")
+            Euromsg.pushError("ReadHandler appKey(\(euromsg.subscription.appKey == nil ? "nil" : "ok")) or token(\(euromsg.subscription.token == nil ? "nil" : "ok")) missing, read report SKIPPED for pushId: \(message.pushId ?? "nil")")
             return
         }
-        
+
         var request: EMRetentionRequest?
-        
+
         guard let pushID = message.pushId, let emPushSp = message.emPushSp else {
-            EMLog.warning("EMReadHandler pushId or emPushSp is empty.")
+            Euromsg.pushWarning("ReadHandler pushId(\(message.pushId ?? "nil")) or emPushSp(\(message.emPushSp ?? "nil")) is empty, read report SKIPPED")
             return
         }
-        
+
         if EMUserDefaultsUtils.pushIdListContains(pushId: pushID) {
-            EMLog.warning("EMReadHandler pushId already sent.")
+            Euromsg.pushTrace("ReadHandler pushId \(pushID) already reported, skipping duplicate")
             return
         }
         
@@ -67,18 +67,21 @@ class EMReadHandler {
         }
         
         if let request = request {
+            Euromsg.pushTrace("ReadHandler sending read report. pushId: \(pushID)")
             self.euromsg.euromsgAPI?.request(requestModel: request, retry: 3, completion: self.readRequestHandler)
         }
     }
-    
+
     private func readRequestHandler(result: Result<EMResponse?, EuromsgAPIError>) {
         switch result {
         case .success:
+            Euromsg.pushTrace("ReadHandler read report sent successfully. pushId: \(inProgressPushId ?? "nil")")
             EMUserDefaultsUtils.removeUserDefaults(userKey: EMKey.euroLastMessageKey)
             if let pushId = inProgressPushId {
                 EMUserDefaultsUtils.saveReadPushId(pushId: pushId)
             }
-        case .failure:
+        case let .failure(error):
+            Euromsg.pushError("ReadHandler read report FAILED after retries: \(error). pushId: \(inProgressPushId ?? "nil"), payload saved for later retry")
             if let emMessage = emMessage, let emMessageData = try? JSONEncoder().encode(emMessage) {
                 EMUserDefaultsUtils.saveUserDefaults(key: EMKey.euroLastMessageKey, value: emMessageData as AnyObject)
             }
