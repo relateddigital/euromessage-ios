@@ -13,6 +13,18 @@ import WebKit
 internal class EMTools {
     
     static private var webView: WKWebView?
+
+    /// Resource bundle that contains XIBs / assets.
+    /// CocoaPods (dynamic framework): `Bundle(for:)` points at Euromsg.framework.
+    /// SPM (static by default): classes live in the host binary, so `Bundle(for:)` is
+    /// the app/extension bundle — XIBs are in `Euromsg_Euromsg.bundle` (`Bundle.module`).
+    static var resourceBundle: Bundle {
+        #if SWIFT_PACKAGE
+        return .module
+        #else
+        return Bundle(for: EMTools.self)
+        #endif
+    }
     
     static func validatePhone(phone: String?) -> Bool {
         guard phone != nil else {
@@ -102,16 +114,28 @@ internal class EMTools {
         return name?.trimmingCharacters(in: CharacterSet.whitespaces)
     }
     
-    static private let dateFormatter = DateFormatter()
+    // DateFormatter is not thread-safe; keep one per-thread via Thread.current.
+    private static let dateFormatterKey = "com.euromsg.EMTools.dateFormatter"
+
+    private static var dateFormatter: DateFormatter {
+        if let existing = Thread.current.threadDictionary[dateFormatterKey] as? DateFormatter {
+            return existing
+        }
+        let formatter = DateFormatter()
+        Thread.current.threadDictionary[dateFormatterKey] = formatter
+        return formatter
+    }
 
     static func formatDate(_ date: Date, format: String = "yyyy-MM-dd HH:mm:ss") -> String {
-        dateFormatter.dateFormat = format
-        return dateFormatter.string(from: date)
+        let formatter = dateFormatter
+        formatter.dateFormat = format
+        return formatter.string(from: date)
     }
     
     static func parseDate(_ dateString: String, format: String = "yyyy-MM-dd HH:mm:ss") -> Date? {
-        dateFormatter.dateFormat = format
-        return dateFormatter.date(from: dateString)
+        let formatter = dateFormatter
+        formatter.dateFormat = format
+        return formatter.date(from: dateString)
     }
     
     static func doesMatchURLScheme(_ scheme: String) -> Bool {

@@ -122,11 +122,13 @@ public class Euromsg {
     /// Failure logs are sent to Graylog regardless of this flag.
     /// Must be set in BOTH the app and the NotificationService extension
     /// (or passed via `configure(pushDiagnostics:)`).
-    public static var pushDiagnosticsEnabled: Bool = true
+    /// Defaults to false — enabling floods Graylog and amplifies race-prone logging paths.
+    public static var pushDiagnosticsEnabled: Bool = false
 
     public class func configure(appAlias: String, launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
-                                , enableLog: Bool = false, appGroupsKey: String? = nil, deliveredBadge: Bool? = true) {
-        Euromsg.pushDiagnosticsEnabled = true
+                                , enableLog: Bool = false, appGroupsKey: String? = nil, deliveredBadge: Bool? = true,
+                                pushDiagnostics: Bool = false) {
+        Euromsg.pushDiagnosticsEnabled = pushDiagnostics
         if let appGroupName = EMTools.getAppGroupName(appGroupName: appGroupsKey) {
             EMUserDefaultsUtils.setAppGroupsUserDefaults(appGroupName: appGroupName)
             EMLog.info("App Group Key : \(appGroupName)")
@@ -380,10 +382,13 @@ extension Euromsg {
             return
         }
 
+        // fillGraylogModel mutates state — must run under a write barrier.
+        // Doing it inside read{} races with sendGraylogMessage and can trap
+        // (EXC_BREAKPOINT / SIGABRT), especially under SPM static linking + WMO.
         var subs: EMSubscriptionRequest?
-        shared.readWriteLock.read {
-            subs = shared.subscription
+        shared.readWriteLock.write {
             shared.fillGraylogModel()
+            subs = shared.subscription
         }
 
         guard let validSubs = subs else {
@@ -937,20 +942,23 @@ extension Euromsg {
                 EMLog.info("Skipping Graylog message due to remote configuration: \(logMessage)")
                 return // Log gönderme işlemini atla
             }
-            var emGraylogRequest: EMGraylogRequest!
+            // EMGraylogRequest is a struct — copy under the lock, never force-unwrap.
+            // The previous `EMGraylogRequest!` IUO trapped with EXC_BREAKPOINT under race/timing.
+            var emGraylogRequest: EMGraylogRequest?
             shared.readWriteLock.read {
                 emGraylogRequest = shared.graylog
             }
-            emGraylogRequest.logLevel = logLevel
-            emGraylogRequest.logMessage = logMessage
+            guard var request = emGraylogRequest else { return }
+            request.logLevel = logLevel
+            request.logMessage = logMessage
             
             if let file = path.components(separatedBy: "/").last {
-                emGraylogRequest.logPlace = "\(file)/\(function)/\(line)"
+                request.logPlace = "\(file)/\(function)/\(line)"
             } else {
-                emGraylogRequest.logPlace = "\(path)/\(function)/\(line)"
+                request.logPlace = "\(path)/\(function)/\(line)"
             }
             
-            shared.euromsgAPI?.request(requestModel: emGraylogRequest, retry: 3, completion: shared.sendGraylogMessageHandler)
+            shared.euromsgAPI?.request(requestModel: request, retry: 3, completion: shared.sendGraylogMessageHandler)
         }
     }
     

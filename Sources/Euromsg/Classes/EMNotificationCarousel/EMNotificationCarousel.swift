@@ -39,7 +39,11 @@ public class EMNotificationCarousel: UIView {
     }
 
     func commonInit() {
-        Bundle(for: type(of: self)).loadNibNamed("EMNotificationCarousel", owner: self, options: nil)
+        EMTools.resourceBundle.loadNibNamed("EMNotificationCarousel", owner: self, options: nil)
+        guard let contentView = contentView else {
+            EMLog.error("EMNotificationCarousel.xib failed to load from \(EMTools.resourceBundle.bundlePath)")
+            return
+        }
         contentView.fixInView(self)
     }
 
@@ -67,7 +71,7 @@ public class EMNotificationCarousel: UIView {
         Euromsg.pushTrace("Carousel loaded with \(list.count) element(s). pushId: \(pushDetail?.pushId ?? "nil")")
         self.carouselElements = list
         DispatchQueue.main.async {
-            self.collectionView.register(UINib(nibName: self.identifier, bundle: Bundle(for: type(of: self))), forCellWithReuseIdentifier: self.identifier)
+            self.collectionView.register(UINib(nibName: self.identifier, bundle: EMTools.resourceBundle), forCellWithReuseIdentifier: self.identifier)
             self.collectionView.delegate = self
             self.collectionView.dataSource = self
             self.collectionView.contentInset = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
